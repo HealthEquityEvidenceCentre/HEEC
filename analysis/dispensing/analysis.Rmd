@@ -2,7 +2,9 @@
 title: "Exploring the Impact of Dispensing Practices on Equity in NHS Payments to General Practices"
 author: "Your Name"
 date: "2024-08-06"
-output: html_document
+output: 
+  md_document:
+    variant: markdown_github
 ---
 
 ## Introduction
@@ -13,7 +15,7 @@ General practices serving the most deprived populations receive less funding per
 
 Dispensing practices are practices where “at the patient’s request dispensing doctors are allowed to dispense the medicines they prescribe for these patients” (DDA); they are not the same as practices with an on-site pharmacy.
 
-[NHS Digital](https://digital.nhs.uk/data-and-information/publications/statistical/nhs-payments-to-general-practice) provides public CSVs on NHS payments to individual providers of general practice services in England from 2014-15 to 2022-23.
+[NHS Digital](https://digital.nhs.uk/data-and-information/publications/statistical/nhs-payments-to-general-practice) provides public CSVs on NHS payments to individual providers of general practice services in England from 2014-15 to 2022-23. We look at the most recent data from 2022-23.
 
 ## Data Analysis
 
@@ -44,15 +46,9 @@ total_dispensing_patients <- sum(dispensing$Average.Number.of.Registered.Patient
 
 # Sum of patients in non-dispensing practices
 total_non_dispensing_patients <- sum(non_dispensing$Average.Number.of.Registered.Patient, na.rm = TRUE)
-
-# Display results
-num_dispensing
-num_non_dispensing
-total_dispensing_patients
-total_non_dispensing_patients
 ```
 
-In 2023, there were r num_dispensing dispensing practices covering r total_dispensing_patients patients and r num_non_dispensing non-dispensing practices covering r total_non_dispensing_patients patients in England (dispensing status unknown for 188 practices).
+In 2023, there were `r num_dispensing` dispensing practices covering `r total_dispensing_patients` patients and `r num_non_dispensing` non-dispensing practices covering `r total_non_dispensing_patients` patients in England (dispensing status unknown for 188 practices).
 
 OHID provides the Fingertips API, which includes practice-level IMD values.
 
@@ -67,26 +63,26 @@ library(httr)
 library(jsonlite)
 
 # Define API endpoint and parameters
-api_url <- "https://fingertips.phe.org.uk/api"
-query_params <- list(
-  profile_id = 159,
-  indicator_id = 93553,
-  area_type_id = 15,
-  parent_area_id = "E92000001",
-  category_type_id = -1,
-  time_point = 1,
-  child_area_id = 4
-)
-
-# Make API request
-response <- GET(api_url, query = query_params)
-data <- content(response, "text") %>% fromJSON()
-
-# Convert data to data frame
-imd_data <- data$indicator_data %>% as.data.frame()
-
-# Display the first few rows of the data
-head(imd_data)
+# api_url <- "https://fingertips.phe.org.uk/api"
+# query_params <- list(
+#   profile_id = 159,
+#   indicator_id = 93553,
+#   area_type_id = 15,
+#   parent_area_id = "E92000001",
+#   category_type_id = -1,
+#   time_point = 1,
+#   child_area_id = 4
+# )
+# 
+# # Make API request
+# response <- GET(api_url, query = query_params)
+# data <- content(response, "text") %>% fromJSON()
+# 
+# # Convert data to data frame
+# imd_data <- data$indicator_data %>% as.data.frame()
+# 
+# # Display the first few rows of the data
+# head(imd_data)
 ```
 
 Conclusion
