@@ -55,38 +55,87 @@ total_non_dispensing_patients <- sum(non_dispensing$Average.Number.of.Registered
 In 2023, there were `r num_dispensing` dispensing practices covering `r total_dispensing_patients` patients and `r num_non_dispensing` non-dispensing practices covering `r total_non_dispensing_patients` patients in England (dispensing status unknown for `r num_unknown_dispensing` practices).
 
 OHID provides the Fingertips API, which includes practice-level IMD values.
+```{r}
+# Load necessary libraries
+library(httr)
+library(readr)
 
-# Collating Data into a Time Series
-Here, we demonstrate how to download and collate this data into a time series.
+# Define the URL and query parameters
+base_url <- "https://fingertipsws.phe.org.uk/api/all_data/csv/by_indicator_id"
+query_params <- list(
+  v = "/0-c459298b/",
+  parent_area_code = "E92000001",
+  parent_area_type_id = 167,
+  child_area_type_id = 7,
+  indicator_ids = 93553
+)
+
+# Make the API request
+response <- GET(base_url, query = query_params)
+
+# Check if the response is successful
+if (http_status(response)$category == "Success") {
+  # Write the content to a temporary file
+  temp_file <- tempfile(fileext = ".csv")
+  writeBin(content(response, "raw"), temp_file)
+
+  # Read the CSV data
+  df <- read_csv(temp_file)
+
+  # Display the first few rows of the data
+  print(head(df))
+} else {
+  cat("Failed to retrieve data. Status code:", status_code(response), "\n")
+  cat("Response content:", content(response, "text"), "\n")
+}
+```
+
+As well as the the fingertipsR package, which provides an R interface to the Fingertips API.
 
 ```{r}
-# Example code for downloading and processing data from the Fingertips API
-# Note: Actual implementation may vary based on API specifications and available libraries
+# Enable repository from rOpenSci
+options(repos = c(
+  ropensci = "https://ropensci.r-universe.dev",
+  CRAN = "https://cloud.r-project.org"
+))
 
-library(httr)
-library(jsonlite)
+# Download and install fingertipsR in R
+install.packages("fingertipsR")
 
-# Define API endpoint and parameters
-# api_url <- "https://fingertips.phe.org.uk/api"
-# query_params <- list(
-#   profile_id = 159,
-#   indicator_id = 93553,
-#   area_type_id = 15,
-#   parent_area_id = "E92000001",
-#   category_type_id = -1,
-#   time_point = 1,
-#   child_area_id = 4
-# )
-#
-# # Make API request
-# response <- GET(api_url, query = query_params)
-# data <- content(response, "text") %>% fromJSON()
-#
-# # Convert data to data frame
-# imd_data <- data$indicator_data %>% as.data.frame()
-#
-# # Display the first few rows of the data
-# head(imd_data)
+# Alternatively, install the latest development version from GitHub
+# install.packages("remotes")
+remotes::install_github("rOpenSci/fingertipsR",
+  build_vignettes = TRUE,
+  dependencies = "suggests"
+)
+```
+
+```{r}
+# Load necessary library
+library(fingertipsR)
+
+# Get the profile ID for the Public Health Outcomes Framework
+profiles_data <- profiles()
+phof_profile <- profiles_data[profiles_data$ProfileName == "Public Health Outcomes Framework", ]
+profile_id <- phof_profile$ProfileID[1]
+
+# Print the profile details (optional)
+print(phof_profile)
+
+# Get indicators for the Public Health Outcomes Framework profile
+indicators_data <- indicators(ProfileID = profile_id)
+
+# Find the IndicatorID for "Deprivation score (IMD 2019)"
+indicator_id <- indicators_data$IndicatorID[indicators_data$IndicatorName == "Deprivation score (IMD 2019)"]
+
+# Print the indicator details (optional)
+print(indicators_data[indicators_data$IndicatorName == "Deprivation score (IMD 2019)", ])
+
+# Get the data for the "Deprivation score (IMD 2019)" indicator
+data <- fingertips_data(IndicatorID = indicator_id, AreaTypeID = 7) # AreaTypeID 7 is for CCGs
+
+# Display the first few rows of the data
+head(data)
 ```
 
 Conclusion
