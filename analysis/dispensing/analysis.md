@@ -1,4 +1,4 @@
-## Introduction
+# Exploring the impact of dispensing practicing on equity in NHS payments to general practices
 
 General practices serving the most deprived populations receive less
 funding per weighted patient than those serving the least deprived. Here
@@ -92,14 +92,14 @@ library(jsonlite)
 #   time_point = 1,
 #   child_area_id = 4
 # )
-# 
+#
 # # Make API request
 # response <- GET(api_url, query = query_params)
 # data <- content(response, "text") %>% fromJSON()
-# 
+#
 # # Convert data to data frame
 # imd_data <- data$indicator_data %>% as.data.frame()
-# 
+#
 # # Display the first few rows of the data
 # head(imd_data)
 ```
