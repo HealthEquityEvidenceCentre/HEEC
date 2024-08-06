@@ -15,9 +15,9 @@ General practices serving the most deprived populations receive less funding per
 
 Dispensing practices are practices where “at the patient’s request dispensing doctors are allowed to dispense the medicines they prescribe for these patients” (DDA); they are not the same as practices with an on-site pharmacy.
 
-[NHS Digital](https://digital.nhs.uk/data-and-information/publications/statistical/nhs-payments-to-general-practice) provides public CSVs on NHS payments to individual providers of general practice services in England from 2014-15 to 2022-23. We look at the most recent data from 2022-23.
-
 ## Data Analysis
+
+[NHS Digital](https://digital.nhs.uk/data-and-information/publications/statistical/nhs-payments-to-general-practice) provides public CSVs on NHS payments to individual providers of general practice services in England from 2014-15 to 2022-23. We look at the most recent data from 2022-23.
 
 ```{r}
 # Load necessary libraries
@@ -41,6 +41,10 @@ num_non_dispensing <- non_dispensing %>%
   distinct(Practice.Code) %>%
   nrow()
 
+num_unknown_dispensing <- df[df$Dispensing.Practice == "Unknown", ] %>%
+  distinct(Practice.Code) %>%
+  nrow()
+
 # Sum of patients in dispensing practices
 total_dispensing_patients <- sum(dispensing$Average.Number.of.Registered.Patient, na.rm = TRUE)
 
@@ -48,7 +52,7 @@ total_dispensing_patients <- sum(dispensing$Average.Number.of.Registered.Patient
 total_non_dispensing_patients <- sum(non_dispensing$Average.Number.of.Registered.Patient, na.rm = TRUE)
 ```
 
-In 2023, there were `r num_dispensing` dispensing practices covering `r total_dispensing_patients` patients and `r num_non_dispensing` non-dispensing practices covering `r total_non_dispensing_patients` patients in England (dispensing status unknown for 188 practices).
+In 2023, there were `r num_dispensing` dispensing practices covering `r total_dispensing_patients` patients and `r num_non_dispensing` non-dispensing practices covering `r total_non_dispensing_patients` patients in England (dispensing status unknown for `r num_unknown_dispensing` practices).
 
 OHID provides the Fingertips API, which includes practice-level IMD values.
 
