@@ -24,20 +24,7 @@ most recent data from 2022-23.
 # Load necessary libraries
 library(magrittr)
 library(dplyr)
-```
 
-    ## 
-    ## Attaching package: 'dplyr'
-
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     filter, lag
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     intersect, setdiff, setequal, union
-
-``` r
 # Download the NHS payments data for 2022/23
 df <- read.csv("https://files.digital.nhs.uk/05/E6ADA0/nhspaymentsgp-22-23-prac-csv.csv")
 
@@ -70,8 +57,9 @@ In 2023, there were 944 dispensing practices covering 9.5058785^{6}
 patients and 5537 non-dispensing practices covering 5.2628766^{7}
 patients in England (dispensing status unknown for 188 practices).
 
-OHID provides the Fingertips API, which includes practice-level IMD
-values.
+[OHID](https://fingertips.phe.org.uk/search/deprivation%20index#page/4/gid/1/pat/159/par/K02000001/ati/15/are/E92000001/iid/93553/age/1/sex/4/cat/-1/ctp/-1/yrr/1/cid/4/tbm/1)
+provides the [Fingertips API](https://fingertips.phe.org.uk/api), which
+includes practice-level IMD values.
 
 ``` r
 # Load necessary libraries
@@ -98,30 +86,15 @@ if (http_status(response)$category == "Success") {
   writeBin(content(response, "raw"), temp_file)
 
   # Read the CSV data
-  df <- read_csv(temp_file)
+  IMD <- read_csv(temp_file)
 
   # Display the first few rows of the data
-  print(head(df))
+  print(head(IMD))
 } else {
   cat("Failed to retrieve data. Status code:", status_code(response), "\n")
   cat("Response content:", content(response, "text"), "\n")
 }
 ```
-
-    ## Warning: One or more parsing issues, call `problems()` on your data frame for details,
-    ## e.g.:
-    ##   dat <- vroom(...)
-    ##   problems(dat)
-
-    ## Rows: 19047 Columns: 27
-    ## ── Column specification ────────────────────────────────────────────────────────
-    ## Delimiter: ","
-    ## chr (12): Indicator Name, Parent Code, Parent Name, Area Code, Area Name, Ar...
-    ## dbl  (4): Indicator ID, Time period, Value, Time period Sortable
-    ## lgl (11): Category Type, Category, Lower CI 95.0 limit, Upper CI 95.0 limit,...
-    ## 
-    ## ℹ Use `spec()` to retrieve the full column specification for this data.
-    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 
     ## # A tibble: 6 × 27
     ##   `Indicator ID` `Indicator Name`        `Parent Code` `Parent Name` `Area Code`
@@ -140,157 +113,536 @@ if (http_status(response)$category == "Success") {
     ## #   `Compared to England value or percentiles` <chr>,
     ## #   `Compared to CCGs (from Apr 2021) value or percentiles` <chr>, …
 
+``` r
+# select Area Code, Time period, Value columns and rename them to Practice.Code, Year, IMD
+IMD <- IMD %>%
+  select("Area Code", "Time period", "Value") %>%
+  rename(Practice.Code = "Area Code", Year = "Time period", IMD = "Value")
+```
+
 As well as the the fingertipsR package, which provides an R interface to
-the Fingertips API.
+the Fingertips API, which can be used as such:
+
+To explore the relationship between dispensing practices and
+deprivation, we can merge the NHS payments data with the IMD data (from
+the API, not the package).
 
 ``` r
-# Enable repository from rOpenSci
-options(repos = c(
-  ropensci = "https://ropensci.r-universe.dev",
-  CRAN = "https://cloud.r-project.org"
-))
+# Merge the NHS payments data with the IMD data, starting with 2019 data
+df_merged <- merge(df, IMD[IMD$Year == max(IMD$Year), ], by = "Practice.Code")
 
-# Download and install fingertipsR in R
-install.packages("fingertipsR")
-```
+# Assign each practice to a deprivation quintile based on the IMD score
+df_merged %<>%
+  mutate(IMD_quintile = cut(IMD, breaks = quantile(IMD, probs = seq(0, 1, 0.2), na.rm = TRUE), include.lowest = TRUE, labels = c("1", "2", "3", "4", "5")))
 
-    ## Installing package into '/Users/qmul/Library/R/arm64/4.3/library'
-    ## (as 'lib' is unspecified)
+# calculate the average payment per patient for the highest and lowest deprivation quintiles for dispensing and non-dispensing practices
+agg_dispensing <- df_merged %>%
+  filter(
+    (IMD_quintile == 1 | IMD_quintile == 5) &
+      (Dispensing.Practice == "No" | Dispensing.Practice == "Yes") &
+      !is.na(IMD_quintile)
+  ) %>%
+  group_by(IMD_quintile, Dispensing.Practice) %>%
+  summarise(
+    total_payments = sum(Total.NHS.Payments.to.General.Practice, na.rm = TRUE),
+    weighted_patients = sum(Average.Number.of.Weighted.Patients, na.rm = TRUE),
+    .groups = "drop" # to ungroup after summarise
+  ) %>%
+  mutate(
+    payment_per_patient = total_payments / weighted_patients
+  )
 
-    ## 
-    ## The downloaded binary packages are in
-    ##  /var/folders/xc/27k2c2sd09b0hlzxd45g2fcm0000gp/T//RtmpPHcuh5/downloaded_packages
-
-``` r
-# Alternatively, install the latest development version from GitHub
-# install.packages("remotes")
-remotes::install_github("rOpenSci/fingertipsR",
-  build_vignettes = TRUE,
-  dependencies = "suggests"
+# calculate the average payment per patient for all practices
+additional_rows <- bind_rows(
+  data.frame(
+    IMD_quintile = "1",
+    Dispensing.Practice = "All",
+    total_payments = sum(df_merged[df_merged$IMD_quintile == 1, ]$Total.NHS.Payments.to.General.Practice, na.rm = TRUE),
+    weighted_patients = sum(df_merged[df_merged$IMD_quintile == 1, ]$Average.Number.of.Weighted.Patients, na.rm = TRUE)
+  ) %>%
+    mutate(
+      payment_per_patient = total_payments / weighted_patients
+    ),
+  data.frame(
+    IMD_quintile = "5",
+    Dispensing.Practice = "All",
+    total_payments = sum(df_merged[df_merged$IMD_quintile == 5, ]$Total.NHS.Payments.to.General.Practice, na.rm = TRUE),
+    weighted_patients = sum(df_merged[df_merged$IMD_quintile == 5, ]$Average.Number.of.Weighted.Patients, na.rm = TRUE)
+  ) %>%
+    mutate(
+      payment_per_patient = total_payments / weighted_patients
+    )
 )
+
+agg_dispensing <- bind_rows(agg_dispensing, additional_rows)
+
+# Replace the "All" Dispensing.Practice with "All Practices"
+agg_dispensing$Dispensing.Practice[agg_dispensing$Dispensing.Practice == "All"] <- "All practices"
+agg_dispensing$Dispensing.Practice[agg_dispensing$Dispensing.Practice == "Yes"] <- "Dispensing Practices"
+agg_dispensing$Dispensing.Practice[agg_dispensing$Dispensing.Practice == "No"] <- "Non-dispensing Practices"
+
+# Update the factor levels for Dispensing.Practice
+agg_dispensing$Dispensing.Practice <- factor(agg_dispensing$Dispensing.Practice,
+  levels = c("Dispensing Practices", "Non-dispensing Practices", "All practices")
+)
+
+pwp_1 <- agg_dispensing[5,5]
+pwp_5 <- agg_dispensing[6,5]
+pwp_diff <- pwp_1 - pwp_5
+
+pwp_disp_diff <- agg_dispensing[1,5] - agg_dispensing[3,5]
+pwp_disp_diff2 <- agg_dispensing[2,5] - agg_dispensing[4,5]
 ```
 
-    ## Downloading GitHub repo rOpenSci/fingertipsR@HEAD
+Across all practices, those in the least deprived 20% received
+£170.6317335 per weighted patient in 2023, compared to £154.4376687 for
+those in the most deprived 20% – a gap of £16.1940648. When we exclude
+all dispensing practices from this analysis, the gap is only £0.0910195.
+The gap in payments to dispensing practices is much larger (£28.27166),
+but this is partly because there are only 15 dispensing practices
+covering the most deprived 20%.
 
-    ## ── R CMD build ─────────────────────────────────────────────────────────────────
-    ##      checking for file ‘/private/var/folders/xc/27k2c2sd09b0hlzxd45g2fcm0000gp/T/RtmpPHcuh5/remotes611b52268ff4/ropensci-fingertipsR-309c4ae/DESCRIPTION’ ...  ✔  checking for file ‘/private/var/folders/xc/27k2c2sd09b0hlzxd45g2fcm0000gp/T/RtmpPHcuh5/remotes611b52268ff4/ropensci-fingertipsR-309c4ae/DESCRIPTION’
-    ##   ─  preparing ‘fingertipsR’:
-    ##      checking DESCRIPTION meta-information ...  ✔  checking DESCRIPTION meta-information
-    ##   ─  installing the package to build vignettes
-    ##      creating vignettes ...  ✔  creating vignettes (3.1s)
-    ##   ─  checking for LF line-endings in source and make files and shell scripts
-    ##   ─  checking for empty or unneeded directories
-    ##      Omitted ‘LazyData’ from DESCRIPTION
-    ##   ─  building ‘fingertipsR_1.0.12.tar.gz’
-    ##      
+``` r
+library(ggplot2)
+
+# Plot
+ggplot(agg_dispensing, aes(x = payment_per_patient, y = Dispensing.Practice, color = as.factor(IMD_quintile))) +
+  geom_point(size = 5) +
+  scale_color_manual(values = c("5" = "#A80026", "1" = "#1B2C57"), labels = c("Least deprived (Q1)", "Most deprived (Q5)")) +
+  labs(
+    title = "Total Payment per Weighted Patient, 2022/23",
+    subtitle = "Practices in Most and Least Deprived IMD Quintiles",
+    x = "Payment per Patient (£)",
+    y = "Dispensing Practice",
+    color = "IMD Quintile"
+  ) +
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(size = 18, face = "bold"),
+    plot.subtitle = element_text(size = 14),
+    axis.title.y = element_blank(),
+    axis.text.x = element_text(size = 10),
+    legend.position = "bottom",
+    legend.title = element_text(size = 10),
+    legend.text = element_text(size = 8),
+    legend.key.size = unit(0.5, "cm"),
+    panel.grid.major = element_line(color = "grey80"),
+    panel.grid.minor = element_line(color = "grey90"),
+    plot.margin = margin(5, 5, 5, 5) # Adjust margin to make space for the legend
+  )
+```
+
+![](analysis_files/figure-markdown_github/unnamed-chunk-4-1.png)
+
+``` r
+table(dispensing$Practice.Rurality)
+```
+
     ## 
-
-    ## Installing package into '/Users/qmul/Library/R/arm64/4.3/library'
-    ## (as 'lib' is unspecified)
-
-``` r
-# Load necessary library
-library(fingertipsR)
-
-# Get the profile ID for the Public Health Outcomes Framework
-profiles_data <- profiles()
-phof_profile <- profiles_data[profiles_data$ProfileName == "Public Health Outcomes Framework", ]
-profile_id <- phof_profile$ProfileID[1]
-
-# Print the profile details (optional)
-print(phof_profile)
-```
-
-    ## # A tibble: 6 × 4
-    ##   ProfileID ProfileName                        DomainID DomainName              
-    ##       <int> <chr>                                 <int> <chr>                   
-    ## 1        19 Public Health Outcomes Framework    1000049 A. Overarching indicato…
-    ## 2        19 Public Health Outcomes Framework    1000041 B. Wider determinants o…
-    ## 3        19 Public Health Outcomes Framework    1000042 C. Health improvement   
-    ## 4        19 Public Health Outcomes Framework    1000043 D. Health protection    
-    ## 5        19 Public Health Outcomes Framework    1000044 E. Healthcare and prema…
-    ## 6        19 Public Health Outcomes Framework 1938132983 Supporting information
+    ## Rural Urban 
+    ##   692   252
 
 ``` r
-# Get indicators for the Public Health Outcomes Framework profile
-indicators_data <- indicators(ProfileID = profile_id)
+perc_rural <- table(dispensing$Practice.Rurality) / nrow(dispensing) * 100
 
-# Find the IndicatorID for "Deprivation score (IMD 2019)"
-indicator_id <- indicators_data$IndicatorID[indicators_data$IndicatorName == "Deprivation score (IMD 2019)"]
-
-# Print the indicator details (optional)
-print(indicators_data[indicators_data$IndicatorName == "Deprivation score (IMD 2019)", ])
+table(df_merged[df_merged$Practice.Rurality == "Rural", ]$IMD_quintile)
 ```
 
-    ## # A tibble: 1 × 6
-    ##   IndicatorID IndicatorName            DomainID DomainName ProfileID ProfileName
-    ##         <int> <fct>                       <int> <chr>          <int> <chr>      
-    ## 1       93553 Deprivation score (IMD …   1.94e9 Supportin…        19 Public Hea…
+    ## 
+    ##   1   2   3   4   5 
+    ## 445 352 184  65  18
 
 ``` r
-# Get the data for the "Deprivation score (IMD 2019)" indicator
-data <- fingertips_data(IndicatorID = indicator_id, AreaTypeID = 7) # AreaTypeID 7 is for CCGs
-
-# Display the first few rows of the data
-head(data)
+perc_dep <- table(df_merged[df_merged$Practice.Rurality == "Rural", ]$IMD_quintile) / nrow(df_merged[df_merged$Practice.Rurality == "Rural", ]) * 100
 ```
 
-    ##   IndicatorID                IndicatorName ParentCode                ParentName
-    ## 1       93553 Deprivation score (IMD 2019)       <NA>                      <NA>
-    ## 2       93553 Deprivation score (IMD 2019)     U89141              Stockton PCN
-    ## 3       93553 Deprivation score (IMD 2019)     U07032        North Stockton PCN
-    ## 4       93553 Deprivation score (IMD 2019)     U02671 Greater Middlesbrough PCN
-    ## 5       93553 Deprivation score (IMD 2019)     U07842        East Cleveland PCN
-    ## 6       93553 Deprivation score (IMD 2019)     U07032        North Stockton PCN
-    ##    AreaCode                        AreaName AreaType     Sex      Age
-    ## 1 E92000001                         England  England Persons All ages
-    ## 2    A81001             The Densham Surgery      GPs Persons All ages
-    ## 3    A81002      Queens Park Medical Centre      GPs Persons All ages
-    ## 4    A81004           Acklam Medical Centre      GPs Persons All ages
-    ## 5    A81005              Springwood Surgery      GPs Persons All ages
-    ## 6    A81006 Tennant Street Medical Practice      GPs Persons All ages
-    ##   CategoryType Category Timeperiod    Value LowerCI95.0limit UpperCI95.0limit
-    ## 1         <NA>     <NA>       2010 21.69383               NA               NA
-    ## 2         <NA>     <NA>       2010 25.07512               NA               NA
-    ## 3         <NA>     <NA>       2010 27.70068               NA               NA
-    ## 4         <NA>     <NA>       2010 33.05193               NA               NA
-    ## 5         <NA>     <NA>       2010 14.55969               NA               NA
-    ## 6         <NA>     <NA>       2010 29.14449               NA               NA
-    ##   LowerCI99.8limit UpperCI99.8limit Count Denominator Valuenote RecentTrend
-    ## 1               NA               NA    NA          NA      <NA>        <NA>
-    ## 2               NA               NA    NA          NA      <NA>        <NA>
-    ## 3               NA               NA    NA          NA      <NA>        <NA>
-    ## 4               NA               NA    NA          NA      <NA>        <NA>
-    ## 5               NA               NA    NA          NA      <NA>        <NA>
-    ## 6               NA               NA    NA          NA      <NA>        <NA>
-    ##   ComparedtoEnglandvalueorpercentiles
-    ## 1                        Not compared
-    ## 2                        Not compared
-    ## 3                        Not compared
-    ## 4                        Not compared
-    ## 5                        Not compared
-    ## 6                        Not compared
-    ##   ComparedtoPCNs(v.26/04/24)valueorpercentiles TimeperiodSortable Newdata
-    ## 1                                 Not compared           20100000    <NA>
-    ## 2                                 Not compared           20100000    <NA>
-    ## 3                                 Not compared           20100000    <NA>
-    ## 4                                 Not compared           20100000    <NA>
-    ## 5                                 Not compared           20100000    <NA>
-    ## 6                                 Not compared           20100000    <NA>
-    ##   Comparedtogoal Timeperiodrange
-    ## 1           <NA>              1y
-    ## 2           <NA>              1y
-    ## 3           <NA>              1y
-    ## 4           <NA>              1y
-    ## 5           <NA>              1y
-    ## 6           <NA>              1y
+73.3050847% of all dispensing practices are in rural areas. One
+explanation for this unequal geographical distribution is that in order
+for a dispensing practice to dispense medicine, “the patient must live
+more than 1.6km from a retail pharmacy or the area must be designated as
+a ‘reserved location’” (DDE). Therefore, dispensing practices are only
+likely to dispense enough medicine to be sufficiently profitable in
+rural areas.
 
-Conclusion This analysis highlights the disparities in funding between
-general practices serving different populations and the role of
-dispensing practices in this inequality.
+Consequently, dispensing practices tend to be in more affluent areas:
+41.8233083% of dispensing practices serve patients in the least deprived
+quintile and 33.0827068% serve those in the second least deprived
+quintile, whereas 1.6917293% cover the most deprived quintile.
 
-For more detailed exploration and visualization, further analysis and
-refinement of the data is needed.
+``` r
+# Define the colors vector as provided
+colors <- c("#EF7A34", "#00A865", "#007AA8", "#531A5C", "#A80026")
 
-References NHS Digital: NHS Payments to General Practice Fingertips API
+# Custom labels for the legend
+custom_labels <- c(
+  "1" = "Q1 (least deprived)",
+  "2" = "Q2",
+  "3" = "Q3",
+  "4" = "Q4",
+  "5" = "Q5 (most deprived)"
+)
+
+dispensing_plot <- ggplot(df_merged[df_merged$Dispensing.Practice == "Yes", ], aes(x = as.factor(IMD_quintile), fill = as.factor(IMD_quintile))) +
+  geom_bar() +
+  scale_fill_manual(values = colors, labels = custom_labels) +
+  labs(
+    title = "Dispensing Practices",
+    # x = "IMD Quintile",
+    y = "Number of Practices",
+    fill = "IMD Quintile"
+  ) +
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(size = 18, face = "bold"),
+    axis.title.x = element_blank(),
+    axis.title.y = element_text(size = 14),
+    axis.text.x = element_blank(), # Adjust margin to reduce space
+    axis.text.y = element_text(size = 12),
+    legend.position = "right",
+    legend.title = element_text(size = 12),
+    legend.text = element_text(size = 10),
+    panel.grid.major.x = element_blank(), # Remove major vertical grid lines
+    panel.grid.minor.x = element_blank(), # Remove minor vertical grid lines
+    # panel.grid.major = element_line(color = "grey80"),
+    # panel.grid.minor = element_line(color = "grey90")
+  )
+
+non_dispensing_plot <- ggplot(df_merged[df_merged$Dispensing.Practice == "No", ], aes(x = as.factor(IMD_quintile), fill = as.factor(IMD_quintile))) +
+  geom_bar() +
+  scale_fill_manual(values = colors, labels = custom_labels) +
+  labs(
+    title = "Non-dispensing Practices",
+    y = "Number of practices",
+    fill = "IMD Quintile"
+  ) +
+  theme_minimal(base_size = 15) +
+  theme(
+    plot.title = element_text(size = 18, face = "bold"),
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    axis.text.x = element_blank(), # Adjust margin to reduce space
+    axis.text.y = element_text(size = 12),
+    legend.position = "right",
+    legend.title = element_text(size = 12),
+    legend.text = element_text(size = 10),
+    panel.grid.major.x = element_blank(), # Remove major vertical grid lines
+    panel.grid.minor.x = element_blank(), # Remove minor vertical grid lines
+    # panel.grid.major = element_line(color = "grey80"),
+    # panel.grid.minor = element_line(color = "grey90"),
+  )
+
+# Combine the two plots using patchwork
+library(patchwork)
+
+combined_plot <- dispensing_plot + non_dispensing_plot +
+  plot_layout(guides = "collect") & theme(legend.position = "bottom")
+
+print(combined_plot)
+```
+
+![](analysis_files/figure-markdown_github/unnamed-chunk-6-1.png)
+
+## How do payments differ between dispensing and non-dispensing practices?
+
+Dispensing and non-dispensing practices receive reimbursement for the
+drugs they use.
+
+We calculate the proportion of payments that are for prescribing for
+dispensing and non-dispensing practices.
+
+``` r
+Prescribing <- c("Prescribing.Fee.Payments", "Dispensing.Fee.Payments", "Reimbursement.of.Drugs")
+
+df_merged$Total.Prescribing <- rowSums(df_merged[, Prescribing], na.rm = TRUE)
+
+agg <- df_merged %>%
+  group_by(Dispensing.Practice) %>%
+  summarise(
+    total_prescribing = sum(Total.Prescribing, na.rm = TRUE),
+    total_payments = sum(Total.NHS.Payments.to.General.Practice.including.Covid.and.PCN.payments, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    prescribing_proportion = (total_prescribing / total_payments) * 100
+  )
+
+agg
+```
+
+    ## # A tibble: 2 × 4
+    ##   Dispensing.Practice total_prescribing total_payments prescribing_proportion
+    ##   <chr>                           <dbl>          <dbl>                  <dbl>
+    ## 1 No                         244166199.    8589930080.                   2.84
+    ## 2 Yes                        624136108.    2268785305.                  27.5
+
+For dispensing practices, prescribing payments constitute 27.5097034% of
+total payments for dispensing practices, but only 2.8424702 for
+non-dispensing practices.
+
+``` r
+agg <- df_merged %>%
+  group_by(IMD_quintile) %>%
+  summarise(
+    total_prescribing = sum(Total.Prescribing, na.rm = TRUE),
+    total_payments = sum(Total.NHS.Payments.to.General.Practice.including.Covid.and.PCN.payments, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    prescribing_proportion = (total_prescribing / total_payments) * 100
+  )
+
+diff_all <- agg[1, 3] - agg[5, 3]
+ratio_all <- agg[1, 3] / agg[5, 3]
+
+diff_wo_pres <- (agg[1, 3] - agg[1, 2]) - (agg[5, 3] - agg[5, 2])
+ratio_wo_pres <- (agg[1, 3] - agg[1, 2]) / (agg[5, 3] - agg[5, 2])
+
+agg
+```
+
+    ## # A tibble: 5 × 4
+    ##   IMD_quintile total_prescribing total_payments prescribing_proportion
+    ##   <fct>                    <dbl>          <dbl>                  <dbl>
+    ## 1 1                   306249881.    2413786042.                  12.7 
+    ## 2 2                   274913517.    2366647050.                  11.6 
+    ## 3 3                   161167701.    2217972011.                   7.27
+    ## 4 4                    84705141.    2082075332.                   4.07
+    ## 5 5                    41266067.    1778234951.                   2.32
+
+As result, prescribing fees constituted a larger percentage of total
+payments for more affluent practices (12.6875322%) than less affluent
+ones (2.3206195%) in 2023.
+
+Excluding prescribing payments from the total reduces the difference in
+total payments between practices serving the most and least deprived
+populations from 6.3555109^{8} to 3.7056728^{8} (or from a ratio of
+1.3574056 to 1.2133413)
+
+# Do prescribing contribute more than other payment types?
+
+First, we categorise all payments into 7 types: Global Sum, IT &
+Premises, PCO, QOF, Contracted services, Prescribing, and COVID. We then
+calculate the proportion of each payment type for IMD quintile, and the
+correlation of these proportions with the IMD.
+
+``` r
+df_merged %>% colnames()
+```
+
+    ##  [1] "Practice.Code"                                                                                             
+    ##  [2] "NHS.England..Region..code"                                                                                 
+    ##  [3] "NHS.England..Region..Name"                                                                                 
+    ##  [4] "Sub.ICB.Code"                                                                                              
+    ##  [5] "Sub.ICB.NAME"                                                                                              
+    ##  [6] "PCN.Code"                                                                                                  
+    ##  [7] "PCN.Name"                                                                                                  
+    ##  [8] "Practice.Name"                                                                                             
+    ##  [9] "Practice.Address"                                                                                          
+    ## [10] "Practice.Postcode"                                                                                         
+    ## [11] "Practice.Open.Date"                                                                                        
+    ## [12] "Practice.Close.Date"                                                                                       
+    ## [13] "Contract.Type"                                                                                             
+    ## [14] "Dispensing.Practice"                                                                                       
+    ## [15] "Practice.type"                                                                                             
+    ## [16] "Practice.Rurality"                                                                                         
+    ## [17] "Atypical.characteristics"                                                                                  
+    ## [18] "Average.Number.of.Registered.Patients"                                                                     
+    ## [19] "Average.Number.of.Weighted.Patients"                                                                       
+    ## [20] "Average.payments.per.registered.patient"                                                                   
+    ## [21] "Average.payments.per.weighted.patient"                                                                     
+    ## [22] "Global.Sum"                                                                                                
+    ## [23] "MPIG.Correction.factor"                                                                                    
+    ## [24] "Balance.of.PMS.Expenditure"                                                                                
+    ## [25] "Total.QOF.Payments"                                                                                        
+    ## [26] "Childhood.Vaccination.and.Immunisation.Scheme"                                                             
+    ## [27] "GP.Extended.Hours.Access"                                                                                  
+    ## [28] "Influenza.and.Pneumococcal.Immunisations"                                                                  
+    ## [29] "Learning.Disabilities"                                                                                     
+    ## [30] "Meningitis"                                                                                                
+    ## [31] "Minor.Surgery"                                                                                             
+    ## [32] "Out.Of.Area.in.Hours.Urgent.Care"                                                                          
+    ## [33] "Pertussis"                                                                                                 
+    ## [34] "Rotavirus.and.Shingles.Immunisation"                                                                       
+    ## [35] "Services.for.Violent.Patients"                                                                             
+    ## [36] "Medical.Assessment.Reviews"                                                                                
+    ## [37] "Weight.Management.Service"                                                                                 
+    ## [38] "Local.Incentive.Schemes"                                                                                   
+    ## [39] "Premises.Payments"                                                                                         
+    ## [40] "Seniority"                                                                                                 
+    ## [41] "Doctors.Retainer.Scheme.Payments"                                                                          
+    ## [42] "Total.Locum.Allowances"                                                                                    
+    ## [43] "Appraisal...Appraiser.Costs.in.Respect.of.Locums"                                                          
+    ## [44] "Prolonged.Study.Leave"                                                                                     
+    ## [45] "PCO.Admin.Other"                                                                                           
+    ## [46] "Information.Management.and.Technology"                                                                     
+    ## [47] "Non.DES.Item.Pneumococcal.Vaccine..Childhood.Immunisation.Main.Programme"                                  
+    ## [48] "General.Practice.Transformation"                                                                           
+    ## [49] "PCN.Participation"                                                                                         
+    ## [50] "Prescribing.Fee.Payments"                                                                                  
+    ## [51] "Dispensing.Fee.Payments"                                                                                   
+    ## [52] "Reimbursement.of.Drugs"                                                                                    
+    ## [53] "winter.Access.Fund"                                                                                        
+    ## [54] "Other.Payments"                                                                                            
+    ## [55] "Total.NHS.Payments.to.General.Practice"                                                                    
+    ## [56] "Deductions.for.Pensions..Levies.and.Prescription.Charge.Income"                                            
+    ## [57] "Total.NHS.Payments.to.General.Practice.Minus.Deductions"                                                   
+    ## [58] "Total.NHS.Payments.to.General.Practice.including.covid.vaccination..covid.support.and.long.covid.payments" 
+    ## [59] "Total.NHS.Payments.including.PCN.Workforce..Leadership.and.Support"                                        
+    ## [60] "Total.NHS.Payments.to.General.Practice.including.Covid.and.PCN.payments"                                   
+    ## [61] "Total.NHS.Payments.to.General.Practice.including.Covid.and.PCN.payments.minus.deductions"                  
+    ## [62] "PCN.Leadership"                                                                                            
+    ## [63] "PCN.Support"                                                                                               
+    ## [64] "PCN.Extended.Hours.Access"                                                                                 
+    ## [65] "PCN.Workforce"                                                                                             
+    ## [66] "PCN.Investment.and.impact.Fund"                                                                            
+    ## [67] "PCN.Care.Home.Premium"                                                                                     
+    ## [68] "PCN.Enhanced.Access"                                                                                       
+    ## [69] "Covid.Immunisation"                                                                                        
+    ## [70] "Covid.Support.and.Expansion"                                                                               
+    ## [71] "Long.Covid"                                                                                                
+    ## [72] "Average.payments.per.registered.patient.including.PCN.Workforce..Leadership.and.Support"                   
+    ## [73] "Average.payments.per.weighted.patient.including.PCN.Workforce..Leadership.and.Support"                     
+    ## [74] "Average.payments.per.registered.patient.including.covid.vaccination..covid.support.and.long.covid.payments"
+    ## [75] "Average.payments.per.weighted.patient.including.covid.vaccination..covid.support.and.long.covid.payments"  
+    ## [76] "Year"                                                                                                      
+    ## [77] "IMD"                                                                                                       
+    ## [78] "IMD_quintile"                                                                                              
+    ## [79] "Total.Prescribing"
+
+``` r
+globalSum <- c(
+  "Global.Sum", "MPIG.Correction.factor", "Balance.of.PMS.Expenditure"
+)
+
+QOF <- c("Total.QOF.Payments")
+
+contractedServices <- c(
+  "Childhood.Vaccination.and.Immunisation.Scheme",
+  "GP.Extended.Hours.Access",
+  "Influenza.and.Pneumococcal.Immunisations",
+  "Learning.Disabilities",
+  "Meningitis",
+  "Minor.Surgery",
+  "Out.Of.Area.in.Hours.Urgent.Care",
+  "Pertussis",
+  "Rotavirus.and.Shingles.Immunisation",
+  "Services.for.Violent.Patients",
+  "Medical.Assessment.Reviews",
+  "Medical.Assessment.Reviews",
+  "Weight.Management.Service",
+  "Non.DES.Item.Pneumococcal.Vaccine..Childhood.Immunisation.Main.Programme"
+)
+
+ITPremises <- c(
+  "Premises.Payments", "Information.Management.and.Technology"
+)
+
+PCO <- c(
+  "Seniority",
+  "Doctors.Retainer.Scheme.Payments",
+  "Total.Locum.Allowances",
+  "Appraisal...Appraiser.Costs.in.Respect.of.Locums",
+  "Prolonged.Study.Leave",
+  "PCO.Admin.Other",
+  "General.Practice.Transformation",
+  "PCN.Participation",
+  "winter.Access.Fund",
+  "Other.Payments",
+  "PCN.Leadership",
+  "PCN.Support",
+  "PCN.Extended.Hours.Access",
+  "PCN.Workforce",
+  "PCN.Investment.and.impact.Fund",
+  "PCN.Care.Home.Premium",
+  "PCN.Enhanced.Access"
+)
+
+COVID <- c(
+  "Covid.Immunisation", "Covid.Support.and.Expansion",
+  "Long.Covid"
+)
+
+# setdiff(names(df_merged), c(globalSum, ITPremises, PCO, QOF, contractedServices, Prescribing, COVID))
+
+df_merged$Total.globalSum <- rowSums(df_merged[, globalSum], na.rm = TRUE)
+df_merged$Total.ITPremises <- rowSums(df_merged[, ITPremises], na.rm = TRUE)
+df_merged$Total.PCO <- rowSums(df_merged[, PCO], na.rm = TRUE)
+df_merged$Total.contractedServices <- rowSums(df_merged[, contractedServices], na.rm = TRUE)
+df_merged$Total.COVID <- rowSums(df_merged[, COVID], na.rm = TRUE)
+
+agg <- df_merged %>%
+  group_by(IMD_quintile) %>%
+  summarise(
+    total_prescribing = sum(Total.Prescribing, na.rm = TRUE),
+    total_globalSum = sum(Total.globalSum, na.rm = TRUE),
+    total_ITPremises = sum(Total.ITPremises, na.rm = TRUE),
+    total_PCO = sum(Total.PCO, na.rm = TRUE),
+    total_QOF = sum(Total.QOF.Payments, na.rm = TRUE),
+    total_contractedServices = sum(Total.contractedServices, na.rm = TRUE),
+    total_COVID = sum(Total.COVID, na.rm = TRUE),
+    total_payments = sum(Total.NHS.Payments.to.General.Practice.including.Covid.and.PCN.payments, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    prescribing_proportion = (total_prescribing / total_payments) * 100,
+    globalSum_proportion = (total_globalSum / total_payments) * 100,
+    ITPremises_proportion = (total_ITPremises / total_payments) * 100,
+    PCO_proportion = (total_PCO / total_payments) * 100,
+    QOF_proportion = (total_QOF / total_payments) * 100,
+    contractedServices_proportion = (total_contractedServices / total_payments) * 100,
+    COVID_proportion = (total_COVID / total_payments) * 100
+  )
+agg[, c(1, 10:16)]
+```
+
+    ## # A tibble: 5 × 8
+    ##   IMD_quintile prescribing_proportion globalSum_proportion ITPremises_proportion
+    ##   <fct>                         <dbl>                <dbl>                 <dbl>
+    ## 1 1                             12.7                  52.9                  7.22
+    ## 2 2                             11.6                  51.9                  7.25
+    ## 3 3                              7.27                 55.5                  7.61
+    ## 4 4                              4.07                 57.7                  8.02
+    ## 5 5                              2.32                 58.9                  9.08
+    ## # ℹ 4 more variables: PCO_proportion <dbl>, QOF_proportion <dbl>,
+    ## #   contractedServices_proportion <dbl>, COVID_proportion <dbl>
+
+``` r
+# calculate the difference between the proportion of payments for the most and least deprived quintiles for each payment type
+diffs <- sapply(agg[, c(10:16)], function(x) x[1] - x[5]) %>% sort()
+diffs
+```
+
+    ##          globalSum_proportion                PCO_proportion 
+    ##                    -6.0478114                    -3.0094170 
+    ##         ITPremises_proportion contractedServices_proportion 
+    ##                    -1.8523884                     0.2074023 
+    ##              COVID_proportion                QOF_proportion 
+    ##                     0.3491382                     0.5013439 
+    ##        prescribing_proportion 
+    ##                    10.3669127
+
+``` r
+# calculate the association between IMD_quintile and the proportion of payments for each payment type
+correlations <- sapply(df_merged[, c(25, 79:84)], function(x) cor(as.numeric(df_merged$IMD), x)) %>% sort()
+correlations
+```
+
+    ##        Total.Prescribing       Total.QOF.Payments Total.contractedServices 
+    ##              -0.27334183              -0.19121531              -0.16536047 
+    ##          Total.globalSum              Total.COVID         Total.ITPremises 
+    ##              -0.10784797              -0.05975018              -0.02878752 
+    ##                Total.PCO 
+    ##              -0.01349681
+
+The largest difference in payment proportions between the most and least
+deprived quintiles is for prescribing payments. Furthermore, while all
+payment types are negatively correlated with IMD, prescribing payments
+have the highest absolute correlation score with IMD. This suggests that
+prescribing payments contribute most to the observed inequality in
+payments between practices serving the most and least deprived
+populations.
+
+### References
+
+NHS Digital: NHS Payments to General Practice Fingertips API
 Documentation
