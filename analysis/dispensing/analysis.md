@@ -12,8 +12,6 @@ dispensing doctors are allowed to dispense the medicines they prescribe
 for these patients” (DDA); they are not the same as practices with an
 on-site pharmacy.
 
-## Data Analysis
-
 [NHS
 Digital](https://digital.nhs.uk/data-and-information/publications/statistical/nhs-payments-to-general-practice)
 provides public CSVs on NHS payments to individual providers of general
@@ -121,7 +119,7 @@ IMD <- IMD %>%
 ```
 
 As well as the the fingertipsR package, which provides an R interface to
-the Fingertips API, which can be used as such:
+the Fingertips API.
 
 To explore the relationship between dispensing practices and
 deprivation, we can merge the NHS payments data with the IMD data (from
@@ -135,6 +133,18 @@ df_merged <- merge(df, IMD[IMD$Year == max(IMD$Year), ], by = "Practice.Code")
 df_merged %<>%
   mutate(IMD_quintile = cut(IMD, breaks = quantile(IMD, probs = seq(0, 1, 0.2), na.rm = TRUE), include.lowest = TRUE, labels = c("1", "2", "3", "4", "5")))
 
+# How many practices in df are missing from df_merged?
+num_missing <- df[!df$Practice.Code %in% df_merged$Practice.Code, ]$Practice.Code %>%
+  unique() %>%
+  length()
+
+# how many dispensing practices are in each quintile
+num_disp_5 <- table(df_merged$IMD_quintile, df_merged$Dispensing.Practice)[5, 2]
+```
+
+IMD values were not available for 322 practices.
+
+``` r
 # calculate the average payment per patient for the highest and lowest deprivation quintiles for dispensing and non-dispensing practices
 agg_dispensing <- df_merged %>%
   filter(
@@ -144,7 +154,7 @@ agg_dispensing <- df_merged %>%
   ) %>%
   group_by(IMD_quintile, Dispensing.Practice) %>%
   summarise(
-    total_payments = sum(Total.NHS.Payments.to.General.Practice, na.rm = TRUE),
+    total_payments = sum(Total.NHS.Payments.to.General.Practice.including.Covid.and.PCN.payments, na.rm = TRUE),
     weighted_patients = sum(Average.Number.of.Weighted.Patients, na.rm = TRUE),
     .groups = "drop" # to ungroup after summarise
   ) %>%
@@ -157,7 +167,7 @@ additional_rows <- bind_rows(
   data.frame(
     IMD_quintile = "1",
     Dispensing.Practice = "All",
-    total_payments = sum(df_merged[df_merged$IMD_quintile == 1, ]$Total.NHS.Payments.to.General.Practice, na.rm = TRUE),
+    total_payments = sum(df_merged[df_merged$IMD_quintile == 1, ]$Total.NHS.Payments.to.General.Practice.including.Covid.and.PCN.payments, na.rm = TRUE),
     weighted_patients = sum(df_merged[df_merged$IMD_quintile == 1, ]$Average.Number.of.Weighted.Patients, na.rm = TRUE)
   ) %>%
     mutate(
@@ -166,7 +176,7 @@ additional_rows <- bind_rows(
   data.frame(
     IMD_quintile = "5",
     Dispensing.Practice = "All",
-    total_payments = sum(df_merged[df_merged$IMD_quintile == 5, ]$Total.NHS.Payments.to.General.Practice, na.rm = TRUE),
+    total_payments = sum(df_merged[df_merged$IMD_quintile == 5, ]$Total.NHS.Payments.to.General.Practice.including.Covid.and.PCN.payments, na.rm = TRUE),
     weighted_patients = sum(df_merged[df_merged$IMD_quintile == 5, ]$Average.Number.of.Weighted.Patients, na.rm = TRUE)
   ) %>%
     mutate(
@@ -186,21 +196,21 @@ agg_dispensing$Dispensing.Practice <- factor(agg_dispensing$Dispensing.Practice,
   levels = c("Dispensing Practices", "Non-dispensing Practices", "All practices")
 )
 
-pwp_1 <- agg_dispensing[5,5]
-pwp_5 <- agg_dispensing[6,5]
+pwp_1 <- agg_dispensing[5, 5]
+pwp_5 <- agg_dispensing[6, 5]
 pwp_diff <- pwp_1 - pwp_5
 
-pwp_disp_diff <- agg_dispensing[1,5] - agg_dispensing[3,5]
-pwp_disp_diff2 <- agg_dispensing[2,5] - agg_dispensing[4,5]
+pwp_disp_diff <- agg_dispensing[1, 5] - agg_dispensing[3, 5]
+pwp_disp_diff2 <- agg_dispensing[2, 5] - agg_dispensing[4, 5]
 ```
 
 Across all practices, those in the least deprived 20% received
-£170.6317335 per weighted patient in 2023, compared to £154.4376687 for
-those in the most deprived 20% – a gap of £16.1940648. When we exclude
-all dispensing practices from this analysis, the gap is only £0.0910195.
-The gap in payments to dispensing practices is much larger (£28.27166),
-but this is partly because there are only 15 dispensing practices
-covering the most deprived 20%.
+£181.540148 per weighted patient in 2023, compared to £165.3584231 for
+those in the most deprived 20% – a gap of £16.1817249. When we exclude
+all dispensing practices from this analysis, the gap is only
+£-0.4599605. The gap in payments to dispensing practices is much larger
+(£20.7390235), but this is partly because there are only 7 dispensing
+practices covering the most deprived 20%.
 
 ``` r
 library(ggplot2)
@@ -232,7 +242,7 @@ ggplot(agg_dispensing, aes(x = payment_per_patient, y = Dispensing.Practice, col
   )
 ```
 
-![](analysis_files/figure-markdown_github/unnamed-chunk-4-1.png)
+![](analysis_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
 ``` r
 table(dispensing$Practice.Rurality)
@@ -340,7 +350,7 @@ combined_plot <- dispensing_plot + non_dispensing_plot +
 print(combined_plot)
 ```
 
-![](analysis_files/figure-markdown_github/unnamed-chunk-6-1.png)
+![](analysis_files/figure-markdown_github/unnamed-chunk-7-1.png)
 
 ## How do payments differ between dispensing and non-dispensing practices?
 
@@ -418,7 +428,7 @@ total payments between practices serving the most and least deprived
 populations from 6.3555109^{8} to 3.7056728^{8} (or from a ratio of
 1.3574056 to 1.2133413)
 
-# Do prescribing contribute more than other payment types?
+# Do prescribing contribute more to funding inequality than other payment types?
 
 First, we categorise all payments into 7 types: Global Sum, IT &
 Premises, PCO, QOF, Contracted services, Prescribing, and COVID. We then
@@ -642,7 +652,7 @@ prescribing payments contribute most to the observed inequality in
 payments between practices serving the most and least deprived
 populations.
 
-### References
+## References
 
 NHS Digital: NHS Payments to General Practice Fingertips API
 Documentation
