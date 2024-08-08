@@ -143,11 +143,18 @@ num_missing <- df[!df$Practice.Code %in% df_merged$Practice.Code, ]$Practice.Cod
   unique() %>%
   length()
 
-# how many dispensing practices are in each quintile
+# How many dispensing practices are in each quintile?
 num_disp_5 <- table(df_merged$IMD_quintile, df_merged$Dispensing.Practice)[5, 2]
+
+# What is the dispensing status of the practices missing from df_merged?
+dispensing_status_missing <- df[!df$Practice.Code %in% df_merged$Practice.Code, ] %>%
+  group_by(Dispensing.Practice) %>%
+  summarise(
+    n = n()
+  )
 ```
 
-IMD values were not available for `r num_missing` practices.
+IMD values were not available for `r num_missing` practices, including all of the practices with unknown dispensing status, leaving `r nrow(df_merged)` practices with known IMD values and dispensing status out of the original `r nrow(df)` practices.
 
 ```{r}
 # calculate the average payment per patient for the highest and lowest deprivation quintiles for dispensing and non-dispensing practices
@@ -466,9 +473,13 @@ agg <- df_merged %>%
   )
 agg[, c(1, 10:16)]
 
+# calculate the difference between the total payments for the most and least deprived quintiles for each payment type
+diffs_abs <- sapply(agg[, c(2:9)], function(x) x[1] - x[5]) %>% sort()
+diffs_abs
+
 # calculate the difference between the proportion of payments for the most and least deprived quintiles for each payment type
-diffs <- sapply(agg[, c(10:16)], function(x) x[1] - x[5]) %>% sort()
-diffs
+diffs_prop <- sapply(agg[, c(10:16)], function(x) x[1] - x[5]) %>% sort()
+diffs_prop
 
 # calculate the association between IMD_quintile and the proportion of payments for each payment type
 correlations <- sapply(df_merged[, c(25, 79:84)], function(x) cor(as.numeric(df_merged$IMD), x)) %>% sort()
@@ -476,6 +487,53 @@ correlations
 ```
 
 The largest difference in payment proportions between the most and least deprived quintiles is for prescribing payments. Furthermore, while all payment types are negatively correlated with IMD, prescribing payments have the highest absolute correlation score with IMD. This suggests that prescribing payments contribute most to the observed inequality in payments between practices serving the most and least deprived populations.
+
+```{r}
+library(reshape2)
+
+agg_melted <- agg[, "IMD_quintile"]
+agg_melted[, 2] <- agg["total_globalSum"]
+agg_melted[, 3] <- agg["total_ITPremises"]
+agg_melted[, 4] <- agg["total_contractedServices"]
+agg_melted[, 5] <- agg["total_PCO"]
+agg_melted[, 6] <- agg["total_QOF"]
+agg_melted[, 7] <- agg["total_prescribing"]
+agg_melted[, 8] <- agg["total_COVID"]
+
+# divide all values by 1,000,000
+agg_melted[, 2:8] <- agg_melted[, 2:8] / 1000000
+
+agg_melted <- agg_melted %>%
+  melt(id.vars = "IMD_quintile")
+```
+
+```{r}
+colors <- c("#A80026", "#531A5C", "#1B2C57", "#007AA8", "#00A865", "#EF7A34", "#FFD700")
+
+ggplot(agg_melted[!is.na(agg_melted$IMD_quintile), ], aes(x = IMD_quintile, y = value, fill = variable)) +
+  geom_bar(stat = "identity") +
+  labs(
+    title = paste0("Percentage of total payments by type by IMD quintile (2023)"),
+    x = "Column",
+    y = "Total payments (£, millions)"
+  ) +
+  scale_fill_manual(values = colors, labels = c("Global sum", "IT premises", "Contracted services", "PCO", "QOF", "Prescribing", "COVID")) +
+  theme_minimal() +
+  theme(
+    panel.grid.major.x = element_blank(), # Remove minor vertical grid lines
+    panel.grid.major.y = element_blank(), # Remove minor horizontal grid lines
+    panel.grid.minor.x = element_blank(), # Remove minor vertical grid lines
+    panel.grid.minor.y = element_blank(), # Remove minor horizontal grid lines
+    axis.text.x = element_text(vjust = 10) # Rotate x-axis labels and adjust horizontal justification
+  ) +
+  xlab("IMD quintile") +
+  guides(
+    fill = guide_legend(title = "Type")
+  ) +
+  theme(
+    axis.title.x = element_text(vjust = 5) # Move x-axis label upwards
+  )
+```
 
 ## References
 NHS Digital: NHS Payments to General Practice
