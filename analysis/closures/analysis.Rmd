@@ -80,22 +80,24 @@ for (file in list.files("../../data/payments/raw/")) {
   year <- paste0("20", year)
   df$Year <- year
 
-  print(year)
-
+  # replace empty values with NA
   df$Practice.Open.Date[df$Practice.Open.Date %in% c("-", "")] <- NA
   df$Practice.Close.Date[df$Practice.Close.Date %in% c("-", "", " ")] <- NA
 
-  # if Practice.Close.Date is not NA, add row to closure
+  # if Practice.Close.Date is not NA, add row to closure dataframe
   closure <- df %>%
     filter(!is.na(Practice.Close.Date)) %>%
     select(Practice.Code, Practice.Close.Date, Year) %>%
     bind_rows(closure)
-
-  agg <- bind_rows(closure, df)
 }
 
 # remove duplicates, keeping lowest value of year
 closure <- closure %>%
   group_by(Practice.Code) %>%
   filter(Year == min(Year))
+
+# print number of closed practices per year
+table <- closure %>%
+  group_by(Year) %>%
+  summarise(n = n())
 ```
