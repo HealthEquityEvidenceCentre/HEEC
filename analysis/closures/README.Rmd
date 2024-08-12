@@ -87,3 +87,27 @@ closure %>%
   group_by(Year) %>%
   summarise(n = n())
 ```
+
+We could also try counting practice codes in each year that are not present in the following years.
+
+```{r Practice code count}
+library(dplyr)
+
+# read in data
+df <- read.csv("../../data/payments/raw/14-15.csv")[c("Practice.Code", "Practice.Open.Date", "Practice.Close.Date")]
+df$Year <- "2015"
+```
+
+https://www.gponline.com/map-gp-practice-mergers-closures-nhs-england/article/1439293
+https://www.gponline.com/exclusive-one-twenty-gp-contracts-terminated-three-years-closures-accelerate/article/1404813
+Subregional figures, obtained using the Freedom of Information Act, reveal for the first time the full and escalating extent of disruptive practice closures, mergers and takeovers.
+
+Commissioners provided details of 140 practice contracts that had been terminated because of a practice closure between 1 April 2013 and 21 March 2016. The number of closures more than doubled from 26 in 2013/14 to 59 the following year, with a further 55 before the end of last year.
+
+A further 264 contracts were identified as having been merged over the three-year period. More detailed information from some areas indicated that around half of those practices involved in mergers may have been closed.
+
+The data on contract terminations revealed a further 26 practices that had been reprocured under a new contract. Of these 11 GMS and five PMS practices were handed to an APMS provider.
+
+The total number of contract terminations - in which practices closed or merged - increased from 54 in 2013/14 to 158 the next year and up to 192 before the end of 2015/16.
+
+Common reasons for closures provided by commissioners included GP retirements and contract resignations.
