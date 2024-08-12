@@ -1,6 +1,6 @@
 ---
 title: "Exploring the Impact of Dispensing Practices on Equity in NHS Payments to General Practices"
-author: "Your Name"
+author: "Cameron Appel"
 date: "2024-08-06"
 output: 
   md_document:
