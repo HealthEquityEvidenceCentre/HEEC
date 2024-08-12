@@ -513,7 +513,7 @@ colors <- c("#A80026", "#531A5C", "#1B2C57", "#007AA8", "#00A865", "#EF7A34", "#
 ggplot(agg_melted[!is.na(agg_melted$IMD_quintile), ], aes(x = IMD_quintile, y = value, fill = variable)) +
   geom_bar(stat = "identity") +
   labs(
-    title = paste0("Percentage of total payments by type by IMD quintile (2023)"),
+    title = paste0("Total payments by type by IMD quintile (2023)"),
     x = "Column",
     y = "Total payments (£, millions)"
   ) +

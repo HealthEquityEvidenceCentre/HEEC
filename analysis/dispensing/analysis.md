@@ -627,9 +627,22 @@ agg[, c(1, 10:16)]
     ## #   contractedServices_proportion <dbl>, COVID_proportion <dbl>
 
 ``` r
+# calculate the difference between the total payments for the most and least deprived quintiles for each payment type
+diffs_abs <- sapply(agg[, c(2:9)], function(x) x[1] - x[5]) %>% sort()
+diffs_abs
+```
+
+    ##         total_ITPremises              total_COVID                total_PCO 
+    ##                 12976135                 16655019                 17216740 
+    ## total_contractedServices                total_QOF          total_globalSum 
+    ##                 20760076                 55079869                228397617 
+    ##        total_prescribing           total_payments 
+    ##                264983815                635551091
+
+``` r
 # calculate the difference between the proportion of payments for the most and least deprived quintiles for each payment type
-diffs <- sapply(agg[, c(10:16)], function(x) x[1] - x[5]) %>% sort()
-diffs
+diffs_prop <- sapply(agg[, c(10:16)], function(x) x[1] - x[5]) %>% sort()
+diffs_prop
 ```
 
     ##          globalSum_proportion                PCO_proportion 
@@ -687,7 +700,7 @@ colors <- c("#A80026", "#531A5C", "#1B2C57", "#007AA8", "#00A865", "#EF7A34", "#
 ggplot(agg_melted[!is.na(agg_melted$IMD_quintile), ], aes(x = IMD_quintile, y = value, fill = variable)) +
   geom_bar(stat = "identity") +
   labs(
-    title = paste0("Percentage of total payments by type by IMD quintile (2023)"),
+    title = paste0("Total payments by type by IMD quintile (2023)"),
     x = "Column",
     y = "Total payments (£, millions)"
   ) +
