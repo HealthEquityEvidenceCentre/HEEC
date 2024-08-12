@@ -1,4 +1,87 @@
-[OHID](https://fingertips.phe.org.uk/search/deprivation%20index#page/4/gid/1/pat/159/par/K02000001/ati/15/are/E92000001/iid/93553/age/1/sex/4/cat/-1/ctp/-1/yrr/1/cid/4/tbm/1) provides the [Fingertips API](https://fingertips.phe.org.uk/api), which includes practice-level IMD values. However, this data only includes practices that are currently open. We obtained the [data](https://github.com/camappel/HEEC/blob/main/data/IMD/IMD.csv) for GP practices for which IMD score was available at any point directly from the DHSC; the raw file is stored [here](https://github.com/camappel/HEEC/blob/main/data/IMD/IMD_fingertips.csv).
+[OHID](https://fingertips.phe.org.uk/search/deprivation%20index#page/4/gid/1/pat/159/par/K02000001/ati/15/are/E92000001/iid/93553/age/1/sex/4/cat/-1/ctp/-1/yrr/1/cid/4/tbm/1)
+provides the [Fingertips API](https://fingertips.phe.org.uk/api), which
+includes practice-level IMD values. However, this data only includes
+practices that are currently open. We obtained the
+[data](https://github.com/camappel/HEEC/blob/main/data/IMD/IMD.csv) for
+GP practices for which IMD score was available at any point directly
+from the DHSC; the raw file is stored
+[here](https://github.com/camappel/HEEC/blob/main/data/IMD/IMD_fingertips.csv).
 
-This data only provides values for 2010, 2015, and 2019. We interpolate between the avaiable values to produce a continuous time series from x - 2023.
+This data only provides values for 2010, 2015, and 2019. We interpolate
+between the avaiable values to produce a continuous time series from x -
+2023.
 
+``` r
+library(magrittr)
+library(dplyr)
+
+IMD <- read.csv("IMD_fingertips.csv")
+
+IMD <- IMD[, c("AreaCode", "Value", "Year")]
+IMD %<>% rename(., Practice.Code = AreaCode)
+IMD %<>% rename(., IMD = Value)
+
+### interpolate IMD
+result_df <- data.frame()
+
+for (i in unique(IMD$Practice.Code)) {
+  has_2010 <- any(IMD$Practice.Code == i & IMD$Year == 2010)
+  has_2015 <- any(IMD$Practice.Code == i & IMD$Year == 2015)
+  has_2019 <- any(IMD$Practice.Code == i & IMD$Year == 2019)
+
+  if (has_2010 & has_2015) {
+    for (year in 2011:2014) {
+      y_new <- approx(
+        IMD[IMD$Practice.Code == i, ]$Year,
+        IMD[IMD$Practice.Code == i, ]$IMD,
+        xout = year
+      )
+      # Create a new row for the current year and AreaCode
+      new_row <- data.frame(
+        Year = year,
+        Practice.Code = i,
+        IMD = y_new$y
+      )
+
+      # Append the new row to the result data frame
+      result_df <- rbind(result_df, new_row)
+    }
+  }
+
+  if (has_2015 & has_2019) {
+    for (year in 2016:2018) {
+      y_new <- approx(
+        IMD[IMD$Practice.Code == i, ]$Year,
+        IMD[IMD$Practice.Code == i, ]$IMD,
+        xout = year
+      )
+      # Create a new row for the current year and AreaCode
+      new_row <- data.frame(
+        Year = year,
+        Practice.Code = i,
+        IMD = y_new$y
+      )
+
+      # Append the new row to the result data frame
+      result_df <- rbind(result_df, new_row)
+    }
+  }
+
+  if (has_2019) {
+    for (year in 2020:2023) {
+      new_row <- data.frame(
+        Year = year,
+        Practice.Code = i,
+        IMD = IMD[IMD$Practice.Code == i & IMD$Year == 2019, ]$IMD
+      )
+
+      # Append the new row to the result data frame
+      result_df <- rbind(result_df, new_row)
+    }
+  }
+}
+
+IMD <- rbind(IMD, result_df)
+
+write.csv(IMD, "IMD_interpolated.csv", row.names = FALSE)
+```

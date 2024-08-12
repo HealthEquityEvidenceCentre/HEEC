@@ -15,6 +15,9 @@ knitr::opts_chunk$set(message = FALSE, warning = FALSE)
 This data only provides values for 2010, 2015, and 2019. We interpolate between the avaiable values to produce a continuous time series from x - 2023.
 
 ```{r}
+library(magrittr)
+library(dplyr)
+
 IMD <- read.csv("IMD_fingertips.csv")
 
 IMD <- IMD[, c("AreaCode", "Value", "Year")]
@@ -74,9 +77,17 @@ for (i in unique(IMD$Practice.Code)) {
         Practice.Code = i,
         IMD = IMD[IMD$Practice.Code == i & IMD$Year == 2019, ]$IMD
       )
+
+      # Append the new row to the result data frame
+      result_df <- rbind(result_df, new_row)
     }
   }
 }
 
 IMD <- rbind(IMD, result_df)
+
+write.csv(IMD, "IMD_interpolated.csv", row.names = FALSE)
+```
+
+```{r}
 ```
