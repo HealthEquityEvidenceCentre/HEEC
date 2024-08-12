@@ -1,0 +1,50 @@
+---
+title: "Practice Closures Trigger Analysis"
+author: "Cameron Appel"
+date: "2024-08-06"
+output: 
+  md_document:
+    variant: markdown_github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE)
+```
+
+# Practice Closures Trigger Analysis
+
+```{r}
+library(magrittr)
+### Satisfaction analysis
+
+### Workforce analysis
+df15 <- read.csv("../../data/workforce/raw/15_9.csv")
+df23 <- read.csv("../../data/workforce/raw/23_9.csv")
+
+fte_15 <- df15$TOTAL_GP_EXTGL_FTE %>%
+  as.numeric() %>%
+  sum(na.rm = TRUE)
+fte_23 <- df23$TOTAL_GP_EXTGL_FTE %>%
+  as.numeric() %>%
+  sum(na.rm = TRUE)
+```
+
+General practice is in crisis: patient satisfaction is at a record low; the number of fully qualified GPs has dropped from `r fte_15` in 2015  to `r fte_23` in 2023 (full-time equivalent, excluding GPs in training and locums).
+
+```{r}
+n_prac_15 <- df15$PRAC_CODE %>%
+  unique() %>%
+  length()
+n_prac_23 <- df23$PRAC_CODE %>%
+  unique() %>%
+  length()
+```
+Over the past decade there has been a move towards providing general practice at scale to benefit from economies of scale and to ensure practices are more sustainable. This has led to a dramatic reduction in the number of practices from `r n_prac_15` in 2015 to `r n_prac_23` in 2023, according to the workforce data.
+
+The reasons for and consequences of practice closures are multifaceted. Practices may merge with other practices for purely organisational reasons or because one practice is failing. Mergers may be purely administrative with limited impact on patients, or they may involve closure of premises or redesign of services.
+
+Practices may also close altogether, leaving thousands of patients without access to primary care until they find another surgery. Practice closures are costly in that they incur interruptions in services for patients. One reason for closure is when the partnership model fails within a practice; this partnership model is increasingly under strain because younger doctors are less keen to become a partner due to the financial and workload commitment.
+
+ICBs and NHS England are often unaware of a failing practice until it is too late to intervene. The ability to identify practices or areas of the country which are at risk of failing general practices would help commissioners to intervene where necessary or plan for patient care in the event of a practice closure.
+
+Risk prediction models exist in clinical practice to identify individuals who are at risk of, for example, a cardiovascular event. We propose a similar model at the practice level to identify practice that are at risk of closure. To our knowledge, such a model does not exist at present.
