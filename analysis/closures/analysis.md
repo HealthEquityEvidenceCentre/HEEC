@@ -83,7 +83,6 @@ the earliest date.
 ``` r
 library(dplyr)
 
-agg <- data.frame()
 closure <- data.frame()
 
 for (file in list.files("../../data/payments/raw/")) {
@@ -129,3 +128,26 @@ closure %>%
     ## 7 2021    156
     ## 8 2022     79
     ## 9 2023     34
+
+# Descriptive statistics of closed pratices
+
+[OHID](https://fingertips.phe.org.uk/search/deprivation%20index#page/4/gid/1/pat/159/par/K02000001/ati/15/are/E92000001/iid/93553/age/1/sex/4/cat/-1/ctp/-1/yrr/1/cid/4/tbm/1)
+provides the [Fingertips API](https://fingertips.phe.org.uk/api), which
+includes practice-level IMD values. However, this data only includes
+practices that are currently open. We obtained the data for GP practices
+for which IMD score was available at any point directly from the DHSC.
+
+``` r
+IMD <- read.csv("../../data/IMD/IMD.csv")
+```
+
+To explore the relationship between practice closures and deprivation,
+we can merge the NHS payments data with the IMD data from the API.
+
+``` r
+# df_merged <- merge(closure, IMD[, c("Practice.Code", "IMD")], by = "Practice.Code")
+
+# return practices in closure data that are in IMD data
+```
+
+### How do practice closures affect patients?
