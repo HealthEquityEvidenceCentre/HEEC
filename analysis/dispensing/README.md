@@ -252,7 +252,7 @@ ggplot(agg_dispensing, aes(x = payment_per_patient, y = Dispensing.Practice, col
   )
 ```
 
-![](analysis_files/figure-markdown_github/unnamed-chunk-5-1.png)
+![](README_files/figure-markdown_github/unnamed-chunk-5-1.png)
 
 ``` r
 table(dispensing$Practice.Rurality)
@@ -360,7 +360,7 @@ combined_plot <- dispensing_plot + non_dispensing_plot +
 print(combined_plot)
 ```
 
-![](analysis_files/figure-markdown_github/unnamed-chunk-7-1.png)
+![](README_files/figure-markdown_github/unnamed-chunk-7-1.png)
 
 ## How do payments differ between dispensing and non-dispensing practices?
 
@@ -722,7 +722,7 @@ ggplot(agg_melted[!is.na(agg_melted$IMD_quintile), ], aes(x = IMD_quintile, y = 
   )
 ```
 
-![](analysis_files/figure-markdown_github/unnamed-chunk-12-1.png)
+![](README_files/figure-markdown_github/unnamed-chunk-12-1.png)
 
 ## References
 
