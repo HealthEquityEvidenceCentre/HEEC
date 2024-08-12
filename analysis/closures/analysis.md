@@ -48,9 +48,9 @@ practices are more sustainable. This has led to a dramatic reduction in
 the number of practices from 7623 in 2015 to 6334 in 2023, according to
 the workforce data.
 
-There are some discrepancies with other data sources; according to the
-payments data, the number of practices has dropped from 7959 in 2015 to
-6669 in 2023.
+There are some discrepancies with other data sources, however; according
+to the payments data, the number of practices has dropped from 7959 in
+2015 to 6669 in 2023.
 
 The reasons for and consequences of practice closures are multifaceted.
 Practices may merge with other practices for purely organisational
@@ -71,3 +71,58 @@ too late to intervene. The ability to identify practices or areas of the
 country which are at risk of failing general practices would help
 commissioners to intervene where necessary or plan for patient care in
 the event of a practice closure.
+
+# Closed practice count
+
+The NHS Payments data contains information on practice closures. We can
+use this data to identify practices that have closed in the past decade.
+
+Where multiple closure dates are available for a practice, we will keep
+the earliest date.
+
+``` r
+library(dplyr)
+
+agg <- data.frame()
+closure <- data.frame()
+
+for (file in list.files("../../data/payments/raw/")) {
+  df <- read.csv(paste0("../../data/payments/raw/", file))[c("Practice.Code", "Practice.Open.Date", "Practice.Close.Date")]
+
+  # assign year
+  year <- substr(file, 1, nchar(file) - 4)
+  year <- substr(year, 4, nchar(year))
+  year <- paste0("20", year)
+  df$Year <- year
+
+  print(year)
+
+  df$Practice.Open.Date[df$Practice.Open.Date %in% c("-", "")] <- NA
+  df$Practice.Close.Date[df$Practice.Close.Date %in% c("-", "", " ")] <- NA
+
+  # if Practice.Close.Date is not NA, add row to closure
+  closure <- df %>%
+    filter(!is.na(Practice.Close.Date)) %>%
+    select(Practice.Code, Practice.Close.Date, Year) %>%
+    bind_rows(closure)
+
+  agg <- bind_rows(closure, df)
+}
+```
+
+    ## [1] "2015"
+    ## [1] "2016"
+    ## [1] "2017"
+    ## [1] "2018"
+    ## [1] "2019"
+    ## [1] "2020"
+    ## [1] "2021"
+    ## [1] "2022"
+    ## [1] "2023"
+
+``` r
+# remove duplicates, keeping lowest value of year
+closure <- closure %>%
+  group_by(Practice.Code) %>%
+  filter(Year == min(Year))
+```
