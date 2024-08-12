@@ -18,13 +18,17 @@ library(magrittr)
 ### Satisfaction analysis
 
 ### Workforce analysis
-df15 <- read.csv("../../data/workforce/raw/15_9.csv")
-df23 <- read.csv("../../data/workforce/raw/23_9.csv")
+wf15 <- read.csv("../../data/workforce/raw/15_9.csv")
+wf23 <- read.csv("../../data/workforce/raw/23_9.csv")
 
-fte_15 <- df15$TOTAL_GP_EXTGL_FTE %>%
+pay15 <- read.csv("../../data/payments/raw/14-15.csv")
+pay23 <- read.csv("../../data/payments/raw/22-23.csv")
+
+fte_15 <- wf15$TOTAL_GP_EXTGL_FTE %>%
   as.numeric() %>%
   sum(na.rm = TRUE)
-fte_23 <- df23$TOTAL_GP_EXTGL_FTE %>%
+
+fte_23 <- wf23$TOTAL_GP_EXTGL_FTE %>%
   as.numeric() %>%
   sum(na.rm = TRUE)
 ```
@@ -32,14 +36,24 @@ fte_23 <- df23$TOTAL_GP_EXTGL_FTE %>%
 General practice is in crisis: patient satisfaction is at a record low; the number of fully qualified GPs has dropped from `r fte_15` in 2015  to `r fte_23` in 2023 (full-time equivalent, excluding GPs in training and locums).
 
 ```{r}
-n_prac_15 <- df15$PRAC_CODE %>%
+n_prac_15 <- wf15$PRAC_CODE %>%
   unique() %>%
   length()
-n_prac_23 <- df23$PRAC_CODE %>%
+n_prac_23 <- wf23$PRAC_CODE %>%
+  unique() %>%
+  length()
+
+n_prac_15_payments <- pay15$Practice.Code %>%
+  unique() %>%
+  length()
+
+n_prac_23_payments <- pay23$Practice.Code %>%
   unique() %>%
   length()
 ```
 Over the past decade there has been a move towards providing general practice at scale to benefit from economies of scale and to ensure practices are more sustainable. This has led to a dramatic reduction in the number of practices from `r n_prac_15` in 2015 to `r n_prac_23` in 2023, according to the workforce data.
+
+There are some discrepancies with other data sources, however; according to the payments data, the number of practices has dropped from `r n_prac_15_payments` in 2015 to `r n_prac_23_payments` in 2023.
 
 The reasons for and consequences of practice closures are multifaceted. Practices may merge with other practices for purely organisational reasons or because one practice is failing. Mergers may be purely administrative with limited impact on patients, or they may involve closure of premises or redesign of services.
 
@@ -47,4 +61,3 @@ Practices may also close altogether, leaving thousands of patients without acces
 
 ICBs and NHS England are often unaware of a failing practice until it is too late to intervene. The ability to identify practices or areas of the country which are at risk of failing general practices would help commissioners to intervene where necessary or plan for patient care in the event of a practice closure.
 
-Risk prediction models exist in clinical practice to identify individuals who are at risk of, for example, a cardiovascular event. We propose a similar model at the practice level to identify practice that are at risk of closure. To our knowledge, such a model does not exist at present.
