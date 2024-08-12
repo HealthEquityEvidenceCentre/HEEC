@@ -69,11 +69,25 @@ if (http_status(response)$category == "Success") {
     ## #   `Compared to CCGs (from Apr 2021) value or percentiles` <chr>, …
 
 ``` r
-# select Area Code, Time period, Value columns and rename them to Practice.Code, Year, IMD
-IMD <- IMD %>%
-  select("Area Code", "Time period", "Value") %>%
-  rename(Practice.Code = "Area Code", Year = "Time period", IMD = "Value")
+head(IMD)
 ```
+
+    ## # A tibble: 6 × 27
+    ##   `Indicator ID` `Indicator Name`        `Parent Code` `Parent Name` `Area Code`
+    ##            <dbl> <chr>                   <chr>         <chr>         <chr>      
+    ## 1          93553 Deprivation score (IMD… <NA>          <NA>          E92000001  
+    ## 2          93553 Deprivation score (IMD… E92000001     England       E38000217  
+    ## 3          93553 Deprivation score (IMD… E38000247     NHS Tees Val… A81001     
+    ## 4          93553 Deprivation score (IMD… E38000247     NHS Tees Val… A81002     
+    ## 5          93553 Deprivation score (IMD… E38000247     NHS Tees Val… A81004     
+    ## 6          93553 Deprivation score (IMD… E38000247     NHS Tees Val… A81005     
+    ## # ℹ 22 more variables: `Area Name` <chr>, `Area Type` <chr>, Sex <chr>,
+    ## #   Age <chr>, `Category Type` <lgl>, Category <lgl>, `Time period` <dbl>,
+    ## #   Value <dbl>, `Lower CI 95.0 limit` <lgl>, `Upper CI 95.0 limit` <lgl>,
+    ## #   `Lower CI 99.8 limit` <lgl>, `Upper CI 99.8 limit` <lgl>, Count <lgl>,
+    ## #   Denominator <lgl>, `Value note` <lgl>, `Recent Trend` <chr>,
+    ## #   `Compared to England value or percentiles` <chr>,
+    ## #   `Compared to CCGs (from Apr 2021) value or percentiles` <chr>, …
 
 ### FingertipsR Package
 
@@ -179,9 +193,9 @@ head(IMD)
 
 ### Direct download
 
-However, this data only provides values for practice that are still
-active in 2019. To get the data for all practices, we can obtained the
-CSV directly from OHID via email, which is available
+However, this data only provides values for practices that are still
+active in 2019. To get the data for all practices, we obtained the CSV
+directly from OHID via email, which is available
 [here](https://github.com/camappel/HEEC/blob/main/data/IMD/IMD_raw.csv)
 as `IMD_raw.csv`.
 
@@ -206,6 +220,21 @@ for (i in unique(IMD$Practice.Code)) {
   has_2015 <- any(IMD$Practice.Code == i & IMD$Year == 2015)
   has_2019 <- any(IMD$Practice.Code == i & IMD$Year == 2019)
 
+  # if data is only available for 2010, extrapolate to 2011-2023
+  if (has_2010 & !has_2015) {
+    for (year in 2011:2023) {
+      new_row <- data.frame(
+        Year = year,
+        Practice.Code = i,
+        IMD = IMD[IMD$Practice.Code == i & IMD$Year == 2010, ]$IMD
+      )
+
+      # Append the new row to the result data frame
+      result_df <- rbind(result_df, new_row)
+    }
+  }
+
+  # if data is available for 2010 and 2015, interpolate to 2011-2014
   if (has_2010 & has_2015) {
     for (year in 2011:2014) {
       y_new <- approx(
@@ -225,6 +254,21 @@ for (i in unique(IMD$Practice.Code)) {
     }
   }
 
+  # if data is available for 2015 but not 2019, extrapolate to 2016-2023
+  if (has_2015 & !has_2019) {
+    for (year in 2016:2023) {
+      new_row <- data.frame(
+        Year = year,
+        Practice.Code = i,
+        IMD = IMD[IMD$Practice.Code == i & IMD$Year == 2015, ]$IMD
+      )
+
+      # Append the new row to the result data frame
+      result_df <- rbind(result_df, new_row)
+    }
+  }
+
+  # if data is available for 2015 and 2019, interpolate to 2016-2018
   if (has_2015 & has_2019) {
     for (year in 2016:2018) {
       y_new <- approx(
@@ -244,6 +288,7 @@ for (i in unique(IMD$Practice.Code)) {
     }
   }
 
+  # if data is available for 2019, extrapolate to 2020-2023
   if (has_2019) {
     for (year in 2020:2023) {
       new_row <- data.frame(
@@ -261,6 +306,45 @@ for (i in unique(IMD$Practice.Code)) {
 IMD <- rbind(IMD, result_df)
 
 IMD <- IMD[order(IMD$Practice.Code, IMD$Year), ]
-
 write.csv(IMD, "IMD_interpolated.csv", row.names = FALSE)
+
+head(IMD)
 ```
+
+    ##       Practice.Code      IMD Year
+    ## 1            A81001 25.07512 2010
+    ## 23081        A81001 25.88816 2011
+    ## 23082        A81001 26.70120 2012
+    ## 23083        A81001 27.51424 2013
+    ## 23084        A81001 28.32727 2014
+    ## 2            A81001 29.14031 2015
+
+``` r
+IMD %>%
+  group_by(Year) %>%
+  summarise(
+    mean_IMD = mean(IMD, na.rm = TRUE),
+    sd_IMD = sd(IMD, na.rm = TRUE),
+    min_IMD = min(IMD, na.rm = TRUE),
+    max_IMD = max(IMD, na.rm = TRUE),
+    n = n()
+  )
+```
+
+    ## # A tibble: 14 × 6
+    ##     Year mean_IMD sd_IMD min_IMD max_IMD     n
+    ##    <int>    <dbl>  <dbl>   <dbl>   <dbl> <int>
+    ##  1  2010     24.2   12.8    2.60    68.9  8222
+    ##  2  2011     24.2   12.6    2.77    68.4  8222
+    ##  3  2012     24.1   12.4    2.95    67.9  8222
+    ##  4  2013     24.1   12.2    3.13    67.4  8222
+    ##  5  2014     24.1   12.1    3.31    67.0  8222
+    ##  6  2015     24.1   12.0    3.21    66.5  8438
+    ##  7  2016     24.1   11.9    3.21    66.5  8438
+    ##  8  2017     24.1   11.9    3.21    67.1  8438
+    ##  9  2018     24.1   11.9    3.21    67.9  8438
+    ## 10  2019     24.1   11.9    3.21    68.7  8461
+    ## 11  2020     24.1   11.9    3.21    68.7  8461
+    ## 12  2021     24.1   11.9    3.21    68.7  8461
+    ## 13  2022     24.1   11.9    3.21    68.7  8461
+    ## 14  2023     24.1   11.9    3.21    68.7  8461

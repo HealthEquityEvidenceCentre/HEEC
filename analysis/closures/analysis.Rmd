@@ -100,17 +100,15 @@ closure %>%
   summarise(n = n())
 ```
 
-# Descriptive statistics of closed pratices
-[OHID](https://fingertips.phe.org.uk/search/deprivation%20index#page/4/gid/1/pat/159/par/K02000001/ati/15/are/E92000001/iid/93553/age/1/sex/4/cat/-1/ctp/-1/yrr/1/cid/4/tbm/1) provides the [Fingertips API](https://fingertips.phe.org.uk/api), which includes practice-level IMD values. However, this data only includes practices that are currently open. We obtained the [data](https://github.com/camappel/HEEC/blob/main/data/IMD/IMD.csv) for GP practices for which IMD score was available at any point directly from the DHSC.
+# Which practices closed and which just merged?
 
+# Descriptive statistics of closed pratices
 To explore the relationship between practice closures and deprivation, we can merge the NHS payments data with the IMD data.
 
-```{r IMD}
-IMD <- read.csv("../../data/IMD/IMD.csv")
+More information on our method used to derive the IMD score can be found [here](https://github.com/camappel/HEEC/tree/main/data/IMD).
 
-IMD <- IMD[, c("AreaCode", "Value", "Year")]
-IMD %<>% rename(., Practice.Code = AreaCode)
-IMD %<>% rename(., IMD = Value)
+```{r IMD}
+IMD <- read.csv("../../data/IMD/IMD_interpolated.csv")
 
 # for each year, what is the average and distribution of IMD score?
 IMD %>%
