@@ -101,18 +101,68 @@ closure %>%
 ```
 
 # Descriptive statistics of closed pratices
-[OHID](https://fingertips.phe.org.uk/search/deprivation%20index#page/4/gid/1/pat/159/par/K02000001/ati/15/are/E92000001/iid/93553/age/1/sex/4/cat/-1/ctp/-1/yrr/1/cid/4/tbm/1) provides the [Fingertips API](https://fingertips.phe.org.uk/api), which includes practice-level IMD values. However, this data only includes practices that are currently open. We obtained the data for GP practices for which IMD score was available at any point directly from the DHSC.
+[OHID](https://fingertips.phe.org.uk/search/deprivation%20index#page/4/gid/1/pat/159/par/K02000001/ati/15/are/E92000001/iid/93553/age/1/sex/4/cat/-1/ctp/-1/yrr/1/cid/4/tbm/1) provides the [Fingertips API](https://fingertips.phe.org.uk/api), which includes practice-level IMD values. However, this data only includes practices that are currently open. We obtained the [data](https://github.com/camappel/HEEC/blob/main/data/IMD/IMD.csv) for GP practices for which IMD score was available at any point directly from the DHSC.
+
+To explore the relationship between practice closures and deprivation, we can merge the NHS payments data with the IMD data.
 
 ```{r IMD}
 IMD <- read.csv("../../data/IMD/IMD.csv")
+
+IMD <- IMD[, c("AreaCode", "Value", "Year")]
+IMD %<>% rename(., Practice.Code = AreaCode)
+IMD %<>% rename(., IMD = Value)
+
+# for each year, what is the average and distribution of IMD score?
+IMD %>%
+  group_by(Year) %>%
+  summarise(
+    mean_IMD = mean(IMD, na.rm = TRUE),
+    sd_IMD = sd(IMD, na.rm = TRUE),
+    min_IMD = min(IMD, na.rm = TRUE),
+    max_IMD = max(IMD, na.rm = TRUE),
+    n = n()
+  )
+
+IMD <- IMD %>%
+  group_by(Practice.Code) %>%
+  filter(Year == max(Year))
+
+# merge IMD with closed by Practice.Code
+df_merged <- merge(closure, IMD[-3], by = "Practice.Code", all.x = TRUE)
+
+# how many practices have a missing IMD score?
+sum(is.na(df_merged$IMD))
+
+# what is the mean IMD score for closed practices?
+df_merged %>%
+  group_by(Year) %>%
+  summarise(
+    mean_IMD = mean(IMD, na.rm = TRUE),
+    sd_IMD = sd(IMD, na.rm = TRUE),
+    min_IMD = min(IMD, na.rm = TRUE),
+    max_IMD = max(IMD, na.rm = TRUE),
+    n = n()
+  )
 ```
 
-To explore the relationship between practice closures and deprivation, we can merge the NHS payments data with the IMD data from the API.
+
 
 ```{r}
-# df_merged <- merge(closure, IMD[, c("Practice.Code", "IMD")], by = "Practice.Code")
+# Remove non-finite values from df_merged
+df_clean <- df_merged[!is.na(df_merged$IMD) & is.finite(df_merged$IMD), ]
 
-# return practices in closure data that are in IMD data
+# Calculate the mean of IMD
+mean_IMD <- mean(df_clean$IMD, na.rm = TRUE)
+
+# Create the histogram with a vertical line for the mean
+ggplot(df_clean, aes(x = IMD)) +
+  geom_histogram(binwidth = 1) +
+  geom_vline(aes(xintercept = mean_IMD), color = "red", linetype = "dashed") +
+  labs(
+    title = "Distribution of IMD scores for closed practices",
+    x = "IMD score",
+    y = "Frequency"
+  )
 ```
 
 ### How do practice closures affect patients?
