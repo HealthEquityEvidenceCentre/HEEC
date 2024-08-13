@@ -56,7 +56,7 @@ We begin by categorising types of closures:
 * Open: The practice has had the same practice code since it opened and still exists in the most recent records
 
 # Identifying closed practices
-## NHS Payments data
+### NHS Payments data
 The NHS Payments data contains information on practice closures, under the column `Practice.Code.Date`.
 
 ```{r Practice close date}
@@ -115,8 +115,14 @@ Furthermore, the Practice.Close.Date is often not consistent between years; wher
 
 As such, practices that are reported to have closed in year 't' still receive payments and report patients in year 't+1'.
 
-## [Sidhu et al. (2023)](https://www.journalslibrary.nihr.ac.uk/hsdr/PRWQ4012/#/bn1)
-A study on the impact of vertical integration whereby acute hospitals run primary care medical practices found that "At 31 March 2021, 26 NHS trusts were in vertically integrated organisations, running 85 general practices across 116 practice sites".
+### [Sidhu et al. (2023)](https://www.journalslibrary.nihr.ac.uk/hsdr/PRWQ4012/#/bn1)
+A study on the impact of vertical integration whereby acute hospitals run primary care medical practices found that "at 31 March 2021, 26 NHS trusts were in vertically integrated organisations, running 85 general practices across 116 practice sites". We obtained this dataset directly from the authors.
+
+```{r Sidhu et al.}
+
+```
+
+
 
 ## Descriptive statistics
 ### What is the distribution of deprivation of practices that have closed?
