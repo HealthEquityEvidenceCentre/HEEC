@@ -57,10 +57,68 @@ We begin by categorising types of closures:
 
 # Identifying closed practices
 ### NHS Payments data
-The NHS Payments data contains information on practice closures, under the column `Practice.Code.Date`.
+We start by identifying discontinued practice codes in the NHS Payments data.
+
+```{r discontinued practice codes}
+library(dplyr)
+
+# Initialize an empty list to store Practice.Codes from the previous iteration
+prev_practice_codes <- NULL
+
+# Initialize an empty dataframe to store the missing practice codes and years
+missing_practices_df <- data.frame(Year = integer(), Practice.Code = character(), stringsAsFactors = FALSE)
+
+for (file in list.files("../../data/payments/raw/")) {
+  df <- read.csv(paste0("../../data/payments/raw/", file))[c("Practice.Code", "Practice.Close.Date")]
+
+  # Assign file year
+  year <- substr(file, 1, nchar(file) - 4)
+  year <- substr(year, 4, nchar(year))
+  year <- as.numeric(paste0("20", year))
+
+  # Extract the Practice.Code column as a list
+  current_practice_codes <- df$Practice.Code
+
+  # Check if there is a previous list to compare with
+  if (!is.null(prev_practice_codes)) {
+    # Find Practice.Codes that were in the previous list but are not in the current list
+    missing_practice_codes <- setdiff(prev_practice_codes, current_practice_codes)
+    missing_practice_codes_length <- length(missing_practice_codes)
+
+    # Append the missing practice codes and year to the dataframe
+    if (missing_practice_codes_length > 0) {
+      missing_practices_df <- rbind(
+        missing_practices_df,
+        data.frame(Year = rep(year, missing_practice_codes_length), Practice.Code = missing_practice_codes)
+      )
+    }
+  }
+
+  # Update the previous Practice.Codes list for the next iteration
+  prev_practice_codes <- current_practice_codes
+}
+
+# number of discontinued practice codes per year
+missing_practices_df %>%
+  group_by(Year) %>%
+  summarise(n = n())
+```
+
+The table above shows the number of discontinued practice codes per year; these are practice codes that were present in the previous year's data but are missing in the current year's data. This could indicate that the practice has closed or merged with another practice.
+
+```{r Discontinue duplicates}
+t <- missing_practices_df %>%
+  group_by(Practice.Code) %>%
+  summarise(n = n())
+
+t <- t[t$n > 1, ] %>% nrow()
+```
+
+`r t` practice codes were discontinued in multiple years, meaning that they reported payments in one year, were missing in the following year's data, and then reappeared in the subsequent year's data.
+
+Furthermore, the NHS Payments data also contains information on practice closures, under the column `Practice.Close.Date`.
 
 ```{r Practice close date}
-library(dplyr)
 library(tidyverse)
 library(lubridate)
 
