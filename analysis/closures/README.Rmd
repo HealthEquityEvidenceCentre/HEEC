@@ -253,7 +253,9 @@ closure_IMD %>%
 ggplot(closure_IMD, aes(x = quintile)) +
   geom_bar()
 ```
-We perform a Welch Two Sample t-test to determine if the mean IMD of closed practices is significantly different from the mean IMD of all practices.
+We see that that closed practices tend to be in the higher quintiles of deprivation, with a mean IMD of `r mean(closure_IMD$IMD, na.rm = TRUE)`.
+
+We then perform a Welch Two Sample t-test to determine if the mean IMD of closed practices is significantly different from the mean IMD of all practices.
 ```{r T-test}
 t.test(closure_IMD$IMD, IMD$IMD, alternative = "two.sided")
 ```
