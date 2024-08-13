@@ -116,10 +116,23 @@ Furthermore, the Practice.Close.Date is often not consistent between years; wher
 As such, practices that are reported to have closed in year 't' still receive payments and report patients in year 't+1'.
 
 ### [Sidhu et al. (2023)](https://www.journalslibrary.nihr.ac.uk/hsdr/PRWQ4012/#/bn1)
-A study on the impact of vertical integration whereby acute hospitals run primary care medical practices found that "at 31 March 2021, 26 NHS trusts were in vertically integrated organisations, running 85 general practices across 116 practice sites". We obtained this dataset directly from the authors.
+A study on the impact of vertical integration whereby acute hospitals run primary care medical practices found that "at 31 March 2021, 26 NHS trusts were in vertically integrated organisations, running 85 general practices across 116 practice sites". We obtained this dataset directly from the authors, stored in `sidhu.csv`.
 
 ```{r Sidhu et al.}
+sidhu <- read.csv("sidhu.csv")
 
+# return rows where code_April_2020 does not match previous_practice_codes
+t <- sidhu %>%
+  filter(code_April_2020 != previous_practice_codes) %>%
+  arrange(code_April_2020)
+
+# count number of duplicate code_April_2020 in t
+t <- t %>%
+  group_by(code_April_2020) %>%
+  summarise(n = n()) %>%
+  print()
+
+t[t$n > 1, ] %>% nrow()
 ```
 
 

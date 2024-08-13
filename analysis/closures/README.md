@@ -73,7 +73,7 @@ We begin by categorising types of closures:
 
 # Identifying closed practices
 
-## NHS Payments data
+### NHS Payments data
 
 The NHS Payments data contains information on practice closures, under
 the column `Practice.Code.Date`.
@@ -175,12 +175,49 @@ the closure was reported in the annual NHS Payments data, while
 As such, practices that are reported to have closed in year ‘t’ still
 receive payments and report patients in year ‘t+1’.
 
-## [Sidhu et al. (2023)](https://www.journalslibrary.nihr.ac.uk/hsdr/PRWQ4012/#/bn1)
+### [Sidhu et al. (2023)](https://www.journalslibrary.nihr.ac.uk/hsdr/PRWQ4012/#/bn1)
 
 A study on the impact of vertical integration whereby acute hospitals
-run primary care medical practices found that “At 31 March 2021, 26 NHS
+run primary care medical practices found that “at 31 March 2021, 26 NHS
 trusts were in vertically integrated organisations, running 85 general
-practices across 116 practice sites”.
+practices across 116 practice sites”. We obtained this dataset directly
+from the authors, stored in `sidhu.csv`.
+
+``` r
+sidhu <- read.csv("sidhu.csv")
+
+# return rows where code_April_2020 does not match previous_practice_codes
+t <- sidhu %>%
+  filter(code_April_2020 != previous_practice_codes) %>%
+  arrange(code_April_2020)
+
+# count number of duplicate code_April_2020 in t
+t <- t %>%
+  group_by(code_April_2020) %>%
+  summarise(n = n()) %>%
+  print()
+```
+
+    ## # A tibble: 788 × 2
+    ##    code_April_2020     n
+    ##    <chr>           <int>
+    ##  1 A81006              1
+    ##  2 A81018              2
+    ##  3 A81026              2
+    ##  4 A81042              2
+    ##  5 A81044              2
+    ##  6 A81048              1
+    ##  7 A81070              2
+    ##  8 A82005              1
+    ##  9 A82016              2
+    ## 10 A82021              1
+    ## # ℹ 778 more rows
+
+``` r
+t[t$n > 1, ] %>% nrow()
+```
+
+    ## [1] 196
 
 ## Descriptive statistics
 
