@@ -71,14 +71,12 @@ We begin by categorising types of closures:
 - Open: The practice has had the same practice code since it opened and
   still exists in the most recent records
 
-# Methods
+# Identifying closed practices
 
 ## NHS Payments data
 
 The NHS Payments data contains information on practice closures, under
-the column `Practice.Code.Date`. However, the Practice.Close.Date is
-often not consistent between years; where duplicated, we will use the
-earliest reported date of closure for each practice.
+the column `Practice.Code.Date`.
 
 ``` r
 library(dplyr)
@@ -163,10 +161,26 @@ closure %>%
     ## 10        2022    86
     ## 11        2023     5
 
-From this, we can get an idea of the number of practices that have
-closed each year. `reportedYear` refers to the year in which the closure
-was reported in the annual NHS Payments data, while `closureYear` refers
-to the year in which the practice closed.
+From this, we can get a rough idea of the number of practices that have
+closed each year. However, this data does not provide information about
+the type of closure (merged, closed, open), and consequently the impact
+on patients.
+
+Furthermore, the Practice.Close.Date is often not consistent between
+years; where duplicated, we will use the earliest reported date of
+closure for each practice. `reportedYear` refers to the year in which
+the closure was reported in the annual NHS Payments data, while
+`closureYear` refers to the year in which the practice closed.
+
+As such, practices that are reported to have closed in year ‘t’ still
+receive payments and report patients in year ‘t+1’.
+
+## [Sidhu et al. (2023)](https://www.journalslibrary.nihr.ac.uk/hsdr/PRWQ4012/#/bn1)
+
+A study on the impact of vertical integration whereby acute hospitals
+run primary care medical practices found that “At 31 March 2021, 26 NHS
+trusts were in vertically integrated organisations, running 85 general
+practices across 116 practice sites”.
 
 ## Descriptive statistics
 
