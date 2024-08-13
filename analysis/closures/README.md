@@ -38,10 +38,6 @@ for (file in list.files("../../data/payments/raw/")) {
     ## [1] "2022: 6758"
     ## [1] "2023: 6669"
 
-``` r
-# Number of practices per year
-```
-
 Over the past decade, there has been a dramatic reduction in the number
 of practices from 7959 in 2015 to 6669 in 2023, according to the number
 of unique practice codes in the annual [NHS Payments
@@ -77,7 +73,7 @@ We begin by categorising types of closures:
 
 # Methods
 
-### NHS Payments data
+## NHS Payments data
 
 The NHS Payments data contains information on practice closures, under
 the column `Practice.Code.Date`. However, the Practice.Close.Date is
@@ -94,11 +90,11 @@ closure <- data.frame()
 for (file in list.files("../../data/payments/raw/")) {
   df <- read.csv(paste0("../../data/payments/raw/", file))[c("Practice.Code", "Practice.Close.Date")]
 
-  # # assign year
-  # year <- substr(file, 1, nchar(file) - 4)
-  # year <- substr(year, 4, nchar(year))
-  # year <- paste0("20", year)
-  # df$Year <- year
+  # assign file year
+  year <- substr(file, 1, nchar(file) - 4)
+  year <- substr(year, 4, nchar(year))
+  year <- paste0("20", year)
+  df$reportedYear <- year
 
   # replace empty values with NA
   df$Practice.Close.Date[df$Practice.Close.Date %in% c("-", "", " ")] <- NA
@@ -109,45 +105,172 @@ for (file in list.files("../../data/payments/raw/")) {
 
   # Extract year and update Year column
   df <- df %>%
-    mutate(Year = year(Practice.Close.Date))
+    mutate(closureYear = year(Practice.Close.Date))
 
   # if Practice.Close.Date is not NA, add row to closure dataframe
   closure <- df %>%
     filter(!is.na(Practice.Close.Date)) %>%
-    select(Practice.Code, Practice.Close.Date, Year) %>%
     bind_rows(closure)
 }
 
 # remove duplicates, keeping lowest value of year
 closure <- closure %>%
   group_by(Practice.Code) %>%
-  filter(Year == min(Year))
+  filter(closureYear == min(closureYear))
 
+# sort by closure year
+closure %>%
+  arrange(closureYear) %>%
+  print()
+```
+
+    ## # A tibble: 1,347 × 4
+    ## # Groups:   Practice.Code [1,227]
+    ##    Practice.Code Practice.Close.Date reportedYear closureYear
+    ##    <chr>         <date>              <chr>              <dbl>
+    ##  1 Y02424        2013-07-31          2023                2013
+    ##  2 J82651        2013-10-31          2022                2013
+    ##  3 Y02424        2013-07-31          2022                2013
+    ##  4 J82620        2014-08-31          2022                2014
+    ##  5 L83132        2014-11-30          2022                2014
+    ##  6 F85680        2014-10-16          2016                2014
+    ##  7 N85056        2014-06-30          2015                2014
+    ##  8 Y02664        2014-06-30          2015                2014
+    ##  9 Y02673        2014-08-31          2015                2014
+    ## 10 Y02880        2014-12-14          2015                2014
+    ## # ℹ 1,337 more rows
+
+``` r
 # print number of closed practices per year
 closure %>%
-  group_by(Year) %>%
+  group_by(closureYear) %>%
   summarise(n = n()) %>%
   print()
 ```
 
     ## # A tibble: 11 × 2
-    ##     Year     n
-    ##    <dbl> <int>
-    ##  1  2013     3
-    ##  2  2014    98
-    ##  3  2015   152
-    ##  4  2016   158
-    ##  5  2017   225
-    ##  6  2018   230
-    ##  7  2019   135
-    ##  8  2020   166
-    ##  9  2021    89
-    ## 10  2022    86
-    ## 11  2023     5
+    ##    closureYear     n
+    ##          <dbl> <int>
+    ##  1        2013     3
+    ##  2        2014    98
+    ##  3        2015   152
+    ##  4        2016   158
+    ##  5        2017   225
+    ##  6        2018   230
+    ##  7        2019   135
+    ##  8        2020   166
+    ##  9        2021    89
+    ## 10        2022    86
+    ## 11        2023     5
 
-While this gives us an idea of the number of practices that have closed
-each year, it does not give us information about the type of closure,
-and consequently the impact on patients.
+From this, we can get an idea of the number of practices that have
+closed each year. `reportedYear` refers to the year in which the closure
+was reported in the annual NHS Payments data, while `closureYear` refers
+to the year in which the practice closed.
+
+## Descriptive statistics
+
+### What is the distribution of deprivation of practices that have closed?
+
+We can use the [Index of Multiple Deprivation
+(IMD)](https://github.com/HealthEquityEvidenceCentre/HEEC/tree/main/data/IMD)
+to determine the distribution of deprivation of practices that have
+closed.
+
+``` r
+IMD <- read.csv("../../data/IMD/IMD_interpolated.csv")
+
+# all practices
+IMD %>%
+  group_by(Year) %>%
+  summarise(
+    mean_IMD = mean(IMD, na.rm = TRUE),
+    sd_IMD = sd(IMD, na.rm = TRUE),
+    min_IMD = min(IMD, na.rm = TRUE),
+    max_IMD = max(IMD, na.rm = TRUE),
+    n = n()
+  )
+```
+
+    ## # A tibble: 14 × 6
+    ##     Year mean_IMD sd_IMD min_IMD max_IMD     n
+    ##    <int>    <dbl>  <dbl>   <dbl>   <dbl> <int>
+    ##  1  2010     24.2   12.8    2.60    68.9  8222
+    ##  2  2011     24.2   12.6    2.77    68.4  8222
+    ##  3  2012     24.1   12.4    2.95    67.9  8222
+    ##  4  2013     24.1   12.2    3.13    67.4  8222
+    ##  5  2014     24.1   12.1    3.31    67.0  8222
+    ##  6  2015     24.1   12.0    3.21    66.5  8438
+    ##  7  2016     24.1   11.9    3.21    66.5  8438
+    ##  8  2017     24.1   11.9    3.21    67.1  8438
+    ##  9  2018     24.1   11.9    3.21    67.9  8438
+    ## 10  2019     24.1   11.9    3.21    68.7  8461
+    ## 11  2020     24.1   11.9    3.21    68.7  8461
+    ## 12  2021     24.1   11.9    3.21    68.7  8461
+    ## 13  2022     24.1   11.9    3.21    68.7  8461
+    ## 14  2023     24.1   11.9    3.21    68.7  8461
+
+``` r
+# how many practices in closure are not in IMD
+closure$Practice.Code[!closure$Practice.Code %in% IMD$Practice.Code] %>% length()
+```
+
+    ## [1] 10
+
+``` r
+# merge closure with IMD by Practice.Code and reportedYear = Year
+closure_IMD <- merge(closure, IMD, by.x = c("Practice.Code", "reportedYear"), by.y = c("Practice.Code", "Year"))
+
+closure_IMD %>%
+  group_by(closureYear) %>%
+  summarise(
+    mean_IMD = mean(IMD, na.rm = TRUE),
+    sd_IMD = sd(IMD, na.rm = TRUE),
+    min_IMD = min(IMD, na.rm = TRUE),
+    max_IMD = max(IMD, na.rm = TRUE),
+    n = n()
+  )
+```
+
+    ## # A tibble: 11 × 6
+    ##    closureYear mean_IMD sd_IMD min_IMD max_IMD     n
+    ##          <dbl>    <dbl>  <dbl>   <dbl>   <dbl> <int>
+    ##  1        2013     25.0   2.46   22.2     26.4     3
+    ##  2        2014     27.3  13.1     3.31    56.6    96
+    ##  3        2015     24.6  12.1     5.14    54.6   149
+    ##  4        2016     27.0  11.6     5.43    55.6   157
+    ##  5        2017     28.2  12.1     3.21    65.2   224
+    ##  6        2018     26.0  12.8     3.49    66.5   229
+    ##  7        2019     24.9  11.9     5.10    56.2   135
+    ##  8        2020     23.7  12.6     5.60    53.9   166
+    ##  9        2021     28.2  10.9     7.02    55.5    89
+    ## 10        2022     22.4  10.1     5.89    45.6    84
+    ## 11        2023     24.6   9.06   12.0     36.7     5
+
+We perform a Welch Two Sample t-test to determine if the mean IMD of
+closed practices is significantly different from the mean IMD of all
+practices.
+
+``` r
+t.test(closure_IMD$IMD, IMD$IMD, alternative = "two.sided")
+```
+
+    ## 
+    ##  Welch Two Sample t-test
+    ## 
+    ## data:  closure_IMD$IMD and IMD$IMD
+    ## t = 5.4173, df = 1366.2, p-value = 7.141e-08
+    ## alternative hypothesis: true difference in means is not equal to 0
+    ## 95 percent confidence interval:
+    ##  1.155727 2.467897
+    ## sample estimates:
+    ## mean of x mean of y 
+    ##  25.93179  24.11997
+
+Based on the results of the t-test, we can conclude that there *is* a
+statistically significant difference between the IMD values of closed
+practices and all practices. Specifically, the closed practices sample
+tend to have higher IMD values.
 
 ### Notes
 
