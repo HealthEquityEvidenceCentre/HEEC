@@ -150,10 +150,11 @@ t <- t[t$n > 1, ] %>% nrow()
 
 49 practice codes were discontinued in multiple years, meaning that they
 reported payments in one year, were missing in the following year’s
-data, and then reappeared in the subsequent year’s data.
+data, and then reappeared in a subsequent year’s data before
+disappearing again.
 
-Furthermore, the NHS Payments data also contains information on practice
-closures, under the column `Practice.Close.Date`.
+The NHS Payments data also contains information on practice closures,
+under the column `Practice.Close.Date`.
 
 ``` r
 library(tidyverse)
@@ -237,6 +238,19 @@ closure %>%
     ## 10        2022    86
     ## 11        2023     5
 
+``` r
+# return rows in missing_practice_codes_df where Practice.Code is in closure$Practice.Code
+missing_practices_df[missing_practices_df$Practice.Code %in% closure$Practice.Code, ] %>% nrow()
+```
+
+    ## [1] 1187
+
+``` r
+missing_practices_df[!missing_practices_df$Practice.Code %in% closure$Practice.Code, ] %>% nrow()
+```
+
+    ## [1] 365
+
 From this, we can get a rough idea of the number of practices that have
 closed each year. However, this data does not provide information about
 the type of closure (merged, closed, open), and consequently the impact
@@ -251,6 +265,25 @@ the closure was reported in the annual NHS Payments data, while
 As such, practices that are reported to have closed in year ‘t’ still
 receive payments and report patients in year ‘t+1’.
 
+### Pulse
+
+We can also use data from
+[Pulse](https://www.pulsetoday.co.uk/news/practice-closures/) to
+identify practices that have closed. This data is stored in `pulse.csv`.
+
+``` r
+pulse <- read.csv("pulse.csv")
+
+# filter out rows where Practice.Code is blank
+pulse <- pulse %>%
+  filter(Practice.Code != "")
+
+# return rows in pulse where Practice.Code is in closure$Practice.Code
+pulse[pulse$Practice.Code %in% closure$Practice.Code, ] %>% nrow()
+```
+
+    ## [1] 228
+
 ### [Sidhu et al. (2023)](https://www.journalslibrary.nihr.ac.uk/hsdr/PRWQ4012/#/bn1)
 
 A study on the impact of vertical integration whereby acute hospitals
@@ -262,38 +295,17 @@ from the authors, stored in `sidhu.csv`.
 ``` r
 sidhu <- read.csv("sidhu.csv")
 
-# return rows where code_April_2020 does not match previous_practice_codes
+# return rows where code_April_2020 does not match previous_practice_codes. This indicates that previous_practice_codes merged with code_April_2020
 t <- sidhu %>%
   filter(code_April_2020 != previous_practice_codes) %>%
   arrange(code_April_2020)
 
-# count number of duplicate code_April_2020 in t
-t <- t %>%
-  group_by(code_April_2020) %>%
-  summarise(n = n()) %>%
-  print()
+merged_practices <- t$previous_practice_codes
+
+merged_practices[merged_practices %in% closure$Practice.Code] %>% length()
 ```
 
-    ## # A tibble: 788 × 2
-    ##    code_April_2020     n
-    ##    <chr>           <int>
-    ##  1 A81006              1
-    ##  2 A81018              2
-    ##  3 A81026              2
-    ##  4 A81042              2
-    ##  5 A81044              2
-    ##  6 A81048              1
-    ##  7 A81070              2
-    ##  8 A82005              1
-    ##  9 A82016              2
-    ## 10 A82021              1
-    ## # ℹ 778 more rows
-
-``` r
-t[t$n > 1, ] %>% nrow()
-```
-
-    ## [1] 196
+    ## [1] 817
 
 ## Descriptive statistics
 
@@ -306,6 +318,11 @@ closed.
 
 ``` r
 IMD <- read.csv("../../data/IMD/IMD_interpolated.csv")
+
+# assign to quintiles by year
+for (year in unique(IMD$Year)) {
+  IMD[IMD$Year == year, "quintile"] <- cut(IMD[IMD$Year == year, "IMD"], breaks = quantile(IMD[IMD$Year == year, "IMD"], probs = seq(0, 1, 0.2)), labels = FALSE)
+}
 
 # all practices
 IMD %>%
@@ -374,9 +391,31 @@ closure_IMD %>%
     ## 10        2022     22.4  10.1     5.89    45.6    84
     ## 11        2023     24.6   9.06   12.0     36.7     5
 
-We perform a Welch Two Sample t-test to determine if the mean IMD of
-closed practices is significantly different from the mean IMD of all
-practices.
+``` r
+closure_IMD %>%
+  group_by(quintile) %>%
+  summarise(n = n())
+```
+
+    ## # A tibble: 6 × 2
+    ##   quintile     n
+    ##      <int> <int>
+    ## 1        1   225
+    ## 2        2   218
+    ## 3        3   247
+    ## 4        4   296
+    ## 5        5   350
+    ## 6       NA     1
+
+``` r
+# bar chart of quintiles
+ggplot(closure_IMD, aes(x = quintile)) +
+  geom_bar()
+```
+
+![](README_files/figure-gfm/Descriptive%20stats-1.png)<!-- --> We
+perform a Welch Two Sample t-test to determine if the mean IMD of closed
+practices is significantly different from the mean IMD of all practices.
 
 ``` r
 t.test(closure_IMD$IMD, IMD$IMD, alternative = "two.sided")
