@@ -192,7 +192,11 @@ satisfaction <- merge_and_assign_quintiles(
     ## [1] "Year: 2023"
     ## 
     ##    1    2    3    4    5 
-    ## 1279 1279 1278 1279 1279
+    ## 1279 1279 1278 1279 1279 
+    ## [1] "Year: 2024"
+    ## 
+    ##    1    2    3    4    5 
+    ## 1257 1256 1256 1256 1257
 
 ``` r
 # Count missing IMD values per year
