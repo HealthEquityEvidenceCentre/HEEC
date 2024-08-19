@@ -90,8 +90,6 @@ satisfaction$access_pct <- ifelse(satisfaction$access_pct < 0, NA, satisfaction$
 satisfaction$continuity_pct <- ifelse(satisfaction$continuity_pct < 0, NA, satisfaction$continuity_pct)
 satisfaction$trust_pct <- ifelse(satisfaction$trust_pct < 0, NA, satisfaction$trust_pct)
 
-write.csv(satisfaction, "satisfaction.csv", row.names = FALSE)
-
 head(satisfaction)
 ```
 
@@ -140,3 +138,57 @@ satisfaction %>%
     ## 6  2022        0.734     0.131        0.276           1  6507
     ## 7  2023        0.727     0.134        0.112           1  6418
     ## 8  2024        0.754     0.123        0.244           1  6307
+
+Use the merge_and_assign_quintiles function in the data_processing.R
+script to merge the data with the IMD data and assign quintiles:
+
+``` r
+source("../data_processing.R")
+
+satisfaction <- read.csv("satisfaction.csv")
+
+# Call the function to merge and assign national-level quintiles
+satisfaction <- merge_and_assign_quintiles(
+  data = satisfaction
+)
+```
+
+    ##   Practice.Code Year       Practice.Name CCG_Code
+    ## 1        A81001 2017 THE DENSHAM SURGERY      00K
+    ## 2        A81001 2018 THE DENSHAM SURGERY      00K
+    ## 3        A81001 2019 THE DENSHAM SURGERY      00K
+    ## 4        A81001 2020 THE DENSHAM SURGERY      16C
+    ## 5        A81001 2021 THE DENSHAM SURGERY      16C
+    ## 6        A81001 2022 THE DENSHAM SURGERY     <NA>
+    ##                                  CCG_Name access_pct continuity_pct overall_pct
+    ## 1 NHS Hartlepool and Stockton-on-Tees CCG  0.2830746      0.7742824   0.6852379
+    ## 2 NHS HARTLEPOOL AND STOCKTON-ON-TEES CCG  0.4064632      0.7515997   0.8362756
+    ## 3 NHS HARTLEPOOL AND STOCKTON-ON-TEES CCG  0.4654917      0.5346624   0.8148972
+    ## 4                     NHS TEES VALLEY CCG  0.5293993      0.5355755   0.9185904
+    ## 5                     NHS TEES VALLEY CCG  0.5622530      0.5961309   0.8811130
+    ## 6                                    <NA>  0.5061685      0.5122277   0.8506803
+    ##   ICS_Code                                            ICS_Name trust_pct
+    ## 1     <NA>                                                <NA> 0.8424006
+    ## 2     <NA>                                                <NA> 0.9281149
+    ## 3     <NA>                                                <NA> 0.9396292
+    ## 4     <NA>                                                <NA> 0.9824796
+    ## 5     <NA>                                                <NA> 0.9473904
+    ## 6      QHM North East and North Cumbria Integrated Care System 0.9780686
+    ##        IMD
+    ## 1 30.75062
+    ## 2 31.55578
+    ## 3 32.36094
+    ## 4 32.36094
+    ## 5 32.36094
+    ## 6 32.36094
+    ## [1] "Processing Year: 2017"
+    ## [1] "Processing Year: 2018"
+    ## [1] "Processing Year: 2019"
+    ## [1] "Processing Year: 2020"
+    ## [1] "Processing Year: 2021"
+    ## [1] "Processing Year: 2022"
+    ## [1] "Processing Year: 2023"
+
+``` r
+write.csv(satisfaction, "satisfaction.csv", row.names = FALSE)
+```
