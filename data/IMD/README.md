@@ -201,7 +201,7 @@ as `IMD_raw.csv`.
 
 IMD values are only provided for 2010, 2015, and 2019. In order to have
 a continuous time series, we interpolate the values between these years,
-and extrapolate the values for 2020-2023. The resultant data is saved
+and extrapolate the values for 2020-2024. The resultant data is saved
 [here](https://github.com/camappel/HEEC/blob/main/data/IMD/IMD_interpolated.csv)
 as `IMD_interpolated.csv`.
 
@@ -220,9 +220,9 @@ for (i in unique(IMD$Practice.Code)) {
   has_2015 <- any(IMD$Practice.Code == i & IMD$Year == 2015)
   has_2019 <- any(IMD$Practice.Code == i & IMD$Year == 2019)
 
-  # if data is only available for 2010, extrapolate to 2011-2023
+  # if data is only available for 2010, extrapolate to 2011-2024
   if (has_2010 & !has_2015) {
-    for (year in 2011:2023) {
+    for (year in 2011:2024) {
       new_row <- data.frame(
         Year = year,
         Practice.Code = i,
@@ -254,9 +254,9 @@ for (i in unique(IMD$Practice.Code)) {
     }
   }
 
-  # if data is available for 2015 but not 2019, extrapolate to 2016-2023
+  # if data is available for 2015 but not 2019, extrapolate to 2016-2024
   if (has_2015 & !has_2019) {
-    for (year in 2016:2023) {
+    for (year in 2016:2024) {
       new_row <- data.frame(
         Year = year,
         Practice.Code = i,
@@ -288,9 +288,9 @@ for (i in unique(IMD$Practice.Code)) {
     }
   }
 
-  # if data is available for 2019, extrapolate to 2020-2023
+  # if data is available for 2019, extrapolate to 2020-2024
   if (has_2019) {
-    for (year in 2020:2023) {
+    for (year in 2020:2024) {
       new_row <- data.frame(
         Year = year,
         Practice.Code = i,
@@ -331,7 +331,7 @@ IMD %>%
   )
 ```
 
-    ## # A tibble: 14 × 6
+    ## # A tibble: 15 × 6
     ##     Year mean_IMD sd_IMD min_IMD max_IMD     n
     ##    <int>    <dbl>  <dbl>   <dbl>   <dbl> <int>
     ##  1  2010     24.2   12.8    2.60    68.9  8222
@@ -348,3 +348,4 @@ IMD %>%
     ## 12  2021     24.1   11.9    3.21    68.7  8461
     ## 13  2022     24.1   11.9    3.21    68.7  8461
     ## 14  2023     24.1   11.9    3.21    68.7  8461
+    ## 15  2024     24.1   11.9    3.21    68.7  8461
