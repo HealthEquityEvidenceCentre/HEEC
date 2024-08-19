@@ -43,7 +43,7 @@ server <- function(input, output, session) {
 
     # Calculate overall statistics for England
     agg_eng <- satisfaction %>%
-      group_by(Year, IMD_decile) %>%
+      group_by(Year, IMD_quintile) %>%
       summarise(
         mean_overall = mean(overall_pct, na.rm = TRUE),
         mean_continuity = mean(continuity_pct, na.rm = TRUE),
@@ -53,7 +53,6 @@ server <- function(input, output, session) {
       )
 
     agg_eng <- agg_eng %>%
-      rename(IMD_quintile = IMD_decile) %>%
       mutate(ICB.NAME = "England")
 
     agg_eng$IMD_quintile <- as.factor(agg_eng$IMD_quintile)
