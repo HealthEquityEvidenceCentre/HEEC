@@ -195,5 +195,26 @@ satisfaction <- merge_and_assign_quintiles(
     ## 1279 1279 1278 1279 1279
 
 ``` r
+# Count missing IMD values per year
+satisfaction %>%
+  group_by(Year) %>%
+  summarise(
+    missing_imd = sum(is.na(IMD))
+  )
+```
+
+    ## # A tibble: 8 × 2
+    ##    Year missing_imd
+    ##   <dbl>       <int>
+    ## 1  2017          12
+    ## 2  2018          19
+    ## 3  2019           2
+    ## 4  2020           7
+    ## 5  2021          11
+    ## 6  2022          19
+    ## 7  2023          24
+    ## 8  2024          25
+
+``` r
 write.csv(satisfaction, "satisfaction.csv", row.names = FALSE)
 ```
