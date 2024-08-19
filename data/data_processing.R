@@ -1,0 +1,35 @@
+# Load necessary libraries
+library(dplyr)
+library(magrittr)
+
+# Define the generic function to merge and assign IMD quintiles
+merge_and_assign_quintiles <- function(data, start_year = 2017, end_year = 2023) {
+  # Read the IMD data
+  IMD <- read.csv("../IMD/IMD_interpolated.csv")
+
+  # Merge the provided data with IMD data
+  merged_data <- merge(data, IMD, by = c("Practice.Code", "Year"), all.x = TRUE)
+
+  # Assign IMD to quintiles
+  for (year in start_year:end_year) {
+    print(paste("Processing Year:", year))
+
+    # Filter data for the specific year
+    year_data <- merged_data %>% filter(Year == year)
+
+    # Check if data for the year exists before proceeding
+    if (nrow(year_data) > 0) {
+      # Assign IMD to quintiles
+      merged_data[merged_data$Year == year, ] <- merged_data[merged_data$Year == year, ] %>%
+        mutate(IMD_quintile = cut(IMD,
+          breaks = quantile(IMD, probs = seq(0, 1, 0.2), na.rm = TRUE),
+          include.lowest = TRUE,
+          labels = c("1", "2", "3", "4", "5")
+        ))
+    } else {
+      print(paste("No data available for Year:", year))
+    }
+  }
+
+  return(merged_data)
+}
