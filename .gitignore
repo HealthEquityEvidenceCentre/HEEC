@@ -1,3 +1,4 @@
 # Hide the .Rmd files used to create the .md files
 *.Rmd
 *.Rhistory
+*.dcf

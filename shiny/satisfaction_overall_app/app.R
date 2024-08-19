@@ -20,7 +20,7 @@ ui <- fluidPage(
 server <- function(input, output, session) {
   # Read and preprocess data
   data <- reactive({
-    satisfaction <- read.csv("../../data/satisfaction/satisfaction.csv")
+    satisfaction <- read.csv("satisfaction_link")
 
     # Calculate quintiles at ICB level
     satisfaction_quintile <- satisfaction[!is.na(satisfaction$ICB.NAME), ] %>%
