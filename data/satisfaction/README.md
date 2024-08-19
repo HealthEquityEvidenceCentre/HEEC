@@ -90,6 +90,8 @@ satisfaction$access_pct <- ifelse(satisfaction$access_pct < 0, NA, satisfaction$
 satisfaction$continuity_pct <- ifelse(satisfaction$continuity_pct < 0, NA, satisfaction$continuity_pct)
 satisfaction$trust_pct <- ifelse(satisfaction$trust_pct < 0, NA, satisfaction$trust_pct)
 
+write.csv(satisfaction, "satisfaction.csv", row.names = FALSE)
+
 head(satisfaction)
 ```
 
