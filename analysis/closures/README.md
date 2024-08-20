@@ -149,43 +149,10 @@ practices_present_all_years <- practice_years[practice_years$unique_years == 9, 
 ```
 
 However, many of these practices had 0 patients or patients, despite
-being included in the NHS Payments data. 6390 practices had non-zero
-patients and payments in all years from 2015 to 2023.
+being included in the NHS Payments data.
 
-``` r
-# Create a unique ordering by combining last_year and Practice.Code
-t <- t %>%
-  group_by(Practice.Code) %>%
-  mutate(last_year = max(Year)) %>%
-  ungroup() %>%
-  arrange(last_year, Practice.Code)
-
-# Convert Practice.Code to a factor ordered by last_year, then by Practice.Code
-t$Practice.Code <- factor(t$Practice.Code, levels = unique(t$Practice.Code))
-
-# Create the color column based on conditions
-t$color <- with(t, ifelse(Number.of.Registered.Patients..Last.Known.Figure. <= 0 |
-  Total.NHS.Payments.to.General.Practice <= 0,
-"red",
-"black"
-))
-
-# Create the plot
-ggplot(t, aes(x = Year, y = Practice.Code, group = Practice.Code, color = color)) +
-  geom_line(alpha = 0.5, linewidth = 0.25) + # Adjust alpha for transparency if needed
-  labs(
-    x = "Year", y = NULL,
-    title = "Practice Code Appearances by Year"
-  ) +
-  theme_minimal() +
-  theme(
-    axis.text.y = element_blank(),
-    axis.ticks.y = element_blank()
-  ) +
-  scale_color_identity()
-```
-
-![](README_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+6390 practices had non-zero patients and payments in all years from 2015
+to 2023.
 
 # Identify closed practices
 
