@@ -173,8 +173,16 @@ plot <- df %>%
 # Convert Practice.Code to a factor with levels in the desired order
 plot$Practice.Code <- factor(plot$Practice.Code, levels = unique(plot$Practice.Code))
 
-ggplot(plot, aes(x = Year, y = Practice.Code, group = Practice.Code)) +
-  # geom_point(alpha = 0.5, size = 1) +
+# Create the color column based on conditions
+plot$color <- with(plot, ifelse(Number.of.Registered.Patients..Last.Known.Figure. <= 0 |
+  Total.NHS.Payments.to.General.Practice <= 0,
+"red",
+"black"
+))
+
+# Create the plot
+ggplot(plot, aes(x = Year, y = Practice.Code, group = Practice.Code, color = color)) +
+  geom_point(alpha = 0.5, size = 1) +
   geom_line(alpha = 0.5, linewidth = 0.5) + # Adjust alpha for transparency if needed
   labs(
     x = "Year", y = NULL,
@@ -184,10 +192,38 @@ ggplot(plot, aes(x = Year, y = Practice.Code, group = Practice.Code)) +
   theme(
     axis.text.y = element_blank(),
     axis.ticks.y = element_blank()
-  )
+  ) +
+  scale_color_identity()
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+
+``` r
+plot %>%
+  group_by(last_year) %>%
+  summarise(n = n_distinct(Practice.Code))
+```
+
+    ## # A tibble: 8 × 2
+    ##   last_year     n
+    ##       <int> <int>
+    ## 1      2015   145
+    ## 2      2016   118
+    ## 3      2017   214
+    ## 4      2018   264
+    ## 5      2019   245
+    ## 6      2020   160
+    ## 7      2021   104
+    ## 8      2022   155
+
+716 practices have reported 0 registered patients or 0 total payments in
+at least one year.
+
+``` r
+one_year_practices <- practice_years[practice_years$unique_years == 1, ]$Practice.Code %>% unique()
+
+plot$color <- with(plot, ifelse(Practice.Code %in% one_year_practices, "red", color))
+```
 
 # How many practices in each year stopped reporting by 2023?
 
