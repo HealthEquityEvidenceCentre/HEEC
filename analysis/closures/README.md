@@ -71,7 +71,72 @@ We begin by categorising types of closures:
 - Open: The practice has had the same practice code since it opened and
   still exists in the most recent records
 
-# Identifying closed practices
+# Identify open practices
+
+We start by identifying open practices, which are practices that have
+had the same practice code since they opened and still exist in the most
+recent records.
+
+To get a sense of the data, we plot the number of appearances of each
+practice code by year. If the number of registered patients or total
+payments are 0, the line is coloured red.
+
+``` r
+library(magrittr)
+library(dplyr)
+library(ggplot2)
+
+payments <- read.csv("../../data/payments/payments.csv")
+
+t <- payments[, c("Practice.Code", "Year", "Number.of.Registered.Patients..Last.Known.Figure.", "Total.NHS.Payments.to.General.Practice")]
+
+# how many practices are present from 2015 to 2023
+practice_years <- t %>%
+  group_by(Practice.Code) %>%
+  summarise(unique_years = n_distinct(Year))
+
+practices_present_all_years <- practice_years[practice_years$unique_years == 9, ]
+```
+
+6503 practices have been present in the NHS Payments data from 2015 to
+2023.
+
+``` r
+# Create a unique ordering by combining last_year and Practice.Code
+t <- t %>%
+  group_by(Practice.Code) %>%
+  mutate(last_year = max(Year)) %>%
+  ungroup() %>%
+  arrange(last_year, Practice.Code)
+
+# Convert Practice.Code to a factor ordered by last_year, then by Practice.Code
+t$Practice.Code <- factor(t$Practice.Code, levels = unique(t$Practice.Code))
+
+# Create the color column based on conditions
+t$color <- with(t, ifelse(Number.of.Registered.Patients..Last.Known.Figure. <= 0 |
+  Total.NHS.Payments.to.General.Practice <= 0,
+"red",
+"black"
+))
+
+# Create the plot
+ggplot(t, aes(x = Year, y = Practice.Code, group = Practice.Code, color = color)) +
+  geom_line(alpha = 0.5, linewidth = 0.25) + # Adjust alpha for transparency if needed
+  labs(
+    x = "Year", y = NULL,
+    title = "Practice Code Appearances by Year"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank()
+  ) +
+  scale_color_identity()
+```
+
+![](README_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
+
+# Identify closed practices
 
 ### NHS Payments data
 
@@ -336,7 +401,7 @@ IMD %>%
   )
 ```
 
-    ## # A tibble: 14 × 6
+    ## # A tibble: 15 × 6
     ##     Year mean_IMD sd_IMD min_IMD max_IMD     n
     ##    <int>    <dbl>  <dbl>   <dbl>   <dbl> <int>
     ##  1  2010     24.2   12.8    2.60    68.9  8222
@@ -353,6 +418,7 @@ IMD %>%
     ## 12  2021     24.1   11.9    3.21    68.7  8461
     ## 13  2022     24.1   11.9    3.21    68.7  8461
     ## 14  2023     24.1   11.9    3.21    68.7  8461
+    ## 15  2024     24.1   11.9    3.21    68.7  8461
 
 ``` r
 # how many practices in closure are not in IMD
@@ -429,13 +495,13 @@ t.test(closure_IMD$IMD, IMD$IMD, alternative = "two.sided")
     ##  Welch Two Sample t-test
     ## 
     ## data:  closure_IMD$IMD and IMD$IMD
-    ## t = 5.4173, df = 1366.2, p-value = 7.141e-08
+    ## t = 5.4235, df = 1364.1, p-value = 6.905e-08
     ## alternative hypothesis: true difference in means is not equal to 0
     ## 95 percent confidence interval:
-    ##  1.155727 2.467897
+    ##  1.157342 2.469004
     ## sample estimates:
     ## mean of x mean of y 
-    ##  25.93179  24.11997
+    ##  25.93179  24.11861
 
 Based on the results of the t-test, we can conclude that there *is* a
 statistically significant difference between the IMD values of closed
