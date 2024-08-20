@@ -88,27 +88,46 @@ library(ggplot2)
 
 payments <- read.csv("../../data/payments/payments.csv")
 
-df <- payments[, c("Practice.Code", "Year", "Number.of.Registered.Patients..Last.Known.Figure.", "Total.NHS.Payments.to.General.Practice")]
+df <- payments[, c("Practice.Code", "Year", "Number.of.Registered.Patients..Last.Known.Figure.", "Total.NHS.Payments.to.General.Practice", "IMD_quintile")]
+
+df <- df %>%
+  group_by(Practice.Code) %>%
+  mutate(
+    last_year = max(Year),
+    first_year = min(Year)
+  ) %>%
+  ungroup() %>%
+  mutate(IMD_quintile = factor(IMD_quintile))
+
 
 # Create a unique ordering by combining last_year and Practice.Code
 plot <- df %>%
-  group_by(Practice.Code) %>%
-  mutate(last_year = max(Year)) %>%
-  ungroup() %>%
   arrange(last_year, Practice.Code)
 
 # Convert Practice.Code to a factor ordered by last_year, then by Practice.Code
 plot$Practice.Code <- factor(plot$Practice.Code, levels = unique(plot$Practice.Code))
 
-# Create the color column based on conditions
-plot$color <- with(plot, ifelse(Number.of.Registered.Patients..Last.Known.Figure. <= 0 |
-  Total.NHS.Payments.to.General.Practice <= 0,
-"red",
-"black"
-))
-
 # Create the plot
-ggplot(plot, aes(x = Year, y = Practice.Code, group = Practice.Code, color = color)) +
+ggplot(plot, aes(x = Year, y = Practice.Code, group = Practice.Code)) +
+  geom_line(alpha = 0.5, linewidth = 0.25) + # Adjust alpha for transparency if needed
+  labs(
+    x = "Year", y = NULL,
+    title = "Practice Code Appearances by Year"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank()
+  )
+```
+
+![](README_files/figure-gfm/Open%20practices-1.png)<!-- -->
+
+``` r
+colors <- c("#EF7A34", "#00A865", "#007AA8", "#531A5C", "#A80026")
+
+# Plot again, but colour line by IMD_quintile
+ggplot(plot, aes(x = Year, y = Practice.Code, group = Practice.Code, color = IMD_quintile)) +
   geom_line(alpha = 0.5, linewidth = 0.25) + # Adjust alpha for transparency if needed
   labs(
     x = "Year", y = NULL,
@@ -119,10 +138,10 @@ ggplot(plot, aes(x = Year, y = Practice.Code, group = Practice.Code, color = col
     axis.text.y = element_blank(),
     axis.ticks.y = element_blank()
   ) +
-  scale_color_identity()
+  scale_color_manual(values = colors, labels = c("Q1 (least deprived)", "Q2", "Q3", "Q4", "Q5 (most deprived)"))
 ```
 
-![](README_files/figure-gfm/Open%20practices-1.png)<!-- -->
+![](README_files/figure-gfm/Open%20practices-2.png)<!-- -->
 
 ``` r
 # how many practices are present from 2015 to 2023
@@ -132,19 +151,12 @@ practice_years <- df %>%
 
 practices_present_all_years <- practice_years[practice_years$unique_years == 9, ]$Practice.Code %>% unique()
 
-t <- df %>%
-  group_by(Practice.Code) %>%
-  mutate(
-    first_year = min(Year),
-    last_year = max(Year)
-  )
-
-new_practices <- t %>%
+new_practices <- df %>%
   filter(first_year != 2015) %>%
   pull(Practice.Code) %>%
   unique()
 
-closed_practices <- t %>%
+closed_practices <- df %>%
   filter(last_year != 2023) %>%
   pull(Practice.Code) %>%
   unique()
@@ -165,9 +177,6 @@ Here’s the same plot, excluding practices that were still open in 2023.
 # Exclude practices that were still open in 2023
 plot <- df %>%
   filter(Practice.Code %in% closed_practices) %>%
-  group_by(Practice.Code) %>%
-  mutate(last_year = max(Year)) %>%
-  ungroup() %>%
   arrange(last_year, Practice.Code)
 
 # Convert Practice.Code to a factor with levels in the desired order
@@ -180,8 +189,10 @@ plot$color <- with(plot, ifelse(Number.of.Registered.Patients..Last.Known.Figure
 "black"
 ))
 
+colors <- c("#EF7A34", "#00A865", "#007AA8", "#531A5C", "#A80026")
+
 # Create the plot
-ggplot(plot, aes(x = Year, y = Practice.Code, group = Practice.Code, color = color)) +
+ggplot(plot, aes(x = Year, y = Practice.Code, group = Practice.Code, color = IMD_quintile)) +
   geom_point(alpha = 0.5, size = 1) +
   geom_line(alpha = 0.5, linewidth = 0.5) + # Adjust alpha for transparency if needed
   labs(
@@ -193,28 +204,60 @@ ggplot(plot, aes(x = Year, y = Practice.Code, group = Practice.Code, color = col
     axis.text.y = element_blank(),
     axis.ticks.y = element_blank()
   ) +
-  scale_color_identity()
+  scale_color_manual(values = colors, labels = c("Q1 (least deprived)", "Q2", "Q3", "Q4", "Q5 (most deprived)"))
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
 ``` r
+# count NA per year
 plot %>%
   group_by(last_year) %>%
-  summarise(n = n_distinct(Practice.Code))
+  summarise(IMD_NA = is.na(IMD_quintile) %>% sum())
 ```
 
     ## # A tibble: 8 × 2
-    ##   last_year     n
-    ##       <int> <int>
-    ## 1      2015   145
-    ## 2      2016   118
-    ## 3      2017   214
-    ## 4      2018   264
-    ## 5      2019   245
-    ## 6      2020   160
-    ## 7      2021   104
-    ## 8      2022   155
+    ##   last_year IMD_NA
+    ##       <int>  <int>
+    ## 1      2015      4
+    ## 2      2016     15
+    ## 3      2017      5
+    ## 4      2018     17
+    ## 5      2019     15
+    ## 6      2020      8
+    ## 7      2021      8
+    ## 8      2022     15
+
+``` r
+# in each year, count number of last_year and first_year
+table <- plot %>%
+  group_by(last_year) %>%
+  summarise(n_closed = n_distinct(Practice.Code))
+
+table$n_q5 <- plot %>%
+  filter(IMD_quintile == 5) %>%
+  group_by(last_year) %>%
+  summarise(n_closed = n_distinct(Practice.Code)) %>%
+  pull(n_closed)
+
+table$p_q5 <- (table$n_q5 / table$n_closed * 100) %>% round(2)
+table
+```
+
+    ## # A tibble: 8 × 4
+    ##   last_year n_closed  n_q5  p_q5
+    ##       <int>    <int> <int> <dbl>
+    ## 1      2015      145    44  30.3
+    ## 2      2016      118    26  22.0
+    ## 3      2017      214    51  23.8
+    ## 4      2018      264    75  28.4
+    ## 5      2019      245    71  29.0
+    ## 6      2020      160    48  30  
+    ## 7      2021      104    27  26.0
+    ## 8      2022      155    36  23.2
+
+We see that practices that have closed tend to be in the higher
+quintiles of deprivation.
 
 716 practices have reported 0 registered patients or 0 total payments in
 at least one year.
@@ -224,6 +267,8 @@ one_year_practices <- practice_years[practice_years$unique_years == 1, ]$Practic
 
 plot$color <- with(plot, ifelse(Practice.Code %in% one_year_practices, "red", color))
 ```
+
+# Match with Practice Close Date column
 
 # How many practices in each year stopped reporting by 2023?
 
