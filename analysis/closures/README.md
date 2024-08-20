@@ -88,27 +88,27 @@ library(ggplot2)
 
 payments <- read.csv("../../data/payments/payments.csv")
 
-t <- payments[, c("Practice.Code", "Year", "Number.of.Registered.Patients..Last.Known.Figure.", "Total.NHS.Payments.to.General.Practice")]
+df <- payments[, c("Practice.Code", "Year", "Number.of.Registered.Patients..Last.Known.Figure.", "Total.NHS.Payments.to.General.Practice")]
 
 # Create a unique ordering by combining last_year and Practice.Code
-t <- t %>%
+plot <- df %>%
   group_by(Practice.Code) %>%
   mutate(last_year = max(Year)) %>%
   ungroup() %>%
   arrange(last_year, Practice.Code)
 
 # Convert Practice.Code to a factor ordered by last_year, then by Practice.Code
-t$Practice.Code <- factor(t$Practice.Code, levels = unique(t$Practice.Code))
+plot$Practice.Code <- factor(plot$Practice.Code, levels = unique(plot$Practice.Code))
 
 # Create the color column based on conditions
-t$color <- with(t, ifelse(Number.of.Registered.Patients..Last.Known.Figure. <= 0 |
+plot$color <- with(plot, ifelse(Number.of.Registered.Patients..Last.Known.Figure. <= 0 |
   Total.NHS.Payments.to.General.Practice <= 0,
 "red",
 "black"
 ))
 
 # Create the plot
-ggplot(t, aes(x = Year, y = Practice.Code, group = Practice.Code, color = color)) +
+ggplot(plot, aes(x = Year, y = Practice.Code, group = Practice.Code, color = color)) +
   geom_line(alpha = 0.5, linewidth = 0.25) + # Adjust alpha for transparency if needed
   labs(
     x = "Year", y = NULL,
@@ -125,34 +125,69 @@ ggplot(t, aes(x = Year, y = Practice.Code, group = Practice.Code, color = color)
 ![](README_files/figure-gfm/Open%20practices-1.png)<!-- -->
 
 ``` r
-t <- payments[, c("Practice.Code", "Year", "Number.of.Registered.Patients..Last.Known.Figure.", "Total.NHS.Payments.to.General.Practice")]
-
 # how many practices are present from 2015 to 2023
-practice_years <- t %>%
+practice_years <- df %>%
   group_by(Practice.Code) %>%
   summarise(unique_years = n_distinct(Year))
 
-practices_present_all_years <- practice_years[practice_years$unique_years == 9, ]$Practice.Code
+practices_present_all_years <- practice_years[practice_years$unique_years == 9, ]$Practice.Code %>% unique()
+
+t <- df %>%
+  group_by(Practice.Code) %>%
+  mutate(
+    first_year = min(Year),
+    last_year = max(Year)
+  )
+
+new_practices <- t %>%
+  filter(first_year != 2015) %>%
+  pull(Practice.Code) %>%
+  unique()
+
+closed_practices <- t %>%
+  filter(last_year != 2023) %>%
+  pull(Practice.Code) %>%
+  unique()
 ```
 
 6503 practices of the 7959 that were present in the NHS Payments data in
 2015 were still present in 2023.
 
+1405 practices have closed since 2015, as they were present in the 2015
+data but not in the 2023 data. 115 practices have opened since 2015, as
+they were not present in the 2015 data.
+
+On net, there are 1290 fewer practices in 2023 than in 2015.
+
+Here’s the same plot, excluding practices that were still open in 2023.
+
 ``` r
-t_drop <- t[t$Number.of.Registered.Patients..Last.Known.Figure. != 0 & t$Total.NHS.Payments.to.General.Practice != 0, ]
-
-practice_years <- t_drop %>%
+# Exclude practices that were still open in 2023
+plot <- df %>%
+  filter(Practice.Code %in% closed_practices) %>%
   group_by(Practice.Code) %>%
-  summarise(unique_years = n_distinct(Year))
+  mutate(last_year = max(Year)) %>%
+  ungroup() %>%
+  arrange(last_year, Practice.Code)
 
-practices_present_all_years <- practice_years[practice_years$unique_years == 9, ]$Practice.Code
+# Convert Practice.Code to a factor with levels in the desired order
+plot$Practice.Code <- factor(plot$Practice.Code, levels = unique(plot$Practice.Code))
+
+ggplot(plot, aes(x = Year, y = Practice.Code, group = Practice.Code)) +
+  # geom_point(alpha = 0.5, size = 1) +
+  geom_line(alpha = 0.5, linewidth = 0.5) + # Adjust alpha for transparency if needed
+  labs(
+    x = "Year", y = NULL,
+    title = "Practice Code Appearances by Year (Closed practices only)"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank()
+  )
 ```
 
-However, many of these practices had 0 patients or patients, despite
-being included in the NHS Payments data.
-
-6390 practices had non-zero patients and payments in all years from 2015
-to 2023.
+![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
 # How many practices in each year stopped reporting by 2023?
 
