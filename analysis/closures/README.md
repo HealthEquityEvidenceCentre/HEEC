@@ -77,10 +77,6 @@ We start by identifying open practices, which are practices that have
 had the same practice code since they opened and still exist in the most
 recent records.
 
-To get a sense of the data, we plot the number of appearances of each
-practice code by year. If the number of registered patients or total
-payments are 0, the line is coloured red.
-
 ``` r
 library(magrittr)
 library(dplyr)
@@ -95,11 +91,29 @@ practice_years <- t %>%
   group_by(Practice.Code) %>%
   summarise(unique_years = n_distinct(Year))
 
-practices_present_all_years <- practice_years[practice_years$unique_years == 9, ]
+practices_present_all_years <- practice_years[practice_years$unique_years == 9, ]$Practice.Code
 ```
 
-6503 practices have been present in the NHS Payments data from 2015 to
-2023.
+6503 practices of the 7959 that were present in the NHS Payments data in
+2015 were still present in 2023.
+
+``` r
+t_drop <- t[t$Number.of.Registered.Patients..Last.Known.Figure. != 0 & t$Total.NHS.Payments.to.General.Practice != 0, ]
+
+practice_years <- t_drop %>%
+  group_by(Practice.Code) %>%
+  summarise(unique_years = n_distinct(Year))
+
+practices_present_all_years <- practice_years[practice_years$unique_years == 9, ]$Practice.Code
+```
+
+However, many of these practices had 0 patients or patients, despite
+being included in the NHS Payments data. 6390 practices had non-zero
+patients and payments in all years from 2015 to 2023.
+
+To get a sense of the data, we plot the number of appearances of each
+practice code by year. If the number of registered patients or total
+payments are 0, the line is coloured red.
 
 ``` r
 # Create a unique ordering by combining last_year and Practice.Code
@@ -134,7 +148,7 @@ ggplot(t, aes(x = Year, y = Practice.Code, group = Practice.Code, color = color)
   scale_color_identity()
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
 
 # Identify closed practices
 
