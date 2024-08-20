@@ -104,7 +104,7 @@ df <- df %>%
 plot <- df %>%
   arrange(last_year, Practice.Code)
 
-# Convert Practice.Code to a factor ordered by last_year, then by Practice.Code
+# Convert Practice.Code to a factor
 plot$Practice.Code <- factor(plot$Practice.Code, levels = unique(plot$Practice.Code))
 
 # Create the plot
@@ -177,7 +177,10 @@ Here’s the same plot, excluding practices that were still open in 2023.
 # Exclude practices that were still open in 2023
 plot <- df %>%
   filter(Practice.Code %in% closed_practices) %>%
-  arrange(last_year, Practice.Code)
+  filter(last_year > 2015) %>%
+  filter(first_year == 2015) %>%
+  filter(IMD_quintile != "NA") %>%
+  arrange(last_year, IMD_quintile)
 
 # Convert Practice.Code to a factor with levels in the desired order
 plot$Practice.Code <- factor(plot$Practice.Code, levels = unique(plot$Practice.Code))
@@ -193,8 +196,8 @@ colors <- c("#EF7A34", "#00A865", "#007AA8", "#531A5C", "#A80026")
 
 # Create the plot
 ggplot(plot, aes(x = Year, y = Practice.Code, group = Practice.Code, color = IMD_quintile)) +
-  geom_point(alpha = 0.5, size = 1) +
-  geom_line(alpha = 0.5, linewidth = 0.5) + # Adjust alpha for transparency if needed
+  # geom_point(alpha = 0.5, size = 1) +
+  geom_line(alpha = 1, linewidth = 0.25) + # Adjust alpha for transparency if needed
   labs(
     x = "Year", y = NULL,
     title = "Practice Code Appearances by Year (Closed practices only)"
@@ -216,17 +219,16 @@ plot %>%
   summarise(IMD_NA = is.na(IMD_quintile) %>% sum())
 ```
 
-    ## # A tibble: 8 × 2
+    ## # A tibble: 7 × 2
     ##   last_year IMD_NA
     ##       <int>  <int>
-    ## 1      2015      4
-    ## 2      2016     15
-    ## 3      2017      5
-    ## 4      2018     17
-    ## 5      2019     15
-    ## 6      2020      8
-    ## 7      2021      8
-    ## 8      2022     15
+    ## 1      2016      0
+    ## 2      2017      0
+    ## 3      2018      0
+    ## 4      2019      0
+    ## 5      2020      0
+    ## 6      2021      0
+    ## 7      2022      0
 
 ``` r
 # in each year, count number of last_year and first_year
@@ -240,26 +242,35 @@ table$n_q5 <- plot %>%
   summarise(n_closed = n_distinct(Practice.Code)) %>%
   pull(n_closed)
 
+table$n_q1 <- plot %>%
+  filter(IMD_quintile == 1) %>%
+  group_by(last_year) %>%
+  summarise(n_closed = n_distinct(Practice.Code)) %>%
+  pull(n_closed)
+
 table$p_q5 <- (table$n_q5 / table$n_closed * 100) %>% round(2)
+table$p_q1 <- (table$n_q1 / table$n_closed * 100) %>% round(2)
 table
 ```
 
-    ## # A tibble: 8 × 4
-    ##   last_year n_closed  n_q5  p_q5
-    ##       <int>    <int> <int> <dbl>
-    ## 1      2015      145    44  30.3
-    ## 2      2016      118    26  22.0
-    ## 3      2017      214    51  23.8
-    ## 4      2018      264    75  28.4
-    ## 5      2019      245    71  29.0
-    ## 6      2020      160    48  30  
-    ## 7      2021      104    27  26.0
-    ## 8      2022      155    36  23.2
+    ## # A tibble: 7 × 6
+    ##   last_year n_closed  n_q5  n_q1  p_q5  p_q1
+    ##       <int>    <int> <int> <int> <dbl> <dbl>
+    ## 1      2016      107    24    12  22.4  11.2
+    ## 2      2017      205    49    32  23.9  15.6
+    ## 3      2018      254    73    29  28.7  11.4
+    ## 4      2019      234    69    27  29.5  11.5
+    ## 5      2020      157    48    32  30.6  20.4
+    ## 6      2021      102    27    25  26.5  24.5
+    ## 7      2022      146    35    22  24.0  15.1
 
-We see that practices that have closed tend to be in the higher
-quintiles of deprivation.
+We see that every year, practices that have closed tended to be in the
+higher quintiles of deprivation.
 
-716 practices have reported 0 registered patients or 0 total payments in
+As such, patients in deprived areas are more likely to be affected by
+practice closures than those in the most affluent areas.
+
+615 practices have reported 0 registered patients or 0 total payments in
 at least one year.
 
 ``` r
@@ -269,6 +280,82 @@ plot$color <- with(plot, ifelse(Practice.Code %in% one_year_practices, "red", co
 ```
 
 # Match with Practice Close Date column
+
+The NHS Payments data also contains information on practice closures,
+under the column `Practice.Close.Date`.
+
+We search all years for practices that have closed, as indicated by a
+non-empty `Practice.Close.Date` column. We then extract the year of
+closure and store it in the `closureYear` column.
+
+We then count the number of practices that have closed each year to
+return the self-reported number of closures in the NHS Payments data.
+
+``` r
+library(tidyverse)
+library(lubridate)
+
+closure <- data.frame()
+
+for (file in list.files("../../data/payments/raw/")) {
+  df <- read.csv(paste0("../../data/payments/raw/", file))[c("Practice.Code", "Practice.Close.Date")]
+
+  # assign file year
+  year <- substr(file, 1, nchar(file) - 4)
+  year <- substr(year, 4, nchar(year))
+  year <- paste0("20", year)
+  df$reportedYear <- year
+
+  # replace empty values with NA
+  df$Practice.Close.Date[df$Practice.Close.Date %in% c("-", "", " ")] <- NA
+
+  # Convert Practice.Close.Date to Date format
+  df <- df %>%
+    mutate(Practice.Close.Date = dmy(Practice.Close.Date))
+
+  # Extract year and update Year column
+  df <- df %>%
+    mutate(closureYear = year(Practice.Close.Date))
+
+  # if Practice.Close.Date is not NA, add row to closure dataframe
+  closure <- df %>%
+    filter(!is.na(Practice.Close.Date)) %>%
+    bind_rows(closure)
+}
+
+# remove duplicates, keeping lowest value of year
+closure <- closure %>%
+  group_by(Practice.Code) %>%
+  filter(closureYear == min(closureYear))
+
+# sort by closure year
+closure %>%
+  arrange(closureYear) %>%
+  print()
+```
+
+    ## # A tibble: 1,347 × 4
+    ## # Groups:   Practice.Code [1,227]
+    ##    Practice.Code Practice.Close.Date reportedYear closureYear
+    ##    <chr>         <date>              <chr>              <dbl>
+    ##  1 Y02424        2013-07-31          2023                2013
+    ##  2 J82651        2013-10-31          2022                2013
+    ##  3 Y02424        2013-07-31          2022                2013
+    ##  4 J82620        2014-08-31          2022                2014
+    ##  5 L83132        2014-11-30          2022                2014
+    ##  6 F85680        2014-10-16          2016                2014
+    ##  7 N85056        2014-06-30          2015                2014
+    ##  8 Y02664        2014-06-30          2015                2014
+    ##  9 Y02673        2014-08-31          2015                2014
+    ## 10 Y02880        2014-12-14          2015                2014
+    ## # ℹ 1,337 more rows
+
+``` r
+# print number of closed practices per year
+table <- closure %>%
+  group_by(closureYear) %>%
+  summarise(n = n())
+```
 
 # How many practices in each year stopped reporting by 2023?
 
