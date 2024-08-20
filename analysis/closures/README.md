@@ -154,6 +154,60 @@ being included in the NHS Payments data.
 6390 practices had non-zero patients and payments in all years from 2015
 to 2023.
 
+# 2015 as a baseline
+
+Now we will use 2015 as a baseline to identify practices that have
+closed or merged since then.
+
+Start by counting non-zero practices in 2015.
+
+``` r
+payments <- read.csv("../../data/payments/payments.csv")
+
+df <- payments[, c("Practice.Code", "Year", "Number.of.Registered.Patients..Last.Known.Figure.", "Total.NHS.Payments.to.General.Practice")]
+df <- df[df$Number.of.Registered.Patients..Last.Known.Figure. != 0 & df$Total.NHS.Payments.to.General.Practice != 0, ]
+
+# Step 1: Identify the last year each practice appeared
+last_year_per_practice <- df %>%
+  group_by(Practice.Code) %>%
+  summarise(last_year = max(Year))
+
+# Step 2: Filter out practices that lasted until 2023
+closed_practices <- last_year_per_practice %>%
+  filter(last_year < 2023)
+
+# Step 3: For each year from 2015 to 2022, count how many of those practices stopped appearing
+closed_per_year <- df %>%
+  filter(Year >= 2015 & Year < 2023) %>%
+  distinct(Practice.Code, Year) %>%
+  inner_join(closed_practices, by = "Practice.Code") %>%
+  group_by(Year) %>%
+  summarise(closed_practices_count = n_distinct(Practice.Code))
+```
+
+# Identify new practices
+
+We can also identify new practices that have opened since 2015.
+
+``` r
+# Step 1: Identify the first year each practice appeared
+first_year_per_practice <- df %>%
+  group_by(Practice.Code) %>%
+  summarise(first_year = min(Year))
+
+# Step 2: Filter out practices that started after 2015
+new_practices <- first_year_per_practice %>%
+  filter(first_year > 2015)
+
+# Step 3: For each year from 2015 to 2022, count how many of those practices started appearing
+new_per_year <- df %>%
+  filter(Year > 2015 & Year <= 2023) %>%
+  distinct(Practice.Code, Year) %>%
+  inner_join(new_practices, by = "Practice.Code") %>%
+  group_by(Year) %>%
+  summarise(new_practices_count = n_distinct(Practice.Code))
+```
+
 # Identify closed practices
 
 ### NHS Payments data
