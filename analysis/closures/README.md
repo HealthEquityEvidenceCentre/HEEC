@@ -125,8 +125,10 @@ ggplot(t, aes(x = Year, y = Practice.Code, group = Practice.Code, color = color)
 ![](README_files/figure-gfm/Open%20practices-1.png)<!-- -->
 
 ``` r
+t <- payments[, c("Practice.Code", "Year", "Number.of.Registered.Patients..Last.Known.Figure.", "Total.NHS.Payments.to.General.Practice")]
+
 # how many practices are present from 2015 to 2023
-practice_years <- payments[, c("Practice.Code", "Year", "Number.of.Registered.Patients..Last.Known.Figure.", "Total.NHS.Payments.to.General.Practice")] %>%
+practice_years <- t %>%
   group_by(Practice.Code) %>%
   summarise(unique_years = n_distinct(Year))
 
@@ -137,7 +139,7 @@ practices_present_all_years <- practice_years[practice_years$unique_years == 9, 
 2015 were still present in 2023.
 
 ``` r
-t_drop <- payments[, c("Practice.Code", "Year", "Number.of.Registered.Patients..Last.Known.Figure.", "Total.NHS.Payments.to.General.Practice")][t$Number.of.Registered.Patients..Last.Known.Figure. != 0 & t$Total.NHS.Payments.to.General.Practice != 0, ]
+t_drop <- t[t$Number.of.Registered.Patients..Last.Known.Figure. != 0 & t$Total.NHS.Payments.to.General.Practice != 0, ]
 
 practice_years <- t_drop %>%
   group_by(Practice.Code) %>%
@@ -147,7 +149,7 @@ practices_present_all_years <- practice_years[practice_years$unique_years == 9, 
 ```
 
 However, many of these practices had 0 patients or patients, despite
-being included in the NHS Payments data. 5922 practices had non-zero
+being included in the NHS Payments data. 6390 practices had non-zero
 patients and payments in all years from 2015 to 2023.
 
 ``` r
