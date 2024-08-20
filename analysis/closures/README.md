@@ -154,7 +154,7 @@ being included in the NHS Payments data.
 6390 practices had non-zero patients and payments in all years from 2015
 to 2023.
 
-# 2015 as a baseline
+# How many practices in each year stopped reporting by 2023?
 
 Now we will use 2015 as a baseline to identify practices that have
 closed or merged since then.
@@ -183,7 +183,21 @@ closed_per_year <- df %>%
   inner_join(closed_practices, by = "Practice.Code") %>%
   group_by(Year) %>%
   summarise(closed_practices_count = n_distinct(Practice.Code))
+
+closed_per_year
 ```
+
+    ## # A tibble: 8 × 2
+    ##    Year closed_practices_count
+    ##   <int>                  <int>
+    ## 1  2015                   1524
+    ## 2  2016                   1384
+    ## 3  2017                   1191
+    ## 4  2018                    951
+    ## 5  2019                    713
+    ## 6  2020                    442
+    ## 7  2021                    253
+    ## 8  2022                    114
 
 # Identify new practices
 
@@ -206,7 +220,21 @@ new_per_year <- df %>%
   inner_join(new_practices, by = "Practice.Code") %>%
   group_by(Year) %>%
   summarise(new_practices_count = n_distinct(Practice.Code))
+
+new_per_year
 ```
+
+    ## # A tibble: 8 × 2
+    ##    Year new_practices_count
+    ##   <int>               <int>
+    ## 1  2016                  37
+    ## 2  2017                  56
+    ## 3  2018                  52
+    ## 4  2019                  50
+    ## 5  2020                  52
+    ## 6  2021                  56
+    ## 7  2022                  63
+    ## 8  2023                  63
 
 # Identify closed practices
 
