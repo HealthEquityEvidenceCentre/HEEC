@@ -323,39 +323,115 @@ for (file in list.files("../../data/payments/raw/")) {
     bind_rows(closure)
 }
 
-# remove duplicates, keeping lowest value of year
+closure %<>%
+  arrange(Practice.Code)
+
+# remove duplicates, keeping highest value of closureYear
 closure <- closure %>%
   group_by(Practice.Code) %>%
-  filter(closureYear == min(closureYear))
+  filter(closureYear == max(closureYear))
 
+# unique pairs of Practice.Code and closureYear
+closure[, c("Practice.Code", "closureYear")] %>%
+  unique() %>%
+  nrow()
+```
+
+    ## [1] 1227
+
+1227 practices have reported a closure date in the NHS Payments data.
+However, 1405 have stopped reporting payments since 2015.
+
+We check to see if all the practices that closed according to
+Practice.Close.Date are also in the closed_practices list.
+
+``` r
+unique(closure$Practice.Code) %in% closed_practices %>% sum()
+```
+
+    ## [1] 1051
+
+``` r
+table <- closure %>%
+  group_by(closureYear) %>%
+  summarise(n = n())
+
+table
+```
+
+    ## # A tibble: 11 × 2
+    ##    closureYear     n
+    ##          <dbl> <int>
+    ##  1        2013     3
+    ##  2        2014    97
+    ##  3        2015    95
+    ##  4        2016   165
+    ##  5        2017   203
+    ##  6        2018   265
+    ##  7        2019   166
+    ##  8        2020   162
+    ##  9        2021   109
+    ## 10        2022   150
+    ## 11        2023     5
+
+100 practices reportedly closed prior to 2015, when the NHS Payments
+data begins. We investigate these practices to see why they’re still in
+the data.
+
+``` r
+closed2013 <- closure[closure$closureYear == 2013, ]$Practice.Code %>% unique()
+
+# pre2015 <- closure %>%
+#   filter(Practice.Code %in% pre2015)
+# 
+# pre2015[pre2015["Number.of.Registered.Patients..Last.Known.Figure."] == 0, ]
+```
+
+``` r
 # sort by closure year
 closure %>%
   arrange(closureYear) %>%
   print()
 ```
 
-    ## # A tibble: 1,347 × 4
+    ## # A tibble: 1,420 × 4
     ## # Groups:   Practice.Code [1,227]
     ##    Practice.Code Practice.Close.Date reportedYear closureYear
     ##    <chr>         <date>              <chr>              <dbl>
-    ##  1 Y02424        2013-07-31          2023                2013
-    ##  2 J82651        2013-10-31          2022                2013
+    ##  1 J82651        2013-10-31          2022                2013
+    ##  2 Y02424        2013-07-31          2023                2013
     ##  3 Y02424        2013-07-31          2022                2013
-    ##  4 J82620        2014-08-31          2022                2014
-    ##  5 L83132        2014-11-30          2022                2014
-    ##  6 F85680        2014-10-16          2016                2014
-    ##  7 N85056        2014-06-30          2015                2014
-    ##  8 Y02664        2014-06-30          2015                2014
-    ##  9 Y02673        2014-08-31          2015                2014
-    ## 10 Y02880        2014-12-14          2015                2014
-    ## # ℹ 1,337 more rows
+    ##  4 A84618        2014-03-31          2015                2014
+    ##  5 A85015        2014-09-30          2015                2014
+    ##  6 A89618        2014-09-30          2015                2014
+    ##  7 B81098        2014-10-31          2015                2014
+    ##  8 B81679        2014-05-07          2015                2014
+    ##  9 B82043        2014-04-02          2015                2014
+    ## 10 B82048        2014-10-29          2015                2014
+    ## # ℹ 1,410 more rows
 
 ``` r
 # print number of closed practices per year
-table <- closure %>%
+closure %>%
   group_by(closureYear) %>%
-  summarise(n = n())
+  summarise(n = n()) %>%
+  print()
 ```
+
+    ## # A tibble: 11 × 2
+    ##    closureYear     n
+    ##          <dbl> <int>
+    ##  1        2013     3
+    ##  2        2014    97
+    ##  3        2015    95
+    ##  4        2016   165
+    ##  5        2017   203
+    ##  6        2018   265
+    ##  7        2019   166
+    ##  8        2020   162
+    ##  9        2021   109
+    ## 10        2022   150
+    ## 11        2023     5
 
 # How many practices in each year stopped reporting by 2023?
 
