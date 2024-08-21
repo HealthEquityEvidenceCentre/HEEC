@@ -88,7 +88,7 @@ library(ggplot2)
 
 payments <- read.csv("../../data/payments/payments.csv")
 
-df <- payments[, c("Practice.Code", "Year", "Number.of.Registered.Patients..Last.Known.Figure.", "Total.NHS.Payments.to.General.Practice", "IMD_quintile")]
+df <- payments[, c("Practice.Code", "Year", "Number.of.Registered.Patients..Last.Known.Figure.", "Total.NHS.Payments.to.General.Practice", "IMD_quintile", "Practice.Close.Date")]
 
 df <- df %>%
   group_by(Practice.Code) %>%
@@ -171,7 +171,9 @@ they were not present in the 2015 data.
 
 On net, there are 1290 fewer practices in 2023 than in 2015.
 
-Here’s the same plot, excluding practices that were still open in 2023.
+Here’s the same plot, excluding practices that were still reporting data
+in 2023. We assume this dataset represents practices that have closed or
+merged since 2015.
 
 ``` r
 # Exclude practices that were still open in 2023
@@ -264,8 +266,8 @@ table
     ## 6      2021      102    27    25  26.5  24.5
     ## 7      2022      146    35    22  24.0  15.1
 
-We see that every year, practices that have closed tended to be in the
-higher quintiles of deprivation.
+We see that every year, practices that have stopped reporting data
+tended to be in the higher quintiles of deprivation.
 
 As such, patients in deprived areas are more likely to be affected by
 practice closures than those in the most affluent areas.
@@ -298,27 +300,27 @@ library(lubridate)
 closure <- data.frame()
 
 for (file in list.files("../../data/payments/raw/")) {
-  df <- read.csv(paste0("../../data/payments/raw/", file))[c("Practice.Code", "Practice.Close.Date")]
+  q <- read.csv(paste0("../../data/payments/raw/", file))[c("Practice.Code", "Practice.Close.Date")]
 
   # assign file year
   year <- substr(file, 1, nchar(file) - 4)
   year <- substr(year, 4, nchar(year))
   year <- paste0("20", year)
-  df$reportedYear <- year
+  q$reportedYear <- year
 
   # replace empty values with NA
-  df$Practice.Close.Date[df$Practice.Close.Date %in% c("-", "", " ")] <- NA
+  q$Practice.Close.Date[q$Practice.Close.Date %in% c("-", "", " ")] <- NA
 
   # Convert Practice.Close.Date to Date format
-  df <- df %>%
+  q <- q %>%
     mutate(Practice.Close.Date = dmy(Practice.Close.Date))
 
   # Extract year and update Year column
-  df <- df %>%
+  q <- q %>%  
     mutate(closureYear = year(Practice.Close.Date))
 
   # if Practice.Close.Date is not NA, add row to closure dataframe
-  closure <- df %>%
+  closure <- q  %>%
     filter(!is.na(Practice.Close.Date)) %>%
     bind_rows(closure)
 }
@@ -331,13 +333,29 @@ closure <- closure %>%
   group_by(Practice.Code) %>%
   filter(closureYear == max(closureYear))
 
-# unique pairs of Practice.Code and closureYear
-closure[, c("Practice.Code", "closureYear")] %>%
-  unique() %>%
-  nrow()
+closure %>%
+  group_by(closureYear) %>%
+  summarise(n = n())
 ```
 
-    ## [1] 1227
+    ## # A tibble: 11 × 2
+    ##    closureYear     n
+    ##          <dbl> <int>
+    ##  1        2013     3
+    ##  2        2014    97
+    ##  3        2015    95
+    ##  4        2016   165
+    ##  5        2017   203
+    ##  6        2018   265
+    ##  7        2019   166
+    ##  8        2020   162
+    ##  9        2021   109
+    ## 10        2022   150
+    ## 11        2023     5
+
+``` r
+reported_practices <- closure$Practice.Code %>% unique()
+```
 
 1227 practices have reported a closure date in the NHS Payments data.
 However, 1405 have stopped reporting payments since 2015.
@@ -346,174 +364,143 @@ We check to see if all the practices that closed according to
 Practice.Close.Date are also in the closed_practices list.
 
 ``` r
-unique(closure$Practice.Code) %in% closed_practices %>% sum()
+# practices in reported_practices that are not in closed_practices
+missing_closed <- reported_practices[!reported_practices %in% closed_practices]
+
+definitely_closed <- union(reported_practices, closed_practices)
 ```
 
-    ## [1] 1051
+176 practices reported a closure date but were still in the data in
+2023.
+
+As such, we expand the dataset to include practices that reported data
+in 2023 but have a closure date in the NHS Payments data. In total, 1581
+practices either stopped reporting data by 2023 or reported a closure
+date since 2015.
 
 ``` r
-table <- closure %>%
-  group_by(closureYear) %>%
-  summarise(n = n())
+plot <- df %>%
+  filter(Practice.Code %in% definitely_closed) %>%
+  arrange(last_year, IMD_quintile, Practice.Code)
 
+plot$Practice.Code <- factor(plot$Practice.Code, levels = unique(plot$Practice.Code))
+
+colors <- c("#EF7A34", "#00A865", "#007AA8", "#531A5C", "#A80026")
+
+# Create the plot
+ggplot(plot, aes(x = Year, y = Practice.Code, group = Practice.Code, color = IMD_quintile)) +
+  geom_point(alpha = 0.5, size = 1) +
+  geom_line(alpha = 1, linewidth = 0.25) + # Adjust alpha for transparency if needed
+  labs(
+    x = "Year", y = NULL,
+    title = "Practice Code Appearances by Year (Closed practices only)"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank()
+  ) +
+  scale_color_manual(values = colors, labels = c("Q1 (least deprived)", "Q2", "Q3", "Q4", "Q5 (most deprived)"))
+```
+
+![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+
+### [Saunders et al. (2023)](https://www.journalslibrary.nihr.ac.uk/hsdr/PRWQ4012/#/bn1)
+
+A study on the impact of vertical integration whereby acute hospitals
+run primary care medical practices found that “at 31 March 2021, 26 NHS
+trusts were in vertically integrated organisations, running 85 general
+practices across 116 practice sites”. We obtained this dataset directly
+from the authors, stored in `sidhu.csv`.
+
+``` r
+sidhu <- read.csv("sidhu.csv")
+
+# return rows where code_April_2020 does not match previous_practice_codes. This indicates that previous_practice_codes merged with code_April_2020
+t <- sidhu %>%
+  filter(code_April_2020 != previous_practice_codes) %>%
+  arrange(code_April_2020)
+
+merged_practices <- t$previous_practice_codes %>% unique()
+
+closed_in_saunders <- definitely_closed[definitely_closed %in% merged_practices]
+closed_not_in_saunders <- definitely_closed[!definitely_closed %in% merged_practices]
+
+merged <- closure[!(closure$Practice.Code %in% closed_not_in_saunders), ] %>%
+  arrange(Practice.Code, reportedYear) %>%
+  pull(Practice.Code) %>%
+  unique()
+```
+
+1007 practices that closed according to the NHS Payments data merged
+with another practice according to the Saunders et al. dataset.
+
+574 practices that closed according to the NHS Payments data did not
+merge with another practice according to the Saunders et al. dataset. We
+consider these practices to be completely closed without replacement.
+
+``` r
+closed_not_merged <- closure[closure$Practice.Code %in% closed_not_in_saunders, ] %>%
+  arrange(Practice.Code, reportedYear) %>%
+  pull(Practice.Code) %>%
+  unique()
+
+# how many practices in closed_not_merged are in each quintile
+t <- df[df$Practice.Code %in% closed_not_merged, ] %>%
+  group_by(IMD_quintile) %>%
+  summarise(n_closed = n_distinct(Practice.Code))
+
+colors <- c("#EF7A34", "#00A865", "#007AA8", "#531A5C", "#A80026")
+
+# plot the number of practices in each quintile
+ggplot(t, aes(x = IMD_quintile, y = n_closed, fill = IMD_quintile)) +
+  geom_bar(stat = "identity") +
+  labs(
+    x = "IMD Quintile", y = "Number of Practices",
+    title = "Number of Closed Practices by IMD Quintile"
+  ) +
+  theme_minimal() +
+  scale_fill_manual(values = colors, labels = c("Q1 (least deprived)", "Q2", "Q3", "Q4", "Q5 (most deprived)"))
+```
+
+![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+
+``` r
+# in each year, count number of last_year and first_year
+table <- df[df$Practice.Code %in% closed_not_merged, ] %>%
+  group_by(last_year) %>%
+  summarise(n_closed = n_distinct(Practice.Code))
+
+table$n_q5 <- df[df$Practice.Code %in% closed_not_merged, ] %>%
+  filter(IMD_quintile == 5) %>%
+  group_by(last_year) %>%
+  summarise(n_closed = n_distinct(Practice.Code)) %>%
+  pull(n_closed)
+
+n_q1 <- df[df$Practice.Code %in% closed_not_merged, ] %>%
+  filter(IMD_quintile == 1) %>%
+  group_by(last_year) %>%
+  summarise(n_q1 = n_distinct(Practice.Code))
+
+# fill in missing years with 0
+table <- merge(table, n_q1, by = "last_year", all = TRUE)
+table$n_q1[is.na(table$n_q1)] <- 0
+
+table$p_q5 <- (table$n_q5 / table$n_closed * 100) %>% round(2)
+table$p_q1 <- (table$n_q1 / table$n_closed * 100) %>% round(2)
 table
 ```
 
-    ## # A tibble: 11 × 2
-    ##    closureYear     n
-    ##          <dbl> <int>
-    ##  1        2013     3
-    ##  2        2014    97
-    ##  3        2015    95
-    ##  4        2016   165
-    ##  5        2017   203
-    ##  6        2018   265
-    ##  7        2019   166
-    ##  8        2020   162
-    ##  9        2021   109
-    ## 10        2022   150
-    ## 11        2023     5
-
-100 practices reportedly closed prior to 2015, when the NHS Payments
-data begins. We investigate these practices to see why they’re still in
-the data.
-
-``` r
-closed2013 <- closure[closure$closureYear == 2013, ]$Practice.Code %>% unique()
-
-# pre2015 <- closure %>%
-#   filter(Practice.Code %in% pre2015)
-# 
-# pre2015[pre2015["Number.of.Registered.Patients..Last.Known.Figure."] == 0, ]
-```
-
-``` r
-# sort by closure year
-closure %>%
-  arrange(closureYear) %>%
-  print()
-```
-
-    ## # A tibble: 1,420 × 4
-    ## # Groups:   Practice.Code [1,227]
-    ##    Practice.Code Practice.Close.Date reportedYear closureYear
-    ##    <chr>         <date>              <chr>              <dbl>
-    ##  1 J82651        2013-10-31          2022                2013
-    ##  2 Y02424        2013-07-31          2023                2013
-    ##  3 Y02424        2013-07-31          2022                2013
-    ##  4 A84618        2014-03-31          2015                2014
-    ##  5 A85015        2014-09-30          2015                2014
-    ##  6 A89618        2014-09-30          2015                2014
-    ##  7 B81098        2014-10-31          2015                2014
-    ##  8 B81679        2014-05-07          2015                2014
-    ##  9 B82043        2014-04-02          2015                2014
-    ## 10 B82048        2014-10-29          2015                2014
-    ## # ℹ 1,410 more rows
-
-``` r
-# print number of closed practices per year
-closure %>%
-  group_by(closureYear) %>%
-  summarise(n = n()) %>%
-  print()
-```
-
-    ## # A tibble: 11 × 2
-    ##    closureYear     n
-    ##          <dbl> <int>
-    ##  1        2013     3
-    ##  2        2014    97
-    ##  3        2015    95
-    ##  4        2016   165
-    ##  5        2017   203
-    ##  6        2018   265
-    ##  7        2019   166
-    ##  8        2020   162
-    ##  9        2021   109
-    ## 10        2022   150
-    ## 11        2023     5
-
-# How many practices in each year stopped reporting by 2023?
-
-Now we will use 2015 as a baseline to identify practices that have
-closed or merged since then.
-
-Start by counting non-zero practices in 2015.
-
-``` r
-payments <- read.csv("../../data/payments/payments.csv")
-
-df <- payments[, c("Practice.Code", "Year", "Number.of.Registered.Patients..Last.Known.Figure.", "Total.NHS.Payments.to.General.Practice")]
-df <- df[df$Number.of.Registered.Patients..Last.Known.Figure. != 0 & df$Total.NHS.Payments.to.General.Practice != 0, ]
-
-# Step 1: Identify the last year each practice appeared
-last_year_per_practice <- df %>%
-  group_by(Practice.Code) %>%
-  summarise(last_year = max(Year))
-
-# Step 2: Filter out practices that lasted until 2023
-closed_practices <- last_year_per_practice %>%
-  filter(last_year < 2023)
-
-# Step 3: For each year from 2015 to 2022, count how many of those practices stopped appearing
-closed_per_year <- df %>%
-  filter(Year >= 2015 & Year < 2023) %>%
-  distinct(Practice.Code, Year) %>%
-  inner_join(closed_practices, by = "Practice.Code") %>%
-  group_by(Year) %>%
-  summarise(closed_practices_count = n_distinct(Practice.Code))
-
-closed_per_year
-```
-
-    ## # A tibble: 8 × 2
-    ##    Year closed_practices_count
-    ##   <int>                  <int>
-    ## 1  2015                   1524
-    ## 2  2016                   1384
-    ## 3  2017                   1191
-    ## 4  2018                    951
-    ## 5  2019                    713
-    ## 6  2020                    442
-    ## 7  2021                    253
-    ## 8  2022                    114
-
-# Identify new practices
-
-We can also identify new practices that have opened since 2015.
-
-``` r
-# Step 1: Identify the first year each practice appeared
-first_year_per_practice <- df %>%
-  group_by(Practice.Code) %>%
-  summarise(first_year = min(Year))
-
-# Step 2: Filter out practices that started after 2015
-new_practices <- first_year_per_practice %>%
-  filter(first_year > 2015)
-
-# Step 3: For each year from 2015 to 2022, count how many of those practices started appearing
-new_per_year <- df %>%
-  filter(Year > 2015 & Year <= 2023) %>%
-  distinct(Practice.Code, Year) %>%
-  inner_join(new_practices, by = "Practice.Code") %>%
-  group_by(Year) %>%
-  summarise(new_practices_count = n_distinct(Practice.Code))
-
-new_per_year
-```
-
-    ## # A tibble: 8 × 2
-    ##    Year new_practices_count
-    ##   <int>               <int>
-    ## 1  2016                  37
-    ## 2  2017                  56
-    ## 3  2018                  52
-    ## 4  2019                  50
-    ## 5  2020                  52
-    ## 6  2021                  56
-    ## 7  2022                  63
-    ## 8  2023                  63
+    ##   last_year n_closed n_q5 n_q1  p_q5  p_q1
+    ## 1      2015       25   12    2 48.00  8.00
+    ## 2      2016       15    7    0 46.67  0.00
+    ## 3      2017       12    6    0 50.00  0.00
+    ## 4      2018       27   11    3 40.74 11.11
+    ## 5      2019       17    6    1 35.29  5.88
+    ## 6      2020       41   10    9 24.39 21.95
+    ## 7      2021       74   22   15 29.73 20.27
+    ## 8      2022       88   23   11 26.14 12.50
+    ## 9      2023      111   31   31 27.93 27.93
 
 # Identify closed practices
 
@@ -727,29 +714,6 @@ pulse[pulse$Practice.Code %in% closure$Practice.Code, ] %>% nrow()
 ```
 
     ## [1] 228
-
-### [Sidhu et al. (2023)](https://www.journalslibrary.nihr.ac.uk/hsdr/PRWQ4012/#/bn1)
-
-A study on the impact of vertical integration whereby acute hospitals
-run primary care medical practices found that “at 31 March 2021, 26 NHS
-trusts were in vertically integrated organisations, running 85 general
-practices across 116 practice sites”. We obtained this dataset directly
-from the authors, stored in `sidhu.csv`.
-
-``` r
-sidhu <- read.csv("sidhu.csv")
-
-# return rows where code_April_2020 does not match previous_practice_codes. This indicates that previous_practice_codes merged with code_April_2020
-t <- sidhu %>%
-  filter(code_April_2020 != previous_practice_codes) %>%
-  arrange(code_April_2020)
-
-merged_practices <- t$previous_practice_codes
-
-merged_practices[merged_practices %in% closure$Practice.Code] %>% length()
-```
-
-    ## [1] 817
 
 ## Descriptive statistics
 
