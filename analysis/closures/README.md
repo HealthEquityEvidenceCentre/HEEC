@@ -75,11 +75,8 @@ We begin by categorising types of closures:
 
 We start by identifying open practices, which are practices that have
 had the same practice code since they opened and still exist in the most
-recent records.
-
-To get a sense of the data, we plot the number of appearances of each
-practice code by year. If the number of registered patients or total
-payments are 0, the line is coloured red.
+recent records. To get a sense of the data, we plot the number of
+appearances of each practice code by year.
 
 ``` r
 library(magrittr)
@@ -98,7 +95,6 @@ df <- df %>%
   ) %>%
   ungroup() %>%
   mutate(IMD_quintile = factor(IMD_quintile))
-
 
 # Create a unique ordering by combining last_year and Practice.Code
 plot <- df %>%
@@ -124,26 +120,6 @@ ggplot(plot, aes(x = Year, y = Practice.Code, group = Practice.Code)) +
 ![](README_files/figure-gfm/Open%20practices-1.png)<!-- -->
 
 ``` r
-colors <- c("#EF7A34", "#00A865", "#007AA8", "#531A5C", "#A80026")
-
-# Plot again, but colour line by IMD_quintile
-ggplot(plot, aes(x = Year, y = Practice.Code, group = Practice.Code, color = IMD_quintile)) +
-  geom_line(alpha = 0.5, linewidth = 0.25) + # Adjust alpha for transparency if needed
-  labs(
-    x = "Year", y = NULL,
-    title = "Practice Code Appearances by Year"
-  ) +
-  theme_minimal() +
-  theme(
-    axis.text.y = element_blank(),
-    axis.ticks.y = element_blank()
-  ) +
-  scale_color_manual(values = colors, labels = c("Q1 (least deprived)", "Q2", "Q3", "Q4", "Q5 (most deprived)"))
-```
-
-![](README_files/figure-gfm/Open%20practices-2.png)<!-- -->
-
-``` r
 # how many practices are present from 2015 to 2023
 practice_years <- df %>%
   group_by(Practice.Code) %>%
@@ -162,18 +138,47 @@ closed_practices <- df %>%
   unique()
 ```
 
-6503 practices of the 7959 that were present in the NHS Payments data in
-2015 were still present in 2023.
+6503 practices of the 7959 that were reported in the NHS Payments data
+in 2015 were still reported in 2023.
 
-1405 practices have closed since 2015, as they were present in the 2015
-data but not in the 2023 data. 115 practices have opened since 2015, as
-they were not present in the 2015 data.
+1405 practices have closed since 2015, as they were reported in the 2015
+data but not in the 2023 data.
 
-On net, there are 1290 fewer practices in 2023 than in 2015.
+115 practices have opened since 2015, as they were not present in the
+2015 data.
 
-Here’s the same plot, excluding practices that were still reporting data
-in 2023. We assume this dataset represents practices that have closed or
-merged since 2015.
+On net, there are 1290 fewer practices in 2023 than in 2015. – Number of
+patients?
+
+## Practice closures and deprivation
+
+We then merge the NHS Payments data with the IMD data in order to
+visualise the socio-economic status of the populations served by
+practices.
+
+``` r
+colors <- c("#EF7A34", "#00A865", "#007AA8", "#531A5C", "#A80026")
+
+# Plot again, but colour line by IMD_quintile
+ggplot(plot, aes(x = Year, y = Practice.Code, group = Practice.Code, color = IMD_quintile)) +
+  geom_line(alpha = 0.5, linewidth = 0.25) + # Adjust alpha for transparency if needed
+  labs(
+    x = "Year", y = NULL,
+    title = "Practice Code Appearances by Year"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank()
+  ) +
+  scale_color_manual(values = colors, labels = c("Q1 (least deprived)", "Q2", "Q3", "Q4", "Q5 (most deprived)"))
+```
+
+![](README_files/figure-gfm/IMD-1.png)<!-- -->
+
+Next, we identify the subset of practices whose practices codes were in
+the 2015 dataset but not 2023; we assume this dataset represents
+practices that have closed or merged since 2015.
 
 ``` r
 # Exclude practices that were still open in 2023
@@ -212,27 +217,14 @@ ggplot(plot, aes(x = Year, y = Practice.Code, group = Practice.Code, color = IMD
   scale_color_manual(values = colors, labels = c("Q1 (least deprived)", "Q2", "Q3", "Q4", "Q5 (most deprived)"))
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-2-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
 ``` r
 # count NA per year
-plot %>%
-  group_by(last_year) %>%
-  summarise(IMD_NA = is.na(IMD_quintile) %>% sum())
-```
+# plot %>%
+#   group_by(last_year) %>%
+#   summarise(IMD_NA = is.na(IMD_quintile) %>% sum())
 
-    ## # A tibble: 7 × 2
-    ##   last_year IMD_NA
-    ##       <int>  <int>
-    ## 1      2016      0
-    ## 2      2017      0
-    ## 3      2018      0
-    ## 4      2019      0
-    ## 5      2020      0
-    ## 6      2021      0
-    ## 7      2022      0
-
-``` r
 # in each year, count number of last_year and first_year
 table <- plot %>%
   group_by(last_year) %>%
@@ -281,10 +273,11 @@ one_year_practices <- practice_years[practice_years$unique_years == 1, ]$Practic
 plot$color <- with(plot, ifelse(Practice.Code %in% one_year_practices, "red", color))
 ```
 
-# Match with Practice Close Date column
+# ‘Self-reported’ practices closures
 
-The NHS Payments data also contains information on practice closures,
-under the column `Practice.Close.Date`.
+The NHS Payments data also contains information on practice closures
+under the column `Practice.Close.Date`, which we refer to as
+‘self-reported’ closures.
 
 We search all years for practices that have closed, as indicated by a
 non-empty `Practice.Close.Date` column. We then extract the year of
@@ -316,11 +309,11 @@ for (file in list.files("../../data/payments/raw/")) {
     mutate(Practice.Close.Date = dmy(Practice.Close.Date))
 
   # Extract year and update Year column
-  q <- q %>%  
+  q <- q %>%
     mutate(closureYear = year(Practice.Close.Date))
 
   # if Practice.Close.Date is not NA, add row to closure dataframe
-  closure <- q  %>%
+  closure <- q %>%
     filter(!is.na(Practice.Close.Date)) %>%
     bind_rows(closure)
 }
@@ -333,32 +326,26 @@ closure <- closure %>%
   group_by(Practice.Code) %>%
   filter(closureYear == max(closureYear))
 
-closure %>%
+pre_2015 <- closure %>%
   group_by(closureYear) %>%
-  summarise(n = n())
-```
+  summarise(n = n()) %>%
+  pull(n) %>%
+  head(2)
 
-    ## # A tibble: 11 × 2
-    ##    closureYear     n
-    ##          <dbl> <int>
-    ##  1        2013     3
-    ##  2        2014    97
-    ##  3        2015    95
-    ##  4        2016   165
-    ##  5        2017   203
-    ##  6        2018   265
-    ##  7        2019   166
-    ##  8        2020   162
-    ##  9        2021   109
-    ## 10        2022   150
-    ## 11        2023     5
-
-``` r
 reported_practices <- closure$Practice.Code %>% unique()
+
+# practices in closed_practices that are not in reported_practices
+missing_reported <- closed_practices[!closed_practices %in% reported_practices]
 ```
 
-1227 practices have reported a closure date in the NHS Payments data.
-However, 1405 have stopped reporting payments since 2015.
+1227 practices have reported a closure date in the NHS Payments data,
+including some before 2015. However, 1405 have stopped reporting
+payments since 2015.
+
+which implies that some practices closed (ceased to be reported in the
+payments data) without reporting a closure date: 354 practices that are
+present in the `closed_practices` (practice code no longer present in
+2023) are not in the `reported_practices` dataset.
 
 We check to see if all the practices that closed according to
 Practice.Close.Date are also in the closed_practices list.
@@ -377,6 +364,10 @@ As such, we expand the dataset to include practices that reported data
 in 2023 but have a closure date in the NHS Payments data. In total, 1581
 practices either stopped reporting data by 2023 or reported a closure
 date since 2015.
+
+We plot these practice code appearances by year and IMD quintile again,
+this time including all practices that self-reported closures dates and
+stopped appearing in the payments data.
 
 ``` r
 plot <- df %>%
@@ -403,7 +394,7 @@ ggplot(plot, aes(x = Year, y = Practice.Code, group = Practice.Code, color = IMD
   scale_color_manual(values = colors, labels = c("Q1 (least deprived)", "Q2", "Q3", "Q4", "Q5 (most deprived)"))
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
 ### [Saunders et al. (2023)](https://www.journalslibrary.nihr.ac.uk/hsdr/PRWQ4012/#/bn1)
 
@@ -445,11 +436,21 @@ closed_not_merged <- closure[closure$Practice.Code %in% closed_not_in_saunders, 
   pull(Practice.Code) %>%
   unique()
 
+df[df$Practice.Code %in% closed_not_merged & df$Year >= 2020, ]$Practice.Code %>%
+  unique() %>%
+  length()
+```
+
+    ## [1] 314
+
+``` r
 # how many practices in closed_not_merged are in each quintile
-t <- df[df$Practice.Code %in% closed_not_merged, ] %>%
+t <- df[df$Practice.Code %in% closed_not_merged & df$Year < 2020, ] %>%
   group_by(IMD_quintile) %>%
   summarise(n_closed = n_distinct(Practice.Code))
+```
 
+``` r
 colors <- c("#EF7A34", "#00A865", "#007AA8", "#531A5C", "#A80026")
 
 # plot the number of practices in each quintile
@@ -464,6 +465,24 @@ ggplot(t, aes(x = IMD_quintile, y = n_closed, fill = IMD_quintile)) +
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
+
+``` r
+closed_2020 <- df[df$Practice.Code %in% closed_not_merged & df$Year < 2020, ]
+
+closed_2020 %>%
+  group_by(IMD_quintile) %>%
+  summarise(n_closed = n_distinct(Practice.Code))
+```
+
+    ## # A tibble: 6 × 2
+    ##   IMD_quintile n_closed
+    ##   <fct>           <int>
+    ## 1 1                  72
+    ## 2 2                  60
+    ## 3 3                  95
+    ## 4 4                 107
+    ## 5 5                 127
+    ## 6 <NA>                6
 
 ``` r
 # in each year, count number of last_year and first_year
