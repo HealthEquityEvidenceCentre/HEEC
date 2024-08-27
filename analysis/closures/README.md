@@ -340,15 +340,12 @@ missing_reported <- closed_practices[!closed_practices %in% reported_practices]
 
 1227 practices have reported a closure date in the NHS Payments data,
 including some before 2015. However, 1405 have stopped reporting
-payments since 2015.
+payments since 2015, which implies that some practices closed (ceased to
+be reported in the payments data) without reporting a closure date.
 
-which implies that some practices closed (ceased to be reported in the
-payments data) without reporting a closure date: 354 practices that are
-present in the `closed_practices` (practice code no longer present in
-2023) are not in the `reported_practices` dataset.
-
-We check to see if all the practices that closed according to
-Practice.Close.Date are also in the closed_practices list.
+354 practices that are present in the `closed_practices` (practice code
+no longer present in 2023) are not in the `reported_practices` dataset
+(self-report a closure date).
 
 ``` r
 # practices in reported_practices that are not in closed_practices
@@ -357,8 +354,8 @@ missing_closed <- reported_practices[!reported_practices %in% closed_practices]
 definitely_closed <- union(reported_practices, closed_practices)
 ```
 
-176 practices reported a closure date but were still in the data in
-2023.
+Conversely, 176 practices reported a closure date (`reported_practices`)
+but were still in the data in 2023 (`closed_practices`).
 
 As such, we expand the dataset to include practices that reported data
 in 2023 but have a closure date in the NHS Payments data. In total, 1581
@@ -398,6 +395,10 @@ ggplot(plot, aes(x = Year, y = Practice.Code, group = Practice.Code, color = IMD
 
 ### [Saunders et al. (2023)](https://www.journalslibrary.nihr.ac.uk/hsdr/PRWQ4012/#/bn1)
 
+The issue with this approach is that it does not distinguish between
+practices that close without replacement and practices that merge
+(horizontally or vertically).
+
 A study on the impact of vertical integration whereby acute hospitals
 run primary care medical practices found that “at 31 March 2021, 26 NHS
 trusts were in vertically integrated organisations, running 85 general
@@ -413,14 +414,22 @@ t <- sidhu %>%
   arrange(code_April_2020)
 
 merged_practices <- t$previous_practice_codes %>% unique()
+```
 
+According to the study, 1086 practices codes ceased to be reported
+because they had merged with other practices between 2012/13 and 31
+March 2021 (double-check with autors - appears to by April 2020.)
+
+We cross-reference the practice codes identified in this study with the
+practices codes of practices identified as closed through the method
+above (self-reported or ceased to be reported by 2023).
+
+Since the scope of the study ends in 31 March 2021, we are unable to
+distinguish between closed and merged practices after 2021.
+
+``` r
 closed_in_saunders <- definitely_closed[definitely_closed %in% merged_practices]
 closed_not_in_saunders <- definitely_closed[!definitely_closed %in% merged_practices]
-
-merged <- closure[!(closure$Practice.Code %in% closed_not_in_saunders), ] %>%
-  arrange(Practice.Code, reportedYear) %>%
-  pull(Practice.Code) %>%
-  unique()
 ```
 
 1007 practices that closed according to the NHS Payments data merged
@@ -430,27 +439,15 @@ with another practice according to the Saunders et al. dataset.
 merge with another practice according to the Saunders et al. dataset. We
 consider these practices to be completely closed without replacement.
 
-``` r
-closed_not_merged <- closure[closure$Practice.Code %in% closed_not_in_saunders, ] %>%
-  arrange(Practice.Code, reportedYear) %>%
-  pull(Practice.Code) %>%
-  unique()
-
-df[df$Practice.Code %in% closed_not_merged & df$Year >= 2020, ]$Practice.Code %>%
-  unique() %>%
-  length()
-```
-
-    ## [1] 314
+Here we identify and plot the IMD quintile of practices that closed
+without replacement.
 
 ``` r
 # how many practices in closed_not_merged are in each quintile
-t <- df[df$Practice.Code %in% closed_not_merged & df$Year < 2020, ] %>%
+t <- df[df$Practice.Code %in% closed_not_in_saunders, ] %>%
   group_by(IMD_quintile) %>%
   summarise(n_closed = n_distinct(Practice.Code))
-```
 
-``` r
 colors <- c("#EF7A34", "#00A865", "#007AA8", "#531A5C", "#A80026")
 
 # plot the number of practices in each quintile
@@ -464,39 +461,21 @@ ggplot(t, aes(x = IMD_quintile, y = n_closed, fill = IMD_quintile)) +
   scale_fill_manual(values = colors, labels = c("Q1 (least deprived)", "Q2", "Q3", "Q4", "Q5 (most deprived)"))
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-7-1.png)<!-- -->
-
-``` r
-closed_2020 <- df[df$Practice.Code %in% closed_not_merged & df$Year < 2020, ]
-
-closed_2020 %>%
-  group_by(IMD_quintile) %>%
-  summarise(n_closed = n_distinct(Practice.Code))
-```
-
-    ## # A tibble: 6 × 2
-    ##   IMD_quintile n_closed
-    ##   <fct>           <int>
-    ## 1 1                  72
-    ## 2 2                  60
-    ## 3 3                  95
-    ## 4 4                 107
-    ## 5 5                 127
-    ## 6 <NA>                6
+![](README_files/figure-gfm/unnamed-chunk-6-1.png)<!-- -->
 
 ``` r
 # in each year, count number of last_year and first_year
-table <- df[df$Practice.Code %in% closed_not_merged, ] %>%
+table <- df[df$Practice.Code %in% closed_not_in_saunders, ] %>%
   group_by(last_year) %>%
   summarise(n_closed = n_distinct(Practice.Code))
 
-table$n_q5 <- df[df$Practice.Code %in% closed_not_merged, ] %>%
+table$n_q5 <- df[df$Practice.Code %in% closed_not_in_saunders, ] %>%
   filter(IMD_quintile == 5) %>%
   group_by(last_year) %>%
   summarise(n_closed = n_distinct(Practice.Code)) %>%
   pull(n_closed)
 
-n_q1 <- df[df$Practice.Code %in% closed_not_merged, ] %>%
+n_q1 <- df[df$Practice.Code %in% closed_not_in_saunders, ] %>%
   filter(IMD_quintile == 1) %>%
   group_by(last_year) %>%
   summarise(n_q1 = n_distinct(Practice.Code))
@@ -511,15 +490,37 @@ table
 ```
 
     ##   last_year n_closed n_q5 n_q1  p_q5  p_q1
-    ## 1      2015       25   12    2 48.00  8.00
-    ## 2      2016       15    7    0 46.67  0.00
-    ## 3      2017       12    6    0 50.00  0.00
-    ## 4      2018       27   11    3 40.74 11.11
-    ## 5      2019       17    6    1 35.29  5.88
-    ## 6      2020       41   10    9 24.39 21.95
-    ## 7      2021       74   22   15 29.73 20.27
-    ## 8      2022       88   23   11 26.14 12.50
+    ## 1      2015       34   16    2 47.06  5.88
+    ## 2      2016       29    9    2 31.03  6.90
+    ## 3      2017       35   10    3 28.57  8.57
+    ## 4      2018       52   17    6 32.69 11.54
+    ## 5      2019       37   13    1 35.14  2.70
+    ## 6      2020       72   18   13 25.00 18.06
+    ## 7      2021       89   23   18 25.84 20.22
+    ## 8      2022      115   29   15 25.22 13.04
     ## 9      2023      111   31   31 27.93 27.93
+
+Again, we see that practices serving the most deprived quintile of the
+population are over-represented in practice closures.
+
+``` r
+merged <- closure[!(closure$Practice.Code %in% closed_not_in_saunders), ] %>%
+  arrange(Practice.Code, reportedYear) %>%
+  pull(Practice.Code) %>%
+  unique()
+
+closed_not_merged <- closure[closure$Practice.Code %in% closed_not_in_saunders, ] %>%
+  arrange(Practice.Code, reportedYear) %>%
+  pull(Practice.Code) %>%
+  unique()
+
+# df[df$Practice.Code %in% closed_not_merged & df$Year >= 2020, ]$Practice.Code %>%
+#   unique() %>%
+#   length()
+# closed_2020 %>%
+#   group_by(IMD_quintile) %>%
+#   summarise(n_closed = n_distinct(Practice.Code))
+```
 
 # Identify closed practices
 
