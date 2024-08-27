@@ -393,7 +393,24 @@ ggplot(plot, aes(x = Year, y = Practice.Code, group = Practice.Code, color = IMD
 
 ![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
-### [Saunders et al. (2023)](https://www.journalslibrary.nihr.ac.uk/hsdr/PRWQ4012/#/bn1)
+# Closure date
+
+Next, we aim to determine the year in which practices closed.
+
+For self-reported practices (`reported_practices`), identifying closure
+year is fairly straightforward: we use the year stated in the
+`Practice.Close.Date` column; where multiple dates are given, we use the
+most recent year (as the contract may have been extended).
+
+For practices that were no longer included in the 2023 data
+(`closed_practices`), it is less clear. The most obvious approach would
+be to use the last year of inclusion in the NHS payments data; however,
+it is often the case that practices that have no patients still receive
+payments and vice versa, and hence are still included in the data.
+
+As such,
+
+# [Saunders et al. (2023)](https://www.journalslibrary.nihr.ac.uk/hsdr/PRWQ4012/#/bn1)
 
 The issue with this approach is that it does not distinguish between
 practices that close without replacement and practices that merge
@@ -502,6 +519,8 @@ table
 
 Again, we see that practices serving the most deprived quintile of the
 population are over-represented in practice closures.
+
+------------------------------------------------------------------------
 
 ``` r
 merged <- closure[!(closure$Practice.Code %in% closed_not_in_saunders), ] %>%
