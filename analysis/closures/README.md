@@ -192,13 +192,6 @@ plot <- df %>%
 # Convert Practice.Code to a factor with levels in the desired order
 plot$Practice.Code <- factor(plot$Practice.Code, levels = unique(plot$Practice.Code))
 
-# Create the color column based on conditions
-plot$color <- with(plot, ifelse(Number.of.Registered.Patients..Last.Known.Figure. <= 0 |
-  Total.NHS.Payments.to.General.Practice <= 0,
-"red",
-"black"
-))
-
 colors <- c("#EF7A34", "#00A865", "#007AA8", "#531A5C", "#A80026")
 
 # Create the plot
@@ -220,11 +213,6 @@ ggplot(plot, aes(x = Year, y = Practice.Code, group = Practice.Code, color = IMD
 ![](README_files/figure-gfm/unnamed-chunk-1-1.png)<!-- -->
 
 ``` r
-# count NA per year
-# plot %>%
-#   group_by(last_year) %>%
-#   summarise(IMD_NA = is.na(IMD_quintile) %>% sum())
-
 # in each year, count number of last_year and first_year
 table <- plot %>%
   group_by(last_year) %>%
@@ -263,15 +251,6 @@ tended to be in the higher quintiles of deprivation.
 
 As such, patients in deprived areas are more likely to be affected by
 practice closures than those in the most affluent areas.
-
-615 practices have reported 0 registered patients or 0 total payments in
-at least one year.
-
-``` r
-one_year_practices <- practice_years[practice_years$unique_years == 1, ]$Practice.Code %>% unique()
-
-plot$color <- with(plot, ifelse(Practice.Code %in% one_year_practices, "red", color))
-```
 
 # ‘Self-reported’ practices closures
 
@@ -391,7 +370,7 @@ ggplot(plot, aes(x = Year, y = Practice.Code, group = Practice.Code, color = IMD
   scale_color_manual(values = colors, labels = c("Q1 (least deprived)", "Q2", "Q3", "Q4", "Q5 (most deprived)"))
 ```
 
-![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![](README_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
 
 # Closure date
 
@@ -408,7 +387,46 @@ be to use the last year of inclusion in the NHS payments data; however,
 it is often the case that practices that have no patients still receive
 payments and vice versa, and hence are still included in the data.
 
-As such,
+As such, of the practices in the `definitely_closed` dataset, we
+highlight in red years in years either 0 registered patients or 0 total
+payments were reported.
+
+``` r
+# Create the color column based on conditions
+plot$color <- with(plot, ifelse(Number.of.Registered.Patients..Last.Known.Figure. <= 0 |
+  Total.NHS.Payments.to.General.Practice <= 0,
+"red",
+"black"
+))
+
+incomplete <- plot %>%
+  filter(color == "red") %>%
+  pull("Practice.Code") %>%
+  unique() %>%
+  length()
+
+one_year_practices <- practice_years[practice_years$unique_years == 1, ]$Practice.Code %>% unique()
+
+ggplot(plot, aes(x = Year, y = Practice.Code, group = Practice.Code, color = color)) +
+  geom_point(alpha = 0.5, size = 1) +
+  geom_line(alpha = 1, linewidth = 0.25) + # Adjust alpha for transparency if needed
+  labs(
+    x = "Year", y = NULL,
+    title = "Practice Code Appearances by Year (Closed practices only)"
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.y = element_blank(),
+    axis.ticks.y = element_blank()
+  ) +
+  scale_color_manual(values = colors, labels = c("Q1 (least deprived)", "Q2", "Q3", "Q4", "Q5 (most deprived)"))
+```
+
+![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+
+First, we aim to get a sense of how many practices report ‘incomplete’
+data; 1041 practices have reported 0 registered patients or 0 total
+payments in at least one year.
 
 # [Saunders et al. (2023)](https://www.journalslibrary.nihr.ac.uk/hsdr/PRWQ4012/#/bn1)
 
