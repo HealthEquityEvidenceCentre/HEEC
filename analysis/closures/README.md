@@ -418,8 +418,7 @@ ggplot(plot, aes(x = Year, y = Practice.Code, group = Practice.Code, color = col
   theme(
     axis.text.y = element_blank(),
     axis.ticks.y = element_blank()
-  ) +
-  scale_color_manual(values = colors, labels = c("Q1 (least deprived)", "Q2", "Q3", "Q4", "Q5 (most deprived)"))
+  )
 ```
 
 ![](README_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
