@@ -108,10 +108,8 @@ colors <- c("#EF7A34", "#00A865", "#007AA8", "#531A5C", "#A80026")
 server <- function(input, output, session) {
   # Read and preprocess data
   plot_reactive <- reactive({
-    # Read the CSV file (ensure the correct path or URL is used)
-    payments <- read.csv("payments_link")  # Replace with the actual link or path
+    payments <- read.csv("payments_link")  
     
-    # Select the correct label for the payment type
     selected_type_label <- type_labels[input$type]
     
     # Filter and process the data
@@ -158,8 +156,9 @@ server <- function(input, output, session) {
   })
   
   output$plot <- renderPlot({
-    plot_reactive()$agg %>%
-    ggplot(aes(x = Year, y = !!sym(type_labels[input$type]), group = IMD_quintile, colour = IMD_quintile)) +
+    plot_data <- plot_reactive()$agg
+    
+    ggplot(plot_data, aes(x = Year, y = !!sym(type_labels[input$type]), group = IMD_quintile, colour = IMD_quintile)) +
       geom_line(size = 1.5) +
       geom_point(size = 3) +
       labs(x = "", y = "Average payment (£)", title = paste0(input$type, " payments per weighted patient by IMD quintile")) +
@@ -175,7 +174,7 @@ server <- function(input, output, session) {
       ) +
       scale_color_manual(values = colors, labels = c("Q1 (least deprived)", "Q2", "Q3", "Q4", "Q5 (most deprived)")) +
       labs(color = "IMD quintile") +
-      scale_x_continuous(breaks = unique(agg$Year))
+      scale_x_continuous(breaks = unique(plot_data$Year))  # Use plot_data$Year instead of agg$Year
   })
   
   # Render the "hello" text
