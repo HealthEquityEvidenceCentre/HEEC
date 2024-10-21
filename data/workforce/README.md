@@ -9,8 +9,18 @@ on the primary care general practice workforce.
 Data is reported annually from September 2015-2020, quarterly from
 December 2020-June 2021, and monthly from July 2021 henceforth.
 
-The practice-level headcount of fully-qualified permanent GPs (excluding
-GPs in training & locums) is denoted by the TOTAL_GP_EXTGL_HC column.
+-   The practice-level headcount of fully-qualified permanent GPs
+    (excluding GPs in training & locums) is denoted by the
+    TOTAL_GP_EXTGL_HC column.
+-   The practice-level FTE of administrative staff is denoted by the
+    TOTAL_ADMIN_FTE column. These figures are broken-down further by
+    role type:
+    -   Manager
+    -   Management Partner
+    -   Medical Secretary
+    -   Receptionist
+    -   Telephonist
+    -   Estates and Ancillary
 
 ``` r
 workforce <- data.frame()
@@ -18,7 +28,7 @@ workforce <- data.frame()
 for (file in list.files("raw")) {
   print(file)
 
-  df <- read.csv(paste0("raw/", file))[c("PRAC_CODE", "TOTAL_PATIENTS", "TOTAL_GP_EXTGL_HC", "TOTAL_GP_EXTGL_FTE")]
+  df <- read.csv(paste0("raw/", file))[c("PRAC_CODE", "TOTAL_PATIENTS", "TOTAL_GP_EXTGL_HC", "TOTAL_GP_EXTGL_FTE", "TOTAL_ADMIN_FTE", "TOTAL_ADMIN_MANAGER_FTE", "TOTAL_ADMIN_RECEPT_FTE", "TOTAL_ADMIN_TELEPH_FTE")]
 
   parts <- strsplit(file, "_")[[1]]
   year <- as.numeric(parts[1])
@@ -98,26 +108,23 @@ library(dplyr)
 library(magrittr)
 
 workforce$TOTAL_GP_EXTGL_HC %<>% as.numeric()
-```
-
-    ## Warning in workforce$TOTAL_GP_EXTGL_HC %<>% as.numeric(): NAs introduced by
-    ## coercion
-
-``` r
 workforce$TOTAL_GP_EXTGL_FTE %<>% as.numeric()
-```
+workforce$TOTAL_ADMIN_FTE %<>% as.numeric()
+workforce$TOTAL_ADMIN_MANAGER_FTE %<>% as.numeric()
+workforce$TOTAL_ADMIN_RECEPT_FTE %<>% as.numeric()
+workforce$TOTAL_ADMIN_TELEPH_FTE %<>% as.numeric()
 
-    ## Warning in workforce$TOTAL_GP_EXTGL_FTE %<>% as.numeric(): NAs introduced by
-    ## coercion
-
-``` r
 # Calculate average workforce across all available values in each financial year
 workforce_year <- workforce %>%
   group_by(PRAC_CODE, fiscal_year) %>%
   summarise(
     TOTAL_PATIENTS = mean(TOTAL_PATIENTS, na.rm = TRUE),
     TOTAL_GP_EXTGL_HC = round(mean(TOTAL_GP_EXTGL_HC, na.rm = TRUE), 0),
-    TOTAL_GP_EXTGL_FTE = round(mean(TOTAL_GP_EXTGL_FTE, na.rm = TRUE), 1)
+    TOTAL_GP_EXTGL_FTE = round(mean(TOTAL_GP_EXTGL_FTE, na.rm = TRUE), 1),
+    TOTAL_ADMIN_FTE = round(mean(TOTAL_ADMIN_FTE, na.rm = TRUE), 1),
+    TOTAL_ADMIN_MANAGER_FTE = round(mean(TOTAL_ADMIN_MANAGER_FTE, na.rm = TRUE), 1),
+    TOTAL_ADMIN_RECEPT_FTE = round(mean(TOTAL_ADMIN_RECEPT_FTE, na.rm = TRUE), 1),
+    TOTAL_ADMIN_TELEPH_FTE = round(mean(TOTAL_ADMIN_TELEPH_FTE, na.rm = TRUE), 1)
   )
 ```
 
@@ -221,16 +228,46 @@ ggplot(agg[!is.na(agg$IMD_quintile), ], aes(x = Year, y = TOTAL_GP_PER_100k_PATI
   labs(color = "IMD quintile")
 ```
 
-    ## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-    ## ℹ Please use `linewidth` instead.
-    ## This warning is displayed once every 8 hours.
-    ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-    ## generated.
+![](README_files/figure-markdown_github/plot%20GP%20workforce%20FTE-1.png)
 
-    ## Warning: The `size` argument of `element_line()` is deprecated as of ggplot2 3.4.0.
-    ## ℹ Please use the `linewidth` argument instead.
-    ## This warning is displayed once every 8 hours.
-    ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-    ## generated.
+``` r
+library(ggplot2)
 
-![](README_files/figure-markdown_github/plot%20workforce%20FTE-1.png)
+agg <- workforce_year %>%
+  group_by(Year, IMD_quintile) %>%
+  summarise(
+    TOTAL_PATIENTS = sum(TOTAL_PATIENTS, na.rm = TRUE),
+    TOTAL_ADMIN_FTE = sum(TOTAL_ADMIN_FTE, na.rm = TRUE),
+    TOTAL_ADMIN_PER_100k_PATIENTS = sum(TOTAL_ADMIN_FTE, na.rm = TRUE) / sum(TOTAL_PATIENTS, na.rm = TRUE) * 100000
+  )
+```
+
+    ## `summarise()` has grouped output by 'Year'. You can override using the
+    ## `.groups` argument.
+
+``` r
+colors <- c("#EF7A34", "#00A865", "#007AA8", "#531A5C", "#A80026")
+
+ggplot(agg[!is.na(agg$IMD_quintile), ], aes(x = Year, y = TOTAL_ADMIN_PER_100k_PATIENTS, group = IMD_quintile, color = IMD_quintile)) +
+  geom_line(size = 1.5) +
+  geom_point(size = 3) +
+  labs(
+    title = "Administrative/Non-clinical staff FTE per 100,000 patients by IMD Quintile",
+    x = "Year",
+    y = "Total Admin FTE"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "bottom",
+    legend.justification = "center",
+    axis.text.x = element_text(size = 10),
+    axis.title.x = element_text(size = 12),
+    axis.line.x = element_line(size = 1),
+    panel.grid.minor.x = element_blank(),
+    panel.grid.minor.y = element_blank()
+  ) +
+  scale_color_manual(values = colors, labels = c("Q1 (least deprived)", "Q2", "Q3", "Q4", "Q5 (most deprived)")) +
+  labs(color = "IMD quintile")
+```
+
+![](README_files/figure-markdown_github/plot%20manager%20workforce%20FTE-1.png)
