@@ -27,23 +27,23 @@ merge_and_assign_quintiles <- function(data, start_year = 2017, end_year = 2024)
 
 
 # Define the generic function to match CCG.Code in df with CCG.Code in CCG_ICB and return ICB.Code
-assign_icb_name <- function(data) {
+clean_icb_name <- function(data) {
   # Read the CCG to ICB mapping data
-  ccg_icb_df <- read.csv("../CCG_ICB_code.csv")
+  # ccg_icb_df <- read.csv("../CCG_ICB_code.csv")
 
-  ccg_icb_df %>%
-    head() %>%
-    print()
+  # ccg_icb_df %>%
+  #   head() %>%
+  #   print()
 
-  # Match CCG_Code in data with CCG.Code in ccg_icb_df and return ICB.NAME
-  data$ICB.NAME <- ccg_icb_df[match(data$CCG_Code, ccg_icb_df$CCG.Code), ]$ICB.NAME
+  # # Match CCG_Code in data with CCG.Code in ccg_icb_df and return ICB.NAME
+  # data$ICB.NAME <- ccg_icb_df[match(data$CCG_Code, ccg_icb_df$CCG.Code), ]$ICB.NAME
 
   # Handle NAs by matching ICS_Code with ICB.Code
-  # data[is.na(data$ICB.NAME), ]$ICB.NAME <- ccg_icb_df[match(data[is.na(data$ICB.NAME), ]$ICB_Code, ccg_icb_df$ICB.Code), ]$ICB.NAME
+  data[is.na(data$ICB.NAME), ]$ICB.NAME <- ccg_icb_df[match(data[is.na(data$ICB.NAME), ]$ICB_Code, ccg_icb_df$ICB.Code), ]$ICB.NAME
 
   # Clean up ICB.NAME by removing "NHS " and " Integrated Care Board"
-  # data$ICB.NAME <- gsub("NHS ", "", data$ICB.NAME)
-  # data$ICB.NAME <- gsub(" Integrated Care Board", "", data$ICB.NAME)
+  data$ICB.NAME <- gsub("NHS ", "", data$ICB.NAME)
+  data$ICB.NAME <- gsub(" Integrated Care Board", "", data$ICB.NAME)
 
   # Select relevant columns for the final dataset
   # data <- data[, c("Practice.Code", "Practice.Name", "ICB.NAME", "Year", "overall_pct", "continuity_pct", "access_pct", "trust_pct")]
@@ -51,11 +51,11 @@ assign_icb_name <- function(data) {
   return(data)
 }
 
-assign_icb_name2 <- function(data) {
+assign_icb_name <- function(data) {
   payments <- read.csv("../../data/payments/payments.csv")
 
   # match Practice.Code in data with Practice.Code in payments and return ICB.NAME
-  data$ICB.NAME <- payments[match(data$Practice.Code, payments$Practice.Code), ]$ICB.NAME
+  data$ICB_NAME <- payments[match(data$Practice.Code, payments$Practice.Code), ]$ICB.NAME
 
   return(data)
 }
