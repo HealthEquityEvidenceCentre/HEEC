@@ -39,7 +39,7 @@ clean_icb_name <- function(data) {
   # data$ICB.NAME <- ccg_icb_df[match(data$CCG_Code, ccg_icb_df$CCG.Code), ]$ICB.NAME
 
   # Handle NAs by matching ICS_Code with ICB.Code
-  data[is.na(data$ICB.NAME), ]$ICB.NAME <- ccg_icb_df[match(data[is.na(data$ICB.NAME), ]$ICB_Code, ccg_icb_df$ICB.Code), ]$ICB.NAME
+  # data[is.na(data$ICB.NAME), ]$ICB.NAME <- ccg_icb_df[match(data[is.na(data$ICB.NAME), ]$ICB_Code, ccg_icb_df$ICB.Code), ]$ICB.NAME
 
   # Clean up ICB.NAME by removing "NHS " and " Integrated Care Board"
   data$ICB.NAME <- gsub("NHS ", "", data$ICB.NAME)
