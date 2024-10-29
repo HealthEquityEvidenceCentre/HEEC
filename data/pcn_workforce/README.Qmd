@@ -30,7 +30,11 @@ pcn <- lapply(files, function(file) {
 }) %>% 
   bind_rows()
 
-pcn %<>% group_by(CENSUS_YEAR, PCN_CODE, ICB_NAME, STAFF_GROUP) %>% summarise(FTE = sum(FTE, na.rm = TRUE)) %>% rename(Year = CENSUS_YEAR)
+pcn %<>% group_by(CENSUS_YEAR, PCN_CODE, PCN_NAME, ICB_NAME, STAFF_GROUP) %>% summarise(FTE = sum(FTE, na.rm = TRUE)) %>% rename(Year = CENSUS_YEAR)
+
+pcn$ICB_NAME <- gsub("NHS ", "", pcn$ICB_NAME)
+pcn$ICB_NAME <- gsub(" Integrated Care Board", "", pcn$ICB_NAME)
+pcn$ICB_NAME <- gsub(" ICB", "", pcn$ICB_NAME)
 
 pcn %>% head()
 ```
