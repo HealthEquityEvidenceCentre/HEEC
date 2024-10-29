@@ -5875,3 +5875,734 @@
 2024,"Surrey Heartlands","PCN_staff",4.35202342137356,4.45919431886579,NA
 2024,"Sussex","PCN_staff",4.35202342137356,4.95794571484042,2.05676087645457
 2024,"West Yorkshire","PCN_staff",4.35202342137356,2.68377593081162,5.65361287946243
+2016,"England","Hypertension: QOF prevalence (all ages)",14.3222195181309,14.4985465116279,13.1301425425889
+2016,"Mid and South Essex","Hypertension: QOF prevalence (all ages)",14.3222195181309,14.8180340668669,13.3676406935
+2016,"Norfolk and Waveney","Hypertension: QOF prevalence (all ages)",14.3222195181309,14.8434004474273,14.0640925247656
+2016,"North Central London","Hypertension: QOF prevalence (all ages)",14.3222195181309,11.5064952730735,11.7071746875396
+2016,"North East London","Hypertension: QOF prevalence (all ages)",14.3222195181309,13.8010204081633,9.70775948941888
+2016,"North East and North Cumbria","Hypertension: QOF prevalence (all ages)",14.3222195181309,15.4493921874923,15.5106600875151
+2016,"North West London","Hypertension: QOF prevalence (all ages)",14.3222195181309,13.6463683052091,11.195452674934
+2016,"Northamptonshire","Hypertension: QOF prevalence (all ages)",14.3222195181309,15.1158263577964,7.34026889438841
+2016,"Nottingham and Nottinghamshire","Hypertension: QOF prevalence (all ages)",14.3222195181309,14.698649561739,13.0496453900709
+2016,"Shropshire, Telford and Wrekin","Hypertension: QOF prevalence (all ages)",14.3222195181309,15.3895342640946,14.3544210136885
+2016,"Somerset","Hypertension: QOF prevalence (all ages)",14.3222195181309,15.4403207034786,NA
+2016,"South East London","Hypertension: QOF prevalence (all ages)",14.3222195181309,14.7370510433744,10.493903190048
+2016,"South West London","Hypertension: QOF prevalence (all ages)",14.3222195181309,10.1132370167903,11.1038854543282
+2016,"South Yorkshire","Hypertension: QOF prevalence (all ages)",14.3222195181309,12.2280243690165,14.6385724367376
+2016,"Staffordshire and Stoke-on-Trent","Hypertension: QOF prevalence (all ages)",14.3222195181309,17.1433081310985,15.853991046427
+2016,"Suffolk and North East Essex","Hypertension: QOF prevalence (all ages)",14.3222195181309,16.0128485427069,18.2120580604268
+2016,"Surrey Heartlands","Hypertension: QOF prevalence (all ages)",14.3222195181309,13.0026740239892,NA
+2016,"Bath and North East Somerset, Swindon and Wiltshire","Hypertension: QOF prevalence (all ages)",14.3222195181309,14.7110152961708,15.8779701973419
+2016,"Bedfordshire, Luton and Milton Keynes","Hypertension: QOF prevalence (all ages)",14.3222195181309,13.5845749342682,11.1159066085182
+2016,"Birmingham and Solihull","Hypertension: QOF prevalence (all ages)",14.3222195181309,14.6747432378743,12.5486802250108
+2016,"Black Country","Hypertension: QOF prevalence (all ages)",14.3222195181309,17.9704595185996,14.4598809186277
+2016,"Bristol, North Somerset and South Gloucestershire","Hypertension: QOF prevalence (all ages)",14.3222195181309,14.6645188760719,11.4016961503636
+2016,"Buckinghamshire, Oxfordshire and Berkshire West","Hypertension: QOF prevalence (all ages)",14.3222195181309,13.7416460679301,NA
+2016,"Cambridgeshire and Peterborough","Hypertension: QOF prevalence (all ages)",14.3222195181309,13.1043505749142,9.75381008206331
+2016,"Cheshire and Merseyside","Hypertension: QOF prevalence (all ages)",14.3222195181309,16.6788499025341,14.7233239623476
+2016,"Cornwall and the Isles of Scilly","Hypertension: QOF prevalence (all ages)",14.3222195181309,12.5378296584522,18.4817170111288
+2016,"Coventry and Warwickshire","Hypertension: QOF prevalence (all ages)",14.3222195181309,15.4545454545454,12.3039098766643
+2016,"Derby and Derbyshire","Hypertension: QOF prevalence (all ages)",14.3222195181309,16.6949114992095,13.4403209628887
+2016,"Devon","Hypertension: QOF prevalence (all ages)",14.3222195181309,17.8011330979555,13.4712643678161
+2016,"Dorset","Hypertension: QOF prevalence (all ages)",14.3222195181309,17.3505179867852,11.3881215469613
+2016,"Frimley","Hypertension: QOF prevalence (all ages)",14.3222195181309,12.8129278129278,NA
+2016,"Gloucestershire","Hypertension: QOF prevalence (all ages)",14.3222195181309,15.2613606514316,9.9073997160915
+2016,"Greater Manchester","Hypertension: QOF prevalence (all ages)",14.3222195181309,13.6839063711175,12.2707439591973
+2016,"Hampshire and Isle of Wight","Hypertension: QOF prevalence (all ages)",14.3222195181309,14.9143003325659,11.7021276595745
+2016,"Herefordshire and Worcestershire","Hypertension: QOF prevalence (all ages)",14.3222195181309,15.9663204280768,NA
+2016,"Hertfordshire and West Essex","Hypertension: QOF prevalence (all ages)",14.3222195181309,13.4503662541046,NA
+2016,"Humber and North Yorkshire","Hypertension: QOF prevalence (all ages)",14.3222195181309,14.95628190649,14.3886408454003
+2016,"Kent and Medway","Hypertension: QOF prevalence (all ages)",14.3222195181309,14.3954480796586,15.4341056144658
+2016,"Lancashire and South Cumbria","Hypertension: QOF prevalence (all ages)",14.3222195181309,17.3575757575758,13.9694391387394
+2016,"Leicester, Leicestershire and Rutland","Hypertension: QOF prevalence (all ages)",14.3222195181309,15.3799758745477,11.8478029473018
+2016,"Lincolnshire","Hypertension: QOF prevalence (all ages)",14.3222195181309,16.6135712010194,14.1345427059713
+2016,"West Yorkshire","Hypertension: QOF prevalence (all ages)",14.3222195181309,15.5926034902858,12.331776984345
+2016,"Sussex","Hypertension: QOF prevalence (all ages)",14.3222195181309,14.7112379204542,13.2043404366584
+2016,"Lincolnshire","Obesity: QOF prevalence (18+ yrs)",9.654631083,9.256544503,12.38095238
+2016,"Mid and South Essex","Obesity: QOF prevalence (18+ yrs)",9.654631083,7.343057295,11.337420905
+2016,"England","Obesity: QOF prevalence (18+ yrs)",9.654631083,7.395498392,11.87396258
+2016,"North East London","Obesity: QOF prevalence (18+ yrs)",9.654631083,7.180682059,10.05562687
+2016,"North East and North Cumbria","Obesity: QOF prevalence (18+ yrs)",9.654631083,7.229871792,13.61523637
+2016,"North West London","Obesity: QOF prevalence (18+ yrs)",9.654631083,5.806919913,8.628179938
+2016,"Northamptonshire","Obesity: QOF prevalence (18+ yrs)",9.654631083,10.51569789,6.524625651
+2016,"Nottingham and Nottinghamshire","Obesity: QOF prevalence (18+ yrs)",9.654631083,7.5148103065,11.47727273
+2016,"Shropshire, Telford and Wrekin","Obesity: QOF prevalence (18+ yrs)",9.654631083,8.510638298,13.34269663
+2016,"Somerset","Obesity: QOF prevalence (18+ yrs)",9.654631083,6.156351792,NA
+2016,"South East London","Obesity: QOF prevalence (18+ yrs)",9.654631083,6.818089529,8.004012036
+2016,"South West London","Obesity: QOF prevalence (18+ yrs)",9.654631083,4.207026167,10.320691907
+2016,"South Yorkshire","Obesity: QOF prevalence (18+ yrs)",9.654631083,4.416666667,14.90453706
+2016,"Staffordshire and Stoke-on-Trent","Obesity: QOF prevalence (18+ yrs)",9.654631083,9.1112249265,14.30345643
+2016,"Norfolk and Waveney","Obesity: QOF prevalence (18+ yrs)",9.654631083,8.251085669,11.5646783
+2016,"North Central London","Obesity: QOF prevalence (18+ yrs)",9.654631083,4.216502511,8.7828674865
+2016,"Bath and North East Somerset, Swindon and Wiltshire","Obesity: QOF prevalence (18+ yrs)",9.654631083,8.426680244,14.9520431
+2016,"Bedfordshire, Luton and Milton Keynes","Obesity: QOF prevalence (18+ yrs)",9.654631083,9.284075818,10.068933462
+2016,"Birmingham and Solihull","Obesity: QOF prevalence (18+ yrs)",9.654631083,7.190626782,11.71858445
+2016,"Black Country","Obesity: QOF prevalence (18+ yrs)",9.654631083,14.41166497,12.54741757
+2016,"Bristol, North Somerset and South Gloucestershire","Obesity: QOF prevalence (18+ yrs)",9.654631083,8.3672315735,10.46029325
+2016,"Buckinghamshire, Oxfordshire and Berkshire West","Obesity: QOF prevalence (18+ yrs)",9.654631083,7.482014388,NA
+2016,"Cambridgeshire and Peterborough","Obesity: QOF prevalence (18+ yrs)",9.654631083,6.441233761,13.10717039
+2016,"Cheshire and Merseyside","Obesity: QOF prevalence (18+ yrs)",9.654631083,8.377358491,13.107441
+2016,"Cornwall and the Isles of Scilly","Obesity: QOF prevalence (18+ yrs)",9.654631083,10.45617632,10.01751871
+2016,"Coventry and Warwickshire","Obesity: QOF prevalence (18+ yrs)",9.654631083,8.44410547,9.4850953015
+2016,"Derby and Derbyshire","Obesity: QOF prevalence (18+ yrs)",9.654631083,7.4880297985,8.983926521
+2016,"Devon","Obesity: QOF prevalence (18+ yrs)",9.654631083,8.690292758,14.99815974
+2016,"Dorset","Obesity: QOF prevalence (18+ yrs)",9.654631083,7.573310139,6.718153131
+2016,"Frimley","Obesity: QOF prevalence (18+ yrs)",9.654631083,6.2098867225,NA
+2016,"Gloucestershire","Obesity: QOF prevalence (18+ yrs)",9.654631083,7.818615752,10.160512131
+2016,"Greater Manchester","Obesity: QOF prevalence (18+ yrs)",9.654631083,7.531973177,11.4189611
+2016,"Hampshire and Isle of Wight","Obesity: QOF prevalence (18+ yrs)",9.654631083,8.339064649,11.0533049
+2016,"Herefordshire and Worcestershire","Obesity: QOF prevalence (18+ yrs)",9.654631083,9.641567102,NA
+2016,"Hertfordshire and West Essex","Obesity: QOF prevalence (18+ yrs)",9.654631083,6.911821332,NA
+2016,"Humber and North Yorkshire","Obesity: QOF prevalence (18+ yrs)",9.654631083,8.9091364125,11.353971815
+2016,"Kent and Medway","Obesity: QOF prevalence (18+ yrs)",9.654631083,7.273335564,11.846208085
+2016,"Lancashire and South Cumbria","Obesity: QOF prevalence (18+ yrs)",9.654631083,8.71894233,12.15774736
+2016,"Leicester, Leicestershire and Rutland","Obesity: QOF prevalence (18+ yrs)",9.654631083,7.762645914,9.976097622
+2016,"Sussex","Obesity: QOF prevalence (18+ yrs)",9.654631083,6.435926335,7.213930348
+2016,"West Yorkshire","Obesity: QOF prevalence (18+ yrs)",9.654631083,8.731167662,12.68014515
+2016,"Suffolk and North East Essex","Obesity: QOF prevalence (18+ yrs)",9.654631083,9.108012969,14.05193597
+2016,"Surrey Heartlands","Obesity: QOF prevalence (18+ yrs)",9.654631083,4.856658386,NA
+2017,"England","Hypertension: QOF prevalence (all ages)",14.4325571638347,14.6454171581614,13.4057971014493
+2017,"Lincolnshire","Hypertension: QOF prevalence (all ages)",14.4325571638347,16.7168913560666,14.549352936672
+2017,"North East and North Cumbria","Hypertension: QOF prevalence (all ages)",14.4325571638347,15.4415412669573,15.4891628656846
+2017,"North West London","Hypertension: QOF prevalence (all ages)",14.4325571638347,13.917857602678,11.0427124393544
+2017,"Northamptonshire","Hypertension: QOF prevalence (all ages)",14.4325571638347,15.1318303400841,7.47978831700468
+2017,"Nottingham and Nottinghamshire","Hypertension: QOF prevalence (all ages)",14.4325571638347,14.715488995293,12.7995324371712
+2017,"Shropshire, Telford and Wrekin","Hypertension: QOF prevalence (all ages)",14.4325571638347,15.4237557640324,13.5087888758195
+2017,"Somerset","Hypertension: QOF prevalence (all ages)",14.4325571638347,15.1134751176973,NA
+2017,"South East London","Hypertension: QOF prevalence (all ages)",14.4325571638347,14.6186265597884,11.4193054292152
+2017,"South West London","Hypertension: QOF prevalence (all ages)",14.4325571638347,10.2685030527122,11.0208333333333
+2017,"South Yorkshire","Hypertension: QOF prevalence (all ages)",14.4325571638347,12.3214666382434,14.6604587781058
+2017,"Mid and South Essex","Hypertension: QOF prevalence (all ages)",14.4325571638347,14.9099500327765,12.7613240418119
+2017,"Norfolk and Waveney","Hypertension: QOF prevalence (all ages)",14.4325571638347,15.0015380275759,13.2454036770584
+2017,"North Central London","Hypertension: QOF prevalence (all ages)",14.4325571638347,11.0886075949367,12.7719119704872
+2017,"North East London","Hypertension: QOF prevalence (all ages)",14.4325571638347,14.0252744976176,9.68507333908542
+2017,"Bath and North East Somerset, Swindon and Wiltshire","Hypertension: QOF prevalence (all ages)",14.4325571638347,14.8690360702002,15.957974031123
+2017,"Bedfordshire, Luton and Milton Keynes","Hypertension: QOF prevalence (all ages)",14.4325571638347,13.9249390143642,11.7890224879581
+2017,"Birmingham and Solihull","Hypertension: QOF prevalence (all ages)",14.4325571638347,14.2488454224395,12.4180327868853
+2017,"Black Country","Hypertension: QOF prevalence (all ages)",14.4325571638347,18.3871234314563,14.3362476819465
+2017,"Bristol, North Somerset and South Gloucestershire","Hypertension: QOF prevalence (all ages)",14.4325571638347,14.7557915492535,12.1287666159207
+2017,"Buckinghamshire, Oxfordshire and Berkshire West","Hypertension: QOF prevalence (all ages)",14.4325571638347,13.8417713323838,NA
+2017,"Cambridgeshire and Peterborough","Hypertension: QOF prevalence (all ages)",14.4325571638347,13.5015248128639,9.62854349951124
+2017,"Cheshire and Merseyside","Hypertension: QOF prevalence (all ages)",14.4325571638347,16.8123180167674,14.942415049018
+2017,"Cornwall and the Isles of Scilly","Hypertension: QOF prevalence (all ages)",14.4325571638347,12.585910652921,18.3678965795852
+2017,"Coventry and Warwickshire","Hypertension: QOF prevalence (all ages)",14.4325571638347,15.5837981293288,12.3010693573926
+2017,"Derby and Derbyshire","Hypertension: QOF prevalence (all ages)",14.4325571638347,16.8785620341955,13.6352931941283
+2017,"Devon","Hypertension: QOF prevalence (all ages)",14.4325571638347,17.5733772426098,13.8494623655914
+2017,"Dorset","Hypertension: QOF prevalence (all ages)",14.4325571638347,17.461600646726,11.4179396788092
+2017,"Frimley","Hypertension: QOF prevalence (all ages)",14.4325571638347,13.2245722948098,NA
+2017,"Gloucestershire","Hypertension: QOF prevalence (all ages)",14.4325571638347,15.3851458434928,9.63320108789124
+2017,"Greater Manchester","Hypertension: QOF prevalence (all ages)",14.4325571638347,14.3092105263158,12.3198259450639
+2017,"Hampshire and Isle of Wight","Hypertension: QOF prevalence (all ages)",14.4325571638347,15.4932576295245,11.4337710152233
+2017,"Herefordshire and Worcestershire","Hypertension: QOF prevalence (all ages)",14.4325571638347,16.5445616734701,NA
+2017,"Hertfordshire and West Essex","Hypertension: QOF prevalence (all ages)",14.4325571638347,13.91067712502,NA
+2017,"Humber and North Yorkshire","Hypertension: QOF prevalence (all ages)",14.4325571638347,15.3870299453826,14.6378282360784
+2017,"Kent and Medway","Hypertension: QOF prevalence (all ages)",14.4325571638347,14.5305607450192,15.3213033098577
+2017,"Lancashire and South Cumbria","Hypertension: QOF prevalence (all ages)",14.4325571638347,17.0923173406247,14.0979409429717
+2017,"Leicester, Leicestershire and Rutland","Hypertension: QOF prevalence (all ages)",14.4325571638347,15.5651430664659,12.1266968325792
+2017,"Sussex","Hypertension: QOF prevalence (all ages)",14.4325571638347,14.8917041275031,13.5032385243593
+2017,"Staffordshire and Stoke-on-Trent","Hypertension: QOF prevalence (all ages)",14.4325571638347,17.2829248026589,15.6899224806201
+2017,"Suffolk and North East Essex","Hypertension: QOF prevalence (all ages)",14.4325571638347,16.0643889618922,18.8009847510261
+2017,"Surrey Heartlands","Hypertension: QOF prevalence (all ages)",14.4325571638347,12.9354247300876,NA
+2017,"West Yorkshire","Hypertension: QOF prevalence (all ages)",14.4325571638347,16.0072401797081,12.6976019056934
+2017,"England","Obesity: QOF prevalence (18+ yrs)",9.775260369,7.5491064755,11.983719465
+2017,"North East London","Obesity: QOF prevalence (18+ yrs)",9.775260369,8.333333333,11.04586338
+2017,"North East and North Cumbria","Obesity: QOF prevalence (18+ yrs)",9.775260369,6.9821663475,13.233130815
+2017,"North West London","Obesity: QOF prevalence (18+ yrs)",9.775260369,5.425726478,8.9469530325
+2017,"Northamptonshire","Obesity: QOF prevalence (18+ yrs)",9.775260369,9.623870561,5.01291383
+2017,"Nottingham and Nottinghamshire","Obesity: QOF prevalence (18+ yrs)",9.775260369,8.072653907,11.62102147
+2017,"Shropshire, Telford and Wrekin","Obesity: QOF prevalence (18+ yrs)",9.775260369,8.241324921,10.809496635
+2017,"Somerset","Obesity: QOF prevalence (18+ yrs)",9.775260369,4.6781286665,NA
+2017,"South East London","Obesity: QOF prevalence (18+ yrs)",9.775260369,7.409138717,9.8797670025
+2017,"Leicester, Leicestershire and Rutland","Obesity: QOF prevalence (18+ yrs)",9.775260369,8.550505992,9.197598253
+2017,"Lincolnshire","Obesity: QOF prevalence (18+ yrs)",9.775260369,9.261271048,14.4964848
+2017,"Mid and South Essex","Obesity: QOF prevalence (18+ yrs)",9.775260369,6.84692193,10.01297578
+2017,"Norfolk and Waveney","Obesity: QOF prevalence (18+ yrs)",9.775260369,8.0017968325,12.28419324
+2017,"North Central London","Obesity: QOF prevalence (18+ yrs)",9.775260369,4.375,9.32
+2017,"Bath and North East Somerset, Swindon and Wiltshire","Obesity: QOF prevalence (18+ yrs)",9.775260369,8.286000668,17.94739556
+2017,"Bedfordshire, Luton and Milton Keynes","Obesity: QOF prevalence (18+ yrs)",9.775260369,9.009279543,10.227238
+2017,"Birmingham and Solihull","Obesity: QOF prevalence (18+ yrs)",9.775260369,7.409577585,11.48957804
+2017,"Black Country","Obesity: QOF prevalence (18+ yrs)",9.775260369,13.719336455,12.628022485
+2017,"Bristol, North Somerset and South Gloucestershire","Obesity: QOF prevalence (18+ yrs)",9.775260369,8.030821534,11.10449472
+2017,"Buckinghamshire, Oxfordshire and Berkshire West","Obesity: QOF prevalence (18+ yrs)",9.775260369,7.803762074,NA
+2017,"Cambridgeshire and Peterborough","Obesity: QOF prevalence (18+ yrs)",9.775260369,6.914834861,10.64099316
+2017,"Cheshire and Merseyside","Obesity: QOF prevalence (18+ yrs)",9.775260369,8.5393163625,13.10316153
+2017,"Cornwall and the Isles of Scilly","Obesity: QOF prevalence (18+ yrs)",9.775260369,9.605662285,7.89346247
+2017,"Coventry and Warwickshire","Obesity: QOF prevalence (18+ yrs)",9.775260369,8.6210772885,8.8836675025
+2017,"Derby and Derbyshire","Obesity: QOF prevalence (18+ yrs)",9.775260369,7.964412048,8.857739338
+2017,"Devon","Obesity: QOF prevalence (18+ yrs)",9.775260369,8.1546092145,10.94791036
+2017,"Dorset","Obesity: QOF prevalence (18+ yrs)",9.775260369,8.775928881,6.66614198
+2017,"Frimley","Obesity: QOF prevalence (18+ yrs)",9.775260369,6.281317108,NA
+2017,"Gloucestershire","Obesity: QOF prevalence (18+ yrs)",9.775260369,7.5195846705,9.116724529
+2017,"Greater Manchester","Obesity: QOF prevalence (18+ yrs)",9.775260369,6.821873308,10.88435374
+2017,"Hampshire and Isle of Wight","Obesity: QOF prevalence (18+ yrs)",9.775260369,8.445945946,10.884087215
+2017,"Herefordshire and Worcestershire","Obesity: QOF prevalence (18+ yrs)",9.775260369,9.6868539865,NA
+2017,"Hertfordshire and West Essex","Obesity: QOF prevalence (18+ yrs)",9.775260369,6.859612855,NA
+2017,"Humber and North Yorkshire","Obesity: QOF prevalence (18+ yrs)",9.775260369,9.410430839,12.337309355
+2017,"Kent and Medway","Obesity: QOF prevalence (18+ yrs)",9.775260369,7.2137327785,10.723835915
+2017,"Lancashire and South Cumbria","Obesity: QOF prevalence (18+ yrs)",9.775260369,8.9852872915,11.9382559
+2017,"South West London","Obesity: QOF prevalence (18+ yrs)",9.775260369,4.517783711,11.40867702
+2017,"South Yorkshire","Obesity: QOF prevalence (18+ yrs)",9.775260369,4.251234229,14.40202134
+2017,"Staffordshire and Stoke-on-Trent","Obesity: QOF prevalence (18+ yrs)",9.775260369,9.031310049,14.24379835
+2017,"Suffolk and North East Essex","Obesity: QOF prevalence (18+ yrs)",9.775260369,9.339985278,13.845707625
+2017,"Surrey Heartlands","Obesity: QOF prevalence (18+ yrs)",9.775260369,5.392610888,NA
+2017,"Sussex","Obesity: QOF prevalence (18+ yrs)",9.775260369,6.153436335,7.518059395
+2017,"West Yorkshire","Obesity: QOF prevalence (18+ yrs)",9.775260369,8.0938603895,12.864418115
+2018,"North East and North Cumbria","Hypertension: QOF prevalence (all ages)",14.4977733795151,16.221198156682,15.6519892396998
+2018,"North West London","Hypertension: QOF prevalence (all ages)",14.4977733795151,14.2428785607196,11.6102166986354
+2018,"Northamptonshire","Hypertension: QOF prevalence (all ages)",14.4977733795151,15.30315372978,11.2193549766895
+2018,"Nottingham and Nottinghamshire","Hypertension: QOF prevalence (all ages)",14.4977733795151,14.746678347204,12.9667519181586
+2018,"Shropshire, Telford and Wrekin","Hypertension: QOF prevalence (all ages)",14.4977733795151,15.4616814707705,14.0798890236006
+2018,"Somerset","Hypertension: QOF prevalence (all ages)",14.4977733795151,15.5487473786011,NA
+2018,"England","Hypertension: QOF prevalence (all ages)",14.4977733795151,14.7032147536027,13.5153583617747
+2018,"Leicester, Leicestershire and Rutland","Hypertension: QOF prevalence (all ages)",14.4977733795151,15.5111959659644,12.513502816083
+2018,"Lincolnshire","Hypertension: QOF prevalence (all ages)",14.4977733795151,16.7273755434897,17.8202760479516
+2018,"Mid and South Essex","Hypertension: QOF prevalence (all ages)",14.4977733795151,14.945009877982,12.7511537456935
+2018,"Norfolk and Waveney","Hypertension: QOF prevalence (all ages)",14.4977733795151,15.1500135225819,13.9105110586705
+2018,"North Central London","Hypertension: QOF prevalence (all ages)",14.4977733795151,11.0868702895676,12.6976841538714
+2018,"North East London","Hypertension: QOF prevalence (all ages)",14.4977733795151,12.9639737991266,9.82834062605184
+2018,"Bath and North East Somerset, Swindon and Wiltshire","Hypertension: QOF prevalence (all ages)",14.4977733795151,15.1050877302117,16.8818785783206
+2018,"Bedfordshire, Luton and Milton Keynes","Hypertension: QOF prevalence (all ages)",14.4977733795151,13.9785927363113,12.1122851267
+2018,"Birmingham and Solihull","Hypertension: QOF prevalence (all ages)",14.4977733795151,14.7586016086639,12.166022517224
+2018,"Black Country","Hypertension: QOF prevalence (all ages)",14.4977733795151,18.3768651434073,14.3888649057644
+2018,"Bristol, North Somerset and South Gloucestershire","Hypertension: QOF prevalence (all ages)",14.4977733795151,14.8735237881368,12.0623338881845
+2018,"Buckinghamshire, Oxfordshire and Berkshire West","Hypertension: QOF prevalence (all ages)",14.4977733795151,13.9815762538383,NA
+2018,"Cambridgeshire and Peterborough","Hypertension: QOF prevalence (all ages)",14.4977733795151,13.7505357908273,10.1369141653502
+2018,"Cheshire and Merseyside","Hypertension: QOF prevalence (all ages)",14.4977733795151,16.8029178719658,14.9303530144016
+2018,"Coventry and Warwickshire","Hypertension: QOF prevalence (all ages)",14.4977733795151,15.415538119611,11.938217312024
+2018,"Derby and Derbyshire","Hypertension: QOF prevalence (all ages)",14.4977733795151,16.7458301115652,13.2989386394796
+2018,"Devon","Hypertension: QOF prevalence (all ages)",14.4977733795151,17.3480021970986,14.0675814928245
+2018,"Dorset","Hypertension: QOF prevalence (all ages)",14.4977733795151,17.7238295453987,NA
+2018,"Frimley","Hypertension: QOF prevalence (all ages)",14.4977733795151,13.4136922278605,NA
+2018,"Gloucestershire","Hypertension: QOF prevalence (all ages)",14.4977733795151,15.3631024517572,8.72856006644371
+2018,"Greater Manchester","Hypertension: QOF prevalence (all ages)",14.4977733795151,14.0527761550851,12.4142047150105
+2018,"Hampshire and Isle of Wight","Hypertension: QOF prevalence (all ages)",14.4977733795151,15.8785161027313,11.2735667564448
+2018,"Herefordshire and Worcestershire","Hypertension: QOF prevalence (all ages)",14.4977733795151,17.1027579962174,NA
+2018,"Hertfordshire and West Essex","Hypertension: QOF prevalence (all ages)",14.4977733795151,13.6023916292975,NA
+2018,"Humber and North Yorkshire","Hypertension: QOF prevalence (all ages)",14.4977733795151,15.9493218230269,14.6961823024564
+2018,"Kent and Medway","Hypertension: QOF prevalence (all ages)",14.4977733795151,14.3886331799079,15.6022794262134
+2018,"Lancashire and South Cumbria","Hypertension: QOF prevalence (all ages)",14.4977733795151,17.5242362369138,14.0074701364704
+2018,"South West London","Hypertension: QOF prevalence (all ages)",14.4977733795151,10.1288610944324,11.7130505268846
+2018,"South Yorkshire","Hypertension: QOF prevalence (all ages)",14.4977733795151,12.9171093255903,14.7630364881868
+2018,"Staffordshire and Stoke-on-Trent","Hypertension: QOF prevalence (all ages)",14.4977733795151,17.2564529558701,15.685019206146
+2018,"Suffolk and North East Essex","Hypertension: QOF prevalence (all ages)",14.4977733795151,16.4696223316913,18.6602870813397
+2018,"Surrey Heartlands","Hypertension: QOF prevalence (all ages)",14.4977733795151,12.8856199614235,NA
+2018,"Sussex","Hypertension: QOF prevalence (all ages)",14.4977733795151,14.9875104079933,13.5118644067797
+2018,"West Yorkshire","Hypertension: QOF prevalence (all ages)",14.4977733795151,16.1259197622785,12.6757489500063
+2018,"Cornwall and the Isles of Scilly","Hypertension: QOF prevalence (all ages)",14.4977733795151,NA,17.3085901027078
+2018,"South East London","Hypertension: QOF prevalence (all ages)",14.4977733795151,14.6068046800298,11.5126537853448
+2018,"Northamptonshire","Obesity: QOF prevalence (18+ yrs)",10.17064846,9.983249581,4.936242314
+2018,"Nottingham and Nottinghamshire","Obesity: QOF prevalence (18+ yrs)",10.17064846,8.19112628,10.96214511
+2018,"Shropshire, Telford and Wrekin","Obesity: QOF prevalence (18+ yrs)",10.17064846,8.889923202,11.65011279
+2018,"North West London","Obesity: QOF prevalence (18+ yrs)",10.17064846,6.023729845,8.41156833
+2018,"England","Obesity: QOF prevalence (18+ yrs)",10.17064846,7.849980811,12.56615757
+2018,"Leicester, Leicestershire and Rutland","Obesity: QOF prevalence (18+ yrs)",10.17064846,9.2374855955,10.789770765
+2018,"Lincolnshire","Obesity: QOF prevalence (18+ yrs)",10.17064846,10.882820955,15.35997164
+2018,"Mid and South Essex","Obesity: QOF prevalence (18+ yrs)",10.17064846,7.3865867525,10.68292843
+2018,"Norfolk and Waveney","Obesity: QOF prevalence (18+ yrs)",10.17064846,8.511737183,12.885529465
+2018,"North Central London","Obesity: QOF prevalence (18+ yrs)",10.17064846,4.545454545,10.57473601
+2018,"North East London","Obesity: QOF prevalence (18+ yrs)",10.17064846,7.634810464,10.5824811
+2018,"North East and North Cumbria","Obesity: QOF prevalence (18+ yrs)",10.17064846,7.46615087,14.02219791
+2018,"Bath and North East Somerset, Swindon and Wiltshire","Obesity: QOF prevalence (18+ yrs)",10.17064846,8.2316392525,14.72123095
+2018,"Bedfordshire, Luton and Milton Keynes","Obesity: QOF prevalence (18+ yrs)",10.17064846,9.097961392,11.763162
+2018,"Birmingham and Solihull","Obesity: QOF prevalence (18+ yrs)",10.17064846,7.721270616,11.83333333
+2018,"Black Country","Obesity: QOF prevalence (18+ yrs)",10.17064846,14.02582619,13.431302755
+2018,"Bristol, North Somerset and South Gloucestershire","Obesity: QOF prevalence (18+ yrs)",10.17064846,8.554767438,12.293598965
+2018,"Buckinghamshire, Oxfordshire and Berkshire West","Obesity: QOF prevalence (18+ yrs)",10.17064846,7.934636119,NA
+2018,"Cambridgeshire and Peterborough","Obesity: QOF prevalence (18+ yrs)",10.17064846,7.173539519,9.63814677
+2018,"Cheshire and Merseyside","Obesity: QOF prevalence (18+ yrs)",10.17064846,8.968609865,13.26446631
+2018,"Coventry and Warwickshire","Obesity: QOF prevalence (18+ yrs)",10.17064846,8.797944402,10.42050595
+2018,"Derby and Derbyshire","Obesity: QOF prevalence (18+ yrs)",10.17064846,8.394813324,9.7507470215
+2018,"Devon","Obesity: QOF prevalence (18+ yrs)",10.17064846,8.781048862,11.67124374
+2018,"Dorset","Obesity: QOF prevalence (18+ yrs)",10.17064846,8.698023298,NA
+2018,"Frimley","Obesity: QOF prevalence (18+ yrs)",10.17064846,6.6759316555,NA
+2018,"Gloucestershire","Obesity: QOF prevalence (18+ yrs)",10.17064846,7.229262673,11.43239528
+2018,"Greater Manchester","Obesity: QOF prevalence (18+ yrs)",10.17064846,7.5920397565,12.20472441
+2018,"Hampshire and Isle of Wight","Obesity: QOF prevalence (18+ yrs)",10.17064846,9.780621572,11.79561054
+2018,"Herefordshire and Worcestershire","Obesity: QOF prevalence (18+ yrs)",10.17064846,9.387336294,NA
+2018,"Hertfordshire and West Essex","Obesity: QOF prevalence (18+ yrs)",10.17064846,7.030854831,NA
+2018,"Humber and North Yorkshire","Obesity: QOF prevalence (18+ yrs)",10.17064846,10.38232893,12.653238305
+2018,"Kent and Medway","Obesity: QOF prevalence (18+ yrs)",10.17064846,6.905120482,11.30994989
+2018,"Lancashire and South Cumbria","Obesity: QOF prevalence (18+ yrs)",10.17064846,9.841379571,12.244507945
+2018,"South West London","Obesity: QOF prevalence (18+ yrs)",10.17064846,5.0088585335,11.11555911
+2018,"South Yorkshire","Obesity: QOF prevalence (18+ yrs)",10.17064846,4.533504898,15.57757167
+2018,"Staffordshire and Stoke-on-Trent","Obesity: QOF prevalence (18+ yrs)",10.17064846,9.394952873,14.02974983
+2018,"Suffolk and North East Essex","Obesity: QOF prevalence (18+ yrs)",10.17064846,9.8518784615,13.88186282
+2018,"Surrey Heartlands","Obesity: QOF prevalence (18+ yrs)",10.17064846,5.893142127,NA
+2018,"Sussex","Obesity: QOF prevalence (18+ yrs)",10.17064846,6.687402799,6.946386946
+2018,"West Yorkshire","Obesity: QOF prevalence (18+ yrs)",10.17064846,8.8425368585,13.1526832
+2018,"Cornwall and the Isles of Scilly","Obesity: QOF prevalence (18+ yrs)",10.17064846,NA,10.06989017
+2018,"South East London","Obesity: QOF prevalence (18+ yrs)",10.17064846,7.273772564,10.071041843
+2018,"Somerset","Obesity: QOF prevalence (18+ yrs)",10.17064846,5.900803033,NA
+2019,"North East and North Cumbria","Hypertension: QOF prevalence (all ages)",14.6255351069202,16.5723524656427,15.7537008236853
+2019,"North West London","Hypertension: QOF prevalence (all ages)",14.6255351069202,14.1119175498097,12.6797925779072
+2019,"North East London","Hypertension: QOF prevalence (all ages)",14.6255351069202,13.8477035986265,10.3140265177948
+2019,"England","Hypertension: QOF prevalence (all ages)",14.6255351069202,14.8637227973801,13.8390965945582
+2019,"Kent and Medway","Hypertension: QOF prevalence (all ages)",14.6255351069202,14.87237806419,15.3809298971813
+2019,"Lancashire and South Cumbria","Hypertension: QOF prevalence (all ages)",14.6255351069202,17.5359326834483,14.4336289495004
+2019,"Leicester, Leicestershire and Rutland","Hypertension: QOF prevalence (all ages)",14.6255351069202,15.5870915101226,12.3830083087934
+2019,"Lincolnshire","Hypertension: QOF prevalence (all ages)",14.6255351069202,16.9212386520311,15.2003522677235
+2019,"Mid and South Essex","Hypertension: QOF prevalence (all ages)",14.6255351069202,14.8469769635135,12.8266033254157
+2019,"Norfolk and Waveney","Hypertension: QOF prevalence (all ages)",14.6255351069202,15.0985455810418,14.2085187539733
+2019,"North Central London","Hypertension: QOF prevalence (all ages)",14.6255351069202,10.898384188504,12.8062401273446
+2019,"Bath and North East Somerset, Swindon and Wiltshire","Hypertension: QOF prevalence (all ages)",14.6255351069202,14.9538106235566,16.7373639807577
+2019,"Bedfordshire, Luton and Milton Keynes","Hypertension: QOF prevalence (all ages)",14.6255351069202,13.873152088517,12.2641426264614
+2019,"Birmingham and Solihull","Hypertension: QOF prevalence (all ages)",14.6255351069202,14.9650538672433,12.2668288726683
+2019,"Black Country","Hypertension: QOF prevalence (all ages)",14.6255351069202,18.324103119609,14.4148991061094
+2019,"Bristol, North Somerset and South Gloucestershire","Hypertension: QOF prevalence (all ages)",14.6255351069202,14.7496896979727,11.9254182044768
+2019,"Buckinghamshire, Oxfordshire and Berkshire West","Hypertension: QOF prevalence (all ages)",14.6255351069202,14.4706530845794,NA
+2019,"Cambridgeshire and Peterborough","Hypertension: QOF prevalence (all ages)",14.6255351069202,13.8664577956345,11.0885079168437
+2019,"Cheshire and Merseyside","Hypertension: QOF prevalence (all ages)",14.6255351069202,16.9235289240148,15.2064839830181
+2019,"Cornwall and the Isles of Scilly","Hypertension: QOF prevalence (all ages)",14.6255351069202,11.9186046511628,17.5102759835584
+2019,"Coventry and Warwickshire","Hypertension: QOF prevalence (all ages)",14.6255351069202,15.2648685717828,12.1505150304814
+2019,"Derby and Derbyshire","Hypertension: QOF prevalence (all ages)",14.6255351069202,16.7620061194626,13.4554727870613
+2019,"Devon","Hypertension: QOF prevalence (all ages)",14.6255351069202,17.1972287994387,13.9560931899642
+2019,"Dorset","Hypertension: QOF prevalence (all ages)",14.6255351069202,17.7412285736544,NA
+2019,"Frimley","Hypertension: QOF prevalence (all ages)",14.6255351069202,13.6244541484716,NA
+2019,"Gloucestershire","Hypertension: QOF prevalence (all ages)",14.6255351069202,15.4292823530573,9.1446807375985
+2019,"Greater Manchester","Hypertension: QOF prevalence (all ages)",14.6255351069202,14.2312421007028,12.5048694974679
+2019,"Hampshire and Isle of Wight","Hypertension: QOF prevalence (all ages)",14.6255351069202,16.0730457208824,11.8075364059451
+2019,"Herefordshire and Worcestershire","Hypertension: QOF prevalence (all ages)",14.6255351069202,17.4638799270585,NA
+2019,"Hertfordshire and West Essex","Hypertension: QOF prevalence (all ages)",14.6255351069202,13.7346420836775,NA
+2019,"Humber and North Yorkshire","Hypertension: QOF prevalence (all ages)",14.6255351069202,15.9335526061087,14.9951073241493
+2019,"Somerset","Hypertension: QOF prevalence (all ages)",14.6255351069202,15.8376143340433,NA
+2019,"South East London","Hypertension: QOF prevalence (all ages)",14.6255351069202,14.0848593522479,11.0143984607287
+2019,"South West London","Hypertension: QOF prevalence (all ages)",14.6255351069202,10.0426714299891,13.7107965584235
+2019,"South Yorkshire","Hypertension: QOF prevalence (all ages)",14.6255351069202,12.8853565773856,15.135040236817
+2019,"Staffordshire and Stoke-on-Trent","Hypertension: QOF prevalence (all ages)",14.6255351069202,17.2857745884339,15.9600656455142
+2019,"Suffolk and North East Essex","Hypertension: QOF prevalence (all ages)",14.6255351069202,17.0078001313742,20.9023206130691
+2019,"Surrey Heartlands","Hypertension: QOF prevalence (all ages)",14.6255351069202,12.7438124897558,NA
+2019,"Sussex","Hypertension: QOF prevalence (all ages)",14.6255351069202,15.2382106922051,12.2235377689207
+2019,"West Yorkshire","Hypertension: QOF prevalence (all ages)",14.6255351069202,16.34594825743,12.6341409447948
+2019,"Northamptonshire","Hypertension: QOF prevalence (all ages)",14.6255351069202,15.3678869155491,11.662305057896
+2019,"Nottingham and Nottinghamshire","Hypertension: QOF prevalence (all ages)",14.6255351069202,14.8514851485149,13.0784218217243
+2019,"Shropshire, Telford and Wrekin","Hypertension: QOF prevalence (all ages)",14.6255351069202,15.866599292572,14.2161245568059
+2019,"North East London","Obesity: QOF prevalence (18+ yrs)",10.600132805,8.3822813995,11.62790698
+2019,"England","Obesity: QOF prevalence (18+ yrs)",10.600132805,8.188235294,13.23949408
+2019,"Humber and North Yorkshire","Obesity: QOF prevalence (18+ yrs)",10.600132805,10.26273517,13.465340265
+2019,"Kent and Medway","Obesity: QOF prevalence (18+ yrs)",10.600132805,7.115782219,10.90492646
+2019,"Lancashire and South Cumbria","Obesity: QOF prevalence (18+ yrs)",10.600132805,9.914050213,13.134033675
+2019,"Leicester, Leicestershire and Rutland","Obesity: QOF prevalence (18+ yrs)",10.600132805,9.1148561445,11.140687575
+2019,"Lincolnshire","Obesity: QOF prevalence (18+ yrs)",10.600132805,10.63358991,16.5908574
+2019,"Mid and South Essex","Obesity: QOF prevalence (18+ yrs)",10.600132805,7.3233374875,9.441340782
+2019,"Norfolk and Waveney","Obesity: QOF prevalence (18+ yrs)",10.600132805,8.631104165,13.42835709
+2019,"North Central London","Obesity: QOF prevalence (18+ yrs)",10.600132805,5.200530598,12.02403308
+2019,"Bath and North East Somerset, Swindon and Wiltshire","Obesity: QOF prevalence (18+ yrs)",10.600132805,9.241499564,13.282502465
+2019,"Bedfordshire, Luton and Milton Keynes","Obesity: QOF prevalence (18+ yrs)",10.600132805,8.9626954945,11.1297358225
+2019,"Birmingham and Solihull","Obesity: QOF prevalence (18+ yrs)",10.600132805,7.810698819,12.51021123
+2019,"Black Country","Obesity: QOF prevalence (18+ yrs)",10.600132805,12.273412415,13.85800583
+2019,"Bristol, North Somerset and South Gloucestershire","Obesity: QOF prevalence (18+ yrs)",10.600132805,8.761329305,12.2925959
+2019,"Buckinghamshire, Oxfordshire and Berkshire West","Obesity: QOF prevalence (18+ yrs)",10.600132805,8.005387133,NA
+2019,"Cambridgeshire and Peterborough","Obesity: QOF prevalence (18+ yrs)",10.600132805,7.039472228,12.00543426
+2019,"Cheshire and Merseyside","Obesity: QOF prevalence (18+ yrs)",10.600132805,9.050324189,13.95076202
+2019,"Cornwall and the Isles of Scilly","Obesity: QOF prevalence (18+ yrs)",10.600132805,8.228460794,8.107720957
+2019,"Coventry and Warwickshire","Obesity: QOF prevalence (18+ yrs)",10.600132805,8.4984375935,11.67587477
+2019,"Derby and Derbyshire","Obesity: QOF prevalence (18+ yrs)",10.600132805,9.255079007,10.62699256
+2019,"Devon","Obesity: QOF prevalence (18+ yrs)",10.600132805,9.71455148,12.22069495
+2019,"Dorset","Obesity: QOF prevalence (18+ yrs)",10.600132805,8.313879413,NA
+2019,"Frimley","Obesity: QOF prevalence (18+ yrs)",10.600132805,7.3568897,NA
+2019,"Gloucestershire","Obesity: QOF prevalence (18+ yrs)",10.600132805,7.74441593,12.38948214
+2019,"Greater Manchester","Obesity: QOF prevalence (18+ yrs)",10.600132805,8.387443817,12.88428325
+2019,"Hampshire and Isle of Wight","Obesity: QOF prevalence (18+ yrs)",10.600132805,10.088498985,12.09758551
+2019,"Herefordshire and Worcestershire","Obesity: QOF prevalence (18+ yrs)",10.600132805,9.795253606,NA
+2019,"Hertfordshire and West Essex","Obesity: QOF prevalence (18+ yrs)",10.600132805,7.2417351485,NA
+2019,"Shropshire, Telford and Wrekin","Obesity: QOF prevalence (18+ yrs)",10.600132805,8.706704798,11.19434163
+2019,"Somerset","Obesity: QOF prevalence (18+ yrs)",10.600132805,7.593844384,NA
+2019,"South East London","Obesity: QOF prevalence (18+ yrs)",10.600132805,7.305349643,10.97196447
+2019,"South West London","Obesity: QOF prevalence (18+ yrs)",10.600132805,5.718741877,12.27025628
+2019,"South Yorkshire","Obesity: QOF prevalence (18+ yrs)",10.600132805,5.1189728455,15.79516658
+2019,"Staffordshire and Stoke-on-Trent","Obesity: QOF prevalence (18+ yrs)",10.600132805,9.914841849,14.58835687
+2019,"Suffolk and North East Essex","Obesity: QOF prevalence (18+ yrs)",10.600132805,10.18818176,14.5754966
+2019,"Surrey Heartlands","Obesity: QOF prevalence (18+ yrs)",10.600132805,6.530898876,NA
+2019,"Sussex","Obesity: QOF prevalence (18+ yrs)",10.600132805,6.807081807,9.0942449535
+2019,"North East and North Cumbria","Obesity: QOF prevalence (18+ yrs)",10.600132805,8.680688337,14.38401288
+2019,"North West London","Obesity: QOF prevalence (18+ yrs)",10.600132805,6.527508667,11.043733655
+2019,"Northamptonshire","Obesity: QOF prevalence (18+ yrs)",10.600132805,10.33705918,5.4147428495
+2019,"Nottingham and Nottinghamshire","Obesity: QOF prevalence (18+ yrs)",10.600132805,8.13253012,12.69931663
+2019,"West Yorkshire","Obesity: QOF prevalence (18+ yrs)",10.600132805,8.596424496,13.062350535
+2020,"England","Hypertension: QOF prevalence (all ages)",14.4491525423729,14.7135416666667,13.5714285714286
+2020,"Kent and Medway","Hypertension: QOF prevalence (all ages)",14.4491525423729,14.539978094195,15.0536264963115
+2020,"Lancashire and South Cumbria","Hypertension: QOF prevalence (all ages)",14.4491525423729,17.48675902401,14.1581011119697
+2020,"Leicester, Leicestershire and Rutland","Hypertension: QOF prevalence (all ages)",14.4491525423729,15.4255950830243,12.7167646474987
+2020,"Humber and North Yorkshire","Hypertension: QOF prevalence (all ages)",14.4491525423729,15.8961253708725,14.8306317157124
+2020,"Mid and South Essex","Hypertension: QOF prevalence (all ages)",14.4491525423729,14.7255898264254,13.1326816994097
+2020,"Norfolk and Waveney","Hypertension: QOF prevalence (all ages)",14.4491525423729,14.7041661804178,14.0189924352165
+2020,"North Central London","Hypertension: QOF prevalence (all ages)",14.4491525423729,10.8474230865959,12.4553277880672
+2020,"Lincolnshire","Hypertension: QOF prevalence (all ages)",14.4491525423729,16.7211218278672,15.3478260869565
+2020,"Bath and North East Somerset, Swindon and Wiltshire","Hypertension: QOF prevalence (all ages)",14.4491525423729,14.6641274238227,16.569991430553
+2020,"Bedfordshire, Luton and Milton Keynes","Hypertension: QOF prevalence (all ages)",14.4491525423729,13.6749119912201,12.1860449539506
+2020,"Birmingham and Solihull","Hypertension: QOF prevalence (all ages)",14.4491525423729,14.4247486243794,12.0956937799043
+2020,"Black Country","Hypertension: QOF prevalence (all ages)",14.4491525423729,18.2626560192603,14.1847917121073
+2020,"Bristol, North Somerset and South Gloucestershire","Hypertension: QOF prevalence (all ages)",14.4491525423729,14.6923398911679,11.5164879222211
+2020,"Buckinghamshire, Oxfordshire and Berkshire West","Hypertension: QOF prevalence (all ages)",14.4491525423729,14.3888103779015,NA
+2020,"Cambridgeshire and Peterborough","Hypertension: QOF prevalence (all ages)",14.4491525423729,13.8450838220276,11.3525718523927
+2020,"Cheshire and Merseyside","Hypertension: QOF prevalence (all ages)",14.4491525423729,16.571780081003,15.0558842866535
+2020,"Cornwall and the Isles of Scilly","Hypertension: QOF prevalence (all ages)",14.4491525423729,12.2988031366075,17.7379113698467
+2020,"Coventry and Warwickshire","Hypertension: QOF prevalence (all ages)",14.4491525423729,15.1706051295705,12.0548527692144
+2020,"Derby and Derbyshire","Hypertension: QOF prevalence (all ages)",14.4491525423729,16.6505636070853,12.9385386441572
+2020,"Devon","Hypertension: QOF prevalence (all ages)",14.4491525423729,17.2461638916095,14.0675675675676
+2020,"Dorset","Hypertension: QOF prevalence (all ages)",14.4491525423729,17.9534946621912,NA
+2020,"Frimley","Hypertension: QOF prevalence (all ages)",14.4491525423729,13.4672701181146,NA
+2020,"Gloucestershire","Hypertension: QOF prevalence (all ages)",14.4491525423729,15.1857038378585,9.55442085970388
+2020,"Greater Manchester","Hypertension: QOF prevalence (all ages)",14.4491525423729,14.1421290215706,12.4130602782071
+2020,"Hampshire and Isle of Wight","Hypertension: QOF prevalence (all ages)",14.4491525423729,15.9969417601662,11.6950975872138
+2020,"Herefordshire and Worcestershire","Hypertension: QOF prevalence (all ages)",14.4491525423729,17.3689202005148,NA
+2020,"Hertfordshire and West Essex","Hypertension: QOF prevalence (all ages)",14.4491525423729,13.4519390015345,NA
+2020,"Shropshire, Telford and Wrekin","Hypertension: QOF prevalence (all ages)",14.4491525423729,15.8355998791176,14.2174469527672
+2020,"Somerset","Hypertension: QOF prevalence (all ages)",14.4491525423729,15.8466533466533,NA
+2020,"South East London","Hypertension: QOF prevalence (all ages)",14.4491525423729,13.690194173198,10.5512021065224
+2020,"South West London","Hypertension: QOF prevalence (all ages)",14.4491525423729,9.93317132442284,13.1870108842314
+2020,"South Yorkshire","Hypertension: QOF prevalence (all ages)",14.4491525423729,12.6448072610445,14.8337154601247
+2020,"Staffordshire and Stoke-on-Trent","Hypertension: QOF prevalence (all ages)",14.4491525423729,16.8280701754386,15.6783276450512
+2020,"Suffolk and North East Essex","Hypertension: QOF prevalence (all ages)",14.4491525423729,16.8026194399904,20.7677894612254
+2020,"Surrey Heartlands","Hypertension: QOF prevalence (all ages)",14.4491525423729,12.820279847356,NA
+2020,"North East London","Hypertension: QOF prevalence (all ages)",14.4491525423729,13.7048192771084,10.4414261460102
+2020,"North East and North Cumbria","Hypertension: QOF prevalence (all ages)",14.4491525423729,16.4426601501135,15.5816435432231
+2020,"North West London","Hypertension: QOF prevalence (all ages)",14.4491525423729,13.8704668562598,12.2812305371747
+2020,"Northamptonshire","Hypertension: QOF prevalence (all ages)",14.4491525423729,15.046951012558,11.5882139140901
+2020,"Nottingham and Nottinghamshire","Hypertension: QOF prevalence (all ages)",14.4491525423729,14.4845585036973,12.9760903520365
+2020,"Sussex","Hypertension: QOF prevalence (all ages)",14.4491525423729,14.9728997289973,12.5449546301162
+2020,"West Yorkshire","Hypertension: QOF prevalence (all ages)",14.4491525423729,16.1063908385667,12.6408860704554
+2020,"Humber and North Yorkshire","Obesity: QOF prevalence (18+ yrs)",6.596018619,6.783557029,8.048640941
+2020,"Kent and Medway","Obesity: QOF prevalence (18+ yrs)",6.596018619,5.123839009,8.135499341
+2020,"England","Obesity: QOF prevalence (18+ yrs)",6.596018619,5.3534523005,8.255451713
+2020,"Hertfordshire and West Essex","Obesity: QOF prevalence (18+ yrs)",6.596018619,4.994084124,NA
+2020,"Lincolnshire","Obesity: QOF prevalence (18+ yrs)",6.596018619,7.764354914,9.389523434
+2020,"Mid and South Essex","Obesity: QOF prevalence (18+ yrs)",6.596018619,4.2871207485,4.88372093
+2020,"Lancashire and South Cumbria","Obesity: QOF prevalence (18+ yrs)",6.596018619,6.217222613,7.9966829335
+2020,"Leicester, Leicestershire and Rutland","Obesity: QOF prevalence (18+ yrs)",6.596018619,5.8717393125,6.423525543
+2020,"Bath and North East Somerset, Swindon and Wiltshire","Obesity: QOF prevalence (18+ yrs)",6.596018619,6.462646265,10.512675951
+2020,"Bedfordshire, Luton and Milton Keynes","Obesity: QOF prevalence (18+ yrs)",6.596018619,5.981981632,7.728795158
+2020,"Birmingham and Solihull","Obesity: QOF prevalence (18+ yrs)",6.596018619,4.32,7.806260466
+2020,"Black Country","Obesity: QOF prevalence (18+ yrs)",6.596018619,6.8710587405,7.942514301
+2020,"Bristol, North Somerset and South Gloucestershire","Obesity: QOF prevalence (18+ yrs)",6.596018619,6.224972697,7.380665864
+2020,"Buckinghamshire, Oxfordshire and Berkshire West","Obesity: QOF prevalence (18+ yrs)",6.596018619,5.918916955,NA
+2020,"Cambridgeshire and Peterborough","Obesity: QOF prevalence (18+ yrs)",6.596018619,5.4047825845,7.1264440305
+2020,"Cheshire and Merseyside","Obesity: QOF prevalence (18+ yrs)",6.596018619,5.1669942245,9.17896679
+2020,"Cornwall and the Isles of Scilly","Obesity: QOF prevalence (18+ yrs)",6.596018619,5.202312139,6.066309541
+2020,"Coventry and Warwickshire","Obesity: QOF prevalence (18+ yrs)",6.596018619,5.8891789025,6.389140271
+2020,"Derby and Derbyshire","Obesity: QOF prevalence (18+ yrs)",6.596018619,5.59555647,6.773185134
+2020,"Devon","Obesity: QOF prevalence (18+ yrs)",6.596018619,5.944911199,9.171131421
+2020,"Dorset","Obesity: QOF prevalence (18+ yrs)",6.596018619,5.7249688635,NA
+2020,"Frimley","Obesity: QOF prevalence (18+ yrs)",6.596018619,5.135029862,NA
+2020,"Gloucestershire","Obesity: QOF prevalence (18+ yrs)",6.596018619,5.057540683,8.469613211
+2020,"Greater Manchester","Obesity: QOF prevalence (18+ yrs)",6.596018619,4.685302682,7.140731925
+2020,"Hampshire and Isle of Wight","Obesity: QOF prevalence (18+ yrs)",6.596018619,6.7812142655,8.50456621
+2020,"Herefordshire and Worcestershire","Obesity: QOF prevalence (18+ yrs)",6.596018619,5.231663532,NA
+2020,"Nottingham and Nottinghamshire","Obesity: QOF prevalence (18+ yrs)",6.596018619,5.124371347,7.692307692
+2020,"Shropshire, Telford and Wrekin","Obesity: QOF prevalence (18+ yrs)",6.596018619,6.078174677,7.1273506215
+2020,"Somerset","Obesity: QOF prevalence (18+ yrs)",6.596018619,7.017293126,NA
+2020,"South East London","Obesity: QOF prevalence (18+ yrs)",6.596018619,4.50745193,11.3447551835
+2020,"South West London","Obesity: QOF prevalence (18+ yrs)",6.596018619,3.948658526,10.21036429
+2020,"South Yorkshire","Obesity: QOF prevalence (18+ yrs)",6.596018619,3.286249063,10.39134964
+2020,"Staffordshire and Stoke-on-Trent","Obesity: QOF prevalence (18+ yrs)",6.596018619,4.897608478,9.144218435
+2020,"Norfolk and Waveney","Obesity: QOF prevalence (18+ yrs)",6.596018619,5.925632485,8.91965867
+2020,"North Central London","Obesity: QOF prevalence (18+ yrs)",6.596018619,3.0754062285,7.1942251835
+2020,"North East London","Obesity: QOF prevalence (18+ yrs)",6.596018619,5.341482859,8.031088083
+2020,"North East and North Cumbria","Obesity: QOF prevalence (18+ yrs)",6.596018619,5.781087357,10.31562741
+2020,"North West London","Obesity: QOF prevalence (18+ yrs)",6.596018619,4.12606548,6.923989101
+2020,"Northamptonshire","Obesity: QOF prevalence (18+ yrs)",6.596018619,6.601827291,3.9559488295
+2020,"Surrey Heartlands","Obesity: QOF prevalence (18+ yrs)",6.596018619,5.035000422,NA
+2020,"Sussex","Obesity: QOF prevalence (18+ yrs)",6.596018619,4.397617957,6.10087117
+2020,"West Yorkshire","Obesity: QOF prevalence (18+ yrs)",6.596018619,5.583889107,8.266214828
+2020,"Suffolk and North East Essex","Obesity: QOF prevalence (18+ yrs)",6.596018619,7.151644931,10.67386046
+2021,"England","Hypertension: QOF prevalence (all ages)",14.53613,14.902955,13.56402
+2021,"Herefordshire and Worcestershire","Hypertension: QOF prevalence (all ages)",14.53613,17.74851,NA
+2021,"Hertfordshire and West Essex","Hypertension: QOF prevalence (all ages)",14.53613,13.447815,NA
+2021,"Humber and North Yorkshire","Hypertension: QOF prevalence (all ages)",14.53613,16.22374,14.856815
+2021,"Kent and Medway","Hypertension: QOF prevalence (all ages)",14.53613,14.74213,15.092105
+2021,"Lancashire and South Cumbria","Hypertension: QOF prevalence (all ages)",14.53613,17.74929,14.17595
+2021,"Leicester, Leicestershire and Rutland","Hypertension: QOF prevalence (all ages)",14.53613,15.543795,12.313665
+2021,"Bath and North East Somerset, Swindon and Wiltshire","Hypertension: QOF prevalence (all ages)",14.53613,14.84572,16.88488
+2021,"Bedfordshire, Luton and Milton Keynes","Hypertension: QOF prevalence (all ages)",14.53613,13.59091,12.39888
+2021,"Birmingham and Solihull","Hypertension: QOF prevalence (all ages)",14.53613,14.57893,12.03738
+2021,"Black Country","Hypertension: QOF prevalence (all ages)",14.53613,18.098635,13.944305
+2021,"Bristol, North Somerset and South Gloucestershire","Hypertension: QOF prevalence (all ages)",14.53613,15.06715,11.58911
+2021,"Buckinghamshire, Oxfordshire and Berkshire West","Hypertension: QOF prevalence (all ages)",14.53613,14.5594,NA
+2021,"Cambridgeshire and Peterborough","Hypertension: QOF prevalence (all ages)",14.53613,14.1407,11.50039
+2021,"Cheshire and Merseyside","Hypertension: QOF prevalence (all ages)",14.53613,16.61174,15.04729
+2021,"Cornwall and the Isles of Scilly","Hypertension: QOF prevalence (all ages)",14.53613,12.1476,17.76164
+2021,"Coventry and Warwickshire","Hypertension: QOF prevalence (all ages)",14.53613,15.384285,12.28997
+2021,"Derby and Derbyshire","Hypertension: QOF prevalence (all ages)",14.53613,17.09729,12.75864
+2021,"Devon","Hypertension: QOF prevalence (all ages)",14.53613,17.35883,13.95465
+2021,"Dorset","Hypertension: QOF prevalence (all ages)",14.53613,17.848255,NA
+2021,"Frimley","Hypertension: QOF prevalence (all ages)",14.53613,13.71815,NA
+2021,"Gloucestershire","Hypertension: QOF prevalence (all ages)",14.53613,15.614955,10.17277
+2021,"Greater Manchester","Hypertension: QOF prevalence (all ages)",14.53613,14.183255,12.394305
+2021,"Hampshire and Isle of Wight","Hypertension: QOF prevalence (all ages)",14.53613,15.831245,11.53613
+2021,"Northamptonshire","Hypertension: QOF prevalence (all ages)",14.53613,15.15513,11.82247
+2021,"Nottingham and Nottinghamshire","Hypertension: QOF prevalence (all ages)",14.53613,14.77344,12.89235
+2021,"Shropshire, Telford and Wrekin","Hypertension: QOF prevalence (all ages)",14.53613,16.01124,14.15759
+2021,"Somerset","Hypertension: QOF prevalence (all ages)",14.53613,16.30556,NA
+2021,"South East London","Hypertension: QOF prevalence (all ages)",14.53613,13.439835,10.4307
+2021,"South West London","Hypertension: QOF prevalence (all ages)",14.53613,10.32981,12.63121
+2021,"Lincolnshire","Hypertension: QOF prevalence (all ages)",14.53613,16.835815,15.68793
+2021,"Mid and South Essex","Hypertension: QOF prevalence (all ages)",14.53613,14.771895,13.5027
+2021,"Norfolk and Waveney","Hypertension: QOF prevalence (all ages)",14.53613,15.30334,14.21687
+2021,"North Central London","Hypertension: QOF prevalence (all ages)",14.53613,10.90347,12.37159
+2021,"North East London","Hypertension: QOF prevalence (all ages)",14.53613,13.43425,10.01713
+2021,"North East and North Cumbria","Hypertension: QOF prevalence (all ages)",14.53613,16.61952,15.67676
+2021,"North West London","Hypertension: QOF prevalence (all ages)",14.53613,14.03679,12.2792
+2021,"Suffolk and North East Essex","Hypertension: QOF prevalence (all ages)",14.53613,17.27724,20.477035
+2021,"Surrey Heartlands","Hypertension: QOF prevalence (all ages)",14.53613,12.8894,NA
+2021,"South Yorkshire","Hypertension: QOF prevalence (all ages)",14.53613,12.835315,14.764535
+2021,"Staffordshire and Stoke-on-Trent","Hypertension: QOF prevalence (all ages)",14.53613,17.05875,15.98355
+2021,"Sussex","Hypertension: QOF prevalence (all ages)",14.53613,14.96736,12.543675
+2021,"West Yorkshire","Hypertension: QOF prevalence (all ages)",14.53613,16.47497,12.471985
+2021,"England","Obesity: QOF prevalence (18+ yrs)",9.68701,7.76601,11.86364
+2021,"Herefordshire and Worcestershire","Obesity: QOF prevalence (18+ yrs)",9.68701,8.76544,NA
+2021,"Kent and Medway","Obesity: QOF prevalence (18+ yrs)",9.68701,6.53331,11.96232
+2021,"Lancashire and South Cumbria","Obesity: QOF prevalence (18+ yrs)",9.68701,9.245135,12.16557
+2021,"Hertfordshire and West Essex","Obesity: QOF prevalence (18+ yrs)",9.68701,7.254815,NA
+2021,"Humber and North Yorkshire","Obesity: QOF prevalence (18+ yrs)",9.68701,9.89288,12.578525
+2021,"Bath and North East Somerset, Swindon and Wiltshire","Obesity: QOF prevalence (18+ yrs)",9.68701,9.65909,14.3109
+2021,"Bedfordshire, Luton and Milton Keynes","Obesity: QOF prevalence (18+ yrs)",9.68701,8.7249,10.671585
+2021,"Birmingham and Solihull","Obesity: QOF prevalence (18+ yrs)",9.68701,6.77642,11.47245
+2021,"Black Country","Obesity: QOF prevalence (18+ yrs)",9.68701,11.50492,11.51224
+2021,"Bristol, North Somerset and South Gloucestershire","Obesity: QOF prevalence (18+ yrs)",9.68701,8.16899,9.66524
+2021,"Buckinghamshire, Oxfordshire and Berkshire West","Obesity: QOF prevalence (18+ yrs)",9.68701,7.82592,NA
+2021,"Cambridgeshire and Peterborough","Obesity: QOF prevalence (18+ yrs)",9.68701,7.72171,10.964705
+2021,"Cheshire and Merseyside","Obesity: QOF prevalence (18+ yrs)",9.68701,7.914475,12.99766
+2021,"Cornwall and the Isles of Scilly","Obesity: QOF prevalence (18+ yrs)",9.68701,5.36585,10.82553
+2021,"Coventry and Warwickshire","Obesity: QOF prevalence (18+ yrs)",9.68701,8.27098,10.86464
+2021,"Derby and Derbyshire","Obesity: QOF prevalence (18+ yrs)",9.68701,8.18889,8.3404
+2021,"Devon","Obesity: QOF prevalence (18+ yrs)",9.68701,8.52404,11.85036
+2021,"Dorset","Obesity: QOF prevalence (18+ yrs)",9.68701,7.833045,NA
+2021,"Frimley","Obesity: QOF prevalence (18+ yrs)",9.68701,7.64215,NA
+2021,"Gloucestershire","Obesity: QOF prevalence (18+ yrs)",9.68701,7.366915,10.36841
+2021,"Greater Manchester","Obesity: QOF prevalence (18+ yrs)",9.68701,7.27773,10.69602
+2021,"Hampshire and Isle of Wight","Obesity: QOF prevalence (18+ yrs)",9.68701,8.38257,10.30566
+2021,"Northamptonshire","Obesity: QOF prevalence (18+ yrs)",9.68701,9.89987,6.298705
+2021,"Nottingham and Nottinghamshire","Obesity: QOF prevalence (18+ yrs)",9.68701,8.93873,11.2391
+2021,"Shropshire, Telford and Wrekin","Obesity: QOF prevalence (18+ yrs)",9.68701,7.44664,13.453955
+2021,"Somerset","Obesity: QOF prevalence (18+ yrs)",9.68701,8.04646,NA
+2021,"South East London","Obesity: QOF prevalence (18+ yrs)",9.68701,7.32656,11.334175
+2021,"Leicester, Leicestershire and Rutland","Obesity: QOF prevalence (18+ yrs)",9.68701,7.997045,9.44185
+2021,"Lincolnshire","Obesity: QOF prevalence (18+ yrs)",9.68701,10.1928,14.96106
+2021,"Mid and South Essex","Obesity: QOF prevalence (18+ yrs)",9.68701,7.26586,8.71534
+2021,"Norfolk and Waveney","Obesity: QOF prevalence (18+ yrs)",9.68701,8.046265,12.63605
+2021,"North Central London","Obesity: QOF prevalence (18+ yrs)",9.68701,4.55973,10.15364
+2021,"North East London","Obesity: QOF prevalence (18+ yrs)",9.68701,7.91444,10.08998
+2021,"North East and North Cumbria","Obesity: QOF prevalence (18+ yrs)",9.68701,8.16327,14.22147
+2021,"North West London","Obesity: QOF prevalence (18+ yrs)",9.68701,6.945075,10.864545
+2021,"Suffolk and North East Essex","Obesity: QOF prevalence (18+ yrs)",9.68701,9.79579,13.23886
+2021,"South West London","Obesity: QOF prevalence (18+ yrs)",9.68701,5.41028,11.9532
+2021,"South Yorkshire","Obesity: QOF prevalence (18+ yrs)",9.68701,4.803205,13.67187
+2021,"Staffordshire and Stoke-on-Trent","Obesity: QOF prevalence (18+ yrs)",9.68701,8.92317,13.51566
+2021,"Surrey Heartlands","Obesity: QOF prevalence (18+ yrs)",9.68701,6.60591,NA
+2021,"Sussex","Obesity: QOF prevalence (18+ yrs)",9.68701,6.90763,8.549555
+2021,"West Yorkshire","Obesity: QOF prevalence (18+ yrs)",9.68701,8.57694,11.762275
+2022,"England","Hypertension: QOF prevalence (all ages)",15.015525,15.41039,13.92875
+2022,"Humber and North Yorkshire","Hypertension: QOF prevalence (all ages)",15.015525,17.27479,15.141115
+2022,"Hampshire and Isle of Wight","Hypertension: QOF prevalence (all ages)",15.015525,16.44668,11.57141
+2022,"Herefordshire and Worcestershire","Hypertension: QOF prevalence (all ages)",15.015525,18.94266,NA
+2022,"Hertfordshire and West Essex","Hypertension: QOF prevalence (all ages)",15.015525,13.93085,NA
+2022,"Bath and North East Somerset, Swindon and Wiltshire","Hypertension: QOF prevalence (all ages)",15.015525,15.69909,15.621375
+2022,"Bedfordshire, Luton and Milton Keynes","Hypertension: QOF prevalence (all ages)",15.015525,14.571475,13.2668
+2022,"Birmingham and Solihull","Hypertension: QOF prevalence (all ages)",15.015525,15.05264,12.45655
+2022,"Black Country","Hypertension: QOF prevalence (all ages)",15.015525,18.357605,14.00295
+2022,"Bristol, North Somerset and South Gloucestershire","Hypertension: QOF prevalence (all ages)",15.015525,15.58201,12.25314
+2022,"Buckinghamshire, Oxfordshire and Berkshire West","Hypertension: QOF prevalence (all ages)",15.015525,15.214915,NA
+2022,"Cambridgeshire and Peterborough","Hypertension: QOF prevalence (all ages)",15.015525,14.28613,11.7185
+2022,"Cheshire and Merseyside","Hypertension: QOF prevalence (all ages)",15.015525,16.9626,15.32678
+2022,"Cornwall and the Isles of Scilly","Hypertension: QOF prevalence (all ages)",15.015525,13.07982,18.04112
+2022,"Coventry and Warwickshire","Hypertension: QOF prevalence (all ages)",15.015525,15.669505,12.99569
+2022,"Derby and Derbyshire","Hypertension: QOF prevalence (all ages)",15.015525,17.60518,12.94005
+2022,"Devon","Hypertension: QOF prevalence (all ages)",15.015525,18.07862,14.2979
+2022,"Dorset","Hypertension: QOF prevalence (all ages)",15.015525,18.24772,NA
+2022,"Frimley","Hypertension: QOF prevalence (all ages)",15.015525,14.09297,NA
+2022,"Gloucestershire","Hypertension: QOF prevalence (all ages)",15.015525,16.647135,11.33595
+2022,"Greater Manchester","Hypertension: QOF prevalence (all ages)",15.015525,14.92762,12.72279
+2022,"North West London","Hypertension: QOF prevalence (all ages)",15.015525,14.502845,12.27562
+2022,"Northamptonshire","Hypertension: QOF prevalence (all ages)",15.015525,15.96433,12.404495
+2022,"Nottingham and Nottinghamshire","Hypertension: QOF prevalence (all ages)",15.015525,15.21848,12.81188
+2022,"Shropshire, Telford and Wrekin","Hypertension: QOF prevalence (all ages)",15.015525,16.28311,14.78594
+2022,"Kent and Medway","Hypertension: QOF prevalence (all ages)",15.015525,15.27902,15.65372
+2022,"Lancashire and South Cumbria","Hypertension: QOF prevalence (all ages)",15.015525,18.69126,14.54624
+2022,"Leicester, Leicestershire and Rutland","Hypertension: QOF prevalence (all ages)",15.015525,16.16045,12.454645
+2022,"Lincolnshire","Hypertension: QOF prevalence (all ages)",15.015525,17.267915,16.93488
+2022,"Mid and South Essex","Hypertension: QOF prevalence (all ages)",15.015525,15.35774,13.02752
+2022,"Norfolk and Waveney","Hypertension: QOF prevalence (all ages)",15.015525,15.945225,15.30563
+2022,"North Central London","Hypertension: QOF prevalence (all ages)",15.015525,11.121855,13.259015
+2022,"North East London","Hypertension: QOF prevalence (all ages)",15.015525,14.09256,10.53678
+2022,"North East and North Cumbria","Hypertension: QOF prevalence (all ages)",15.015525,17.17945,16.35196
+2022,"Somerset","Hypertension: QOF prevalence (all ages)",15.015525,16.39145,NA
+2022,"South East London","Hypertension: QOF prevalence (all ages)",15.015525,13.43116,10.920255
+2022,"South West London","Hypertension: QOF prevalence (all ages)",15.015525,10.78141,12.76188
+2022,"South Yorkshire","Hypertension: QOF prevalence (all ages)",15.015525,13.602545,15.22163
+2022,"Staffordshire and Stoke-on-Trent","Hypertension: QOF prevalence (all ages)",15.015525,18.19372,15.72592
+2022,"Suffolk and North East Essex","Hypertension: QOF prevalence (all ages)",15.015525,17.70959,21.592925
+2022,"Surrey Heartlands","Hypertension: QOF prevalence (all ages)",15.015525,13.41225,NA
+2022,"Sussex","Hypertension: QOF prevalence (all ages)",15.015525,15.58321,13.29598
+2022,"West Yorkshire","Hypertension: QOF prevalence (all ages)",15.015525,17.3537,12.49463
+2022,"Greater Manchester","Obesity: QOF prevalence (18+ yrs)",11.523605,8.79765,13.54739
+2022,"Hampshire and Isle of Wight","Obesity: QOF prevalence (18+ yrs)",11.523605,10.010085,11.36591
+2022,"Herefordshire and Worcestershire","Obesity: QOF prevalence (18+ yrs)",11.523605,10.60448,NA
+2022,"England","Obesity: QOF prevalence (18+ yrs)",11.523605,9.31056,13.89149
+2022,"Bath and North East Somerset, Swindon and Wiltshire","Obesity: QOF prevalence (18+ yrs)",11.523605,10.08501,13.579045
+2022,"Bedfordshire, Luton and Milton Keynes","Obesity: QOF prevalence (18+ yrs)",11.523605,9.156065,12.03139
+2022,"Birmingham and Solihull","Obesity: QOF prevalence (18+ yrs)",11.523605,9.03569,12.62272
+2022,"Black Country","Obesity: QOF prevalence (18+ yrs)",11.523605,14.980215,13.84436
+2022,"Bristol, North Somerset and South Gloucestershire","Obesity: QOF prevalence (18+ yrs)",11.523605,9.79235,12.32945
+2022,"Buckinghamshire, Oxfordshire and Berkshire West","Obesity: QOF prevalence (18+ yrs)",11.523605,9.121425,NA
+2022,"Cambridgeshire and Peterborough","Obesity: QOF prevalence (18+ yrs)",11.523605,8.91437,12.34329
+2022,"Cheshire and Merseyside","Obesity: QOF prevalence (18+ yrs)",11.523605,10.260075,15.34733
+2022,"Cornwall and the Isles of Scilly","Obesity: QOF prevalence (18+ yrs)",11.523605,7.6581,13.26475
+2022,"Coventry and Warwickshire","Obesity: QOF prevalence (18+ yrs)",11.523605,9.40451,13.65822
+2022,"Derby and Derbyshire","Obesity: QOF prevalence (18+ yrs)",11.523605,11.46472,10.14486
+2022,"Devon","Obesity: QOF prevalence (18+ yrs)",11.523605,10.34936,12.37031
+2022,"Dorset","Obesity: QOF prevalence (18+ yrs)",11.523605,8.541715,NA
+2022,"Frimley","Obesity: QOF prevalence (18+ yrs)",11.523605,9.26847,NA
+2022,"Gloucestershire","Obesity: QOF prevalence (18+ yrs)",11.523605,9.467615,11.469795
+2022,"North East and North Cumbria","Obesity: QOF prevalence (18+ yrs)",11.523605,10.3102,16.52427
+2022,"North West London","Obesity: QOF prevalence (18+ yrs)",11.523605,7.940195,12.74876
+2022,"Northamptonshire","Obesity: QOF prevalence (18+ yrs)",11.523605,10.87777,7.302435
+2022,"Hertfordshire and West Essex","Obesity: QOF prevalence (18+ yrs)",11.523605,8.851725,NA
+2022,"Humber and North Yorkshire","Obesity: QOF prevalence (18+ yrs)",11.523605,11.68649,14.35356
+2022,"Kent and Medway","Obesity: QOF prevalence (18+ yrs)",11.523605,8.44995,13.443875
+2022,"Lancashire and South Cumbria","Obesity: QOF prevalence (18+ yrs)",11.523605,11.687065,14.30448
+2022,"Leicester, Leicestershire and Rutland","Obesity: QOF prevalence (18+ yrs)",11.523605,9.96309,10.68008
+2022,"Lincolnshire","Obesity: QOF prevalence (18+ yrs)",11.523605,12.76538,16.09699
+2022,"Mid and South Essex","Obesity: QOF prevalence (18+ yrs)",11.523605,7.99107,11.59487
+2022,"Norfolk and Waveney","Obesity: QOF prevalence (18+ yrs)",11.523605,11.02627,14.78051
+2022,"North Central London","Obesity: QOF prevalence (18+ yrs)",11.523605,4.737085,13.200695
+2022,"North East London","Obesity: QOF prevalence (18+ yrs)",11.523605,8.87435,11.47454
+2022,"West Yorkshire","Obesity: QOF prevalence (18+ yrs)",11.523605,10.41534,13.63789
+2022,"Somerset","Obesity: QOF prevalence (18+ yrs)",11.523605,10.08935,NA
+2022,"South East London","Obesity: QOF prevalence (18+ yrs)",11.523605,8.23076,14.76815
+2022,"Nottingham and Nottinghamshire","Obesity: QOF prevalence (18+ yrs)",11.523605,9.6346,12.09958
+2022,"Shropshire, Telford and Wrekin","Obesity: QOF prevalence (18+ yrs)",11.523605,9.28509,13.255155
+2022,"Staffordshire and Stoke-on-Trent","Obesity: QOF prevalence (18+ yrs)",11.523605,11.06457,16.06876
+2022,"Suffolk and North East Essex","Obesity: QOF prevalence (18+ yrs)",11.523605,11.15613,16.31308
+2022,"South West London","Obesity: QOF prevalence (18+ yrs)",11.523605,5.862275,13.65047
+2022,"South Yorkshire","Obesity: QOF prevalence (18+ yrs)",11.523605,5.405335,15.41761
+2022,"Surrey Heartlands","Obesity: QOF prevalence (18+ yrs)",11.523605,7.85548,NA
+2022,"Sussex","Obesity: QOF prevalence (18+ yrs)",11.523605,8.3723,11.471385
+2022,"Greater Manchester","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,7.869955157,19.59314775
+2022,"Hampshire and Isle of Wight","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,10.0116043095,22.47910986
+2022,"England","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,9.7900230905,20.15296187
+2022,"Bath and North East Somerset, Swindon and Wiltshire","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,10.1087085,18.645650145
+2022,"Bedfordshire, Luton and Milton Keynes","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,10.74218469,20.490087635
+2022,"Birmingham and Solihull","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,8.275623269,17.50787539
+2022,"Black Country","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,8.5718642555,17.81914894
+2022,"Bristol, North Somerset and South Gloucestershire","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,11.28757413,24.79847738
+2022,"Buckinghamshire, Oxfordshire and Berkshire West","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,10.26652319,NA
+2022,"Cambridgeshire and Peterborough","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,9.7679913995,25.092185415
+2022,"Cheshire and Merseyside","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,7.491735961,20.89690245
+2022,"Cornwall and the Isles of Scilly","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,15.3256705,21.2077167
+2022,"Coventry and Warwickshire","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,10.2759376175,19.96685524
+2022,"Derby and Derbyshire","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,7.929094576,22.40451856
+2022,"Devon","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,9.761152783,24.22900262
+2022,"Dorset","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,8.79052958,NA
+2022,"Frimley","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,10.98852041,NA
+2022,"Gloucestershire","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,10.28092727,28.679322955
+2022,"North East and North Cumbria","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,7.914793825,18.92786234
+2022,"North West London","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,9.8188227,19.887120795
+2022,"Herefordshire and Worcestershire","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,8.957415565,NA
+2022,"Hertfordshire and West Essex","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,10.446106745,NA
+2022,"Humber and North Yorkshire","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,9.4952160125,26.078035695
+2022,"Kent and Medway","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,10.42935886,23.324461655
+2022,"Lancashire and South Cumbria","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,8.609822745,20.67945236
+2022,"Leicester, Leicestershire and Rutland","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,10.67389976,22.840809955
+2022,"Lincolnshire","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,9.375634494,22.69515292
+2022,"Mid and South Essex","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,10.47482014,22.3614592
+2022,"Norfolk and Waveney","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,10.40710454,28.04277712
+2022,"North Central London","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,9.4860416785,19.30705919
+2022,"North East London","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,10.24287223,18.407980755
+2022,"West Yorkshire","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,8.311395261,20.82695253
+2022,"Somerset","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,10.20649744,NA
+2022,"Northamptonshire","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,10.71608674,20.536349025
+2022,"Nottingham and Nottinghamshire","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,8.266206367,21.88223619
+2022,"Shropshire, Telford and Wrekin","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,8.927529467,21.59972317
+2022,"Staffordshire and Stoke-on-Trent","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,9.255776464,21.39407598
+2022,"South East London","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,10.141972962,16.13554887
+2022,"South West London","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,10.048425537,20.82316397
+2022,"South Yorkshire","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,7.521300585,21.46729686
+2022,"Suffolk and North East Essex","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,9.96621013,20.89872861
+2022,"Surrey Heartlands","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,9.872841931,NA
+2022,"Sussex","Smoking prevalence in adults (15+) - current smokers (QOF)",14.50211622,9.98185118,24.34699798
+2023,"Gloucestershire","Obesity: QOF prevalence (18+ yrs)",13.19029195,10.1219321885,12.772051715
+2023,"England","Obesity: QOF prevalence (18+ yrs)",13.19029195,10.27602512,16.042284725
+2023,"Bath and North East Somerset, Swindon and Wiltshire","Obesity: QOF prevalence (18+ yrs)",13.19029195,12.5631769,16.615941635
+2023,"Bedfordshire, Luton and Milton Keynes","Obesity: QOF prevalence (18+ yrs)",13.19029195,9.966342558,12.879183365
+2023,"Birmingham and Solihull","Obesity: QOF prevalence (18+ yrs)",13.19029195,7.819074334,15.98191748
+2023,"Black Country","Obesity: QOF prevalence (18+ yrs)",13.19029195,15.49314053,16.950418085
+2023,"Bristol, North Somerset and South Gloucestershire","Obesity: QOF prevalence (18+ yrs)",13.19029195,9.848419971,13.45431545
+2023,"Buckinghamshire, Oxfordshire and Berkshire West","Obesity: QOF prevalence (18+ yrs)",13.19029195,10.05319723,NA
+2023,"Cambridgeshire and Peterborough","Obesity: QOF prevalence (18+ yrs)",13.19029195,10.35705841,12.74538095
+2023,"Cheshire and Merseyside","Obesity: QOF prevalence (18+ yrs)",13.19029195,11.46350106,16.25899281
+2023,"Cornwall and the Isles of Scilly","Obesity: QOF prevalence (18+ yrs)",13.19029195,10.28766455,15.92895796
+2023,"Coventry and Warwickshire","Obesity: QOF prevalence (18+ yrs)",13.19029195,9.72554796,14.809835575
+2023,"Derby and Derbyshire","Obesity: QOF prevalence (18+ yrs)",13.19029195,12.13903743,12.20711343
+2023,"Devon","Obesity: QOF prevalence (18+ yrs)",13.19029195,11.07142857,15.17615176
+2023,"Dorset","Obesity: QOF prevalence (18+ yrs)",13.19029195,10.26109661,NA
+2023,"Frimley","Obesity: QOF prevalence (18+ yrs)",13.19029195,10.3180593,NA
+2023,"North East London","Obesity: QOF prevalence (18+ yrs)",13.19029195,10.62111866,16.04290278
+2023,"Greater Manchester","Obesity: QOF prevalence (18+ yrs)",13.19029195,10.07782101,16.48228059
+2023,"Hampshire and Isle of Wight","Obesity: QOF prevalence (18+ yrs)",13.19029195,10.944973305,12.777377435
+2023,"Herefordshire and Worcestershire","Obesity: QOF prevalence (18+ yrs)",13.19029195,11.7001056,NA
+2023,"Hertfordshire and West Essex","Obesity: QOF prevalence (18+ yrs)",13.19029195,9.6185059295,NA
+2023,"Humber and North Yorkshire","Obesity: QOF prevalence (18+ yrs)",13.19029195,12.0105127,14.202750595
+2023,"Kent and Medway","Obesity: QOF prevalence (18+ yrs)",13.19029195,8.806262231,15.31844802
+2023,"Lancashire and South Cumbria","Obesity: QOF prevalence (18+ yrs)",13.19029195,13.396706075,16.22758424
+2023,"Leicester, Leicestershire and Rutland","Obesity: QOF prevalence (18+ yrs)",13.19029195,11.421634895,13.4331745
+2023,"Lincolnshire","Obesity: QOF prevalence (18+ yrs)",13.19029195,14.92277227,16.48912885
+2023,"Mid and South Essex","Obesity: QOF prevalence (18+ yrs)",13.19029195,9.186303387,12.30366492
+2023,"Norfolk and Waveney","Obesity: QOF prevalence (18+ yrs)",13.19029195,11.24337759,15.66986627
+2023,"North Central London","Obesity: QOF prevalence (18+ yrs)",13.19029195,6.551122738,16.2668227
+2023,"Sussex","Obesity: QOF prevalence (18+ yrs)",13.19029195,8.754075298,13.229770875
+2023,"North East and North Cumbria","Obesity: QOF prevalence (18+ yrs)",13.19029195,11.356491825,17.77902412
+2023,"North West London","Obesity: QOF prevalence (18+ yrs)",13.19029195,10.86505728,15.686511995
+2023,"Northamptonshire","Obesity: QOF prevalence (18+ yrs)",13.19029195,12.00227531,9.0971001335
+2023,"Nottingham and Nottinghamshire","Obesity: QOF prevalence (18+ yrs)",13.19029195,10.0131406,13.1064338
+2023,"Shropshire, Telford and Wrekin","Obesity: QOF prevalence (18+ yrs)",13.19029195,10.88159715,14.41684618
+2023,"Somerset","Obesity: QOF prevalence (18+ yrs)",13.19029195,9.874544719,NA
+2023,"South East London","Obesity: QOF prevalence (18+ yrs)",13.19029195,9.6090128125,19.173074385
+2023,"South West London","Obesity: QOF prevalence (18+ yrs)",13.19029195,7.462187999,13.65204534
+2023,"South Yorkshire","Obesity: QOF prevalence (18+ yrs)",13.19029195,5.2610685995,16.435423795
+2023,"Staffordshire and Stoke-on-Trent","Obesity: QOF prevalence (18+ yrs)",13.19029195,11.46445443,16.898295995
+2023,"Suffolk and North East Essex","Obesity: QOF prevalence (18+ yrs)",13.19029195,11.668268555,16.92441133
+2023,"Surrey Heartlands","Obesity: QOF prevalence (18+ yrs)",13.19029195,8.88681074,NA
+2023,"West Yorkshire","Obesity: QOF prevalence (18+ yrs)",13.19029195,10.84726011,16.00271557
+2023,"England","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,9.400815216,19.139537065
+2023,"Bath and North East Somerset, Swindon and Wiltshire","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,10.05476759,17.928199235
+2023,"Bedfordshire, Luton and Milton Keynes","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,10.48886849,19.759730605
+2023,"Birmingham and Solihull","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,8.068295949,16.405854165
+2023,"Black Country","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,8.3837911315,16.754214975
+2023,"Bristol, North Somerset and South Gloucestershire","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,10.67125645,23.423961505
+2023,"Buckinghamshire, Oxfordshire and Berkshire West","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,9.8236310325,NA
+2023,"Cambridgeshire and Peterborough","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,9.558151346,23.82003966
+2023,"Cheshire and Merseyside","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,7.115732369,19.80724493
+2023,"Cornwall and the Isles of Scilly","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,16.41366224,19.94123147
+2023,"Coventry and Warwickshire","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,9.8025810385,18.98798711
+2023,"Derby and Derbyshire","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,7.598343685,20.86272382
+2023,"Devon","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,9.526116872,23.13228732
+2023,"Dorset","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,8.861213153,NA
+2023,"Frimley","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,10.63472047,NA
+2023,"Gloucestershire","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,9.883114094,26.81491351
+2023,"Greater Manchester","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,7.336708441,18.543521205
+2023,"Hampshire and Isle of Wight","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,9.350392134,21.09205165
+2023,"Herefordshire and Worcestershire","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,8.186889819,NA
+2023,"Hertfordshire and West Essex","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,9.9750881595,NA
+2023,"Humber and North Yorkshire","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,9.2983623195,24.64110945
+2023,"Kent and Medway","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,9.884075656,22.41514156
+2023,"Lancashire and South Cumbria","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,8.2671320375,19.943502665
+2023,"Leicester, Leicestershire and Rutland","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,10.30473498,21.10607043
+2023,"Lincolnshire","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,8.9645508825,21.94004581
+2023,"Mid and South Essex","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,10.07033605,21.49155033
+2023,"Norfolk and Waveney","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,9.805432479,27.00141443
+2023,"North Central London","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,9.429243895,18.86471145
+2023,"North East London","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,9.5002294385,17.63983477
+2023,"North East and North Cumbria","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,7.404590652,18.27849784
+2023,"North West London","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,9.3864725895,18.955289215
+2023,"Northamptonshire","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,10.50640635,19.600188935
+2023,"Nottingham and Nottinghamshire","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,7.767890248,20.81742645
+2023,"Shropshire, Telford and Wrekin","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,8.635578584,20.48572723
+2023,"Somerset","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,9.679503748,NA
+2023,"South East London","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,9.694111018,16.07964327
+2023,"South West London","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,9.5196269195,19.80230285
+2023,"South Yorkshire","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,7.074851051,20.336104425
+2023,"Staffordshire and Stoke-on-Trent","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,8.728213508,20.243916705
+2023,"Suffolk and North East Essex","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,9.671130415,20.54989219
+2023,"Surrey Heartlands","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,9.3103136285,NA
+2023,"Sussex","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,9.804869234,23.24336463
+2023,"West Yorkshire","Smoking prevalence in adults (15+) - current smokers (QOF)",13.85574837,7.8779004405,19.42275964
