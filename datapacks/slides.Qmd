@@ -1,0 +1,99 @@
+---
+title: "Primary Care Equity Datapack"
+subtitle: "Data from latest period for {{ params.ICB_NAME }}"
+#author: "Health Equity Evidence Centre"
+format:
+  pptx:
+    reference-doc: "template.pptx"
+    fig-width: 12
+    fig-height: 8
+    fig-fullwidth: TRUE
+params:
+  ICB_NAME: England
+---
+
+```{r setup, include=FALSE}
+
+# Setup code
+library(ggplot2)
+library(showtext)
+library(patchwork)
+library(ggtext)
+font_add_google("Poppins", family = "Poppins")
+
+showtext_auto()
+
+ggplot + theme_set(theme_minimal() + theme(
+  axis.title = element_text(size = 80, family = "Poppins"),
+  axis.text = element_text(size = 80, family = "Poppins"),
+  plot.caption = element_text(size = 60, family = "Poppins"),
+  plot.title = element_text(size = 100, family = "Poppins"),
+  plot.subtitle = element_text(size = 90, family = "Poppins"),
+  panel.grid = element_line(size = 5),
+  legend.title = element_text(size = 60, family = "Poppins"),
+  legend.text = element_text(size = 60, family = "Poppins"),
+  legend.key.width = unit(3.5, "cm"),
+  plot.title.position = "plot"
+))
+
+update_geom_defaults("point", list(size = 50))
+
+pks <- c(
+  "fingertipsR", "tidyverse", "purrr", "tibble",
+  "spatstat", "lubridate", "readODS", "janitor", "patchwork", "gdata"
+)
+
+sapply(pks, library, character.only = T)
+"%ni%" <- Negate("%in%")
+
+df <- read.csv("final_data.csv")
+```
+
+## Introduction
+Primary care (in contrast to specialty care) is associated with a more equitable distribution of health in populations.
+
+A key role of commissioners is to ensure the equitable distribution of resources across the system.
+
+We present the latest NHS primary care data, using Index of Multiple Deprivation (IMD) to examine inequalities in patient health determinants and outcomes, according to the following categories:
+
+Resources (supply): Payments, Workforce
+Population (demand): Disease prevalence, Health-related behaviours
+Service quality: QOF achievement
+Access: Patient experience, Appointments
+Impact on secondary care: Emergency admissions, A&E attendances
+For further information or to discuss the results, please contact Dr John Ford
+
+## Inequality in Life Expectancy
+Average life expectancy for men is in the least deprived 20%.
+      
+```{r Life_Expectancy}
+year <- 2019
+
+df_filter <- df %>%
+  filter(ICB.NAME == params$ICB_NAME) %>%
+  filter(Year == year) %>%
+  filter(Indicator %in% c("Life_Expectancy_Female", "Life_Expectancy_Male"))
+
+df_filter %>%
+  ggplot(., aes(x = Indicator)) +
+  geom_linerange(aes(x = Indicator, ymin = quin_5, ymax = quin_1)) +
+  geom_point(aes(y = quin_1, color = "Least deprived")) +
+  geom_point(aes(y = quin_5, color = "Most deprived")) +
+  geom_point(aes(y = avg, color = "National average"), size = 15, shape = 18) +
+  scale_x_discrete(labels = c(
+    "Life_Expectancy_Female" = "Female",
+    "Life_Expectancy_Male" = "Male"
+  )) +
+  scale_color_manual(values = c("Least deprived" = "#28B788", "Most deprived" = "#007AA8", "National average" = "#A80026")) +
+  labs(
+    x = NULL, y = NULL,
+    title = paste0("Life expectancy by practice, birth cohort 2015-19 (", params$ICB_NAME, ")"),
+    subtitle = "Practices in most and least deprived IMD quintiles. Larger circles represent stronger socio-economic gradient.",
+    colour = "",
+    caption = "Source: NHS England GP Workforce statistics, 2024. © Health Equity Evidence Centre, 2024."
+  ) +
+  coord_flip() +
+  guides(colour = guide_legend(override.aes = list(size = 50, shape = c(16, 16, 18))))
+```
+
+

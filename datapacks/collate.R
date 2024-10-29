@@ -363,6 +363,42 @@ df <- bind_rows(df, workforce_wide)
 
 write.csv(df, "final_data.csv", row.names = FALSE)
 
+### PCN Workforce -----------------
+pcn <- read.csv("../data/pcn_workforce/pcn_workforce.csv") %>% select(-X)
+
+pcn_england <- pcn %>%
+  filter(STAFF_GROUP == "Other Direct Patient Care staff") %>%
+  group_by(Year, IMD_quintile) %>%
+  summarise("Value" = sum(FTE, na.rm = TRUE))
+
+
+pcn %<>%
+  filter(STAFF_GROUP == "Other Direct Patient Care staff") %>%
+  group_by(Year, ICB_NAME, IMD_quintile) %>%
+  summarise("Value" = sum(FTE, na.rm = TRUE))
+
+pcn <- bind_rows(pcn, pcn_england)
+
+pcn_edge_handled <- pcn %>%
+  # First, we identify if quintile 1 or 5 is missing, and replace them with 2 or 4, respectively.
+  mutate(
+    IMD_quintile = case_when(
+      IMD_quintile == 2 & !any(IMD_quintile == 1) ~ 1, # Replace quintile 2 with 1 if 1 is missing
+      IMD_quintile == 4 & !any(IMD_quintile == 5) ~ 5, # Replace quintile 4 with 5 if 5 is missing
+      TRUE ~ IMD_quintile # Otherwise, keep the original quintile
+    )
+  )
+
+pcn_wide <- pcn_edge_handled %>%
+  filter(IMD_quintile %in% c(1, 5)) %>%
+  pivot_wider(
+    names_from = IMD_quintile,
+    values_from = Value,
+    names_prefix = "quin_"
+  )
+
+
+
 ### Render ---------------------------------------------------------
 df <- read.csv("final_data.csv")
 
