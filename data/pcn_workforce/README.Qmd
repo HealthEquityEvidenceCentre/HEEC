@@ -1,5 +1,5 @@
 ---
-title: "General Practice Workforce"
+title: "Primary Care Network"
 author: "Cameron Appel"
 date: "2024-08-20"
 format: gfm
@@ -12,20 +12,7 @@ library(dplyr)
 library(magrittr)
 ```
 
-# General Practice Workforce
-General Practice Workforce
-NHS Digital provides public CSVs on the primary care general practice workforce.
-
-Data is reported annually from September 2015-2020, quarterly from December 2020-June 2021, and monthly from July 2021 henceforth.
-
-The practice-level headcount of fully-qualified permanent GPs (excluding GPs in training & locums) is denoted by the TOTAL_GP_EXTGL_HC column.
-The practice-level FTE of administrative staff is denoted by the TOTAL_ADMIN_FTE column. These figures are broken down further by role type:
-- Manager
-- Management Partner
-- Medical Secretary
-- Receptionist
-- Telephonist
-- Estates and Ancillary
+# Primary Care Network
 
 ```{r 1}
 # List all relevant files from the raw directory
@@ -35,15 +22,17 @@ files <- list.files("raw", pattern = "Primary Care Networks.*Individual Level.cs
 pcn <- lapply(files, function(file) {
   df <- read.csv(file)
   df <- df %>% 
-    select(CENSUS_YEAR, 
+    select(CENSUS_YEAR, CENSUS_MONTH,
            PCN_CODE, PCN_NAME, 
            ICB_CODE, ICB_NAME, STAFF_GROUP, 
            FTE)
   return(df)
 }) %>% 
   bind_rows()
-  
-pcn %<>% rename(Year = CENSUS_YEAR)
+
+pcn %<>% group_by(CENSUS_YEAR, PCN_CODE, ICB_NAME, STAFF_GROUP) %>% summarise(FTE = sum(FTE, na.rm = TRUE)) %>% rename(Year = CENSUS_YEAR)
+
+pcn %>% head()
 ```
 
 # Get IMD from fingertipsR
@@ -79,5 +68,5 @@ pcn <- merge(pcn, IMD, by = "PCN_CODE") %>%
 # View the updated data frame
 head(pcn)
 
-write.csv(pcn, "pcn_workforce.csv")
+write.csv(pcn, "pcn_workforce.csv", row.names = FALSE)
 ```

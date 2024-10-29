@@ -1,5 +1,6 @@
 # Hide the .Rmd files used to create the .md files
 *.Rmd
+*.Qmd
 *.Rhistory
 *.dcf
 # README_files
