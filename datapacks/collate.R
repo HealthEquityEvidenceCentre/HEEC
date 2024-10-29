@@ -424,6 +424,49 @@ df <- bind_rows(df, pcn)
 
 write.csv(df, "final_data.csv", row.names = FALSE)
 
+### Behaviours ---------------------------------------------------------
+#Smoking
+prev <- read.csv("../data/behaviours/behaviours.csv")
+
+prev %<>% select(-c(IMD, Area.Name, Practice.Code)) %>% rename(ICB.NAME = ICB_NAME)
+
+avg <- prev %>% group_by(Year, Indicator) %>% summarise(avg = median(Value, na.rm = TRUE))
+
+prev_england <- prev %>% group_by(Year, Indicator, IMD_quintile) %>% summarise(Value = median(Value, na.rm = TRUE)) %>% mutate(ICB.NAME = "England")
+
+prev_agg <- prev %>% group_by(Year, Indicator, IMD_quintile, ICB.NAME) %>% summarise(Value = median(Value, na.rm = TRUE))
+
+# Check if quintiles 1 and 5 are present in the data
+quintile_1_present <- any(prev_agg$IMD_quintile == 1)
+quintile_5_present <- any(prev_agg$IMD_quintile == 5)
+
+prev_edge_handled <- prev_agg %>%
+  # Then use the flags to conditionally replace quintiles
+  mutate(
+    IMD_quintile = case_when(
+      IMD_quintile == 2 & !quintile_1_present ~ 1, # Replace quintile 2 with 1 if 1 is missing
+      IMD_quintile == 4 & !quintile_5_present ~ 5, # Replace quintile 4 with 5 if 5 is missing
+      TRUE ~ IMD_quintile # Otherwise, keep the original quintile
+    )
+  ) %>%
+  ungroup()
+
+prev <- bind_rows(prev_england, prev_edge_handled)
+
+prev %<>%
+  filter(IMD_quintile %in% c(1, 5)) %>%
+  pivot_wider(
+    names_from = IMD_quintile,
+    values_from = Value,
+    names_prefix = "quin_"
+  )
+
+prev <- merge(prev, avg, by = c("Year", "Indicator")) 
+
+df <- bind_rows(df, prev)
+
+write.csv(df, "final_data.csv", row.names = FALSE)
+
 ### Prevalence ---------------------------------------------------------
 
 
