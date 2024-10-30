@@ -713,6 +713,156 @@ df <- bind_rows(df, cqc)
 write.csv(df, "final_data.csv", row.names = FALSE)
 
 ### Appointments ---------------------------------------------------------
+appt <- read.csv("../data/appointments/appointments.csv")
+
+n_w_patients <- payments[, c("Practice.Code", "Year", "Number.of.Weighted.Patients..Last.Known.Figure.")] %>%
+  mutate(Year = ifelse(Year == 2023, 2024, Year))
+
+appt <- merge(appt, n_w_patients, by = c("Year", "Practice.Code"))
+
+appt_mar <- appt %>% filter(Month == 3)
+
+avg <- appt_mar %>%
+  mutate(APPT_MODE = case_when(
+    APPT_STATUS == "DNA" ~ "DNA",
+    TRUE ~ as.character(APPT_MODE)
+  )) %>%
+  group_by(Practice.Code, APPT_MODE) %>%
+  summarise(
+    count = sum(COUNT_OF_APPOINTMENTS),
+    patients = unique(Number.of.Weighted.Patients..Last.Known.Figure.)
+  ) %>%
+  group_by(APPT_MODE) %>%
+  summarise(
+    count = sum(count),
+    patients = sum(patients, na.rm = TRUE),
+    avg = (count / patients) * 10000
+  ) %>%
+  select(-c(count, patients)) %>%
+  rename(Indicator = APPT_MODE) %>%
+  mutate(Year = 2024)
+
+appt_england <- appt_mar %>%
+  mutate(APPT_MODE = case_when(
+    APPT_STATUS == "DNA" ~ "DNA",
+    TRUE ~ as.character(APPT_MODE)
+  )) %>%
+  group_by(Practice.Code, APPT_MODE, IMD_quintile) %>%
+  summarise(
+    count = sum(COUNT_OF_APPOINTMENTS),
+    patients = unique(Number.of.Weighted.Patients..Last.Known.Figure.)
+  ) %>%
+  group_by(APPT_MODE, IMD_quintile) %>%
+  summarise(
+    count = sum(count),
+    patients = sum(patients, na.rm = TRUE),
+    Value = (count / patients) * 10000
+  ) %>%
+  select(-c(count, patients)) %>%
+  rename(Indicator = APPT_MODE) %>%
+  mutate(Year = 2024, ICB_NAME = "England")
+  
+appt_agg <- appt_mar %>%
+  mutate(APPT_MODE = case_when(
+    APPT_STATUS == "DNA" ~ "DNA",
+    TRUE ~ as.character(APPT_MODE)
+  )) %>%
+  group_by(Practice.Code, APPT_MODE, IMD_quintile, ICB_NAME) %>%
+  summarise(
+    count = sum(COUNT_OF_APPOINTMENTS),
+    patients = unique(Number.of.Weighted.Patients..Last.Known.Figure.)
+  ) %>%
+  group_by(APPT_MODE, IMD_quintile, ICB_NAME) %>%
+  summarise(
+    count = sum(count),
+    patients = sum(patients, na.rm = TRUE),
+    Value = (count / patients) * 10000
+  ) %>%
+  select(-c(count, patients)) %>%
+  rename(Indicator = APPT_MODE) %>%
+  mutate(Year = 2024)
+
+# Check if quintiles 1 and 5 are present in the data
+quintile_1_present <- any(appt_agg$IMD_quintile == 1)
+quintile_5_present <- any(appt_agg$IMD_quintile == 5)
+
+appt_edge_handled <- appt_agg %>%
+  # Then use the flags to conditionally replace quintiles
+  mutate(
+    IMD_quintile = case_when(
+      IMD_quintile == 2 & !quintile_1_present ~ 1, # Replace quintile 2 with 1 if 1 is missing
+      IMD_quintile == 4 & !quintile_5_present ~ 5, # Replace quintile 4 with 5 if 5 is missing
+      TRUE ~ IMD_quintile # Otherwise, keep the original quintile
+    )
+  ) %>%
+  ungroup()
+
+appt <- bind_rows(appt_england, appt_edge_handled)
+
+appt %<>%
+  filter(IMD_quintile %in% c(1, 5)) %>%
+  pivot_wider(
+    names_from = IMD_quintile,
+    values_from = Value,
+    names_prefix = "quin_"
+  ) %>%
+  rename(ICB.NAME = ICB_NAME)
+
+appt <- merge(appt, avg, by = c("Year", "Indicator"))
+
+df <- bind_rows(df, appt)
+
+write.csv(df, "final_data.csv", row.names = FALSE)
+
+### Secondary care impact ---------------------------------------------------------
+sec <- read.csv("../data/secondary_care/secondary_care.csv") %>% 
+  rename(ICB.NAME = ICB_NAME) %>%
+  select(-c(Practice.Code, Area.Name, IMD)) %>%
+  mutate(Value = as.numeric(Value))
+
+avg <- sec %>%
+  group_by(Year, Indicator) %>%
+  summarise(avg = median(Value, na.rm = TRUE))
+
+sec_england <- sec %>%
+  group_by(Year, Indicator, IMD_quintile) %>%
+  summarise(Value = median(Value, na.rm = TRUE)) %>%
+  mutate(ICB.NAME = "England")
+
+sec_agg <- sec %>%
+  group_by(Year, Indicator, IMD_quintile, ICB.NAME) %>%
+  summarise(Value = median(Value, na.rm = TRUE))
+
+# Check if quintiles 1 and 5 are present in the data
+quintile_1_present <- any(sec_agg$IMD_quintile == 1)
+quintile_5_present <- any(sec_agg$IMD_quintile == 5)
+
+sec_edge_handled <- sec_agg %>%
+  # Then use the flags to conditionally replace quintiles
+  mutate(
+    IMD_quintile = case_when(
+      IMD_quintile == 2 & !quintile_1_present ~ 1, # Replace quintile 2 with 1 if 1 is missing
+      IMD_quintile == 4 & !quintile_5_present ~ 5, # Replace quintile 4 with 5 if 5 is missing
+      TRUE ~ IMD_quintile # Otherwise, keep the original quintile
+    )
+  ) %>%
+  ungroup()
+
+sec <- bind_rows(sec_england, sec_edge_handled)
+
+sec %<>%
+  filter(IMD_quintile %in% c(1, 5)) %>%
+  pivot_wider(
+    names_from = IMD_quintile,
+    values_from = Value,
+    names_prefix = "quin_"
+  )
+
+sec <- merge(sec, avg, by = c("Year", "Indicator"))
+
+df <- bind_rows(df, sec)
+
+write.csv(df, "final_data.csv", row.names = FALSE)
 
 ### Render ---------------------------------------------------------
 df <- read.csv("final_data.csv")

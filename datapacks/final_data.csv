@@ -12830,3 +12830,819 @@
 2024,"Surrey Heartlands","cqc_rating",0.943971745063413,0.951807228915663,NA
 2024,"Sussex","cqc_rating",0.943971745063413,0.875,0.777777777777778
 2024,"West Yorkshire","cqc_rating",0.943971745063413,1,0.950980392156863
+2024,"England","DNA",62.9882448005051,54.693664348445,77.4235586700399
+2024,"South West London","DNA",62.9882448005051,84.1946208399452,78.7754801008643
+2024,"South Yorkshire","DNA",62.9882448005051,41.3132574243075,66.2871296142183
+2024,"Staffordshire and Stoke-on-Trent","DNA",62.9882448005051,53.1859257890129,79.6135626038797
+2024,"Suffolk and North East Essex","DNA",62.9882448005051,38.7420143794614,37.981681575649
+2024,"Surrey Heartlands","DNA",62.9882448005051,61.8082249400869,NA
+2024,"Bath and North East Somerset, Swindon and Wiltshire","DNA",62.9882448005051,39.0953344907109,80.1038758790443
+2024,"Bedfordshire, Luton and Milton Keynes","DNA",62.9882448005051,45.2957073285953,28.8254618286277
+2024,"Birmingham and Solihull","DNA",62.9882448005051,54.3439015245257,107.416336754997
+2024,"Black Country","DNA",62.9882448005051,58.7792273364849,89.7514103295622
+2024,"Bristol, North Somerset and South Gloucestershire","DNA",62.9882448005051,52.5119812383361,90.0515237243295
+2024,"Buckinghamshire, Oxfordshire and Berkshire West","DNA",62.9882448005051,58.8215214990346,95.111192371159
+2024,"Cambridgeshire and Peterborough","DNA",62.9882448005051,42.3843212050763,65.731999139048
+2024,"Cheshire and Merseyside","DNA",62.9882448005051,49.1266625161605,79.9585837997838
+2024,"Cornwall and the Isles of Scilly","DNA",62.9882448005051,77.1548907123666,98.084635613198
+2024,"Coventry and Warwickshire","DNA",62.9882448005051,58.7856006027914,104.658498206962
+2024,"Derby and Derbyshire","DNA",62.9882448005051,35.7300016323424,47.1595778680328
+2024,"Devon","DNA",62.9882448005051,73.1243363593099,61.2753431780938
+2024,"Dorset","DNA",62.9882448005051,33.4767320308787,44.6298501279108
+2024,"Frimley","DNA",62.9882448005051,110.846569515689,NA
+2024,"Gloucestershire","DNA",62.9882448005051,40.4489024354406,101.266765760659
+2024,"Greater Manchester","DNA",62.9882448005051,51.9709858288428,100.814941515843
+2024,"Hampshire and Isle of Wight","DNA",62.9882448005051,86.2408139180566,56.9119693105131
+2024,"Herefordshire and Worcestershire","DNA",62.9882448005051,47.5783099205213,114.275116406066
+2024,"Hertfordshire and West Essex","DNA",62.9882448005051,56.8694028811072,NA
+2024,"Humber and North Yorkshire","DNA",62.9882448005051,44.6398936602909,50.6718434402024
+2024,"Kent and Medway","DNA",62.9882448005051,40.8563478072616,61.9115151964417
+2024,"Lancashire and South Cumbria","DNA",62.9882448005051,38.1172643405914,69.3964468991329
+2024,"Leicester, Leicestershire and Rutland","DNA",62.9882448005051,43.6827554036525,67.084360389683
+2024,"Lincolnshire","DNA",62.9882448005051,23.8716437218145,32.953311850749
+2024,"Mid and South Essex","DNA",62.9882448005051,35.0503629903217,35.5295204647298
+2024,"Norfolk and Waveney","DNA",62.9882448005051,25.9490784389654,81.2317890690266
+2024,"North Central London","DNA",62.9882448005051,86.6084234155107,100.130393599529
+2024,"North East London","DNA",62.9882448005051,87.4828761722856,106.040482599409
+2024,"North East and North Cumbria","DNA",62.9882448005051,41.3329791848526,54.2643882006166
+2024,"North West London","DNA",62.9882448005051,75.6350885761353,84.5142422911494
+2024,"Northamptonshire","DNA",62.9882448005051,35.318381775364,30.5597009223936
+2024,"Nottingham and Nottinghamshire","DNA",62.9882448005051,36.5308087957288,79.4689773737869
+2024,"Shropshire, Telford and Wrekin","DNA",62.9882448005051,52.7498558983278,44.7687872818099
+2024,"Somerset","DNA",62.9882448005051,52.8784444168861,NA
+2024,"South East London","DNA",62.9882448005051,52.2805000547689,103.822102310863
+2024,"Sussex","DNA",62.9882448005051,37.7821601200957,105.517040760071
+2024,"West Yorkshire","DNA",62.9882448005051,35.6806649416282,51.3531094169241
+2024,"England","Face-to-Face",1291.55042888818,1371.7132134771,1265.5466060815
+2024,"South Yorkshire","Face-to-Face",1291.55042888818,1611.21703954799,1353.15008073205
+2024,"Staffordshire and Stoke-on-Trent","Face-to-Face",1291.55042888818,1328.73114600482,1230.66615348038
+2024,"South East London","Face-to-Face",1291.55042888818,1630.93900078435,981.061821726498
+2024,"South West London","Face-to-Face",1291.55042888818,1431.49380096958,1111.05148612058
+2024,"Bath and North East Somerset, Swindon and Wiltshire","Face-to-Face",1291.55042888818,1478.2973119237,1696.61187109991
+2024,"Bedfordshire, Luton and Milton Keynes","Face-to-Face",1291.55042888818,1281.43315988505,930.366630055017
+2024,"Birmingham and Solihull","Face-to-Face",1291.55042888818,1381.64390472826,1535.72106460311
+2024,"Black Country","Face-to-Face",1291.55042888818,1450.87430929122,1386.5780427237
+2024,"Bristol, North Somerset and South Gloucestershire","Face-to-Face",1291.55042888818,1225.77032840764,1207.88534619844
+2024,"Buckinghamshire, Oxfordshire and Berkshire West","Face-to-Face",1291.55042888818,1249.8908064095,605.756720344469
+2024,"Cambridgeshire and Peterborough","Face-to-Face",1291.55042888818,1429.619860129,1238.7842536979
+2024,"Cheshire and Merseyside","Face-to-Face",1291.55042888818,1421.61586216313,1176.82128442518
+2024,"Cornwall and the Isles of Scilly","Face-to-Face",1291.55042888818,3113.42676639314,692.306117386359
+2024,"Coventry and Warwickshire","Face-to-Face",1291.55042888818,1365.41938982528,1198.59959506811
+2024,"Derby and Derbyshire","Face-to-Face",1291.55042888818,1737.17923258968,1199.42778702886
+2024,"Devon","Face-to-Face",1291.55042888818,1112.31708504452,1082.62752144058
+2024,"Dorset","Face-to-Face",1291.55042888818,1479.06897458828,1662.2513991037
+2024,"Frimley","Face-to-Face",1291.55042888818,1167.78426874282,NA
+2024,"Gloucestershire","Face-to-Face",1291.55042888818,1315.08710507058,1704.65722363776
+2024,"Greater Manchester","Face-to-Face",1291.55042888818,1429.57871163976,1177.88613678912
+2024,"Hampshire and Isle of Wight","Face-to-Face",1291.55042888818,1218.94734302971,1344.61176090633
+2024,"Herefordshire and Worcestershire","Face-to-Face",1291.55042888818,1328.82700954871,1448.10926199818
+2024,"Hertfordshire and West Essex","Face-to-Face",1291.55042888818,1396.38905476803,NA
+2024,"Humber and North Yorkshire","Face-to-Face",1291.55042888818,1439.75899236771,1267.86947573632
+2024,"Kent and Medway","Face-to-Face",1291.55042888818,1163.70684952166,849.388872516045
+2024,"Lancashire and South Cumbria","Face-to-Face",1291.55042888818,1327.44887914681,1010.13479249926
+2024,"Leicester, Leicestershire and Rutland","Face-to-Face",1291.55042888818,1407.09134694739,1448.90500649507
+2024,"Lincolnshire","Face-to-Face",1291.55042888818,1140.93022731902,782.383708706454
+2024,"Mid and South Essex","Face-to-Face",1291.55042888818,1665.11984179996,1376.42640977758
+2024,"Norfolk and Waveney","Face-to-Face",1291.55042888818,1310.74713406086,1489.5211444898
+2024,"North Central London","Face-to-Face",1291.55042888818,1238.57635316807,1304.8153273593
+2024,"North East London","Face-to-Face",1291.55042888818,1677.47126019942,1530.18623458467
+2024,"North East and North Cumbria","Face-to-Face",1291.55042888818,1481.5054880098,1177.44148579495
+2024,"North West London","Face-to-Face",1291.55042888818,1795.42560953635,1547.01679190613
+2024,"Northamptonshire","Face-to-Face",1291.55042888818,1465.10957939262,939.201475014898
+2024,"Nottingham and Nottinghamshire","Face-to-Face",1291.55042888818,1462.9398825519,1331.06745642249
+2024,"Shropshire, Telford and Wrekin","Face-to-Face",1291.55042888818,1338.25054585758,1067.62516037966
+2024,"Somerset","Face-to-Face",1291.55042888818,1678.89061023613,NA
+2024,"Suffolk and North East Essex","Face-to-Face",1291.55042888818,1058.38244063732,1138.69297783634
+2024,"Surrey Heartlands","Face-to-Face",1291.55042888818,1422.46308422061,NA
+2024,"Sussex","Face-to-Face",1291.55042888818,1304.11786671179,966.916858218818
+2024,"West Yorkshire","Face-to-Face",1291.55042888818,1490.5800510416,1379.07165143878
+2024,"England","Home Visit",38.0930727979487,44.9747933069295,34.3287845151767
+2024,"South East London","Home Visit",38.0930727979487,23.5385326566832,16.0230759567097
+2024,"South West London","Home Visit",38.0930727979487,51.7796316531094,1.35102454946709
+2024,"South Yorkshire","Home Visit",38.0930727979487,48.2522257694536,51.1945700995552
+2024,"Bath and North East Somerset, Swindon and Wiltshire","Home Visit",38.0930727979487,37.4451538628714,NA
+2024,"Bedfordshire, Luton and Milton Keynes","Home Visit",38.0930727979487,25.0591247657615,NA
+2024,"Birmingham and Solihull","Home Visit",38.0930727979487,53.4840790690145,29.2052196681171
+2024,"Black Country","Home Visit",38.0930727979487,62.0410012235864,35.3145843807147
+2024,"Bristol, North Somerset and South Gloucestershire","Home Visit",38.0930727979487,54.2602756164204,14.1132355290912
+2024,"Buckinghamshire, Oxfordshire and Berkshire West","Home Visit",38.0930727979487,39.5048545686832,NA
+2024,"Cambridgeshire and Peterborough","Home Visit",38.0930727979487,19.9174793931891,0.458276869804
+2024,"Cheshire and Merseyside","Home Visit",38.0930727979487,67.8277061847396,34.6527911251842
+2024,"Coventry and Warwickshire","Home Visit",38.0930727979487,33.4927352250501,7.96626736040156
+2024,"Derby and Derbyshire","Home Visit",38.0930727979487,26.1550275465069,34.247851702773
+2024,"Devon","Home Visit",38.0930727979487,34.8357812243268,21.1056956685595
+2024,"Dorset","Home Visit",38.0930727979487,33.6388040424031,NA
+2024,"Frimley","Home Visit",38.0930727979487,120.077647642262,NA
+2024,"Gloucestershire","Home Visit",38.0930727979487,46.2310448321602,NA
+2024,"Greater Manchester","Home Visit",38.0930727979487,56.0613078559797,37.6775731546762
+2024,"Hampshire and Isle of Wight","Home Visit",38.0930727979487,30.3590853404746,22.3011612533253
+2024,"Herefordshire and Worcestershire","Home Visit",38.0930727979487,74.0289821727437,84.3013153815243
+2024,"Hertfordshire and West Essex","Home Visit",38.0930727979487,27.9328315850707,NA
+2024,"Humber and North Yorkshire","Home Visit",38.0930727979487,71.7082746246081,26.7507822008113
+2024,"Kent and Medway","Home Visit",38.0930727979487,30.5795711954109,19.1229619001933
+2024,"Lancashire and South Cumbria","Home Visit",38.0930727979487,55.7519873129705,31.5262568795773
+2024,"Leicester, Leicestershire and Rutland","Home Visit",38.0930727979487,43.1002969450829,10.5411782343409
+2024,"Lincolnshire","Home Visit",38.0930727979487,30.0852179237318,NA
+2024,"Mid and South Essex","Home Visit",38.0930727979487,22.4562224338502,27.449823908165
+2024,"Norfolk and Waveney","Home Visit",38.0930727979487,34.8137113802271,83.3375002083438
+2024,"North Central London","Home Visit",38.0930727979487,10.9827061915226,31.1572664237923
+2024,"North East London","Home Visit",38.0930727979487,53.081302187135,16.3645773268326
+2024,"North East and North Cumbria","Home Visit",38.0930727979487,39.0111942546603,41.7880849957175
+2024,"North West London","Home Visit",38.0930727979487,50.9094275003471,13.3537619707639
+2024,"Northamptonshire","Home Visit",38.0930727979487,15.2423002071083,NA
+2024,"Nottingham and Nottinghamshire","Home Visit",38.0930727979487,20.8148377350614,46.8485413702282
+2024,"Shropshire, Telford and Wrekin","Home Visit",38.0930727979487,146.997895211644,70.8179317161186
+2024,"Somerset","Home Visit",38.0930727979487,17.9195509903539,NA
+2024,"Suffolk and North East Essex","Home Visit",38.0930727979487,75.1496869991755,NA
+2024,"Surrey Heartlands","Home Visit",38.0930727979487,42.6482673230185,NA
+2024,"Sussex","Home Visit",38.0930727979487,51.6001630098025,14.7610478784336
+2024,"Staffordshire and Stoke-on-Trent","Home Visit",38.0930727979487,45.6898289565886,33.8416882717904
+2024,"West Yorkshire","Home Visit",38.0930727979487,20.5415631290016,45.4653268492143
+2024,"England","Telephone",741.536246732305,797.778701247083,657.051661448361
+2024,"Somerset","Telephone",741.536246732305,940.166151626421,NA
+2024,"South East London","Telephone",741.536246732305,592.500533775425,983.571806617529
+2024,"Bath and North East Somerset, Swindon and Wiltshire","Telephone",741.536246732305,673.140443552892,119.272315187548
+2024,"Bedfordshire, Luton and Milton Keynes","Telephone",741.536246732305,434.41850641829,1052.62634746609
+2024,"Birmingham and Solihull","Telephone",741.536246732305,654.80133491384,735.412972857837
+2024,"Black Country","Telephone",741.536246732305,341.257816262901,679.165798641986
+2024,"Bristol, North Somerset and South Gloucestershire","Telephone",741.536246732305,876.890104147127,882.303378328622
+2024,"Buckinghamshire, Oxfordshire and Berkshire West","Telephone",741.536246732305,928.582162235486,1626.12436665642
+2024,"Cambridgeshire and Peterborough","Telephone",741.536246732305,659.109281362948,774.689572390731
+2024,"Cheshire and Merseyside","Telephone",741.536246732305,458.159361683569,729.777178238807
+2024,"Cornwall and the Isles of Scilly","Telephone",741.536246732305,217.849103187859,787.53391895257
+2024,"Coventry and Warwickshire","Telephone",741.536246732305,1175.15214919294,1129.20203488029
+2024,"Derby and Derbyshire","Telephone",741.536246732305,532.252161412972,383.244086923699
+2024,"Devon","Telephone",741.536246732305,1354.15012202229,867.476552595658
+2024,"Dorset","Telephone",741.536246732305,777.457532076897,739.339781364259
+2024,"Frimley","Telephone",741.536246732305,1367.01947391746,NA
+2024,"Gloucestershire","Telephone",741.536246732305,880.76839788092,1095.31065035379
+2024,"Greater Manchester","Telephone",741.536246732305,653.992501454733,690.021289671917
+2024,"Hampshire and Isle of Wight","Telephone",741.536246732305,1127.73200003022,1365.24899837593
+2024,"Herefordshire and Worcestershire","Telephone",741.536246732305,993.943021072755,2996.44342117218
+2024,"Hertfordshire and West Essex","Telephone",741.536246732305,720.60959283731,NA
+2024,"Humber and North Yorkshire","Telephone",741.536246732305,697.373468182245,464.306090346961
+2024,"Kent and Medway","Telephone",741.536246732305,981.049458830487,794.88608298191
+2024,"Lancashire and South Cumbria","Telephone",741.536246732305,509.414041044669,570.185545226089
+2024,"Leicester, Leicestershire and Rutland","Telephone",741.536246732305,726.668271762684,766.160914946237
+2024,"Lincolnshire","Telephone",741.536246732305,746.789754786549,473.703857854516
+2024,"Mid and South Essex","Telephone",741.536246732305,410.838667847726,373.927652397439
+2024,"Norfolk and Waveney","Telephone",741.536246732305,438.402851521467,458.59284263718
+2024,"North Central London","Telephone",741.536246732305,765.308123170165,769.302097680688
+2024,"North East London","Telephone",741.536246732305,598.865887280627,768.58595350551
+2024,"North East and North Cumbria","Telephone",741.536246732305,671.003341630459,500.493268907553
+2024,"North West London","Telephone",741.536246732305,764.96676240957,742.156338328928
+2024,"Northamptonshire","Telephone",741.536246732305,648.344579733468,596.932824684089
+2024,"Nottingham and Nottinghamshire","Telephone",741.536246732305,833.171505989837,755.609440555372
+2024,"Shropshire, Telford and Wrekin","Telephone",741.536246732305,577.2932408817,567.539738321419
+2024,"Staffordshire and Stoke-on-Trent","Telephone",741.536246732305,454.37286600786,426.504766930181
+2024,"Suffolk and North East Essex","Telephone",741.536246732305,1222.27746003438,251.047012123948
+2024,"South West London","Telephone",741.536246732305,898.27972698565,761.320076142581
+2024,"South Yorkshire","Telephone",741.536246732305,927.60372382787,586.358635807933
+2024,"West Yorkshire","Telephone",741.536246732305,673.675281824036,579.080753104203
+2024,"Surrey Heartlands","Telephone",741.536246732305,824.732177527109,NA
+2024,"Sussex","Telephone",741.536246732305,779.572619396667,702.47889215497
+2024,"Somerset","Unknown",38.3403540287851,31.4949684072886,NA
+2024,"England","Unknown",38.3403540287851,42.3377080489338,46.0005695582824
+2024,"Bath and North East Somerset, Swindon and Wiltshire","Unknown",38.3403540287851,16.5346011556743,12.5917010941376
+2024,"Bedfordshire, Luton and Milton Keynes","Unknown",38.3403540287851,4.44877722392149,NA
+2024,"Birmingham and Solihull","Unknown",38.3403540287851,4.98471245121918,45.6509334841486
+2024,"Black Country","Unknown",38.3403540287851,0.492388898599892,54.1768996653258
+2024,"Bristol, North Somerset and South Gloucestershire","Unknown",38.3403540287851,76.4477118960098,29.4505267962981
+2024,"Buckinghamshire, Oxfordshire and Berkshire West","Unknown",38.3403540287851,147.963949543919,1695.38008925678
+2024,"Cambridgeshire and Peterborough","Unknown",38.3403540287851,12.992013398587,17.915592477601
+2024,"Cheshire and Merseyside","Unknown",38.3403540287851,109.487200060755,87.8510711612378
+2024,"Coventry and Warwickshire","Unknown",38.3403540287851,26.7801417711841,12.0767813891225
+2024,"Derby and Derbyshire","Unknown",38.3403540287851,9.59411776717945,3.1919423767348
+2024,"Devon","Unknown",38.3403540287851,13.7558850444172,3.34623706081834
+2024,"Dorset","Unknown",38.3403540287851,10.7360213646825,9.2627990831513
+2024,"Frimley","Unknown",38.3403540287851,44.0980240982499,NA
+2024,"Gloucestershire","Unknown",38.3403540287851,25.5104058220869,8.36013552973999
+2024,"Greater Manchester","Unknown",38.3403540287851,8.45852612825505,81.8354353617948
+2024,"Hampshire and Isle of Wight","Unknown",38.3403540287851,81.2288371498718,16.2751973113374
+2024,"Herefordshire and Worcestershire","Unknown",38.3403540287851,249.213239598245,NA
+2024,"Hertfordshire and West Essex","Unknown",38.3403540287851,27.8473160847478,NA
+2024,"Humber and North Yorkshire","Unknown",38.3403540287851,20.7895072387037,11.0565691645178
+2024,"Kent and Medway","Unknown",38.3403540287851,83.9503702121806,61.3867865162206
+2024,"Lancashire and South Cumbria","Unknown",38.3403540287851,18.9777798408277,25.9125336884201
+2024,"Leicester, Leicestershire and Rutland","Unknown",38.3403540287851,17.1027687889909,8.2138588869757
+2024,"Lincolnshire","Unknown",38.3403540287851,14.2346313144739,6.89025380009515
+2024,"Mid and South Essex","Unknown",38.3403540287851,21.8473657142702,13.0255455118603
+2024,"Norfolk and Waveney","Unknown",38.3403540287851,5.18653439184131,13.2268954037778
+2024,"North Central London","Unknown",38.3403540287851,21.6473240361809,40.0535328386884
+2024,"North East London","Unknown",38.3403540287851,80.2617512812677,40.4049830855315
+2024,"North East and North Cumbria","Unknown",38.3403540287851,9.13114028334217,18.0558466151261
+2024,"North West London","Unknown",38.3403540287851,241.117164024058,21.9454383309291
+2024,"Northamptonshire","Unknown",38.3403540287851,7.71335496945273,NA
+2024,"Nottingham and Nottinghamshire","Unknown",38.3403540287851,29.2543594663983,8.53222365670232
+2024,"Shropshire, Telford and Wrekin","Unknown",38.3403540287851,78.3142432673012,10.5398682678618
+2024,"Staffordshire and Stoke-on-Trent","Unknown",38.3403540287851,5.55553824154749,427.240051343522
+2024,"South East London","Unknown",38.3403540287851,92.1965013881875,141.534954426372
+2024,"South West London","Unknown",38.3403540287851,160.365486735569,NA
+2024,"South Yorkshire","Unknown",38.3403540287851,9.18439285101556,37.7383905274404
+2024,"West Yorkshire","Unknown",38.3403540287851,8.50842596229787,36.3795582209051
+2024,"Suffolk and North East Essex","Unknown",38.3403540287851,40.5043818966458,4.93122862331654
+2024,"Surrey Heartlands","Unknown",38.3403540287851,62.1757932085701,NA
+2024,"Sussex","Unknown",38.3403540287851,19.2605619866037,33.3262807992926
+2024,"Cornwall and the Isles of Scilly","Unknown",38.3403540287851,NA,2.96425991816666
+2024,"England","Video Conference/Online",274.387334735644,327.862709221106,250.685892045301
+2024,"Bath and North East Somerset, Swindon and Wiltshire","Video Conference/Online",274.387334735644,242.996605328029,NA
+2024,"Bedfordshire, Luton and Milton Keynes","Video Conference/Online",274.387334735644,170.426713879506,171.292132945843
+2024,"Birmingham and Solihull","Video Conference/Online",274.387334735644,55.732592901612,204.324337440238
+2024,"Bristol, North Somerset and South Gloucestershire","Video Conference/Online",274.387334735644,341.350715267862,308.705169387837
+2024,"Buckinghamshire, Oxfordshire and Berkshire West","Video Conference/Online",274.387334735644,310.071402771636,NA
+2024,"Cambridgeshire and Peterborough","Video Conference/Online",274.387334735644,282.683516821395,95.7798657890359
+2024,"Cheshire and Merseyside","Video Conference/Online",274.387334735644,521.342170268847,180.995249550846
+2024,"Coventry and Warwickshire","Video Conference/Online",274.387334735644,216.82458629186,320.769181228355
+2024,"Derby and Derbyshire","Video Conference/Online",274.387334735644,12.5063857333677,836.560261687021
+2024,"Devon","Video Conference/Online",274.387334735644,668.882535233435,265.547812469227
+2024,"Dorset","Video Conference/Online",274.387334735644,291.462398967079,NA
+2024,"Frimley","Video Conference/Online",274.387334735644,128.185274948454,NA
+2024,"Gloucestershire","Video Conference/Online",274.387334735644,222.195084311516,65.1832055470908
+2024,"Greater Manchester","Video Conference/Online",274.387334735644,330.615493350124,306.147440607397
+2024,"Hampshire and Isle of Wight","Video Conference/Online",274.387334735644,340.171730028376,157.472955289872
+2024,"Herefordshire and Worcestershire","Video Conference/Online",274.387334735644,295.666198774907,NA
+2024,"Hertfordshire and West Essex","Video Conference/Online",274.387334735644,303.450171707401,NA
+2024,"Humber and North Yorkshire","Video Conference/Online",274.387334735644,332.394123893737,215.258334518317
+2024,"Kent and Medway","Video Conference/Online",274.387334735644,422.514054426443,127.695813727776
+2024,"Lancashire and South Cumbria","Video Conference/Online",274.387334735644,125.986841315036,132.766979978025
+2024,"Leicester, Leicestershire and Rutland","Video Conference/Online",274.387334735644,139.902175671232,185.604697040736
+2024,"Lincolnshire","Video Conference/Online",274.387334735644,361.428445378935,309.066729537736
+2024,"Mid and South Essex","Video Conference/Online",274.387334735644,176.683349216256,106.474013649142
+2024,"Norfolk and Waveney","Video Conference/Online",274.387334735644,40.1171420548,1.65078882944215
+2024,"North Central London","Video Conference/Online",274.387334735644,245.086636608999,402.186484383513
+2024,"North East London","Video Conference/Online",274.387334735644,231.511280724558,290.724138379488
+2024,"North East and North Cumbria","Video Conference/Online",274.387334735644,145.787078521268,167.716009396384
+2024,"North West London","Video Conference/Online",274.387334735644,364.920311412985,581.587334567622
+2024,"Northamptonshire","Video Conference/Online",274.387334735644,84.1759139117753,NA
+2024,"Nottingham and Nottinghamshire","Video Conference/Online",274.387334735644,119.668993656471,238.641346510608
+2024,"Shropshire, Telford and Wrekin","Video Conference/Online",274.387334735644,253.022389287966,252.552172199627
+2024,"Somerset","Video Conference/Online",274.387334735644,548.095368594135,NA
+2024,"South East London","Video Conference/Online",274.387334735644,180.553120073952,136.957185119811
+2024,"South West London","Video Conference/Online",274.387334735644,456.115893758147,619.032476005419
+2024,"South Yorkshire","Video Conference/Online",274.387334735644,813.519293477648,283.340910340432
+2024,"Staffordshire and Stoke-on-Trent","Video Conference/Online",274.387334735644,192.830458337184,54.0070170774023
+2024,"Suffolk and North East Essex","Video Conference/Online",274.387334735644,882.176927598638,69.1997407907246
+2024,"Surrey Heartlands","Video Conference/Online",274.387334735644,802.020661729555,NA
+2024,"Sussex","Video Conference/Online",274.387334735644,178.047599875759,19.9805135500577
+2024,"West Yorkshire","Video Conference/Online",274.387334735644,231.844791494761,303.995569054409
+2024,"Black Country","Video Conference/Online",274.387334735644,NA,320.87303454953
+2024,"Cornwall and the Isles of Scilly","Video Conference/Online",274.387334735644,NA,113.629963529722
+2016,"England","Number of emergency admissions with cancer",533.096401599289,542.131350681537,485.065100842482
+2016,"North East and North Cumbria","Number of emergency admissions with cancer",533.096401599289,676.973080778722,646.192195343483
+2016,"North West London","Number of emergency admissions with cancer",533.096401599289,517.836593785961,473.463436849564
+2016,"Northamptonshire","Number of emergency admissions with cancer",533.096401599289,558.971492453885,439.14646108241
+2016,"Nottingham and Nottinghamshire","Number of emergency admissions with cancer",533.096401599289,551.895470631632,515.773059853664
+2016,"Shropshire, Telford and Wrekin","Number of emergency admissions with cancer",533.096401599289,672.670066182055,564.019923820686
+2016,"Somerset","Number of emergency admissions with cancer",533.096401599289,608.575380359613,NA
+2016,"South East London","Number of emergency admissions with cancer",533.096401599289,530.425490836554,342.836521111512
+2016,"South West London","Number of emergency admissions with cancer",533.096401599289,429.535113640709,431.10920007294
+2016,"South Yorkshire","Number of emergency admissions with cancer",533.096401599289,654.155495978552,683.457790153145
+2016,"Staffordshire and Stoke-on-Trent","Number of emergency admissions with cancer",533.096401599289,684.23315226879,588.948793035323
+2016,"Suffolk and North East Essex","Number of emergency admissions with cancer",533.096401599289,619.339553316809,725.372551181227
+2016,"Surrey Heartlands","Number of emergency admissions with cancer",533.096401599289,479.78067169294,NA
+2016,"Bath and North East Somerset, Swindon and Wiltshire","Number of emergency admissions with cancer",533.096401599289,567.85917092561,438.50703650826
+2016,"Bedfordshire, Luton and Milton Keynes","Number of emergency admissions with cancer",533.096401599289,442.260442260442,301.660366332162
+2016,"Birmingham and Solihull","Number of emergency admissions with cancer",533.096401599289,615.799661476952,369.122131279088
+2016,"Black Country","Number of emergency admissions with cancer",533.096401599289,845.156390815856,444.704505558806
+2016,"Bristol, North Somerset and South Gloucestershire","Number of emergency admissions with cancer",533.096401599289,355.872012314456,416.640568086381
+2016,"Buckinghamshire, Oxfordshire and Berkshire West","Number of emergency admissions with cancer",533.096401599289,555.626789759371,NA
+2016,"Cambridgeshire and Peterborough","Number of emergency admissions with cancer",533.096401599289,498.106652780875,412.988487945899
+2016,"Cheshire and Merseyside","Number of emergency admissions with cancer",533.096401599289,584.955671328032,594.178696314893
+2016,"Cornwall and the Isles of Scilly","Number of emergency admissions with cancer",533.096401599289,689.952565761104,798.011512297227
+2016,"Coventry and Warwickshire","Number of emergency admissions with cancer",533.096401599289,465.35677352637,402.44829963419
+2016,"Derby and Derbyshire","Number of emergency admissions with cancer",533.096401599289,691.958081062534,401.238913135295
+2016,"Devon","Number of emergency admissions with cancer",533.096401599289,670.474298485225,455.407969639469
+2016,"Dorset","Number of emergency admissions with cancer",533.096401599289,897.95918367347,399.794976934905
+2016,"Frimley","Number of emergency admissions with cancer",533.096401599289,538.584055789681,NA
+2016,"Gloucestershire","Number of emergency admissions with cancer",533.096401599289,458.619970815093,317.889864171121
+2016,"Greater Manchester","Number of emergency admissions with cancer",533.096401599289,556.255249855484,448.587828333169
+2016,"Hampshire and Isle of Wight","Number of emergency admissions with cancer",533.096401599289,629.364600396586,438.833378341885
+2016,"Herefordshire and Worcestershire","Number of emergency admissions with cancer",533.096401599289,682.749203459263,NA
+2016,"Hertfordshire and West Essex","Number of emergency admissions with cancer",533.096401599289,455.307931943446,NA
+2016,"Humber and North Yorkshire","Number of emergency admissions with cancer",533.096401599289,628.360565241626,537.689674566684
+2016,"Kent and Medway","Number of emergency admissions with cancer",533.096401599289,506.786007947005,635.080868309858
+2016,"Lancashire and South Cumbria","Number of emergency admissions with cancer",533.096401599289,583.390528483185,513.507479348069
+2016,"Leicester, Leicestershire and Rutland","Number of emergency admissions with cancer",533.096401599289,652.61952700681,591.451846892088
+2016,"Lincolnshire","Number of emergency admissions with cancer",533.096401599289,584.520863554911,676.090964966195
+2016,"Mid and South Essex","Number of emergency admissions with cancer",533.096401599289,534.515660087587,471.979511197116
+2016,"Norfolk and Waveney","Number of emergency admissions with cancer",533.096401599289,569.723277265328,624.211327723197
+2016,"North Central London","Number of emergency admissions with cancer",533.096401599289,361.751869320711,421.974522292994
+2016,"North East London","Number of emergency admissions with cancer",533.096401599289,725.004215140786,420.84085842955
+2016,"West Yorkshire","Number of emergency admissions with cancer",533.096401599289,618.779576009066,408.782994627424
+2016,"Sussex","Number of emergency admissions with cancer",533.096401599289,554.106910039114,363.433044450657
+2017,"North East London","Number of emergency admissions with cancer",536.130536130536,596.777402029043,364.732772455381
+2017,"North East and North Cumbria","Number of emergency admissions with cancer",536.130536130536,679.090334807328,669.269380925823
+2017,"North West London","Number of emergency admissions with cancer",536.130536130536,547.616417688394,401.616452703892
+2017,"Nottingham and Nottinghamshire","Number of emergency admissions with cancer",536.130536130536,520.695336187269,447.744894616141
+2017,"Shropshire, Telford and Wrekin","Number of emergency admissions with cancer",536.130536130536,811.408900909762,476.479900136155
+2017,"Somerset","Number of emergency admissions with cancer",536.130536130536,507.416841050624,NA
+2017,"Northamptonshire","Number of emergency admissions with cancer",536.130536130536,644.938952343442,373.027259684362
+2017,"South West London","Number of emergency admissions with cancer",536.130536130536,406.969298081162,357.698289269051
+2017,"South Yorkshire","Number of emergency admissions with cancer",536.130536130536,653.314769197815,605.788647072022
+2017,"Staffordshire and Stoke-on-Trent","Number of emergency admissions with cancer",536.130536130536,676.522174893511,562.871707731521
+2017,"South East London","Number of emergency admissions with cancer",536.130536130536,498.409140698535,461.573212257823
+2017,"England","Number of emergency admissions with cancer",536.130536130536,557.347036095959,491.400491400491
+2017,"Bath and North East Somerset, Swindon and Wiltshire","Number of emergency admissions with cancer",536.130536130536,531.100063222256,503.423278292388
+2017,"Bedfordshire, Luton and Milton Keynes","Number of emergency admissions with cancer",536.130536130536,500.001677679854,493.976947742439
+2017,"Birmingham and Solihull","Number of emergency admissions with cancer",536.130536130536,529.625951671632,401.376146788991
+2017,"Black Country","Number of emergency admissions with cancer",536.130536130536,601.750547045952,453.643322937341
+2017,"Bristol, North Somerset and South Gloucestershire","Number of emergency admissions with cancer",536.130536130536,376.005354615408,434.99490318141
+2017,"Buckinghamshire, Oxfordshire and Berkshire West","Number of emergency admissions with cancer",536.130536130536,566.123188405797,NA
+2017,"Cambridgeshire and Peterborough","Number of emergency admissions with cancer",536.130536130536,521.739794356796,248.756218905473
+2017,"Cheshire and Merseyside","Number of emergency admissions with cancer",536.130536130536,614.124872057318,586.380326420379
+2017,"Cornwall and the Isles of Scilly","Number of emergency admissions with cancer",536.130536130536,691.742325983571,516.693163751987
+2017,"Coventry and Warwickshire","Number of emergency admissions with cancer",536.130536130536,501.792114695341,409.972873189997
+2017,"Derby and Derbyshire","Number of emergency admissions with cancer",536.130536130536,652.246635053689,387.774673727223
+2017,"Devon","Number of emergency admissions with cancer",536.130536130536,753.93238565449,515.137821961139
+2017,"Dorset","Number of emergency admissions with cancer",536.130536130536,876.494420034372,476.519337016575
+2017,"Frimley","Number of emergency admissions with cancer",536.130536130536,604.056234542039,NA
+2017,"Gloucestershire","Number of emergency admissions with cancer",536.130536130536,593.354624842073,402.656319252452
+2017,"Greater Manchester","Number of emergency admissions with cancer",536.130536130536,595.661694459011,476.32660840208
+2017,"Hampshire and Isle of Wight","Number of emergency admissions with cancer",536.130536130536,647.522522522523,691.898918207922
+2017,"Herefordshire and Worcestershire","Number of emergency admissions with cancer",536.130536130536,562.164733393791,NA
+2017,"Hertfordshire and West Essex","Number of emergency admissions with cancer",536.130536130536,469.581098442497,NA
+2017,"Humber and North Yorkshire","Number of emergency admissions with cancer",536.130536130536,698.138297872341,572.09767488761
+2017,"Kent and Medway","Number of emergency admissions with cancer",536.130536130536,499.358931101964,536.192416673809
+2017,"Lancashire and South Cumbria","Number of emergency admissions with cancer",536.130536130536,628.320419043291,482.858522452921
+2017,"Leicester, Leicestershire and Rutland","Number of emergency admissions with cancer",536.130536130536,669.997401430935,509.461426491994
+2017,"Lincolnshire","Number of emergency admissions with cancer",536.130536130536,661.403883080862,541.719960875781
+2017,"Mid and South Essex","Number of emergency admissions with cancer",536.130536130536,515.999071515005,463.090378239254
+2017,"Norfolk and Waveney","Number of emergency admissions with cancer",536.130536130536,586.940586405813,511.11676259591
+2017,"North Central London","Number of emergency admissions with cancer",536.130536130536,379.799955704957,414.152776357501
+2017,"Sussex","Number of emergency admissions with cancer",536.130536130536,579.9178992637,415.564790328674
+2017,"West Yorkshire","Number of emergency admissions with cancer",536.130536130536,585.49191060522,456.520657862751
+2017,"Suffolk and North East Essex","Number of emergency admissions with cancer",536.130536130536,673.638549190408,905.776453237414
+2017,"Surrey Heartlands","Number of emergency admissions with cancer",536.130536130536,467.924528301887,NA
+2018,"North East and North Cumbria","Emergency admissions (0 to 4 years) - CCG",156.25,210.775,229.485
+2018,"Nottingham and Nottinghamshire","Emergency admissions (0 to 4 years) - CCG",156.25,117.81,124.73
+2018,"Shropshire, Telford and Wrekin","Emergency admissions (0 to 4 years) - CCG",156.25,221.19,223.42
+2018,"North West London","Emergency admissions (0 to 4 years) - CCG",156.25,109.325,113.045
+2018,"Northamptonshire","Emergency admissions (0 to 4 years) - CCG",156.25,177.705,206.99
+2018,"South West London","Emergency admissions (0 to 4 years) - CCG",156.25,143.75,114.35
+2018,"South Yorkshire","Emergency admissions (0 to 4 years) - CCG",156.25,59.83,94.615
+2018,"Somerset","Emergency admissions (0 to 4 years) - CCG",156.25,205.745,NA
+2018,"South East London","Emergency admissions (0 to 4 years) - CCG",156.25,79.96,105.23
+2018,"England","Emergency admissions (0 to 4 years) - CCG",156.25,138.45,182.13
+2018,"North East London","Emergency admissions (0 to 4 years) - CCG",156.25,91.28,100.73
+2018,"Bath and North East Somerset, Swindon and Wiltshire","Emergency admissions (0 to 4 years) - CCG",156.25,146.63,197.265
+2018,"Bedfordshire, Luton and Milton Keynes","Emergency admissions (0 to 4 years) - CCG",156.25,182.38,217.15
+2018,"Birmingham and Solihull","Emergency admissions (0 to 4 years) - CCG",156.25,165.49,173.97
+2018,"Black Country","Emergency admissions (0 to 4 years) - CCG",156.25,158.285,168.63
+2018,"Bristol, North Somerset and South Gloucestershire","Emergency admissions (0 to 4 years) - CCG",156.25,107.34,131.68
+2018,"Buckinghamshire, Oxfordshire and Berkshire West","Emergency admissions (0 to 4 years) - CCG",156.25,143.49,NA
+2018,"Cambridgeshire and Peterborough","Emergency admissions (0 to 4 years) - CCG",156.25,76.92,205.53
+2018,"Cheshire and Merseyside","Emergency admissions (0 to 4 years) - CCG",156.25,204.72,204.325
+2018,"Cornwall and the Isles of Scilly","Emergency admissions (0 to 4 years) - CCG",156.25,30.21,281.05
+2018,"Coventry and Warwickshire","Emergency admissions (0 to 4 years) - CCG",156.25,163.67,177.38
+2018,"Derby and Derbyshire","Emergency admissions (0 to 4 years) - CCG",156.25,72.07,81.67
+2018,"Devon","Emergency admissions (0 to 4 years) - CCG",156.25,202.29,235.91
+2018,"Dorset","Emergency admissions (0 to 4 years) - CCG",156.25,181.245,NA
+2018,"Frimley","Emergency admissions (0 to 4 years) - CCG",156.25,102.18,NA
+2018,"Gloucestershire","Emergency admissions (0 to 4 years) - CCG",156.25,155.59,188.05
+2018,"Greater Manchester","Emergency admissions (0 to 4 years) - CCG",156.25,181.54,238.92
+2018,"Hampshire and Isle of Wight","Emergency admissions (0 to 4 years) - CCG",156.25,126.75,142.86
+2018,"Herefordshire and Worcestershire","Emergency admissions (0 to 4 years) - CCG",156.25,132.55,NA
+2018,"Hertfordshire and West Essex","Emergency admissions (0 to 4 years) - CCG",156.25,113.395,NA
+2018,"Humber and North Yorkshire","Emergency admissions (0 to 4 years) - CCG",156.25,220.59,169.335
+2018,"Kent and Medway","Emergency admissions (0 to 4 years) - CCG",156.25,84.75,192.495
+2018,"Lancashire and South Cumbria","Emergency admissions (0 to 4 years) - CCG",156.25,230.41,286.89
+2018,"Leicester, Leicestershire and Rutland","Emergency admissions (0 to 4 years) - CCG",156.25,129.62,145.3
+2018,"Lincolnshire","Emergency admissions (0 to 4 years) - CCG",156.25,173.41,178.5
+2018,"Mid and South Essex","Emergency admissions (0 to 4 years) - CCG",156.25,70.73,81.675
+2018,"Norfolk and Waveney","Emergency admissions (0 to 4 years) - CCG",156.25,158.43,163.69
+2018,"North Central London","Emergency admissions (0 to 4 years) - CCG",156.25,81.7,170.875
+2018,"Sussex","Emergency admissions (0 to 4 years) - CCG",156.25,100.045,205.48
+2018,"West Yorkshire","Emergency admissions (0 to 4 years) - CCG",156.25,145.92,171.095
+2018,"Staffordshire and Stoke-on-Trent","Emergency admissions (0 to 4 years) - CCG",156.25,184.805,219.71
+2018,"Suffolk and North East Essex","Emergency admissions (0 to 4 years) - CCG",156.25,190.14,270.835
+2018,"Surrey Heartlands","Emergency admissions (0 to 4 years) - CCG",156.25,123.765,NA
+2018,"Northamptonshire","Number of emergency admissions with cancer",539.304620458862,672.821154748866,501.350540731298
+2018,"North East London","Number of emergency admissions with cancer",539.304620458862,577.59279707806,343.938091143594
+2018,"North East and North Cumbria","Number of emergency admissions with cancer",539.304620458862,676.036292474649,650.43372655442
+2018,"North West London","Number of emergency admissions with cancer",539.304620458862,495.912837590668,432.696274521849
+2018,"South East London","Number of emergency admissions with cancer",539.304620458862,518.145567532243,394.412906556232
+2018,"Nottingham and Nottinghamshire","Number of emergency admissions with cancer",539.304620458862,523.324009744654,445.795339412361
+2018,"Shropshire, Telford and Wrekin","Number of emergency admissions with cancer",539.304620458862,632.612595600038,675.237120757051
+2018,"Somerset","Number of emergency admissions with cancer",539.304620458862,662.42447252353,NA
+2018,"England","Number of emergency admissions with cancer",539.304620458862,565.502328264716,490.069970326105
+2018,"North Central London","Number of emergency admissions with cancer",539.304620458862,411.061285500747,421.618720480893
+2018,"Bath and North East Somerset, Swindon and Wiltshire","Number of emergency admissions with cancer",539.304620458862,571.75259310721,621.725139441316
+2018,"Bedfordshire, Luton and Milton Keynes","Number of emergency admissions with cancer",539.304620458862,511.467426350682,488.637114019983
+2018,"Birmingham and Solihull","Number of emergency admissions with cancer",539.304620458862,679.159230616696,419.767219996184
+2018,"Black Country","Number of emergency admissions with cancer",539.304620458862,666.382640682523,444.80393044619
+2018,"Bristol, North Somerset and South Gloucestershire","Number of emergency admissions with cancer",539.304620458862,422.979769229251,378.08862818148
+2018,"Buckinghamshire, Oxfordshire and Berkshire West","Number of emergency admissions with cancer",539.304620458862,552.515553534449,NA
+2018,"Cambridgeshire and Peterborough","Number of emergency admissions with cancer",539.304620458862,566.251415628539,264.500283393161
+2018,"Cheshire and Merseyside","Number of emergency admissions with cancer",539.304620458862,602.148195038693,598.086980161541
+2018,"Cornwall and the Isles of Scilly","Number of emergency admissions with cancer",539.304620458862,558.419243986254,565.580393213035
+2018,"Coventry and Warwickshire","Number of emergency admissions with cancer",539.304620458862,520.518089304738,410.436822046321
+2018,"Derby and Derbyshire","Number of emergency admissions with cancer",539.304620458862,624.725997369575,371.622519944522
+2018,"Devon","Number of emergency admissions with cancer",539.304620458862,819.745888461708,544.121126094157
+2018,"Dorset","Number of emergency admissions with cancer",539.304620458862,1001.40587453816,NA
+2018,"Frimley","Number of emergency admissions with cancer",539.304620458862,492.800492800493,NA
+2018,"Gloucestershire","Number of emergency admissions with cancer",539.304620458862,476.15559299685,329.314288920825
+2018,"Greater Manchester","Number of emergency admissions with cancer",539.304620458862,673.31623132918,488.997555012225
+2018,"Hampshire and Isle of Wight","Number of emergency admissions with cancer",539.304620458862,665.360437586742,546.128340159938
+2018,"Herefordshire and Worcestershire","Number of emergency admissions with cancer",539.304620458862,548.554484803558,NA
+2018,"Hertfordshire and West Essex","Number of emergency admissions with cancer",539.304620458862,477.862297639945,NA
+2018,"Humber and North Yorkshire","Number of emergency admissions with cancer",539.304620458862,693.26160042047,577.176126486051
+2018,"Kent and Medway","Number of emergency admissions with cancer",539.304620458862,501.672240802676,574.437529918621
+2018,"Lancashire and South Cumbria","Number of emergency admissions with cancer",539.304620458862,620.371609284095,476.391485878053
+2018,"Leicester, Leicestershire and Rutland","Number of emergency admissions with cancer",539.304620458862,666.593814883619,565.878390507369
+2018,"Lincolnshire","Number of emergency admissions with cancer",539.304620458862,612.344328376937,673.864767593231
+2018,"Mid and South Essex","Number of emergency admissions with cancer",539.304620458862,527.980448699362,520.223718187251
+2018,"Norfolk and Waveney","Number of emergency admissions with cancer",539.304620458862,550.643497559784,578.356068627547
+2018,"Surrey Heartlands","Number of emergency admissions with cancer",539.304620458862,522.836373519486,NA
+2018,"Sussex","Number of emergency admissions with cancer",539.304620458862,548.515915466718,394.255139397353
+2018,"West Yorkshire","Number of emergency admissions with cancer",539.304620458862,667.357139371584,446.030191638903
+2018,"Staffordshire and Stoke-on-Trent","Number of emergency admissions with cancer",539.304620458862,674.840794601274,515.463917525773
+2018,"Suffolk and North East Essex","Number of emergency admissions with cancer",539.304620458862,715.801904745334,646.887932708867
+2018,"South West London","Number of emergency admissions with cancer",539.304620458862,398.44812894207,318.935537597536
+2018,"South Yorkshire","Number of emergency admissions with cancer",539.304620458862,784.800413676009,685.266764561919
+2019,"North East London","Emergency admissions (0 to 4 years) - CCG",134.31,89.93,86.17
+2019,"North East and North Cumbria","Emergency admissions (0 to 4 years) - CCG",134.31,169.575,200.81
+2019,"North West London","Emergency admissions (0 to 4 years) - CCG",134.31,80.035,96.93
+2019,"Northamptonshire","Emergency admissions (0 to 4 years) - CCG",134.31,151.035,184.91
+2019,"Nottingham and Nottinghamshire","Emergency admissions (0 to 4 years) - CCG",134.31,105.4,122.38
+2019,"Shropshire, Telford and Wrekin","Emergency admissions (0 to 4 years) - CCG",134.31,182.93,208.5
+2019,"England","Emergency admissions (0 to 4 years) - CCG",134.31,120.68,155.7
+2019,"Norfolk and Waveney","Emergency admissions (0 to 4 years) - CCG",134.31,154.815,155.32
+2019,"North Central London","Emergency admissions (0 to 4 years) - CCG",134.31,71.69,135.515
+2019,"Bath and North East Somerset, Swindon and Wiltshire","Emergency admissions (0 to 4 years) - CCG",134.31,140.87,175.945
+2019,"Bedfordshire, Luton and Milton Keynes","Emergency admissions (0 to 4 years) - CCG",134.31,163.93,176.465
+2019,"Birmingham and Solihull","Emergency admissions (0 to 4 years) - CCG",134.31,141.99,142.65
+2019,"Black Country","Emergency admissions (0 to 4 years) - CCG",134.31,136.655,144.165
+2019,"Bristol, North Somerset and South Gloucestershire","Emergency admissions (0 to 4 years) - CCG",134.31,97.82,118.06
+2019,"Buckinghamshire, Oxfordshire and Berkshire West","Emergency admissions (0 to 4 years) - CCG",134.31,124.21,NA
+2019,"Cambridgeshire and Peterborough","Emergency admissions (0 to 4 years) - CCG",134.31,65.445,182.635
+2019,"Cheshire and Merseyside","Emergency admissions (0 to 4 years) - CCG",134.31,181.79,168.89
+2019,"Cornwall and the Isles of Scilly","Emergency admissions (0 to 4 years) - CCG",134.31,34.25,243.9
+2019,"Coventry and Warwickshire","Emergency admissions (0 to 4 years) - CCG",134.31,139.855,145.85
+2019,"Derby and Derbyshire","Emergency admissions (0 to 4 years) - CCG",134.31,64.98,75.545
+2019,"Devon","Emergency admissions (0 to 4 years) - CCG",134.31,176.29,193.52
+2019,"Dorset","Emergency admissions (0 to 4 years) - CCG",134.31,164.285,NA
+2019,"Frimley","Emergency admissions (0 to 4 years) - CCG",134.31,86.785,NA
+2019,"Gloucestershire","Emergency admissions (0 to 4 years) - CCG",134.31,148.47,214.59
+2019,"Greater Manchester","Emergency admissions (0 to 4 years) - CCG",134.31,158.055,202.85
+2019,"Hampshire and Isle of Wight","Emergency admissions (0 to 4 years) - CCG",134.31,106.615,128.01
+2019,"Herefordshire and Worcestershire","Emergency admissions (0 to 4 years) - CCG",134.31,111.11,NA
+2019,"Hertfordshire and West Essex","Emergency admissions (0 to 4 years) - CCG",134.31,98.9,NA
+2019,"Humber and North Yorkshire","Emergency admissions (0 to 4 years) - CCG",134.31,187.07,139.785
+2019,"Kent and Medway","Emergency admissions (0 to 4 years) - CCG",134.31,74.51,163.34
+2019,"Lancashire and South Cumbria","Emergency admissions (0 to 4 years) - CCG",134.31,199.56,242.705
+2019,"Leicester, Leicestershire and Rutland","Emergency admissions (0 to 4 years) - CCG",134.31,94.61,105.83
+2019,"Lincolnshire","Emergency admissions (0 to 4 years) - CCG",134.31,143.05,160.26
+2019,"Mid and South Essex","Emergency admissions (0 to 4 years) - CCG",134.31,58.8,72.51
+2019,"Suffolk and North East Essex","Emergency admissions (0 to 4 years) - CCG",134.31,179.055,219.33
+2019,"Surrey Heartlands","Emergency admissions (0 to 4 years) - CCG",134.31,104.01,NA
+2019,"Sussex","Emergency admissions (0 to 4 years) - CCG",134.31,95.185,170.91
+2019,"West Yorkshire","Emergency admissions (0 to 4 years) - CCG",134.31,126.18,144.07
+2019,"Somerset","Emergency admissions (0 to 4 years) - CCG",134.31,163.67,NA
+2019,"South East London","Emergency admissions (0 to 4 years) - CCG",134.31,69.31,91.78
+2019,"South West London","Emergency admissions (0 to 4 years) - CCG",134.31,122.99,102.32
+2019,"South Yorkshire","Emergency admissions (0 to 4 years) - CCG",134.31,51.435,85.98
+2019,"Staffordshire and Stoke-on-Trent","Emergency admissions (0 to 4 years) - CCG",134.31,153.3,192.825
+2019,"North West London","Number of emergency admissions with cancer",550.05550042523,511.117191338334,486.832624997723
+2019,"Northamptonshire","Number of emergency admissions with cancer",550.05550042523,678.488820354665,792.26154160677
+2019,"Nottingham and Nottinghamshire","Number of emergency admissions with cancer",550.05550042523,524.781341107872,504.891132849479
+2019,"North East and North Cumbria","Number of emergency admissions with cancer",550.05550042523,668.202764976959,654.398417299122
+2019,"England","Number of emergency admissions with cancer",550.05550042523,571.729481682088,519.717284568193
+2019,"Norfolk and Waveney","Number of emergency admissions with cancer",550.05550042523,582.464273816996,532.187740446268
+2019,"North Central London","Number of emergency admissions with cancer",550.05550042523,358.900361197997,405.642366096567
+2019,"North East London","Number of emergency admissions with cancer",550.05550042523,527.638190954774,331.875094282697
+2019,"Bath and North East Somerset, Swindon and Wiltshire","Number of emergency admissions with cancer",550.05550042523,618.811881188119,662.80176764517
+2019,"Bedfordshire, Luton and Milton Keynes","Number of emergency admissions with cancer",550.05550042523,539.43440271696,509.588734952212
+2019,"Birmingham and Solihull","Number of emergency admissions with cancer",550.05550042523,714.88645920942,430.891614186278
+2019,"Black Country","Number of emergency admissions with cancer",550.05550042523,932.699113791446,469.379046770932
+2019,"Bristol, North Somerset and South Gloucestershire","Number of emergency admissions with cancer",550.05550042523,419.447092469018,398.072491095747
+2019,"Buckinghamshire, Oxfordshire and Berkshire West","Number of emergency admissions with cancer",550.05550042523,561.469429516594,NA
+2019,"Cambridgeshire and Peterborough","Number of emergency admissions with cancer",550.05550042523,618.948924190985,261.500272488959
+2019,"Cheshire and Merseyside","Number of emergency admissions with cancer",550.05550042523,572.119395348077,620.869216903665
+2019,"Cornwall and the Isles of Scilly","Number of emergency admissions with cancer",550.05550042523,386.59793814433,852.007469654529
+2019,"Coventry and Warwickshire","Number of emergency admissions with cancer",550.05550042523,484.141062562391,416.840350145894
+2019,"Derby and Derbyshire","Number of emergency admissions with cancer",550.05550042523,737.75989268947,444.151998683994
+2019,"Devon","Number of emergency admissions with cancer",550.05550042523,701.100461483848,441.673161860223
+2019,"Dorset","Number of emergency admissions with cancer",550.05550042523,984.486076440252,NA
+2019,"Frimley","Number of emergency admissions with cancer",550.05550042523,509.466437177281,NA
+2019,"Gloucestershire","Number of emergency admissions with cancer",550.05550042523,472.282480025235,254.965821568205
+2019,"Greater Manchester","Number of emergency admissions with cancer",550.05550042523,644.098503651325,477.969751360598
+2019,"Hampshire and Isle of Wight","Number of emergency admissions with cancer",550.05550042523,721.239528382283,602.795947159164
+2019,"Herefordshire and Worcestershire","Number of emergency admissions with cancer",550.05550042523,576.725025746653,NA
+2019,"Hertfordshire and West Essex","Number of emergency admissions with cancer",550.05550042523,505.77728145481,NA
+2019,"Humber and North Yorkshire","Number of emergency admissions with cancer",550.05550042523,754.260602877242,681.192355111843
+2019,"Kent and Medway","Number of emergency admissions with cancer",550.05550042523,580.684596577017,573.044714628654
+2019,"Lancashire and South Cumbria","Number of emergency admissions with cancer",550.05550042523,670.258024774553,501.533752453768
+2019,"Leicester, Leicestershire and Rutland","Number of emergency admissions with cancer",550.05550042523,658.370494084334,516.60015034315
+2019,"Lincolnshire","Number of emergency admissions with cancer",550.05550042523,536.417829519751,681.522321770427
+2019,"Mid and South Essex","Number of emergency admissions with cancer",550.05550042523,547.945205479452,462.620281273131
+2019,"Suffolk and North East Essex","Number of emergency admissions with cancer",550.05550042523,725.796640182298,890.724097029381
+2019,"Surrey Heartlands","Number of emergency admissions with cancer",550.05550042523,532.442920314051,NA
+2019,"Sussex","Number of emergency admissions with cancer",550.05550042523,563.380281690141,475.667764361508
+2019,"West Yorkshire","Number of emergency admissions with cancer",550.05550042523,667.47572815534,481.58821500137
+2019,"Somerset","Number of emergency admissions with cancer",550.05550042523,638.051044083527,NA
+2019,"South East London","Number of emergency admissions with cancer",550.05550042523,522.595654428658,419.967678039341
+2019,"South West London","Number of emergency admissions with cancer",550.05550042523,415.413264575276,324.236692785734
+2019,"Shropshire, Telford and Wrekin","Number of emergency admissions with cancer",550.05550042523,744.139898300881,587.33066025915
+2019,"Staffordshire and Stoke-on-Trent","Number of emergency admissions with cancer",550.05550042523,711.662075298439,559.817540949616
+2019,"South Yorkshire","Number of emergency admissions with cancer",550.05550042523,676.495019802124,639.848437859757
+2020,"North East and North Cumbria","Emergency admissions (0 to 4 years) - CCG",131.39,169.685,194.995
+2020,"North West London","Emergency admissions (0 to 4 years) - CCG",131.39,73.875,106.265
+2020,"North East London","Emergency admissions (0 to 4 years) - CCG",131.39,86.06,82.675
+2020,"England","Emergency admissions (0 to 4 years) - CCG",131.39,119.05,147.94
+2020,"Mid and South Essex","Emergency admissions (0 to 4 years) - CCG",131.39,59.61,69.83
+2020,"Norfolk and Waveney","Emergency admissions (0 to 4 years) - CCG",131.39,149.235,152.03
+2020,"North Central London","Emergency admissions (0 to 4 years) - CCG",131.39,66.905,114.305
+2020,"Bath and North East Somerset, Swindon and Wiltshire","Emergency admissions (0 to 4 years) - CCG",131.39,147.41,159.21
+2020,"Bedfordshire, Luton and Milton Keynes","Emergency admissions (0 to 4 years) - CCG",131.39,159.89,151.065
+2020,"Birmingham and Solihull","Emergency admissions (0 to 4 years) - CCG",131.39,141.06,136.52
+2020,"Black Country","Emergency admissions (0 to 4 years) - CCG",131.39,141.7,142.895
+2020,"Bristol, North Somerset and South Gloucestershire","Emergency admissions (0 to 4 years) - CCG",131.39,94.29,112.17
+2020,"Buckinghamshire, Oxfordshire and Berkshire West","Emergency admissions (0 to 4 years) - CCG",131.39,115.85,NA
+2020,"Cambridgeshire and Peterborough","Emergency admissions (0 to 4 years) - CCG",131.39,59.555,169.045
+2020,"Cheshire and Merseyside","Emergency admissions (0 to 4 years) - CCG",131.39,167.97,159.705
+2020,"Cornwall and the Isles of Scilly","Emergency admissions (0 to 4 years) - CCG",131.39,76.92,228.62
+2020,"Coventry and Warwickshire","Emergency admissions (0 to 4 years) - CCG",131.39,143.875,131.36
+2020,"Derby and Derbyshire","Emergency admissions (0 to 4 years) - CCG",131.39,67.7,68.37
+2020,"Devon","Emergency admissions (0 to 4 years) - CCG",131.39,162.05,178.06
+2020,"Dorset","Emergency admissions (0 to 4 years) - CCG",131.39,169.855,NA
+2020,"Frimley","Emergency admissions (0 to 4 years) - CCG",131.39,82.33,NA
+2020,"Gloucestershire","Emergency admissions (0 to 4 years) - CCG",131.39,169.1,246.125
+2020,"Greater Manchester","Emergency admissions (0 to 4 years) - CCG",131.39,143.27,177.63
+2020,"Hampshire and Isle of Wight","Emergency admissions (0 to 4 years) - CCG",131.39,103.72,115.03
+2020,"Herefordshire and Worcestershire","Emergency admissions (0 to 4 years) - CCG",131.39,97.4,NA
+2020,"Hertfordshire and West Essex","Emergency admissions (0 to 4 years) - CCG",131.39,101.39,NA
+2020,"Humber and North Yorkshire","Emergency admissions (0 to 4 years) - CCG",131.39,170.73,139.46
+2020,"Kent and Medway","Emergency admissions (0 to 4 years) - CCG",131.39,87.63,139.71
+2020,"Lancashire and South Cumbria","Emergency admissions (0 to 4 years) - CCG",131.39,202.265,230.635
+2020,"Leicester, Leicestershire and Rutland","Emergency admissions (0 to 4 years) - CCG",131.39,74.83,77.98
+2020,"Lincolnshire","Emergency admissions (0 to 4 years) - CCG",131.39,138.45,164.15
+2020,"Staffordshire and Stoke-on-Trent","Emergency admissions (0 to 4 years) - CCG",131.39,144.65,179.48
+2020,"Suffolk and North East Essex","Emergency admissions (0 to 4 years) - CCG",131.39,175.06,179.13
+2020,"Surrey Heartlands","Emergency admissions (0 to 4 years) - CCG",131.39,98.44,NA
+2020,"Sussex","Emergency admissions (0 to 4 years) - CCG",131.39,96.945,170.82
+2020,"West Yorkshire","Emergency admissions (0 to 4 years) - CCG",131.39,122.64,131.69
+2020,"Somerset","Emergency admissions (0 to 4 years) - CCG",131.39,148.19,NA
+2020,"Northamptonshire","Emergency admissions (0 to 4 years) - CCG",131.39,145.06,175.005
+2020,"Nottingham and Nottinghamshire","Emergency admissions (0 to 4 years) - CCG",131.39,99.22,112.97
+2020,"Shropshire, Telford and Wrekin","Emergency admissions (0 to 4 years) - CCG",131.39,176.87,207.905
+2020,"South East London","Emergency admissions (0 to 4 years) - CCG",131.39,72.365,87.23
+2020,"South West London","Emergency admissions (0 to 4 years) - CCG",131.39,118.115,106.3
+2020,"South Yorkshire","Emergency admissions (0 to 4 years) - CCG",131.39,52.635,87.72
+2020,"North East London","Number of emergency admissions with cancer",551.003108222662,457.456541628545,355.450236966825
+2020,"England","Number of emergency admissions with cancer",551.003108222662,575.482853764289,505.902192242833
+2020,"Lincolnshire","Number of emergency admissions with cancer",551.003108222662,559.727297962873,627.033422064478
+2020,"Mid and South Essex","Number of emergency admissions with cancer",551.003108222662,552.350558487787,493.110949963742
+2020,"Norfolk and Waveney","Number of emergency admissions with cancer",551.003108222662,593.300368943087,459.660802028848
+2020,"North Central London","Number of emergency admissions with cancer",551.003108222662,317.363148198992,398.301376986392
+2020,"Bath and North East Somerset, Swindon and Wiltshire","Number of emergency admissions with cancer",551.003108222662,608.579486418287,600.321131826228
+2020,"Bedfordshire, Luton and Milton Keynes","Number of emergency admissions with cancer",551.003108222662,519.805943884571,444.013690390502
+2020,"Birmingham and Solihull","Number of emergency admissions with cancer",551.003108222662,600.466033339308,416.859657248726
+2020,"Black Country","Number of emergency admissions with cancer",551.003108222662,703.248167018544,461.223065159415
+2020,"Bristol, North Somerset and South Gloucestershire","Number of emergency admissions with cancer",551.003108222662,463.161506132602,436.759069435779
+2020,"Buckinghamshire, Oxfordshire and Berkshire West","Number of emergency admissions with cancer",551.003108222662,575.464931041464,NA
+2020,"Cambridgeshire and Peterborough","Number of emergency admissions with cancer",551.003108222662,601.999035016986,333.160987060979
+2020,"Cheshire and Merseyside","Number of emergency admissions with cancer",551.003108222662,606.18387946762,578.190130428936
+2020,"Cornwall and the Isles of Scilly","Number of emergency admissions with cancer",551.003108222662,373.75415282392,927.774515560775
+2020,"Coventry and Warwickshire","Number of emergency admissions with cancer",551.003108222662,513.079528483269,486.295313881521
+2020,"Derby and Derbyshire","Number of emergency admissions with cancer",551.003108222662,948.125544899738,684.528190784631
+2020,"Devon","Number of emergency admissions with cancer",551.003108222662,714.891554586211,600.858369098713
+2020,"Dorset","Number of emergency admissions with cancer",551.003108222662,1015.99454676873,NA
+2020,"Frimley","Number of emergency admissions with cancer",551.003108222662,490.436488474743,NA
+2020,"Gloucestershire","Number of emergency admissions with cancer",551.003108222662,482.469423678176,321.423215012656
+2020,"Greater Manchester","Number of emergency admissions with cancer",551.003108222662,601.532415299729,469.418749137098
+2020,"Hampshire and Isle of Wight","Number of emergency admissions with cancer",551.003108222662,734.185339906353,515.796260477112
+2020,"Herefordshire and Worcestershire","Number of emergency admissions with cancer",551.003108222662,566.182096403979,NA
+2020,"Hertfordshire and West Essex","Number of emergency admissions with cancer",551.003108222662,515.17051530311,NA
+2020,"Humber and North Yorkshire","Number of emergency admissions with cancer",551.003108222662,776.926834137981,616.356085363022
+2020,"Kent and Medway","Number of emergency admissions with cancer",551.003108222662,517.786940262729,535.417572194814
+2020,"Lancashire and South Cumbria","Number of emergency admissions with cancer",551.003108222662,582.248001678053,493.922310272145
+2020,"Leicester, Leicestershire and Rutland","Number of emergency admissions with cancer",551.003108222662,614.093651183413,528.743390707616
+2020,"South Yorkshire","Number of emergency admissions with cancer",551.003108222662,625.785412564253,627.262770670132
+2020,"Staffordshire and Stoke-on-Trent","Number of emergency admissions with cancer",551.003108222662,788.402848423194,538.927120470939
+2020,"Suffolk and North East Essex","Number of emergency admissions with cancer",551.003108222662,711.013208136158,784.44136969424
+2020,"Surrey Heartlands","Number of emergency admissions with cancer",551.003108222662,516.456171651251,NA
+2020,"Sussex","Number of emergency admissions with cancer",551.003108222662,569.554711770797,374.781926065049
+2020,"North East and North Cumbria","Number of emergency admissions with cancer",551.003108222662,696.614583333333,659.679272934252
+2020,"North West London","Number of emergency admissions with cancer",551.003108222662,581.284246975879,426.068076342189
+2020,"Northamptonshire","Number of emergency admissions with cancer",551.003108222662,680.272108843538,756.089242004733
+2020,"Nottingham and Nottinghamshire","Number of emergency admissions with cancer",551.003108222662,561.718859710715,450.560155869459
+2020,"Shropshire, Telford and Wrekin","Number of emergency admissions with cancer",551.003108222662,653.836664199359,553.881873547681
+2020,"Somerset","Number of emergency admissions with cancer",551.003108222662,639.017666959028,NA
+2020,"South East London","Number of emergency admissions with cancer",551.003108222662,446.135779680214,346.912015201625
+2020,"South West London","Number of emergency admissions with cancer",551.003108222662,411.437975725159,383.456587236374
+2020,"West Yorkshire","Number of emergency admissions with cancer",551.003108222662,642.487046632124,427.76744132791
+2021,"England","Emergency admissions (0 to 4 years) - CCG",127.27273,114.94253,144.99216
+2021,"Mid and South Essex","Emergency admissions (0 to 4 years) - CCG",127.27273,60.129315,60.52142
+2021,"Norfolk and Waveney","Emergency admissions (0 to 4 years) - CCG",127.27273,115.14615,147.99636
+2021,"North Central London","Emergency admissions (0 to 4 years) - CCG",127.27273,74.0702,93.623805
+2021,"Lincolnshire","Emergency admissions (0 to 4 years) - CCG",127.27273,135.026205,164.70588
+2021,"Bath and North East Somerset, Swindon and Wiltshire","Emergency admissions (0 to 4 years) - CCG",127.27273,151.60891,200.157245
+2021,"Bedfordshire, Luton and Milton Keynes","Emergency admissions (0 to 4 years) - CCG",127.27273,152.689635,139.62613
+2021,"Birmingham and Solihull","Emergency admissions (0 to 4 years) - CCG",127.27273,119.66326,133.6883
+2021,"Black Country","Emergency admissions (0 to 4 years) - CCG",127.27273,135.510105,147.27266
+2021,"Bristol, North Somerset and South Gloucestershire","Emergency admissions (0 to 4 years) - CCG",127.27273,96.37188,114.99148
+2021,"Buckinghamshire, Oxfordshire and Berkshire West","Emergency admissions (0 to 4 years) - CCG",127.27273,114.543305,NA
+2021,"Cambridgeshire and Peterborough","Emergency admissions (0 to 4 years) - CCG",127.27273,55.970085,168.693905
+2021,"Cheshire and Merseyside","Emergency admissions (0 to 4 years) - CCG",127.27273,165.63592,154.06162
+2021,"Cornwall and the Isles of Scilly","Emergency admissions (0 to 4 years) - CCG",127.27273,123.45679,219.37843
+2021,"Coventry and Warwickshire","Emergency admissions (0 to 4 years) - CCG",127.27273,148.874095,118.53448
+2021,"Derby and Derbyshire","Emergency admissions (0 to 4 years) - CCG",127.27273,79.00677,51.3834
+2021,"Devon","Emergency admissions (0 to 4 years) - CCG",127.27273,169.00676,177.46067
+2021,"Dorset","Emergency admissions (0 to 4 years) - CCG",127.27273,180.631765,NA
+2021,"Frimley","Emergency admissions (0 to 4 years) - CCG",127.27273,63.41789,NA
+2021,"Gloucestershire","Emergency admissions (0 to 4 years) - CCG",127.27273,195.5924,261.291275
+2021,"Greater Manchester","Emergency admissions (0 to 4 years) - CCG",127.27273,135.13514,155.22107
+2021,"Hampshire and Isle of Wight","Emergency admissions (0 to 4 years) - CCG",127.27273,108.79025,108.20559
+2021,"Herefordshire and Worcestershire","Emergency admissions (0 to 4 years) - CCG",127.27273,102.43278,NA
+2021,"Hertfordshire and West Essex","Emergency admissions (0 to 4 years) - CCG",127.27273,88.64164,NA
+2021,"Humber and North Yorkshire","Emergency admissions (0 to 4 years) - CCG",127.27273,178.64652,124.85705
+2021,"Kent and Medway","Emergency admissions (0 to 4 years) - CCG",127.27273,114.60674,120.751325
+2021,"Lancashire and South Cumbria","Emergency admissions (0 to 4 years) - CCG",127.27273,204.06973,231.70483
+2021,"Leicester, Leicestershire and Rutland","Emergency admissions (0 to 4 years) - CCG",127.27273,62.05095,64.23259
+2021,"South Yorkshire","Emergency admissions (0 to 4 years) - CCG",127.27273,54.961985,89.485905
+2021,"Staffordshire and Stoke-on-Trent","Emergency admissions (0 to 4 years) - CCG",127.27273,148.14815,181.56425
+2021,"Suffolk and North East Essex","Emergency admissions (0 to 4 years) - CCG",127.27273,178.890635,165.470495
+2021,"Surrey Heartlands","Emergency admissions (0 to 4 years) - CCG",127.27273,103.12945,NA
+2021,"North East London","Emergency admissions (0 to 4 years) - CCG",127.27273,78.69885,77.46934
+2021,"North East and North Cumbria","Emergency admissions (0 to 4 years) - CCG",127.27273,154.82055,173.66696
+2021,"North West London","Emergency admissions (0 to 4 years) - CCG",127.27273,77.163435,113.233725
+2021,"Northamptonshire","Emergency admissions (0 to 4 years) - CCG",127.27273,140.70352,165.67488
+2021,"Nottingham and Nottinghamshire","Emergency admissions (0 to 4 years) - CCG",127.27273,101.72626,124.12723
+2021,"Shropshire, Telford and Wrekin","Emergency admissions (0 to 4 years) - CCG",127.27273,176.9437,198.12635
+2021,"Somerset","Emergency admissions (0 to 4 years) - CCG",127.27273,155.55556,NA
+2021,"South East London","Emergency admissions (0 to 4 years) - CCG",127.27273,67.58986,68.13417
+2021,"South West London","Emergency admissions (0 to 4 years) - CCG",127.27273,105.04914,102.82776
+2021,"Sussex","Emergency admissions (0 to 4 years) - CCG",127.27273,107.07912,160.7445
+2021,"West Yorkshire","Emergency admissions (0 to 4 years) - CCG",127.27273,118.95911,113.81262
+2021,"Lincolnshire","Number of emergency admissions with cancer",450.813073579134,484.697614813828,534.75935828877
+2021,"Mid and South Essex","Number of emergency admissions with cancer",450.813073579134,394.284627251065,376.175548589342
+2021,"England","Number of emergency admissions with cancer",450.813073579134,475.620157298302,408.562039257483
+2021,"Leicester, Leicestershire and Rutland","Number of emergency admissions with cancer",450.813073579134,569.482495797905,432.215897111533
+2021,"Bath and North East Somerset, Swindon and Wiltshire","Number of emergency admissions with cancer",450.813073579134,443.012484897302,713.957604826683
+2021,"Bedfordshire, Luton and Milton Keynes","Number of emergency admissions with cancer",450.813073579134,513.737082767085,355.994218220789
+2021,"Birmingham and Solihull","Number of emergency admissions with cancer",450.813073579134,467.872738615097,320.912818684257
+2021,"Black Country","Number of emergency admissions with cancer",450.813073579134,594.592008076562,361.966405729486
+2021,"Bristol, North Somerset and South Gloucestershire","Number of emergency admissions with cancer",450.813073579134,442.789574318205,459.149862728392
+2021,"Buckinghamshire, Oxfordshire and Berkshire West","Number of emergency admissions with cancer",450.813073579134,495.762808987775,NA
+2021,"Cambridgeshire and Peterborough","Number of emergency admissions with cancer",450.813073579134,554.723979407469,265.466179314811
+2021,"Cheshire and Merseyside","Number of emergency admissions with cancer",450.813073579134,458.36862546922,460.54918317692
+2021,"Cornwall and the Isles of Scilly","Number of emergency admissions with cancer",450.813073579134,330.169211721007,641.558750148509
+2021,"Coventry and Warwickshire","Number of emergency admissions with cancer",450.813073579134,465.365607962459,375.586854460094
+2021,"Derby and Derbyshire","Number of emergency admissions with cancer",450.813073579134,752.318568000519,558.002936857562
+2021,"Devon","Number of emergency admissions with cancer",450.813073579134,657.454869623356,458.226768968457
+2021,"Dorset","Number of emergency admissions with cancer",450.813073579134,796.967117704804,NA
+2021,"Frimley","Number of emergency admissions with cancer",450.813073579134,414.651002073255,NA
+2021,"Gloucestershire","Number of emergency admissions with cancer",450.813073579134,517.327871281296,412.56623624908
+2021,"Greater Manchester","Number of emergency admissions with cancer",450.813073579134,488.525132692766,358.576956055257
+2021,"Hampshire and Isle of Wight","Number of emergency admissions with cancer",450.813073579134,618.010594467334,507.146150299677
+2021,"Herefordshire and Worcestershire","Number of emergency admissions with cancer",450.813073579134,616.057233704293,NA
+2021,"Hertfordshire and West Essex","Number of emergency admissions with cancer",450.813073579134,439.52029098728,NA
+2021,"Humber and North Yorkshire","Number of emergency admissions with cancer",450.813073579134,601.634782178704,486.509698668304
+2021,"Kent and Medway","Number of emergency admissions with cancer",450.813073579134,413.551773500875,496.709116271335
+2021,"Lancashire and South Cumbria","Number of emergency admissions with cancer",450.813073579134,435.657970977762,343.099850060069
+2021,"South West London","Number of emergency admissions with cancer",450.813073579134,343.726982568132,317.591825462579
+2021,"South Yorkshire","Number of emergency admissions with cancer",450.813073579134,546.991995564696,536.70116525718
+2021,"Staffordshire and Stoke-on-Trent","Number of emergency admissions with cancer",450.813073579134,694.25537707596,463.005833873507
+2021,"Norfolk and Waveney","Number of emergency admissions with cancer",450.813073579134,310.646709968935,405.020652043149
+2021,"North Central London","Number of emergency admissions with cancer",450.813073579134,286.633484244218,296.070864550909
+2021,"North East London","Number of emergency admissions with cancer",450.813073579134,360.897536482034,238.426385853368
+2021,"North East and North Cumbria","Number of emergency admissions with cancer",450.813073579134,569.80056980057,533.415741810658
+2021,"North West London","Number of emergency admissions with cancer",450.813073579134,411.025513356777,341.551799917468
+2021,"Northamptonshire","Number of emergency admissions with cancer",450.813073579134,629.119233073697,970.889037306428
+2021,"Nottingham and Nottinghamshire","Number of emergency admissions with cancer",450.813073579134,508.020320812833,363.249756356871
+2021,"Shropshire, Telford and Wrekin","Number of emergency admissions with cancer",450.813073579134,634.573304157549,577.441697319104
+2021,"Somerset","Number of emergency admissions with cancer",450.813073579134,611.888111888112,NA
+2021,"South East London","Number of emergency admissions with cancer",450.813073579134,432.095518619819,294.192888206703
+2021,"Surrey Heartlands","Number of emergency admissions with cancer",450.813073579134,424.296560964716,NA
+2021,"Sussex","Number of emergency admissions with cancer",450.813073579134,425.01517911354,444.002156778923
+2021,"West Yorkshire","Number of emergency admissions with cancer",450.813073579134,517.177687476912,330.67564002763
+2021,"Suffolk and North East Essex","Number of emergency admissions with cancer",450.813073579134,520.344087856703,786.428620168001
+2022,"England","A&E attendances (0 to 4 years)",708.8556,576.54748,870.87713
+2022,"Lancashire and South Cumbria","A&E attendances (0 to 4 years)",708.8556,868.79352,788.39737
+2022,"Leicester, Leicestershire and Rutland","A&E attendances (0 to 4 years)",708.8556,698.797535,835.21445
+2022,"Bath and North East Somerset, Swindon and Wiltshire","A&E attendances (0 to 4 years)",708.8556,429.6875,666.06661
+2022,"Bedfordshire, Luton and Milton Keynes","A&E attendances (0 to 4 years)",708.8556,502.05303,449.320585
+2022,"Birmingham and Solihull","A&E attendances (0 to 4 years)",708.8556,539.9568,728.425595
+2022,"Black Country","A&E attendances (0 to 4 years)",708.8556,981.20602,1123.689605
+2022,"Bristol, North Somerset and South Gloucestershire","A&E attendances (0 to 4 years)",708.8556,509.00901,604.24967
+2022,"Buckinghamshire, Oxfordshire and Berkshire West","A&E attendances (0 to 4 years)",708.8556,457.92079,NA
+2022,"Cambridgeshire and Peterborough","A&E attendances (0 to 4 years)",708.8556,549.00891,588.35762
+2022,"Cheshire and Merseyside","A&E attendances (0 to 4 years)",708.8556,596.20908,1024.19355
+2022,"Cornwall and the Isles of Scilly","A&E attendances (0 to 4 years)",708.8556,779.22078,812.67218
+2022,"Coventry and Warwickshire","A&E attendances (0 to 4 years)",708.8556,548.994785,1153.84615
+2022,"Derby and Derbyshire","A&E attendances (0 to 4 years)",708.8556,706.94087,772.1459
+2022,"Devon","A&E attendances (0 to 4 years)",708.8556,478.58942,589.9705
+2022,"Dorset","A&E attendances (0 to 4 years)",708.8556,467.224365,NA
+2022,"Frimley","A&E attendances (0 to 4 years)",708.8556,556.64063,NA
+2022,"Gloucestershire","A&E attendances (0 to 4 years)",708.8556,375.746065,373.11609
+2022,"Greater Manchester","A&E attendances (0 to 4 years)",708.8556,613.643725,864.58333
+2022,"Hampshire and Isle of Wight","A&E attendances (0 to 4 years)",708.8556,480.18293,721.04019
+2022,"Herefordshire and Worcestershire","A&E attendances (0 to 4 years)",708.8556,500,NA
+2022,"Hertfordshire and West Essex","A&E attendances (0 to 4 years)",708.8556,622.707485,NA
+2022,"Humber and North Yorkshire","A&E attendances (0 to 4 years)",708.8556,576.54748,1008.84556
+2022,"Kent and Medway","A&E attendances (0 to 4 years)",708.8556,678.19149,935.47644
+2022,"South East London","A&E attendances (0 to 4 years)",708.8556,1124.23947,846.35417
+2022,"South West London","A&E attendances (0 to 4 years)",708.8556,670.10309,1893.93939
+2022,"Lincolnshire","A&E attendances (0 to 4 years)",708.8556,686.19193,1028.11951
+2022,"Mid and South Essex","A&E attendances (0 to 4 years)",708.8556,590.727815,897.4359
+2022,"Norfolk and Waveney","A&E attendances (0 to 4 years)",708.8556,320.88681,616.71088
+2022,"North Central London","A&E attendances (0 to 4 years)",708.8556,758.486055,1065.09161
+2022,"North East London","A&E attendances (0 to 4 years)",708.8556,485.61151,569.80057
+2022,"North East and North Cumbria","A&E attendances (0 to 4 years)",708.8556,708.15451,1049.392715
+2022,"North West London","A&E attendances (0 to 4 years)",708.8556,775.955035,1157.390445
+2022,"Northamptonshire","A&E attendances (0 to 4 years)",708.8556,556.51424,709.06404
+2022,"Nottingham and Nottinghamshire","A&E attendances (0 to 4 years)",708.8556,565.74924,795.053
+2022,"Shropshire, Telford and Wrekin","A&E attendances (0 to 4 years)",708.8556,507.39958,612.88811
+2022,"Somerset","A&E attendances (0 to 4 years)",708.8556,457.14286,NA
+2022,"Suffolk and North East Essex","A&E attendances (0 to 4 years)",708.8556,525.16212,960.90874
+2022,"Surrey Heartlands","A&E attendances (0 to 4 years)",708.8556,737.86408,NA
+2022,"South Yorkshire","A&E attendances (0 to 4 years)",708.8556,661.891295,906.944445
+2022,"Staffordshire and Stoke-on-Trent","A&E attendances (0 to 4 years)",708.8556,604.3956,857.60518
+2022,"Sussex","A&E attendances (0 to 4 years)",708.8556,674.1573,848.48485
+2022,"West Yorkshire","A&E attendances (0 to 4 years)",708.8556,445.85987,619.463535
+2022,"England","Number of emergency admissions with cancer",508.456988689426,544.768345734891,457.731576060227
+2022,"Lancashire and South Cumbria","Number of emergency admissions with cancer",508.456988689426,549.317333549932,470.844474104025
+2022,"Bath and North East Somerset, Swindon and Wiltshire","Number of emergency admissions with cancer",508.456988689426,538.998097653773,664.229765355165
+2022,"Bedfordshire, Luton and Milton Keynes","Number of emergency admissions with cancer",508.456988689426,528.719391542596,455.244021756688
+2022,"Birmingham and Solihull","Number of emergency admissions with cancer",508.456988689426,543.828924324823,367.911701191714
+2022,"Black Country","Number of emergency admissions with cancer",508.456988689426,880.737206953637,377.928949357521
+2022,"Bristol, North Somerset and South Gloucestershire","Number of emergency admissions with cancer",508.456988689426,495.5699053912,412.704109097434
+2022,"Buckinghamshire, Oxfordshire and Berkshire West","Number of emergency admissions with cancer",508.456988689426,554.810496505247,NA
+2022,"Cambridgeshire and Peterborough","Number of emergency admissions with cancer",508.456988689426,541.575026113454,358.106231982215
+2022,"Cheshire and Merseyside","Number of emergency admissions with cancer",508.456988689426,524.704594263193,505.931612002791
+2022,"Cornwall and the Isles of Scilly","Number of emergency admissions with cancer",508.456988689426,331.67495854063,507.146150299677
+2022,"Coventry and Warwickshire","Number of emergency admissions with cancer",508.456988689426,593.217953249483,460.081190798376
+2022,"Derby and Derbyshire","Number of emergency admissions with cancer",508.456988689426,863.496569671162,653.472740851382
+2022,"Devon","Number of emergency admissions with cancer",508.456988689426,769.738288981746,489.58071805172
+2022,"Dorset","Number of emergency admissions with cancer",508.456988689426,937.218389393865,NA
+2022,"Frimley","Number of emergency admissions with cancer",508.456988689426,407.072891489632,NA
+2022,"Gloucestershire","Number of emergency admissions with cancer",508.456988689426,534.895638769442,337.148962148962
+2022,"Greater Manchester","Number of emergency admissions with cancer",508.456988689426,502.33429776379,431.077410932234
+2022,"Hampshire and Isle of Wight","Number of emergency admissions with cancer",508.456988689426,766.650694777192,672.798501107137
+2022,"Herefordshire and Worcestershire","Number of emergency admissions with cancer",508.456988689426,629.613547546678,NA
+2022,"Hertfordshire and West Essex","Number of emergency admissions with cancer",508.456988689426,486.1869818074,NA
+2022,"Humber and North Yorkshire","Number of emergency admissions with cancer",508.456988689426,740.334093772318,642.905576579509
+2022,"Kent and Medway","Number of emergency admissions with cancer",508.456988689426,543.219936171658,515.381100917763
+2022,"South East London","Number of emergency admissions with cancer",508.456988689426,458.846415350911,401.887122138738
+2022,"Leicester, Leicestershire and Rutland","Number of emergency admissions with cancer",508.456988689426,624.783056884957,516.647531572905
+2022,"Lincolnshire","Number of emergency admissions with cancer",508.456988689426,493.526720153894,545.91379450827
+2022,"Mid and South Essex","Number of emergency admissions with cancer",508.456988689426,486.54276630008,450.919181408255
+2022,"Norfolk and Waveney","Number of emergency admissions with cancer",508.456988689426,491.592391803731,433.734939759036
+2022,"North Central London","Number of emergency admissions with cancer",508.456988689426,299.02549447918,355.712527156283
+2022,"North East London","Number of emergency admissions with cancer",508.456988689426,420.477241669295,284.135753749013
+2022,"North East and North Cumbria","Number of emergency admissions with cancer",508.456988689426,657.318141980719,666.207891333174
+2022,"North West London","Number of emergency admissions with cancer",508.456988689426,640.257412293887,401.223339796104
+2022,"Northamptonshire","Number of emergency admissions with cancer",508.456988689426,832.211479623057,1073.75492316168
+2022,"Nottingham and Nottinghamshire","Number of emergency admissions with cancer",508.456988689426,567.595459236326,453.212476672887
+2022,"Shropshire, Telford and Wrekin","Number of emergency admissions with cancer",508.456988689426,573.936529372046,668.533054915323
+2022,"Somerset","Number of emergency admissions with cancer",508.456988689426,662.351347282854,NA
+2022,"Suffolk and North East Essex","Number of emergency admissions with cancer",508.456988689426,582.580641145001,786.363077737177
+2022,"South West London","Number of emergency admissions with cancer",508.456988689426,313.24480762683,419.874037788664
+2022,"South Yorkshire","Number of emergency admissions with cancer",508.456988689426,664.326314462605,620.385086654476
+2022,"Staffordshire and Stoke-on-Trent","Number of emergency admissions with cancer",508.456988689426,711.786705272047,501.462599247806
+2022,"Surrey Heartlands","Number of emergency admissions with cancer",508.456988689426,469.66235085047,NA
+2022,"Sussex","Number of emergency admissions with cancer",508.456988689426,479.123887748118,457.007590964485
+2022,"West Yorkshire","Number of emergency admissions with cancer",508.456988689426,570.071258907364,352.19818229527
+2023,"England","Number of emergency admissions with cancer",490.509703561527,520.80334304647,445.111814232852
+2023,"Bath and North East Somerset, Swindon and Wiltshire","Number of emergency admissions with cancer",490.509703561527,550.148116800677,678.051843371412
+2023,"Bedfordshire, Luton and Milton Keynes","Number of emergency admissions with cancer",490.509703561527,476.709372213762,421.92141264017
+2023,"Birmingham and Solihull","Number of emergency admissions with cancer",490.509703561527,611.445256931793,399.564111877951
+2023,"Black Country","Number of emergency admissions with cancer",490.509703561527,821.102662062115,429.10447761194
+2023,"Bristol, North Somerset and South Gloucestershire","Number of emergency admissions with cancer",490.509703561527,618.886005190657,429.60088691796
+2023,"Buckinghamshire, Oxfordshire and Berkshire West","Number of emergency admissions with cancer",490.509703561527,515.609518245103,NA
+2023,"Cambridgeshire and Peterborough","Number of emergency admissions with cancer",490.509703561527,495.901632375153,201.558063671256
+2023,"Cheshire and Merseyside","Number of emergency admissions with cancer",490.509703561527,528.620640815938,500.698649278063
+2023,"Cornwall and the Isles of Scilly","Number of emergency admissions with cancer",490.509703561527,710.405348934392,643.922277451423
+2023,"Coventry and Warwickshire","Number of emergency admissions with cancer",490.509703561527,547.687427356422,410.911431258973
+2023,"Derby and Derbyshire","Number of emergency admissions with cancer",490.509703561527,1062.30261269021,608.195686131144
+2023,"Devon","Number of emergency admissions with cancer",490.509703561527,730.216683863799,365.772555974285
+2023,"Dorset","Number of emergency admissions with cancer",490.509703561527,960.328683641152,NA
+2023,"Frimley","Number of emergency admissions with cancer",490.509703561527,141.604855023601,NA
+2023,"Gloucestershire","Number of emergency admissions with cancer",490.509703561527,373.9686201337,226.805080609098
+2023,"Greater Manchester","Number of emergency admissions with cancer",490.509703561527,495.411389233524,387.296669248644
+2023,"Hampshire and Isle of Wight","Number of emergency admissions with cancer",490.509703561527,698.810274033711,479.102956167176
+2023,"Herefordshire and Worcestershire","Number of emergency admissions with cancer",490.509703561527,575.575575575576,NA
+2023,"Hertfordshire and West Essex","Number of emergency admissions with cancer",490.509703561527,429.42893299822,NA
+2023,"Humber and North Yorkshire","Number of emergency admissions with cancer",490.509703561527,725.351950742855,566.231417295247
+2023,"Kent and Medway","Number of emergency admissions with cancer",490.509703561527,548.223350253807,528.191081372001
+2023,"Lancashire and South Cumbria","Number of emergency admissions with cancer",490.509703561527,468.308934340742,426.29707961928
+2023,"Leicester, Leicestershire and Rutland","Number of emergency admissions with cancer",490.509703561527,637.940631284887,491.588612724151
+2023,"Lincolnshire","Number of emergency admissions with cancer",490.509703561527,580.271846467595,565.515581759114
+2023,"Mid and South Essex","Number of emergency admissions with cancer",490.509703561527,443.837411410465,376.588733720383
+2023,"Norfolk and Waveney","Number of emergency admissions with cancer",490.509703561527,590.74297107823,453.695228240538
+2023,"North Central London","Number of emergency admissions with cancer",490.509703561527,250.03310285412,288.785682330666
+2023,"North East London","Number of emergency admissions with cancer",490.509703561527,393.184796854522,257.267815796244
+2023,"North East and North Cumbria","Number of emergency admissions with cancer",490.509703561527,617.79929871431,659.280908040508
+2023,"North West London","Number of emergency admissions with cancer",490.509703561527,515.940427057071,362.225437598163
+2023,"Northamptonshire","Number of emergency admissions with cancer",490.509703561527,891.657505801881,1159.01620449059
+2023,"Nottingham and Nottinghamshire","Number of emergency admissions with cancer",490.509703561527,511.190936722852,368.016058882569
+2023,"Shropshire, Telford and Wrekin","Number of emergency admissions with cancer",490.509703561527,702.945097563932,636.542383081846
+2023,"Somerset","Number of emergency admissions with cancer",490.509703561527,594.949004371054,NA
+2023,"South East London","Number of emergency admissions with cancer",490.509703561527,449.597423983894,321.870583696832
+2023,"South West London","Number of emergency admissions with cancer",490.509703561527,336.393580489172,219.08804600849
+2023,"South Yorkshire","Number of emergency admissions with cancer",490.509703561527,720.465238791247,619.773344040635
+2023,"Staffordshire and Stoke-on-Trent","Number of emergency admissions with cancer",490.509703561527,781.385657232158,475.836431226766
+2023,"Suffolk and North East Essex","Number of emergency admissions with cancer",490.509703561527,592.087471371344,710.297060199649
+2023,"Surrey Heartlands","Number of emergency admissions with cancer",490.509703561527,428.265524625268,NA
+2023,"Sussex","Number of emergency admissions with cancer",490.509703561527,450.928381962865,326.268198310384
+2023,"West Yorkshire","Number of emergency admissions with cancer",490.509703561527,585.898040272072,367.524223187437
