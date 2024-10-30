@@ -11411,3 +11411,1422 @@
 2024,"Suffolk and North East Essex","Women (50-64 yrs), with a record of cervical screening in the last 5.5 yrs (denominator incl. PCAs)",76.53820149,79.864409875,70.86903465
 2024,"Sussex","Women (50-64 yrs), with a record of cervical screening in the last 5.5 yrs (denominator incl. PCAs)",76.53820149,77.67817378,68.851362925
 2024,"West Yorkshire","Women (50-64 yrs), with a record of cervical screening in the last 5.5 yrs (denominator incl. PCAs)",76.53820149,82.504201555,74.40972222
+2017,"Bath and North East Somerset, Swindon and Wiltshire","access_pct",0.74075427,0.876522134,0.79783611
+2017,"Cheshire and Merseyside","access_pct",0.74075427,0.790962717,0.737241466
+2017,"Black Country","access_pct",0.74075427,0.641839593,0.657376738
+2017,"Frimley","access_pct",0.74075427,0.7405452195,NA
+2017,"Bedfordshire, Luton and Milton Keynes","access_pct",0.74075427,0.7457660775,0.518255903
+2017,"Cornwall and the Isles of Scilly","access_pct",0.74075427,0.923755626,0.645796903
+2017,"Buckinghamshire, Oxfordshire and Berkshire West","access_pct",0.74075427,0.8082344945,NA
+2017,"England","access_pct",0.74075427,0.7963058385,0.686008649
+2017,"Birmingham and Solihull","access_pct",0.74075427,0.725697412,0.54100546
+2017,"Coventry and Warwickshire","access_pct",0.74075427,0.8223118115,0.669215669
+2017,"Cambridgeshire and Peterborough","access_pct",0.74075427,0.803315824,0.5521851815
+2017,"Hampshire and Isle of Wight","access_pct",0.74075427,0.8095525545,0.7023431735
+2017,"South Yorkshire","access_pct",0.74075427,0.828050119,0.675984058
+2017,"Somerset","access_pct",0.74075427,0.887943274,NA
+2017,"Derby and Derbyshire","access_pct",0.74075427,0.770802029,0.513279523
+2017,"Bristol, North Somerset and South Gloucestershire","access_pct",0.74075427,0.704874001,0.594892687
+2017,"Gloucestershire","access_pct",0.74075427,0.890318701,0.670654398
+2017,"South East London","access_pct",0.74075427,0.6932658505,0.713010157
+2017,"Devon","access_pct",0.74075427,0.826902717,0.774567827
+2017,"Hertfordshire and West Essex","access_pct",0.74075427,0.767807135,NA
+2017,"Greater Manchester","access_pct",0.74075427,0.863395015,0.723304814
+2017,"South West London","access_pct",0.74075427,0.789899788,0.7593633505
+2017,"Dorset","access_pct",0.74075427,0.887518044,0.912552714
+2017,"Humber and North Yorkshire","access_pct",0.74075427,0.82740092,0.66160643
+2017,"Surrey Heartlands","access_pct",0.74075427,0.7421366025,NA
+2017,"North Central London","access_pct",0.74075427,0.7466907935,0.656877466
+2017,"Lincolnshire","access_pct",0.74075427,0.789672155,0.48899143
+2017,"Sussex","access_pct",0.74075427,0.7813347665,0.601582338
+2017,"Herefordshire and Worcestershire","access_pct",0.74075427,0.8362678185,0.688181531
+2017,"Staffordshire and Stoke-on-Trent","access_pct",0.74075427,0.799600054,0.669658685
+2017,"Mid and South Essex","access_pct",0.74075427,0.687602508,0.691189888
+2017,"West Yorkshire","access_pct",0.74075427,0.833025731,0.5757231815
+2017,"Lancashire and South Cumbria","access_pct",0.74075427,0.8420616405,0.7444315935
+2017,"Suffolk and North East Essex","access_pct",0.74075427,0.812031624,0.646006588
+2017,"Norfolk and Waveney","access_pct",0.74075427,0.8062371215,0.7069083895
+2017,"Northamptonshire","access_pct",0.74075427,0.822101594,0.4151442315
+2017,"Leicester, Leicestershire and Rutland","access_pct",0.74075427,0.823076933,0.6679013695
+2017,"North West London","access_pct",0.74075427,0.7260459075,0.7391585585
+2017,"North East London","access_pct",0.74075427,0.866639929,0.7057531585
+2017,"Nottingham and Nottinghamshire","access_pct",0.74075427,0.787491703,0.659710313
+2017,"Kent and Medway","access_pct",0.74075427,0.749015108,0.583002722
+2017,"North East and North Cumbria","access_pct",0.74075427,0.888725542,0.793126578
+2017,"Shropshire, Telford and Wrekin","access_pct",0.74075427,0.840755729,0.6363610665
+2017,"England","continuity_pct",0.56197374,0.627440584,0.51054729
+2017,"Greater Manchester","continuity_pct",0.56197374,0.702407598,0.515152595
+2017,"Black Country","continuity_pct",0.56197374,0.57621111,0.509575869
+2017,"Hampshire and Isle of Wight","continuity_pct",0.56197374,0.648636792,0.6043264495
+2017,"Frimley","continuity_pct",0.56197374,0.60975695,NA
+2017,"Bristol, North Somerset and South Gloucestershire","continuity_pct",0.56197374,0.542822162,0.455381097
+2017,"Herefordshire and Worcestershire","continuity_pct",0.56197374,0.680390771,0.482567736
+2017,"Gloucestershire","continuity_pct",0.56197374,0.67709148,0.418912796
+2017,"Buckinghamshire, Oxfordshire and Berkshire West","continuity_pct",0.56197374,0.6615499145,NA
+2017,"Hertfordshire and West Essex","continuity_pct",0.56197374,0.573299762,NA
+2017,"Norfolk and Waveney","continuity_pct",0.56197374,0.561972325,0.595395932
+2017,"Birmingham and Solihull","continuity_pct",0.56197374,0.46297644,0.466161951
+2017,"Cambridgeshire and Peterborough","continuity_pct",0.56197374,0.662697223,0.379477607
+2017,"Humber and North Yorkshire","continuity_pct",0.56197374,0.662557707,0.5429695215
+2017,"North Central London","continuity_pct",0.56197374,0.520790092,0.4578787925
+2017,"Lincolnshire","continuity_pct",0.56197374,0.6107316915,0.3619687495
+2017,"Bath and North East Somerset, Swindon and Wiltshire","continuity_pct",0.56197374,0.652041047,0.366697057
+2017,"Cheshire and Merseyside","continuity_pct",0.56197374,0.58142467,0.544197954
+2017,"North East London","continuity_pct",0.56197374,0.71979888,0.495905076
+2017,"Mid and South Essex","continuity_pct",0.56197374,0.6320436035,0.525227634
+2017,"Bedfordshire, Luton and Milton Keynes","continuity_pct",0.56197374,0.4885814895,0.426439307
+2017,"Cornwall and the Isles of Scilly","continuity_pct",0.56197374,0.805758606,0.392579828
+2017,"North East and North Cumbria","continuity_pct",0.56197374,0.69626707,0.563904987
+2017,"Suffolk and North East Essex","continuity_pct",0.56197374,0.612519678,0.583603962
+2017,"South West London","continuity_pct",0.56197374,0.588717364,0.42191068
+2017,"Coventry and Warwickshire","continuity_pct",0.56197374,0.641232003,0.530705564
+2017,"North West London","continuity_pct",0.56197374,0.5802467445,0.48514205
+2017,"Surrey Heartlands","continuity_pct",0.56197374,0.588364541,NA
+2017,"South Yorkshire","continuity_pct",0.56197374,0.701258814,0.5123393775
+2017,"Somerset","continuity_pct",0.56197374,0.82585612,NA
+2017,"Derby and Derbyshire","continuity_pct",0.56197374,0.597867285,0.445533559
+2017,"Kent and Medway","continuity_pct",0.56197374,0.6911834385,0.5586456035
+2017,"Staffordshire and Stoke-on-Trent","continuity_pct",0.56197374,0.58275566,0.423418901
+2017,"South East London","continuity_pct",0.56197374,0.608003518,0.423941535
+2017,"Devon","continuity_pct",0.56197374,0.633022821,0.529432013
+2017,"Lancashire and South Cumbria","continuity_pct",0.56197374,0.631453183,0.561063643
+2017,"Nottingham and Nottinghamshire","continuity_pct",0.56197374,0.611449297,0.5478690145
+2017,"West Yorkshire","continuity_pct",0.56197374,0.650228553,0.4508882185
+2017,"Dorset","continuity_pct",0.56197374,0.717602408,0.6439487
+2017,"Leicester, Leicestershire and Rutland","continuity_pct",0.56197374,0.6162660635,0.488935666
+2017,"Shropshire, Telford and Wrekin","continuity_pct",0.56197374,0.474401993,0.649251892
+2017,"Northamptonshire","continuity_pct",0.56197374,0.66765389,0.3197019655
+2017,"Sussex","continuity_pct",0.56197374,0.600621568,0.566905303
+2017,"England","overall_pct",0.8671467545,0.904015109,0.8301058225
+2017,"North West London","overall_pct",0.8671467545,0.854011551,0.814579695
+2017,"North Central London","overall_pct",0.8671467545,0.8257414595,0.785231128
+2017,"Lincolnshire","overall_pct",0.8671467545,0.908163117,0.609585913
+2017,"Black Country","overall_pct",0.8671467545,0.884851278,0.794211945
+2017,"Northamptonshire","overall_pct",0.8671467545,0.918549504,0.703569751
+2017,"North East London","overall_pct",0.8671467545,0.914520471,0.7967133115
+2017,"Mid and South Essex","overall_pct",0.8671467545,0.866861795,0.748661195
+2017,"Bristol, North Somerset and South Gloucestershire","overall_pct",0.8671467545,0.874363417,0.838386348
+2017,"Nottingham and Nottinghamshire","overall_pct",0.8671467545,0.912030122,0.825579337
+2017,"North East and North Cumbria","overall_pct",0.8671467545,0.929015314,0.862661876
+2017,"Norfolk and Waveney","overall_pct",0.8671467545,0.8999288755,0.835024612
+2017,"Buckinghamshire, Oxfordshire and Berkshire West","overall_pct",0.8671467545,0.915151851,NA
+2017,"Shropshire, Telford and Wrekin","overall_pct",0.8671467545,0.955429603,0.780163364
+2017,"Birmingham and Solihull","overall_pct",0.8671467545,0.921448025,0.805764344
+2017,"Coventry and Warwickshire","overall_pct",0.8671467545,0.9340886415,0.7992534065
+2017,"Cambridgeshire and Peterborough","overall_pct",0.8671467545,0.9179350565,0.7858504145
+2017,"Somerset","overall_pct",0.8671467545,0.912512188,NA
+2017,"Frimley","overall_pct",0.8671467545,0.876293248,NA
+2017,"Bath and North East Somerset, Swindon and Wiltshire","overall_pct",0.8671467545,0.916841684,0.917649168
+2017,"Cheshire and Merseyside","overall_pct",0.8671467545,0.902318778,0.879665151
+2017,"South East London","overall_pct",0.8671467545,0.8770791965,0.851629534
+2017,"Gloucestershire","overall_pct",0.8671467545,0.9278348225,0.86710466
+2017,"Bedfordshire, Luton and Milton Keynes","overall_pct",0.8671467545,0.8638469705,0.731032871
+2017,"Cornwall and the Isles of Scilly","overall_pct",0.8671467545,0.978332013,0.824488761
+2017,"South West London","overall_pct",0.8671467545,0.86628598,0.8280954975
+2017,"Greater Manchester","overall_pct",0.8671467545,0.93157662,0.855995926
+2017,"Kent and Medway","overall_pct",0.8671467545,0.898037102,0.733721269
+2017,"Surrey Heartlands","overall_pct",0.8671467545,0.893752019,NA
+2017,"South Yorkshire","overall_pct",0.8671467545,0.945102126,0.843229981
+2017,"Hampshire and Isle of Wight","overall_pct",0.8671467545,0.8841869975,0.8751812775
+2017,"Lancashire and South Cumbria","overall_pct",0.8671467545,0.933604846,0.858083229
+2017,"Sussex","overall_pct",0.8671467545,0.912309339,0.856072028
+2017,"Staffordshire and Stoke-on-Trent","overall_pct",0.8671467545,0.8878688135,0.812973271
+2017,"Herefordshire and Worcestershire","overall_pct",0.8671467545,0.9229157915,0.706074739
+2017,"Leicester, Leicestershire and Rutland","overall_pct",0.8671467545,0.89501069,0.8473485435
+2017,"West Yorkshire","overall_pct",0.8671467545,0.911751977,0.79732379
+2017,"Suffolk and North East Essex","overall_pct",0.8671467545,0.9258285005,0.773105099
+2017,"Hertfordshire and West Essex","overall_pct",0.8671467545,0.885034561,NA
+2017,"Dorset","overall_pct",0.8671467545,0.9249150085,0.914586283
+2017,"Humber and North Yorkshire","overall_pct",0.8671467545,0.917571744,0.830191321
+2017,"Derby and Derbyshire","overall_pct",0.8671467545,0.900466928,0.7883154585
+2017,"Devon","overall_pct",0.8671467545,0.926472685,0.906835786
+2017,"Lincolnshire","trust_pct",0.926612868,0.937276179,0.823032923
+2017,"Frimley","trust_pct",0.926612868,0.9379718565,NA
+2017,"Mid and South Essex","trust_pct",0.926612868,0.939042438,0.828333998
+2017,"Devon","trust_pct",0.926612868,0.9571604965,0.909591922
+2017,"Gloucestershire","trust_pct",0.926612868,0.958812574,0.920926517
+2017,"Norfolk and Waveney","trust_pct",0.926612868,0.935662696,0.888146974
+2017,"Dorset","trust_pct",0.926612868,0.9439910085,0.882638846
+2017,"Humber and North Yorkshire","trust_pct",0.926612868,0.954824027,0.8808977905
+2017,"Greater Manchester","trust_pct",0.926612868,0.957205417,0.91192083
+2017,"North Central London","trust_pct",0.926612868,0.9233833085,0.87517838
+2017,"South Yorkshire","trust_pct",0.926612868,0.948148252,0.913159624
+2017,"Somerset","trust_pct",0.926612868,0.969018346,NA
+2017,"Hampshire and Isle of Wight","trust_pct",0.926612868,0.951801808,0.8835352765
+2017,"Herefordshire and Worcestershire","trust_pct",0.926612868,0.953101116,0.768866168
+2017,"Staffordshire and Stoke-on-Trent","trust_pct",0.926612868,0.952306701,0.91725908
+2017,"South East London","trust_pct",0.926612868,0.940410597,0.887060976
+2017,"England","trust_pct",0.926612868,0.9476427565,0.9043216595
+2017,"Hertfordshire and West Essex","trust_pct",0.926612868,0.948500005,NA
+2017,"Suffolk and North East Essex","trust_pct",0.926612868,0.952828206,0.865776745
+2017,"South West London","trust_pct",0.926612868,0.934805208,0.889662858
+2017,"Leicester, Leicestershire and Rutland","trust_pct",0.926612868,0.9427299495,0.902626689
+2017,"North West London","trust_pct",0.926612868,0.938861929,0.898184891
+2017,"Surrey Heartlands","trust_pct",0.926612868,0.9360722435,NA
+2017,"Coventry and Warwickshire","trust_pct",0.926612868,0.969526679,0.892598077
+2017,"Cambridgeshire and Peterborough","trust_pct",0.926612868,0.9457816955,0.831979622
+2017,"Kent and Medway","trust_pct",0.926612868,0.946825961,0.878362321
+2017,"North East London","trust_pct",0.926612868,0.94839679,0.8728535715
+2017,"Bath and North East Somerset, Swindon and Wiltshire","trust_pct",0.926612868,0.955062364,0.953702536
+2017,"Cheshire and Merseyside","trust_pct",0.926612868,0.947652206,0.926324226
+2017,"Lancashire and South Cumbria","trust_pct",0.926612868,0.9617767845,0.911429636
+2017,"North East and North Cumbria","trust_pct",0.926612868,0.960725508,0.922961622
+2017,"Bedfordshire, Luton and Milton Keynes","trust_pct",0.926612868,0.921477915,0.805649727
+2017,"Cornwall and the Isles of Scilly","trust_pct",0.926612868,0.970659686,0.945908138
+2017,"Buckinghamshire, Oxfordshire and Berkshire West","trust_pct",0.926612868,0.947798472,NA
+2017,"Shropshire, Telford and Wrekin","trust_pct",0.926612868,0.969780391,0.912058939
+2017,"Birmingham and Solihull","trust_pct",0.926612868,0.964015961,0.9033677705
+2017,"Sussex","trust_pct",0.926612868,0.955614469,0.936984442
+2017,"Derby and Derbyshire","trust_pct",0.926612868,0.953962643,0.9145957445
+2017,"Black Country","trust_pct",0.926612868,0.936544978,0.8912668765
+2017,"Northamptonshire","trust_pct",0.926612868,0.933121343,0.785898623
+2017,"West Yorkshire","trust_pct",0.926612868,0.955700658,0.897478939
+2017,"Bristol, North Somerset and South Gloucestershire","trust_pct",0.926612868,0.951186904,0.920479078
+2017,"Nottingham and Nottinghamshire","trust_pct",0.926612868,0.949025972,0.880856661
+2018,"Bath and North East Somerset, Swindon and Wiltshire","access_pct",0.768251378,0.9211950975,0.8988407625
+2018,"Bedfordshire, Luton and Milton Keynes","access_pct",0.768251378,0.720144674,0.280220547
+2018,"Buckinghamshire, Oxfordshire and Berkshire West","access_pct",0.768251378,0.853620504,NA
+2018,"Leicester, Leicestershire and Rutland","access_pct",0.768251378,0.786392773,0.704958282
+2018,"South West London","access_pct",0.768251378,0.8150311825,0.806289387
+2018,"Shropshire, Telford and Wrekin","access_pct",0.768251378,0.840211214,0.606144773
+2018,"Cambridgeshire and Peterborough","access_pct",0.768251378,0.86115508,0.5954508385
+2018,"Black Country","access_pct",0.768251378,0.623369195,0.683550992
+2018,"Lincolnshire","access_pct",0.768251378,0.795882069,0.3005512815
+2018,"Somerset","access_pct",0.768251378,0.9123013235,NA
+2018,"Cheshire and Merseyside","access_pct",0.768251378,0.819850143,0.762529414
+2018,"Bristol, North Somerset and South Gloucestershire","access_pct",0.768251378,0.741707835,0.6356013605
+2018,"Mid and South Essex","access_pct",0.768251378,0.714814981,0.704148796
+2018,"South East London","access_pct",0.768251378,0.7313488695,0.80564991
+2018,"Devon","access_pct",0.768251378,0.867781997,0.7056081915
+2018,"Cornwall and the Isles of Scilly","access_pct",0.768251378,0.983027815,0.510101786
+2018,"Birmingham and Solihull","access_pct",0.768251378,0.667205966,0.605078869
+2018,"England","access_pct",0.768251378,0.830229702,0.703315627
+2018,"Dorset","access_pct",0.768251378,0.883345488,NA
+2018,"Coventry and Warwickshire","access_pct",0.768251378,0.86355521,0.697675142
+2018,"North Central London","access_pct",0.768251378,0.766313598,0.6590513355
+2018,"South Yorkshire","access_pct",0.768251378,0.825447284,0.700891789
+2018,"Frimley","access_pct",0.768251378,0.782785049,NA
+2018,"Derby and Derbyshire","access_pct",0.768251378,0.831876927,0.579713474
+2018,"North East London","access_pct",0.768251378,0.8678136625,0.713160263
+2018,"Staffordshire and Stoke-on-Trent","access_pct",0.768251378,0.829020147,0.6663189345
+2018,"Gloucestershire","access_pct",0.768251378,0.932756209,0.802312991
+2018,"Suffolk and North East Essex","access_pct",0.768251378,0.851408716,0.494560992
+2018,"Lancashire and South Cumbria","access_pct",0.768251378,0.89091842,0.748274557
+2018,"Norfolk and Waveney","access_pct",0.768251378,0.871768263,0.760253453
+2018,"Greater Manchester","access_pct",0.768251378,0.8958923315,0.747064842
+2018,"Surrey Heartlands","access_pct",0.768251378,0.774053326,NA
+2018,"West Yorkshire","access_pct",0.768251378,0.8515226545,0.613163028
+2018,"Humber and North Yorkshire","access_pct",0.768251378,0.857074076,0.7017920835
+2018,"Hampshire and Isle of Wight","access_pct",0.768251378,0.862187156,0.62793446
+2018,"Sussex","access_pct",0.768251378,0.812474998,0.6175316355
+2018,"Kent and Medway","access_pct",0.768251378,0.7913514575,0.536575731
+2018,"Herefordshire and Worcestershire","access_pct",0.768251378,0.852150895,0.790843481
+2018,"North East and North Cumbria","access_pct",0.768251378,0.860230485,0.78594055
+2018,"Hertfordshire and West Essex","access_pct",0.768251378,0.8021306285,NA
+2018,"North West London","access_pct",0.768251378,0.759000027,0.6986720125
+2018,"Northamptonshire","access_pct",0.768251378,0.898906904,0.5465644765
+2018,"Nottingham and Nottinghamshire","access_pct",0.768251378,0.85779797,0.676477584
+2018,"Leicester, Leicestershire and Rutland","continuity_pct",0.507443394,0.5857080175,0.5166147685
+2018,"Lincolnshire","continuity_pct",0.507443394,0.513111859,0.3418883565
+2018,"Norfolk and Waveney","continuity_pct",0.507443394,0.4822488755,0.46956376
+2018,"Mid and South Essex","continuity_pct",0.507443394,0.54269339,0.468857823
+2018,"England","continuity_pct",0.507443394,0.5704482195,0.465637957
+2018,"Black Country","continuity_pct",0.507443394,0.489896439,0.453626612
+2018,"Greater Manchester","continuity_pct",0.507443394,0.63108498,0.504457265
+2018,"Dorset","continuity_pct",0.507443394,0.662555782,NA
+2018,"Birmingham and Solihull","continuity_pct",0.507443394,0.458183601,0.4392791955
+2018,"Bristol, North Somerset and South Gloucestershire","continuity_pct",0.507443394,0.4722454825,0.3962736835
+2018,"North Central London","continuity_pct",0.507443394,0.461977618,0.437814839
+2018,"Frimley","continuity_pct",0.507443394,0.527842408,NA
+2018,"Bath and North East Somerset, Swindon and Wiltshire","continuity_pct",0.507443394,0.594836741,0.57942938
+2018,"Buckinghamshire, Oxfordshire and Berkshire West","continuity_pct",0.507443394,0.596104124,NA
+2018,"North East London","continuity_pct",0.507443394,0.656469281,0.448000462
+2018,"Gloucestershire","continuity_pct",0.507443394,0.648769266,0.525527406
+2018,"Bedfordshire, Luton and Milton Keynes","continuity_pct",0.507443394,0.411486579,0.265113719
+2018,"Cheshire and Merseyside","continuity_pct",0.507443394,0.521442218,0.518361107
+2018,"Cornwall and the Isles of Scilly","continuity_pct",0.507443394,0.827934967,0.349592424
+2018,"North East and North Cumbria","continuity_pct",0.507443394,0.6093444825,0.487243629
+2018,"South West London","continuity_pct",0.507443394,0.5701986075,0.649296484
+2018,"Shropshire, Telford and Wrekin","continuity_pct",0.507443394,0.537837368,0.518896981
+2018,"Cambridgeshire and Peterborough","continuity_pct",0.507443394,0.645884564,0.380881122
+2018,"Hampshire and Isle of Wight","continuity_pct",0.507443394,0.546768824,0.566308697
+2018,"South Yorkshire","continuity_pct",0.507443394,0.596799998,0.430719389
+2018,"Somerset","continuity_pct",0.507443394,0.662751144,NA
+2018,"Derby and Derbyshire","continuity_pct",0.507443394,0.592582084,0.40125553
+2018,"Herefordshire and Worcestershire","continuity_pct",0.507443394,0.587851049,0.46472188
+2018,"Staffordshire and Stoke-on-Trent","continuity_pct",0.507443394,0.585114756,0.5281312055
+2018,"South East London","continuity_pct",0.507443394,0.594691725,0.516528238
+2018,"Devon","continuity_pct",0.507443394,0.646453195,0.523617894
+2018,"Hertfordshire and West Essex","continuity_pct",0.507443394,0.5475478895,NA
+2018,"Nottingham and Nottinghamshire","continuity_pct",0.507443394,0.544992591,0.471413814
+2018,"Suffolk and North East Essex","continuity_pct",0.507443394,0.576385692,0.476506177
+2018,"Surrey Heartlands","continuity_pct",0.507443394,0.532512546,NA
+2018,"Coventry and Warwickshire","continuity_pct",0.507443394,0.533242865,0.4582003515
+2018,"Humber and North Yorkshire","continuity_pct",0.507443394,0.609528156,0.477284828
+2018,"North West London","continuity_pct",0.507443394,0.483273246,0.438123757
+2018,"Sussex","continuity_pct",0.507443394,0.5190916585,0.451920501
+2018,"Kent and Medway","continuity_pct",0.507443394,0.660470598,0.5088747025
+2018,"Northamptonshire","continuity_pct",0.507443394,0.613398159,0.3810440135
+2018,"West Yorkshire","continuity_pct",0.507443394,0.5591271115,0.4093965265
+2018,"Lancashire and South Cumbria","continuity_pct",0.507443394,0.6003703155,0.492643777
+2018,"Greater Manchester","overall_pct",0.857030744,0.923767264,0.82723536
+2018,"England","overall_pct",0.857030744,0.897506083,0.816483577
+2018,"Herefordshire and Worcestershire","overall_pct",0.857030744,0.926167689,0.821071344
+2018,"Gloucestershire","overall_pct",0.857030744,0.934625273,0.864888626
+2018,"Bristol, North Somerset and South Gloucestershire","overall_pct",0.857030744,0.881334395,0.8217199195
+2018,"Nottingham and Nottinghamshire","overall_pct",0.857030744,0.8891202455,0.79829835
+2018,"Hertfordshire and West Essex","overall_pct",0.857030744,0.900415383,NA
+2018,"Cornwall and the Isles of Scilly","overall_pct",0.857030744,0.946676908,0.830327168
+2018,"Dorset","overall_pct",0.857030744,0.902956362,NA
+2018,"Birmingham and Solihull","overall_pct",0.857030744,0.874935831,0.779407945
+2018,"Leicester, Leicestershire and Rutland","overall_pct",0.857030744,0.8962604055,0.797843942
+2018,"Hampshire and Isle of Wight","overall_pct",0.857030744,0.891763205,0.823883294
+2018,"Frimley","overall_pct",0.857030744,0.882768882,NA
+2018,"Black Country","overall_pct",0.857030744,0.905097527,0.791461532
+2018,"Lincolnshire","overall_pct",0.857030744,0.889196487,0.6592113405
+2018,"Bath and North East Somerset, Swindon and Wiltshire","overall_pct",0.857030744,0.917151852,0.88876252
+2018,"Cheshire and Merseyside","overall_pct",0.857030744,0.8960951995,0.8719415345
+2018,"South East London","overall_pct",0.857030744,0.8911613155,0.843702933
+2018,"Mid and South Essex","overall_pct",0.857030744,0.865763549,0.726147983
+2018,"Bedfordshire, Luton and Milton Keynes","overall_pct",0.857030744,0.8542458115,0.655819742
+2018,"Suffolk and North East Essex","overall_pct",0.857030744,0.868630962,0.748965823
+2018,"Buckinghamshire, Oxfordshire and Berkshire West","overall_pct",0.857030744,0.894307639,NA
+2018,"Shropshire, Telford and Wrekin","overall_pct",0.857030744,0.922768181,0.814155731
+2018,"North West London","overall_pct",0.857030744,0.852403485,0.774511135
+2018,"Surrey Heartlands","overall_pct",0.857030744,0.887345426,NA
+2018,"Cambridgeshire and Peterborough","overall_pct",0.857030744,0.897163231,0.750271367
+2018,"Somerset","overall_pct",0.857030744,0.8883782245,NA
+2018,"Northamptonshire","overall_pct",0.857030744,0.925715936,0.721378064
+2018,"Sussex","overall_pct",0.857030744,0.901948754,0.7939598775
+2018,"Staffordshire and Stoke-on-Trent","overall_pct",0.857030744,0.879962324,0.8172321385
+2018,"North East London","overall_pct",0.857030744,0.882003619,0.75775645
+2018,"Norfolk and Waveney","overall_pct",0.857030744,0.8949380955,0.81250657
+2018,"West Yorkshire","overall_pct",0.857030744,0.911210059,0.7886270525
+2018,"Devon","overall_pct",0.857030744,0.922130473,0.837220617
+2018,"South West London","overall_pct",0.857030744,0.8860034,0.768534463
+2018,"North Central London","overall_pct",0.857030744,0.816376557,0.7522742995
+2018,"Humber and North Yorkshire","overall_pct",0.857030744,0.91308353,0.8163493515
+2018,"South Yorkshire","overall_pct",0.857030744,0.931107563,0.803200641
+2018,"Kent and Medway","overall_pct",0.857030744,0.8959625875,0.727067185
+2018,"Lancashire and South Cumbria","overall_pct",0.857030744,0.932580557,0.833621899
+2018,"Derby and Derbyshire","overall_pct",0.857030744,0.885981124,0.746831774
+2018,"North East and North Cumbria","overall_pct",0.857030744,0.91156686,0.853090014
+2018,"Coventry and Warwickshire","overall_pct",0.857030744,0.918274647,0.801999715
+2018,"Leicester, Leicestershire and Rutland","trust_pct",0.961620683,0.97589842,0.944886102
+2018,"Lincolnshire","trust_pct",0.961620683,0.973923216,0.953904828
+2018,"Devon","trust_pct",0.961620683,0.972751832,0.946552832
+2018,"Gloucestershire","trust_pct",0.961620683,0.981891088,0.978751816
+2018,"Dorset","trust_pct",0.961620683,0.983159496,NA
+2018,"Shropshire, Telford and Wrekin","trust_pct",0.961620683,0.980445108,0.956908475
+2018,"Norfolk and Waveney","trust_pct",0.961620683,0.971563311,0.951062448
+2018,"Frimley","trust_pct",0.961620683,0.969413333,NA
+2018,"Somerset","trust_pct",0.961620683,0.9874745295,NA
+2018,"North Central London","trust_pct",0.961620683,0.951285853,0.895803517
+2018,"Staffordshire and Stoke-on-Trent","trust_pct",0.961620683,0.979408254,0.9274183105
+2018,"South East London","trust_pct",0.961620683,0.9600953955,0.948925776
+2018,"Mid and South Essex","trust_pct",0.961620683,0.968248717,0.919132881
+2018,"North East London","trust_pct",0.961620683,0.970120675,0.918348822
+2018,"Greater Manchester","trust_pct",0.961620683,0.984475585,0.94529896
+2018,"South West London","trust_pct",0.961620683,0.970333354,0.936042395
+2018,"Buckinghamshire, Oxfordshire and Berkshire West","trust_pct",0.961620683,0.973543191,NA
+2018,"Humber and North Yorkshire","trust_pct",0.961620683,0.979720526,0.949821508
+2018,"Hampshire and Isle of Wight","trust_pct",0.961620683,0.975252762,0.944508485
+2018,"South Yorkshire","trust_pct",0.961620683,0.984831186,0.948984379
+2018,"Cambridgeshire and Peterborough","trust_pct",0.961620683,0.979234641,0.9617960195
+2018,"Kent and Medway","trust_pct",0.961620683,0.9735608865,0.943295084
+2018,"Herefordshire and Worcestershire","trust_pct",0.961620683,0.987793294,0.953763493
+2018,"Bath and North East Somerset, Swindon and Wiltshire","trust_pct",0.961620683,0.980849989,0.972667624
+2018,"Cheshire and Merseyside","trust_pct",0.961620683,0.979423814,0.958336089
+2018,"Lancashire and South Cumbria","trust_pct",0.961620683,0.976891981,0.9478813265
+2018,"Hertfordshire and West Essex","trust_pct",0.961620683,0.976396926,NA
+2018,"North East and North Cumbria","trust_pct",0.961620683,0.983256943,0.963262946
+2018,"England","trust_pct",0.961620683,0.975295654,0.94529896
+2018,"Cornwall and the Isles of Scilly","trust_pct",0.961620683,0.976908969,0.962690928
+2018,"Birmingham and Solihull","trust_pct",0.961620683,0.9701146645,0.94660631
+2018,"North West London","trust_pct",0.961620683,0.968905092,0.9405125585
+2018,"Surrey Heartlands","trust_pct",0.961620683,0.972575915,NA
+2018,"Coventry and Warwickshire","trust_pct",0.961620683,0.980937688,0.941352268
+2018,"Black Country","trust_pct",0.961620683,0.959136596,0.93817135
+2018,"Northamptonshire","trust_pct",0.961620683,0.9665437075,0.90582276
+2018,"Sussex","trust_pct",0.961620683,0.976909536,0.9664457595
+2018,"Derby and Derbyshire","trust_pct",0.961620683,0.980582073,0.952533106
+2018,"Bristol, North Somerset and South Gloucestershire","trust_pct",0.961620683,0.9730238285,0.9417143725
+2018,"Nottingham and Nottinghamshire","trust_pct",0.961620683,0.9648555655,0.929904908
+2018,"Bedfordshire, Luton and Milton Keynes","trust_pct",0.961620683,0.9612769575,0.907579694
+2018,"Suffolk and North East Essex","trust_pct",0.961620683,0.960865634,0.9200219975
+2018,"West Yorkshire","trust_pct",0.961620683,0.9843729795,0.9396463445
+2019,"Dorset","access_pct",0.747503652,0.904644333,NA
+2019,"Frimley","access_pct",0.747503652,0.726238302,NA
+2019,"Bath and North East Somerset, Swindon and Wiltshire","access_pct",0.747503652,0.899443171,0.83512862
+2019,"Leicester, Leicestershire and Rutland","access_pct",0.747503652,0.807372376,0.677773892
+2019,"Greater Manchester","access_pct",0.747503652,0.8879572925,0.740651251
+2019,"Shropshire, Telford and Wrekin","access_pct",0.747503652,0.780753448,0.647341721
+2019,"Lincolnshire","access_pct",0.747503652,0.837183907,0.3726772265
+2019,"Hampshire and Isle of Wight","access_pct",0.747503652,0.8302859135,0.5817744505
+2019,"Somerset","access_pct",0.747503652,0.978098484,NA
+2019,"Devon","access_pct",0.747503652,0.87927843,0.702983351
+2019,"Lancashire and South Cumbria","access_pct",0.747503652,0.8449353085,0.682247767
+2019,"Cornwall and the Isles of Scilly","access_pct",0.747503652,1,0.454887306
+2019,"Gloucestershire","access_pct",0.747503652,0.9226420735,0.610216448
+2019,"Norfolk and Waveney","access_pct",0.747503652,0.822487503,0.750219576
+2019,"Suffolk and North East Essex","access_pct",0.747503652,0.862924363,0.436576877
+2019,"Coventry and Warwickshire","access_pct",0.747503652,0.839020473,0.579958525
+2019,"South West London","access_pct",0.747503652,0.809664998,0.8392484275
+2019,"North Central London","access_pct",0.747503652,0.748440689,0.650268992
+2019,"Surrey Heartlands","access_pct",0.747503652,0.777998622,NA
+2019,"Derby and Derbyshire","access_pct",0.747503652,0.831359481,0.450768753
+2019,"South Yorkshire","access_pct",0.747503652,0.850333818,0.681215903
+2019,"South East London","access_pct",0.747503652,0.7279353195,0.6941297885
+2019,"Mid and South Essex","access_pct",0.747503652,0.6960077795,0.725435062
+2019,"Staffordshire and Stoke-on-Trent","access_pct",0.747503652,0.826952747,0.716811832
+2019,"Nottingham and Nottinghamshire","access_pct",0.747503652,0.8304464815,0.679812519
+2019,"Hertfordshire and West Essex","access_pct",0.747503652,0.794059852,NA
+2019,"Birmingham and Solihull","access_pct",0.747503652,0.669984283,0.5526786535
+2019,"North East London","access_pct",0.747503652,0.8581848105,0.716090503
+2019,"Sussex","access_pct",0.747503652,0.771317796,0.668292176
+2019,"Humber and North Yorkshire","access_pct",0.747503652,0.85360169,0.618269196
+2019,"Black Country","access_pct",0.747503652,0.658169092,0.671422487
+2019,"North East and North Cumbria","access_pct",0.747503652,0.827976832,0.758338496
+2019,"Northamptonshire","access_pct",0.747503652,0.852612023,0.519628189
+2019,"Cheshire and Merseyside","access_pct",0.747503652,0.757004153,0.735239983
+2019,"Herefordshire and Worcestershire","access_pct",0.747503652,0.883342317,0.841824229
+2019,"North West London","access_pct",0.747503652,0.818895541,0.79654983
+2019,"England","access_pct",0.747503652,0.819117609,0.686115609
+2019,"Bedfordshire, Luton and Milton Keynes","access_pct",0.747503652,0.7459192135,0.445114031
+2019,"Buckinghamshire, Oxfordshire and Berkshire West","access_pct",0.747503652,0.826874367,NA
+2019,"Bristol, North Somerset and South Gloucestershire","access_pct",0.747503652,0.749690855,0.650974612
+2019,"Cambridgeshire and Peterborough","access_pct",0.747503652,0.857065777,0.781109781
+2019,"West Yorkshire","access_pct",0.747503652,0.876076258,0.623053378
+2019,"Kent and Medway","access_pct",0.747503652,0.775393901,0.448714126
+2019,"Lancashire and South Cumbria","continuity_pct",0.484375117,0.5690271185,0.4507307895
+2019,"Buckinghamshire, Oxfordshire and Berkshire West","continuity_pct",0.484375117,0.5947819625,NA
+2019,"Greater Manchester","continuity_pct",0.484375117,0.576076554,0.478656274
+2019,"Leicester, Leicestershire and Rutland","continuity_pct",0.484375117,0.530298198,0.462774674
+2019,"Cambridgeshire and Peterborough","continuity_pct",0.484375117,0.564179681,0.362093353
+2019,"Hampshire and Isle of Wight","continuity_pct",0.484375117,0.518817753,0.420301896
+2019,"Dorset","continuity_pct",0.484375117,0.665889763,NA
+2019,"Lincolnshire","continuity_pct",0.484375117,0.459706516,0.2958690835
+2019,"Bath and North East Somerset, Swindon and Wiltshire","continuity_pct",0.484375117,0.596068614,0.5400822495
+2019,"Bristol, North Somerset and South Gloucestershire","continuity_pct",0.484375117,0.455252895,0.488192648
+2019,"Frimley","continuity_pct",0.484375117,0.506867679,NA
+2019,"Devon","continuity_pct",0.484375117,0.565788914,0.506704406
+2019,"Bedfordshire, Luton and Milton Keynes","continuity_pct",0.484375117,0.3440544645,0.359699825
+2019,"Nottingham and Nottinghamshire","continuity_pct",0.484375117,0.4916087455,0.484686298
+2019,"Birmingham and Solihull","continuity_pct",0.484375117,0.430942673,0.411040544
+2019,"Norfolk and Waveney","continuity_pct",0.484375117,0.524597113,0.472615675
+2019,"Shropshire, Telford and Wrekin","continuity_pct",0.484375117,0.492067072,0.38531679
+2019,"Suffolk and North East Essex","continuity_pct",0.484375117,0.474161146,0.29378105
+2019,"Black Country","continuity_pct",0.484375117,0.484209029,0.441100788
+2019,"North Central London","continuity_pct",0.484375117,0.5080082315,0.409333584
+2019,"Somerset","continuity_pct",0.484375117,0.703615453,NA
+2019,"Surrey Heartlands","continuity_pct",0.484375117,0.533360838,NA
+2019,"Derby and Derbyshire","continuity_pct",0.484375117,0.51476422,0.288904464
+2019,"Gloucestershire","continuity_pct",0.484375117,0.6200858495,0.424446167
+2019,"Mid and South Essex","continuity_pct",0.484375117,0.5264042315,0.500561678
+2019,"North East London","continuity_pct",0.484375117,0.673099266,0.400132053
+2019,"England","continuity_pct",0.484375117,0.538671703,0.453671187
+2019,"Cornwall and the Isles of Scilly","continuity_pct",0.484375117,0.808735758,0.14730637
+2019,"South West London","continuity_pct",0.484375117,0.534543193,0.5568624395
+2019,"North East and North Cumbria","continuity_pct",0.484375117,0.5343446305,0.494034973
+2019,"Sussex","continuity_pct",0.484375117,0.538024736,0.426193622
+2019,"Coventry and Warwickshire","continuity_pct",0.484375117,0.541807643,0.406356116
+2019,"South Yorkshire","continuity_pct",0.484375117,0.654477295,0.423465498
+2019,"North West London","continuity_pct",0.484375117,0.4853414855,0.41370425
+2019,"Herefordshire and Worcestershire","continuity_pct",0.484375117,0.562492676,NA
+2019,"Staffordshire and Stoke-on-Trent","continuity_pct",0.484375117,0.5129108715,0.500735981
+2019,"Cheshire and Merseyside","continuity_pct",0.484375117,0.511853926,0.499826145
+2019,"South East London","continuity_pct",0.484375117,0.5167144725,0.5164030295
+2019,"Northamptonshire","continuity_pct",0.484375117,0.5944978915,NA
+2019,"West Yorkshire","continuity_pct",0.484375117,0.578937404,0.406073802
+2019,"Hertfordshire and West Essex","continuity_pct",0.484375117,0.485366732,NA
+2019,"Humber and North Yorkshire","continuity_pct",0.484375117,0.5625789025,0.4705985495
+2019,"Kent and Medway","continuity_pct",0.484375117,0.598572745,0.372037677
+2019,"England","overall_pct",0.8486764115,0.8914101805,0.8125715485
+2019,"Bedfordshire, Luton and Milton Keynes","overall_pct",0.8486764115,0.8089723905,0.742424661
+2019,"Devon","overall_pct",0.8486764115,0.917529808,0.796670989
+2019,"Birmingham and Solihull","overall_pct",0.8486764115,0.871136904,0.778729233
+2019,"Shropshire, Telford and Wrekin","overall_pct",0.8486764115,0.925627534,0.820465529
+2019,"Dorset","overall_pct",0.8486764115,0.941620718,NA
+2019,"Buckinghamshire, Oxfordshire and Berkshire West","overall_pct",0.8486764115,0.886598891,NA
+2019,"Black Country","overall_pct",0.8486764115,0.9004057405,0.774066171
+2019,"Somerset","overall_pct",0.8486764115,0.938118951,NA
+2019,"Frimley","overall_pct",0.8486764115,0.864250277,NA
+2019,"Cambridgeshire and Peterborough","overall_pct",0.8486764115,0.8972906,0.818707993
+2019,"Bristol, North Somerset and South Gloucestershire","overall_pct",0.8486764115,0.899591479,0.793318824
+2019,"South East London","overall_pct",0.8486764115,0.8563928885,0.8074126245
+2019,"Gloucestershire","overall_pct",0.8486764115,0.909551035,0.795309015
+2019,"Nottingham and Nottinghamshire","overall_pct",0.8486764115,0.8955388745,0.814335712
+2019,"Lancashire and South Cumbria","overall_pct",0.8486764115,0.9164950615,0.799082597
+2019,"South West London","overall_pct",0.8486764115,0.877812023,0.796035555
+2019,"Greater Manchester","overall_pct",0.8486764115,0.911719804,0.8410641475
+2019,"Norfolk and Waveney","overall_pct",0.8486764115,0.9133955305,0.878042452
+2019,"Leicester, Leicestershire and Rutland","overall_pct",0.8486764115,0.8875786265,0.8110447495
+2019,"South Yorkshire","overall_pct",0.8486764115,0.961229856,0.793607179
+2019,"Hampshire and Isle of Wight","overall_pct",0.8486764115,0.875588495,0.7755264595
+2019,"North Central London","overall_pct",0.8486764115,0.840177746,0.742778483
+2019,"Lincolnshire","overall_pct",0.8486764115,0.862375697,0.716634798
+2019,"Bath and North East Somerset, Swindon and Wiltshire","overall_pct",0.8486764115,0.9176230015,0.9076155755
+2019,"Staffordshire and Stoke-on-Trent","overall_pct",0.8486764115,0.900281143,0.800043525
+2019,"Cheshire and Merseyside","overall_pct",0.8486764115,0.884372343,0.861146571
+2019,"Mid and South Essex","overall_pct",0.8486764115,0.85083331,0.770873118
+2019,"West Yorkshire","overall_pct",0.8486764115,0.890224772,0.788280902
+2019,"Suffolk and North East Essex","overall_pct",0.8486764115,0.891462119,0.7037181645
+2019,"Cornwall and the Isles of Scilly","overall_pct",0.8486764115,0.988553671,0.809838191
+2019,"Hertfordshire and West Essex","overall_pct",0.8486764115,0.877640463,NA
+2019,"North East and North Cumbria","overall_pct",0.8486764115,0.915312978,0.850847178
+2019,"Surrey Heartlands","overall_pct",0.8486764115,0.89372509,NA
+2019,"Coventry and Warwickshire","overall_pct",0.8486764115,0.915412803,0.793582588
+2019,"Humber and North Yorkshire","overall_pct",0.8486764115,0.904866696,0.803080021
+2019,"North West London","overall_pct",0.8486764115,0.848871884,0.7787366805
+2019,"Sussex","overall_pct",0.8486764115,0.882809354,0.847978997
+2019,"Derby and Derbyshire","overall_pct",0.8486764115,0.9236205235,0.725283907
+2019,"Kent and Medway","overall_pct",0.8486764115,0.863313544,0.758360317
+2019,"Herefordshire and Worcestershire","overall_pct",0.8486764115,0.912531698,0.836433398
+2019,"North East London","overall_pct",0.8486764115,0.9129111555,0.783052662
+2019,"Northamptonshire","overall_pct",0.8486764115,0.919787657,0.72856787
+2019,"Dorset","trust_pct",0.960860932,0.979141729,NA
+2019,"Shropshire, Telford and Wrekin","trust_pct",0.960860932,0.971803864,0.926651482
+2019,"Frimley","trust_pct",0.960860932,0.971687736,NA
+2019,"Somerset","trust_pct",0.960860932,0.960618867,NA
+2019,"Greater Manchester","trust_pct",0.960860932,0.978613657,0.9532136555
+2019,"Gloucestershire","trust_pct",0.960860932,0.9790980295,0.935700356
+2019,"South East London","trust_pct",0.960860932,0.966459233,0.969949625
+2019,"Devon","trust_pct",0.960860932,0.971696489,0.956798015
+2019,"Hampshire and Isle of Wight","trust_pct",0.960860932,0.973462934,0.9482439475
+2019,"Birmingham and Solihull","trust_pct",0.960860932,0.971887834,0.939336383
+2019,"South West London","trust_pct",0.960860932,0.968401599,0.912848624
+2019,"Norfolk and Waveney","trust_pct",0.960860932,0.9759142905,0.922686288
+2019,"Leicester, Leicestershire and Rutland","trust_pct",0.960860932,0.9677119415,0.9324223795
+2019,"Black Country","trust_pct",0.960860932,0.9841145535,0.935042771
+2019,"South Yorkshire","trust_pct",0.960860932,0.976913198,0.941923454
+2019,"North Central London","trust_pct",0.960860932,0.9564264985,0.913275963
+2019,"Lincolnshire","trust_pct",0.960860932,0.967180407,0.912550215
+2019,"Hertfordshire and West Essex","trust_pct",0.960860932,0.97789056,NA
+2019,"Herefordshire and Worcestershire","trust_pct",0.960860932,0.97377949,0.976217118
+2019,"North East London","trust_pct",0.960860932,0.9720787555,0.9375060455
+2019,"Mid and South Essex","trust_pct",0.960860932,0.9672429665,0.917522652
+2019,"Humber and North Yorkshire","trust_pct",0.960860932,0.976713046,0.940392354
+2019,"Buckinghamshire, Oxfordshire and Berkshire West","trust_pct",0.960860932,0.9768657725,NA
+2019,"North East and North Cumbria","trust_pct",0.960860932,0.98324115,0.963866179
+2019,"Suffolk and North East Essex","trust_pct",0.960860932,0.980255611,0.9200655575
+2019,"Cornwall and the Isles of Scilly","trust_pct",0.960860932,1,0.97095549
+2019,"Cambridgeshire and Peterborough","trust_pct",0.960860932,0.976865949,0.898585041
+2019,"North West London","trust_pct",0.960860932,0.96241746,0.935178049
+2019,"Surrey Heartlands","trust_pct",0.960860932,0.980363097,NA
+2019,"Coventry and Warwickshire","trust_pct",0.960860932,0.983341822,0.923077432
+2019,"Kent and Medway","trust_pct",0.960860932,0.970062308,0.91547831
+2019,"Bristol, North Somerset and South Gloucestershire","trust_pct",0.960860932,0.9819134365,0.940915414
+2019,"Bath and North East Somerset, Swindon and Wiltshire","trust_pct",0.960860932,0.9842638025,0.945409372
+2019,"Staffordshire and Stoke-on-Trent","trust_pct",0.960860932,0.969699564,0.94306245
+2019,"Lancashire and South Cumbria","trust_pct",0.960860932,0.97883683,0.942441665
+2019,"Nottingham and Nottinghamshire","trust_pct",0.960860932,0.971018559,0.92634273
+2019,"Bedfordshire, Luton and Milton Keynes","trust_pct",0.960860932,0.955428597,0.864601533
+2019,"Sussex","trust_pct",0.960860932,0.9740927885,0.952811953
+2019,"Derby and Derbyshire","trust_pct",0.960860932,0.977814614,0.943595812
+2019,"Cheshire and Merseyside","trust_pct",0.960860932,0.973121915,0.953778484
+2019,"Northamptonshire","trust_pct",0.960860932,0.9729368105,0.845823885
+2019,"West Yorkshire","trust_pct",0.960860932,0.9759618375,0.935454657
+2019,"England","trust_pct",0.960860932,0.974226406,0.943164517
+2020,"Shropshire, Telford and Wrekin","access_pct",0.723576066,0.722807532,0.6287211275
+2020,"Devon","access_pct",0.723576066,0.8856470355,0.711080474
+2020,"Bath and North East Somerset, Swindon and Wiltshire","access_pct",0.723576066,0.895118907,0.798350323
+2020,"Birmingham and Solihull","access_pct",0.723576066,0.586289343,0.5557704625
+2020,"Bedfordshire, Luton and Milton Keynes","access_pct",0.723576066,0.6116167875,0.368073914
+2020,"South East London","access_pct",0.723576066,0.666444653,0.695396965
+2020,"Nottingham and Nottinghamshire","access_pct",0.723576066,0.8523049825,0.596826878
+2020,"Cornwall and the Isles of Scilly","access_pct",0.723576066,1,0.295875651
+2020,"Buckinghamshire, Oxfordshire and Berkshire West","access_pct",0.723576066,0.806051071,NA
+2020,"Dorset","access_pct",0.723576066,0.8577731025,NA
+2020,"Leicester, Leicestershire and Rutland","access_pct",0.723576066,0.794358789,0.605635241
+2020,"Coventry and Warwickshire","access_pct",0.723576066,0.80016329,0.621220021
+2020,"Black Country","access_pct",0.723576066,0.660621247,0.641137461
+2020,"Frimley","access_pct",0.723576066,0.688347846,NA
+2020,"Somerset","access_pct",0.723576066,0.916996192,NA
+2020,"Derby and Derbyshire","access_pct",0.723576066,0.793317322,0.4751847
+2020,"Bristol, North Somerset and South Gloucestershire","access_pct",0.723576066,0.735747879,0.5812514345
+2020,"Gloucestershire","access_pct",0.723576066,0.922334339,0.669469547
+2020,"England","access_pct",0.723576066,0.791475348,0.64571689
+2020,"Staffordshire and Stoke-on-Trent","access_pct",0.723576066,0.7630001215,0.646526913
+2020,"West Yorkshire","access_pct",0.723576066,0.849846926,0.60837109
+2020,"Hertfordshire and West Essex","access_pct",0.723576066,0.7156580405,NA
+2020,"Greater Manchester","access_pct",0.723576066,0.878843289,0.7013477685
+2020,"Norfolk and Waveney","access_pct",0.723576066,0.784773968,0.685412337
+2020,"South West London","access_pct",0.723576066,0.8280527645,0.8126300145
+2020,"Cambridgeshire and Peterborough","access_pct",0.723576066,0.812350558,0.694035562
+2020,"Hampshire and Isle of Wight","access_pct",0.723576066,0.792719982,0.601407706
+2020,"Lincolnshire","access_pct",0.723576066,0.721505264,0.3060349885
+2020,"South Yorkshire","access_pct",0.723576066,0.834505487,0.6057105
+2020,"Cheshire and Merseyside","access_pct",0.723576066,0.729360918,0.7019894905
+2020,"Herefordshire and Worcestershire","access_pct",0.723576066,0.801063882,NA
+2020,"Mid and South Essex","access_pct",0.723576066,0.603244347,0.592690533
+2020,"Suffolk and North East Essex","access_pct",0.723576066,0.826748275,0.3882409725
+2020,"Lancashire and South Cumbria","access_pct",0.723576066,0.847533676,0.682511306
+2020,"Humber and North Yorkshire","access_pct",0.723576066,0.795628391,0.607268163
+2020,"North East and North Cumbria","access_pct",0.723576066,0.836917448,0.7425159
+2020,"North Central London","access_pct",0.723576066,0.7099888675,0.607656184
+2020,"Surrey Heartlands","access_pct",0.723576066,0.723883443,NA
+2020,"Kent and Medway","access_pct",0.723576066,0.722539634,0.399051396
+2020,"North West London","access_pct",0.723576066,0.822061506,0.7647235905
+2020,"North East London","access_pct",0.723576066,0.799986234,0.669480725
+2020,"Sussex","access_pct",0.723576066,0.7899374455,0.6366715
+2020,"Northamptonshire","access_pct",0.723576066,0.8295966275,0.415251254
+2020,"England","continuity_pct",0.4507254535,0.506766876,0.417015873
+2020,"Lancashire and South Cumbria","continuity_pct",0.4507254535,0.602009377,0.41254399
+2020,"Leicester, Leicestershire and Rutland","continuity_pct",0.4507254535,0.509365832,0.2967671635
+2020,"Devon","continuity_pct",0.4507254535,0.548161675,0.460529445
+2020,"Frimley","continuity_pct",0.4507254535,0.527514045,NA
+2020,"Bath and North East Somerset, Swindon and Wiltshire","continuity_pct",0.4507254535,0.578850715,0.428346564
+2020,"Dorset","continuity_pct",0.4507254535,0.593095305,NA
+2020,"Gloucestershire","continuity_pct",0.4507254535,0.57558383,0.428223786
+2020,"South East London","continuity_pct",0.4507254535,0.489407113,0.3830448215
+2020,"Nottingham and Nottinghamshire","continuity_pct",0.4507254535,0.553491226,0.437691403
+2020,"Bedfordshire, Luton and Milton Keynes","continuity_pct",0.4507254535,0.305250824,0.232118551
+2020,"Buckinghamshire, Oxfordshire and Berkshire West","continuity_pct",0.4507254535,0.541798543,NA
+2020,"Greater Manchester","continuity_pct",0.4507254535,0.5730939235,0.457548767
+2020,"Shropshire, Telford and Wrekin","continuity_pct",0.4507254535,0.494883191,0.3887683095
+2020,"Birmingham and Solihull","continuity_pct",0.4507254535,0.521601866,0.3709744645
+2020,"Black Country","continuity_pct",0.4507254535,0.364470302,0.3997900565
+2020,"Lincolnshire","continuity_pct",0.4507254535,0.418199777,0.293714868
+2020,"Somerset","continuity_pct",0.4507254535,0.70052245,NA
+2020,"Derby and Derbyshire","continuity_pct",0.4507254535,0.4100388875,0.301900092
+2020,"Bristol, North Somerset and South Gloucestershire","continuity_pct",0.4507254535,0.418133239,0.377766
+2020,"Mid and South Essex","continuity_pct",0.4507254535,0.436280864,0.48534676
+2020,"North East London","continuity_pct",0.4507254535,0.655933434,0.391296634
+2020,"Staffordshire and Stoke-on-Trent","continuity_pct",0.4507254535,0.47719543,0.448880487
+2020,"Cornwall and the Isles of Scilly","continuity_pct",0.4507254535,0.763884168,0.064613572
+2020,"Norfolk and Waveney","continuity_pct",0.4507254535,0.49334295,0.411125144
+2020,"North East and North Cumbria","continuity_pct",0.4507254535,0.572373343,0.44179942
+2020,"South West London","continuity_pct",0.4507254535,0.461203743,0.513552147
+2020,"Coventry and Warwickshire","continuity_pct",0.4507254535,0.4902093575,0.428609177
+2020,"Cambridgeshire and Peterborough","continuity_pct",0.4507254535,0.5502268465,0.4025698765
+2020,"Hampshire and Isle of Wight","continuity_pct",0.4507254535,0.479638306,0.4291295645
+2020,"North Central London","continuity_pct",0.4507254535,0.5088850325,0.377855308
+2020,"South Yorkshire","continuity_pct",0.4507254535,0.498886989,0.363242577
+2020,"Cheshire and Merseyside","continuity_pct",0.4507254535,0.481796167,0.468932612
+2020,"Herefordshire and Worcestershire","continuity_pct",0.4507254535,0.574374039,NA
+2020,"Sussex","continuity_pct",0.4507254535,0.500518035,0.431220401
+2020,"Suffolk and North East Essex","continuity_pct",0.4507254535,0.484638237,0.3337347215
+2020,"West Yorkshire","continuity_pct",0.4507254535,0.503197244,0.382263995
+2020,"Hertfordshire and West Essex","continuity_pct",0.4507254535,0.40746233,NA
+2020,"North West London","continuity_pct",0.4507254535,0.472154303,0.505930948
+2020,"Surrey Heartlands","continuity_pct",0.4507254535,0.477989467,NA
+2020,"Humber and North Yorkshire","continuity_pct",0.4507254535,0.5236878065,0.40639126
+2020,"Northamptonshire","continuity_pct",0.4507254535,0.5147877335,NA
+2020,"Kent and Medway","continuity_pct",0.4507254535,0.601541223,0.406783267
+2020,"Mid and South Essex","overall_pct",0.840019078,0.831562876,0.735561627
+2020,"Lancashire and South Cumbria","overall_pct",0.840019078,0.892429631,0.814557392
+2020,"England","overall_pct",0.840019078,0.88324416,0.7949390335
+2020,"Norfolk and Waveney","overall_pct",0.840019078,0.8474989795,0.832378712
+2020,"Leicester, Leicestershire and Rutland","overall_pct",0.840019078,0.864910823,0.794268626
+2020,"Bedfordshire, Luton and Milton Keynes","overall_pct",0.840019078,0.8100588615,0.651908592
+2020,"Devon","overall_pct",0.840019078,0.923929757,0.816315528
+2020,"Bath and North East Somerset, Swindon and Wiltshire","overall_pct",0.840019078,0.928127352,0.8256670255
+2020,"Staffordshire and Stoke-on-Trent","overall_pct",0.840019078,0.8912716725,0.806865814
+2020,"Bristol, North Somerset and South Gloucestershire","overall_pct",0.840019078,0.866040039,0.8145991675
+2020,"Nottingham and Nottinghamshire","overall_pct",0.840019078,0.895878976,0.768533162
+2020,"West Yorkshire","overall_pct",0.840019078,0.901099847,0.779945666
+2020,"Suffolk and North East Essex","overall_pct",0.840019078,0.874242058,0.725083212
+2020,"Buckinghamshire, Oxfordshire and Berkshire West","overall_pct",0.840019078,0.888594066,NA
+2020,"Birmingham and Solihull","overall_pct",0.840019078,0.833950689,0.7630700455
+2020,"Dorset","overall_pct",0.840019078,0.9163440565,NA
+2020,"Surrey Heartlands","overall_pct",0.840019078,0.883799962,NA
+2020,"Lincolnshire","overall_pct",0.840019078,0.841493235,0.6891822045
+2020,"Black Country","overall_pct",0.840019078,0.862590464,0.7550726615
+2020,"Frimley","overall_pct",0.840019078,0.859543443,NA
+2020,"Sussex","overall_pct",0.840019078,0.8795572215,0.820087417
+2020,"Derby and Derbyshire","overall_pct",0.840019078,0.898744395,0.756377267
+2020,"South East London","overall_pct",0.840019078,0.854794266,0.7596047685
+2020,"Gloucestershire","overall_pct",0.840019078,0.911916875,0.760747384
+2020,"North East London","overall_pct",0.840019078,0.880713817,0.762317046
+2020,"North Central London","overall_pct",0.840019078,0.8318866565,0.6977052085
+2020,"South West London","overall_pct",0.840019078,0.882217682,0.8079266855
+2020,"Shropshire, Telford and Wrekin","overall_pct",0.840019078,0.918275693,0.7854783105
+2020,"North East and North Cumbria","overall_pct",0.840019078,0.896496138,0.847288326
+2020,"North West London","overall_pct",0.840019078,0.847422201,0.8414489785
+2020,"South Yorkshire","overall_pct",0.840019078,0.957647129,0.7747908285
+2020,"Somerset","overall_pct",0.840019078,0.968738206,NA
+2020,"Hampshire and Isle of Wight","overall_pct",0.840019078,0.874317722,0.7847871765
+2020,"Northamptonshire","overall_pct",0.840019078,0.8960230225,0.710136176
+2020,"Cheshire and Merseyside","overall_pct",0.840019078,0.8806648925,0.8536763085
+2020,"Herefordshire and Worcestershire","overall_pct",0.840019078,0.887438538,NA
+2020,"Hertfordshire and West Essex","overall_pct",0.840019078,0.8754574165,NA
+2020,"Cornwall and the Isles of Scilly","overall_pct",0.840019078,0.948421866,0.732891114
+2020,"Greater Manchester","overall_pct",0.840019078,0.920008658,0.80559039
+2020,"Humber and North Yorkshire","overall_pct",0.840019078,0.893452867,0.780426987
+2020,"Coventry and Warwickshire","overall_pct",0.840019078,0.904452196,0.7699832235
+2020,"Cambridgeshire and Peterborough","overall_pct",0.840019078,0.8649983065,0.760691063
+2020,"Kent and Medway","overall_pct",0.840019078,0.862990043,0.668202352
+2020,"Nottingham and Nottinghamshire","trust_pct",0.9590343915,0.975355476,0.943794884
+2020,"Gloucestershire","trust_pct",0.9590343915,0.981381191,0.927139429
+2020,"Dorset","trust_pct",0.9590343915,0.98609064,NA
+2020,"Devon","trust_pct",0.9590343915,0.975965132,0.955330152
+2020,"Bristol, North Somerset and South Gloucestershire","trust_pct",0.9590343915,0.980819122,0.9494890305
+2020,"Hertfordshire and West Essex","trust_pct",0.9590343915,0.9744859465,NA
+2020,"Frimley","trust_pct",0.9590343915,0.961196753,NA
+2020,"Leicester, Leicestershire and Rutland","trust_pct",0.9590343915,0.969734369,0.928961192
+2020,"Shropshire, Telford and Wrekin","trust_pct",0.9590343915,0.969546821,0.9152245585
+2020,"Humber and North Yorkshire","trust_pct",0.9590343915,0.97963809,0.934132321
+2020,"Mid and South Essex","trust_pct",0.9590343915,0.951074516,0.923970457
+2020,"Lincolnshire","trust_pct",0.9590343915,0.969708485,0.908000302
+2020,"Somerset","trust_pct",0.9590343915,1,NA
+2020,"Kent and Medway","trust_pct",0.9590343915,0.9642135655,0.931410997
+2020,"Greater Manchester","trust_pct",0.9590343915,0.989696327,0.94705755
+2020,"North East London","trust_pct",0.9590343915,0.963106195,0.9239354525
+2020,"South East London","trust_pct",0.9590343915,0.953588248,0.9238807765
+2020,"Lancashire and South Cumbria","trust_pct",0.9590343915,0.973534858,0.944800003
+2020,"Bedfordshire, Luton and Milton Keynes","trust_pct",0.9590343915,0.9498985465,0.887354266
+2020,"North East and North Cumbria","trust_pct",0.9590343915,0.978144436,0.953579496
+2020,"Norfolk and Waveney","trust_pct",0.9590343915,0.9773036865,0.962212751
+2020,"South West London","trust_pct",0.9590343915,0.9648263795,0.892031782
+2020,"Birmingham and Solihull","trust_pct",0.9590343915,0.98740403,0.9447464405
+2020,"Hampshire and Isle of Wight","trust_pct",0.9590343915,0.976862618,0.934561421
+2020,"North Central London","trust_pct",0.9590343915,0.9664202225,0.9180713685
+2020,"South Yorkshire","trust_pct",0.9590343915,0.984255226,0.936637463
+2020,"Black Country","trust_pct",0.9590343915,0.957581445,0.928529041
+2020,"Herefordshire and Worcestershire","trust_pct",0.9590343915,0.978457785,NA
+2020,"Bath and North East Somerset, Swindon and Wiltshire","trust_pct",0.9590343915,0.981410263,0.933753414
+2020,"Staffordshire and Stoke-on-Trent","trust_pct",0.9590343915,0.9714365395,0.9451491995
+2020,"Cheshire and Merseyside","trust_pct",0.9590343915,0.9739630225,0.9656406
+2020,"West Yorkshire","trust_pct",0.9590343915,0.980322343,0.9401601275
+2020,"North West London","trust_pct",0.9590343915,0.9628866375,0.9397156305
+2020,"Suffolk and North East Essex","trust_pct",0.9590343915,0.978003247,0.9285335175
+2020,"Cornwall and the Isles of Scilly","trust_pct",0.9590343915,0.979740704,0.977913685
+2020,"Buckinghamshire, Oxfordshire and Berkshire West","trust_pct",0.9590343915,0.975494671,NA
+2020,"Northamptonshire","trust_pct",0.9590343915,0.9695652935,0.908291674
+2020,"Surrey Heartlands","trust_pct",0.9590343915,0.972774503,NA
+2020,"Coventry and Warwickshire","trust_pct",0.9590343915,0.978510957,0.9161125025
+2020,"Cambridgeshire and Peterborough","trust_pct",0.9590343915,0.9704283685,0.9117745405
+2020,"Sussex","trust_pct",0.9590343915,0.974921586,0.952735481
+2020,"Derby and Derbyshire","trust_pct",0.9590343915,0.9769167915,0.935558715
+2020,"England","trust_pct",0.9590343915,0.973239689,0.941788245
+2021,"Bath and North East Somerset, Swindon and Wiltshire","access_pct",0.741665115,0.859865424,0.8347703465
+2021,"Bedfordshire, Luton and Milton Keynes","access_pct",0.741665115,0.65041613,0.536472749
+2021,"Lancashire and South Cumbria","access_pct",0.741665115,0.810351257,0.707605841
+2021,"Cornwall and the Isles of Scilly","access_pct",0.741665115,0.98700111,0.418214511
+2021,"Buckinghamshire, Oxfordshire and Berkshire West","access_pct",0.741665115,0.825763646,NA
+2021,"Birmingham and Solihull","access_pct",0.741665115,0.47082594,0.6012233095
+2021,"Leicester, Leicestershire and Rutland","access_pct",0.741665115,0.79329117,0.677677154
+2021,"Coventry and Warwickshire","access_pct",0.741665115,0.814546204,0.665214101
+2021,"Cambridgeshire and Peterborough","access_pct",0.741665115,0.82614125,0.7267798135
+2021,"Black Country","access_pct",0.741665115,0.7088161295,0.660301568
+2021,"Lincolnshire","access_pct",0.741665115,0.820635018,0.435335689
+2021,"Kent and Medway","access_pct",0.741665115,0.756472279,0.479000509
+2021,"Cheshire and Merseyside","access_pct",0.741665115,0.730439415,0.71845633
+2021,"Bristol, North Somerset and South Gloucestershire","access_pct",0.741665115,0.767669234,0.663442494
+2021,"Gloucestershire","access_pct",0.741665115,0.909275538,0.591694428
+2021,"West Yorkshire","access_pct",0.741665115,0.825367606,0.665022912
+2021,"Nottingham and Nottinghamshire","access_pct",0.741665115,0.877450098,0.702667881
+2021,"Dorset","access_pct",0.741665115,0.8066237125,NA
+2021,"Greater Manchester","access_pct",0.741665115,0.86124721,0.717910702
+2021,"Norfolk and Waveney","access_pct",0.741665115,0.7400363755,0.729502185
+2021,"Shropshire, Telford and Wrekin","access_pct",0.741665115,0.86693527,0.4301821945
+2021,"Frimley","access_pct",0.741665115,0.731687812,NA
+2021,"Hampshire and Isle of Wight","access_pct",0.741665115,0.802673646,0.7326069225
+2021,"North Central London","access_pct",0.741665115,0.730531174,0.624838199
+2021,"Somerset","access_pct",0.741665115,0.94570849,NA
+2021,"Northamptonshire","access_pct",0.741665115,0.8008350385,0.7299410665
+2021,"Herefordshire and Worcestershire","access_pct",0.741665115,0.816096017,NA
+2021,"Devon","access_pct",0.741665115,0.8632652385,0.742060861
+2021,"Mid and South Essex","access_pct",0.741665115,0.6550167645,0.72000477
+2021,"South East London","access_pct",0.741665115,0.7332618175,0.870637042
+2021,"Hertfordshire and West Essex","access_pct",0.741665115,0.729280614,NA
+2021,"North East and North Cumbria","access_pct",0.741665115,0.843029828,0.773402707
+2021,"Suffolk and North East Essex","access_pct",0.741665115,0.82459673,0.5758531875
+2021,"South West London","access_pct",0.741665115,0.827836118,0.754547645
+2021,"Humber and North Yorkshire","access_pct",0.741665115,0.8277771245,0.6649126885
+2021,"North West London","access_pct",0.741665115,0.804341734,0.7894546025
+2021,"Surrey Heartlands","access_pct",0.741665115,0.722357494,NA
+2021,"South Yorkshire","access_pct",0.741665115,0.794368537,0.600163856
+2021,"Derby and Derbyshire","access_pct",0.741665115,0.771392604,0.451674397
+2021,"Sussex","access_pct",0.741665115,0.779873902,0.6167147695
+2021,"North East London","access_pct",0.741665115,0.87452646,0.700285801
+2021,"Staffordshire and Stoke-on-Trent","access_pct",0.741665115,0.758019609,0.751823277
+2021,"England","access_pct",0.741665115,0.790859707,0.690920605
+2021,"Bath and North East Somerset, Swindon and Wiltshire","continuity_pct",0.447823438,0.554497328,0.51812415
+2021,"Kent and Medway","continuity_pct",0.447823438,0.610591559,0.316198472
+2021,"Northamptonshire","continuity_pct",0.447823438,0.47694996,0.4506754025
+2021,"Bedfordshire, Luton and Milton Keynes","continuity_pct",0.447823438,0.297081594,0.307739221
+2021,"Lancashire and South Cumbria","continuity_pct",0.447823438,0.493017157,0.406879258
+2021,"Nottingham and Nottinghamshire","continuity_pct",0.447823438,0.51254329,0.4018326305
+2021,"Dorset","continuity_pct",0.447823438,0.5618366955,NA
+2021,"Birmingham and Solihull","continuity_pct",0.447823438,0.315849985,0.368018705
+2021,"Leicester, Leicestershire and Rutland","continuity_pct",0.447823438,0.5241338855,0.329855464
+2021,"Shropshire, Telford and Wrekin","continuity_pct",0.447823438,0.506516989,0.3253769165
+2021,"Frimley","continuity_pct",0.447823438,0.485480521,NA
+2021,"Black Country","continuity_pct",0.447823438,0.4708128975,0.382063657
+2021,"Lincolnshire","continuity_pct",0.447823438,0.5065853635,0.413001399
+2021,"Somerset","continuity_pct",0.447823438,0.616549259,NA
+2021,"Derby and Derbyshire","continuity_pct",0.447823438,0.408893453,0.421702564
+2021,"Cheshire and Merseyside","continuity_pct",0.447823438,0.440890451,0.4478456925
+2021,"Bristol, North Somerset and South Gloucestershire","continuity_pct",0.447823438,0.452573157,0.421611314
+2021,"West Yorkshire","continuity_pct",0.447823438,0.4520417865,0.376475751
+2021,"Mid and South Essex","continuity_pct",0.447823438,0.4201724315,0.422826636
+2021,"Cornwall and the Isles of Scilly","continuity_pct",0.447823438,0.675783203,0.180974196
+2021,"Buckinghamshire, Oxfordshire and Berkshire West","continuity_pct",0.447823438,0.565122604,NA
+2021,"Greater Manchester","continuity_pct",0.447823438,0.5712326385,0.428123478
+2021,"Norfolk and Waveney","continuity_pct",0.447823438,0.472861123,0.459670739
+2021,"Coventry and Warwickshire","continuity_pct",0.447823438,0.463538511,0.393468236
+2021,"Cambridgeshire and Peterborough","continuity_pct",0.447823438,0.529858648,0.347132465
+2021,"Hampshire and Isle of Wight","continuity_pct",0.447823438,0.482598387,0.481235708
+2021,"North Central London","continuity_pct",0.447823438,0.462836461,0.3635345155
+2021,"South Yorkshire","continuity_pct",0.447823438,0.500659751,0.3452222825
+2021,"Sussex","continuity_pct",0.447823438,0.4854061075,0.392184059
+2021,"Devon","continuity_pct",0.447823438,0.591039369,0.499604889
+2021,"Gloucestershire","continuity_pct",0.447823438,0.568253753,0.4699573065
+2021,"Staffordshire and Stoke-on-Trent","continuity_pct",0.447823438,0.494642433,0.431079868
+2021,"South East London","continuity_pct",0.447823438,0.522564092,0.412352612
+2021,"Hertfordshire and West Essex","continuity_pct",0.447823438,0.4852441885,NA
+2021,"North East and North Cumbria","continuity_pct",0.447823438,0.543720905,0.4414014725
+2021,"Suffolk and North East Essex","continuity_pct",0.447823438,0.511370859,0.302014301
+2021,"South West London","continuity_pct",0.447823438,0.482399103,0.486397464
+2021,"Humber and North Yorkshire","continuity_pct",0.447823438,0.481973869,0.455042061
+2021,"North West London","continuity_pct",0.447823438,0.469799489,0.398482695
+2021,"Surrey Heartlands","continuity_pct",0.447823438,0.467369493,NA
+2021,"England","continuity_pct",0.447823438,0.498887414,0.410079221
+2021,"Herefordshire and Worcestershire","continuity_pct",0.447823438,0.612737873,NA
+2021,"North East London","continuity_pct",0.447823438,0.59628273,0.43538121
+2021,"Bath and North East Somerset, Swindon and Wiltshire","overall_pct",0.849359245,0.921821126,0.895643685
+2021,"Black Country","overall_pct",0.849359245,0.9227145905,0.7654678625
+2021,"Derby and Derbyshire","overall_pct",0.849359245,0.9181700735,0.77214081
+2021,"Kent and Medway","overall_pct",0.849359245,0.865884961,0.7174663065
+2021,"Devon","overall_pct",0.849359245,0.918064369,0.861870281
+2021,"Nottingham and Nottinghamshire","overall_pct",0.849359245,0.874117736,0.803308135
+2021,"Bedfordshire, Luton and Milton Keynes","overall_pct",0.849359245,0.7930358075,0.7791035495
+2021,"Lancashire and South Cumbria","overall_pct",0.849359245,0.9036908295,0.821302906
+2021,"Dorset","overall_pct",0.849359245,0.9241137745,NA
+2021,"Shropshire, Telford and Wrekin","overall_pct",0.849359245,0.905933266,0.7562132065
+2021,"Birmingham and Solihull","overall_pct",0.849359245,0.812031578,0.776274835
+2021,"Leicester, Leicestershire and Rutland","overall_pct",0.849359245,0.881177301,0.800948553
+2021,"Frimley","overall_pct",0.849359245,0.861109532,NA
+2021,"Somerset","overall_pct",0.849359245,0.902451166,NA
+2021,"England","overall_pct",0.849359245,0.887920417,0.8075447165
+2021,"Lincolnshire","overall_pct",0.849359245,0.882621426,0.750018069
+2021,"Sussex","overall_pct",0.849359245,0.888150506,0.8129318865
+2021,"Staffordshire and Stoke-on-Trent","overall_pct",0.849359245,0.8695977795,0.807596701
+2021,"South East London","overall_pct",0.849359245,0.847904996,0.831830096
+2021,"West Yorkshire","overall_pct",0.849359245,0.901733533,0.802179526
+2021,"Gloucestershire","overall_pct",0.849359245,0.925550642,0.7833672715
+2021,"Suffolk and North East Essex","overall_pct",0.849359245,0.873748545,0.7401392045
+2021,"South West London","overall_pct",0.849359245,0.8772016525,0.79091932
+2021,"Buckinghamshire, Oxfordshire and Berkshire West","overall_pct",0.849359245,0.890448508,NA
+2021,"Greater Manchester","overall_pct",0.849359245,0.906075202,0.815793408
+2021,"Surrey Heartlands","overall_pct",0.849359245,0.887499967,NA
+2021,"South Yorkshire","overall_pct",0.849359245,0.919361638,0.795703953
+2021,"Cambridgeshire and Peterborough","overall_pct",0.849359245,0.881149536,0.755064037
+2021,"Hampshire and Isle of Wight","overall_pct",0.849359245,0.8780765295,0.81116368
+2021,"North Central London","overall_pct",0.849359245,0.864811809,0.763008008
+2021,"Northamptonshire","overall_pct",0.849359245,0.921550326,0.7824060445
+2021,"Cheshire and Merseyside","overall_pct",0.849359245,0.8694309145,0.845638109
+2021,"Bristol, North Somerset and South Gloucestershire","overall_pct",0.849359245,0.871904225,0.843699684
+2021,"North East London","overall_pct",0.849359245,0.906226704,0.784418356
+2021,"Mid and South Essex","overall_pct",0.849359245,0.832905457,0.768921951
+2021,"Cornwall and the Isles of Scilly","overall_pct",0.849359245,0.951068489,0.739113433
+2021,"Hertfordshire and West Essex","overall_pct",0.849359245,0.888989575,NA
+2021,"North East and North Cumbria","overall_pct",0.849359245,0.9127043595,0.862558868
+2021,"Norfolk and Waveney","overall_pct",0.849359245,0.888387548,0.835002997
+2021,"Coventry and Warwickshire","overall_pct",0.849359245,0.9095651475,0.814700495
+2021,"Humber and North Yorkshire","overall_pct",0.849359245,0.909998891,0.8050439255
+2021,"North West London","overall_pct",0.849359245,0.842399019,0.8216668625
+2021,"Herefordshire and Worcestershire","overall_pct",0.849359245,0.924471039,NA
+2021,"Lancashire and South Cumbria","trust_pct",0.961524522,0.978911442,0.952723123
+2021,"Nottingham and Nottinghamshire","trust_pct",0.961524522,0.965574206,0.948860549
+2021,"Greater Manchester","trust_pct",0.961524522,0.981463123,0.943274167
+2021,"Leicester, Leicestershire and Rutland","trust_pct",0.961524522,0.975274361,0.9218973005
+2021,"Shropshire, Telford and Wrekin","trust_pct",0.961524522,0.972899489,0.939540822
+2021,"Hertfordshire and West Essex","trust_pct",0.961524522,0.978141938,NA
+2021,"Hampshire and Isle of Wight","trust_pct",0.961524522,0.977803442,0.9494862075
+2021,"Lincolnshire","trust_pct",0.961524522,0.981821619,0.927585821
+2021,"Somerset","trust_pct",0.961524522,0.99002095,NA
+2021,"Humber and North Yorkshire","trust_pct",0.961524522,0.9807400925,0.9354522635
+2021,"Herefordshire and Worcestershire","trust_pct",0.961524522,0.977932501,NA
+2021,"Gloucestershire","trust_pct",0.961524522,0.9788532105,0.9007928235
+2021,"Mid and South Essex","trust_pct",0.961524522,0.950745682,0.927642301
+2021,"West Yorkshire","trust_pct",0.961524522,0.985298544,0.941259142
+2021,"Bedfordshire, Luton and Milton Keynes","trust_pct",0.961524522,0.9590881985,0.899918321
+2021,"Dorset","trust_pct",0.961524522,0.9875105695,NA
+2021,"Norfolk and Waveney","trust_pct",0.961524522,0.969779029,0.964649072
+2021,"South West London","trust_pct",0.961524522,0.9741327725,0.902829233
+2021,"Birmingham and Solihull","trust_pct",0.961524522,0.972594187,0.934843232
+2021,"Frimley","trust_pct",0.961524522,0.970043091,NA
+2021,"North Central London","trust_pct",0.961524522,0.966974392,0.922863433
+2021,"South Yorkshire","trust_pct",0.961524522,0.97163004,0.937848925
+2021,"Kent and Medway","trust_pct",0.961524522,0.970633103,0.927026147
+2021,"Northamptonshire","trust_pct",0.961524522,0.975064506,0.919348571
+2021,"North East London","trust_pct",0.961524522,0.974584179,0.914697357
+2021,"Devon","trust_pct",0.961524522,0.981628371,0.972629711
+2021,"South East London","trust_pct",0.961524522,0.972106734,0.956719584
+2021,"Bristol, North Somerset and South Gloucestershire","trust_pct",0.961524522,0.977843996,0.954772238
+2021,"North East and North Cumbria","trust_pct",0.961524522,0.9852019005,0.9669327455
+2021,"Suffolk and North East Essex","trust_pct",0.961524522,0.964492858,0.925690531
+2021,"Cornwall and the Isles of Scilly","trust_pct",0.961524522,0.976239794,0.903520094
+2021,"Buckinghamshire, Oxfordshire and Berkshire West","trust_pct",0.961524522,0.977456212,NA
+2021,"North West London","trust_pct",0.961524522,0.96064371,0.938414762
+2021,"Surrey Heartlands","trust_pct",0.961524522,0.977322414,NA
+2021,"Coventry and Warwickshire","trust_pct",0.961524522,0.977846571,0.94769713
+2021,"Cambridgeshire and Peterborough","trust_pct",0.961524522,0.970526704,0.9088221295
+2021,"Black Country","trust_pct",0.961524522,0.9615257445,0.9353267845
+2021,"Bath and North East Somerset, Swindon and Wiltshire","trust_pct",0.961524522,0.979176042,0.9748410255
+2021,"Staffordshire and Stoke-on-Trent","trust_pct",0.961524522,0.976339506,0.932806393
+2021,"Cheshire and Merseyside","trust_pct",0.961524522,0.970039797,0.949918854
+2021,"England","trust_pct",0.961524522,0.975664559,0.942674309
+2021,"Sussex","trust_pct",0.961524522,0.979524013,0.9680254865
+2021,"Derby and Derbyshire","trust_pct",0.961524522,0.980861298,0.927022815
+2022,"Cheshire and Merseyside","access_pct",0.580821886401874,0.553214876514334,0.514615668392313
+2022,"Kent and Medway","access_pct",0.580821886401874,0.558264949319409,0.259934321085617
+2022,"Cornwall and the Isles of Scilly","access_pct",0.580821886401874,0.984140221395533,0.435935948585945
+2022,"Bedfordshire, Luton and Milton Keynes","access_pct",0.580821886401874,0.424417533405329,0.384900592852067
+2022,"Coventry and Warwickshire","access_pct",0.580821886401874,0.7838783789391,0.580196442726902
+2022,"Lancashire and South Cumbria","access_pct",0.580821886401874,0.705032225586216,0.563719755602599
+2022,"Derby and Derbyshire","access_pct",0.580821886401874,0.710624063367675,0.389201826069468
+2022,"Bath and North East Somerset, Swindon and Wiltshire","access_pct",0.580821886401874,0.728089414777463,0.712247695239586
+2022,"Sussex","access_pct",0.580821886401874,0.639090604382674,0.664452690910266
+2022,"Bristol, North Somerset and South Gloucestershire","access_pct",0.580821886401874,0.643022763828906,0.430385649160113
+2022,"Devon","access_pct",0.580821886401874,0.765900527937682,0.619555436000595
+2022,"Mid and South Essex","access_pct",0.580821886401874,0.462180088445711,0.516085782768639
+2022,"West Yorkshire","access_pct",0.580821886401874,0.654652134658629,0.510325112970147
+2022,"Buckinghamshire, Oxfordshire and Berkshire West","access_pct",0.580821886401874,0.666110769254404,NA
+2022,"Birmingham and Solihull","access_pct",0.580821886401874,0.477266646137872,0.419187174147282
+2022,"Dorset","access_pct",0.580821886401874,0.746837033580076,NA
+2022,"Leicester, Leicestershire and Rutland","access_pct",0.580821886401874,0.565245162431512,0.4013658987882
+2022,"Cambridgeshire and Peterborough","access_pct",0.580821886401874,0.644356608895715,0.553808123857642
+2022,"Black Country","access_pct",0.580821886401874,0.477581849461822,0.464934964985983
+2022,"Frimley","access_pct",0.580821886401874,0.62806721228248,NA
+2022,"Lincolnshire","access_pct",0.580821886401874,0.690803092991567,0.40890585300471
+2022,"Northamptonshire","access_pct",0.580821886401874,0.723143741774048,0.472252398513269
+2022,"Herefordshire and Worcestershire","access_pct",0.580821886401874,0.736419003244434,NA
+2022,"Gloucestershire","access_pct",0.580821886401874,0.80018199378624,0.46146417918542
+2022,"Staffordshire and Stoke-on-Trent","access_pct",0.580821886401874,0.587921928126905,0.548193592954789
+2022,"Nottingham and Nottinghamshire","access_pct",0.580821886401874,0.788091717408585,0.555938955008835
+2022,"Hertfordshire and West Essex","access_pct",0.580821886401874,0.539186960541074,NA
+2022,"Greater Manchester","access_pct",0.580821886401874,0.630016209244164,0.535640679483322
+2022,"Norfolk and Waveney","access_pct",0.580821886401874,0.661266274866515,0.596714722986762
+2022,"South West London","access_pct",0.580821886401874,0.674222439558882,0.649773687930064
+2022,"Humber and North Yorkshire","access_pct",0.580821886401874,0.73026240859488,0.547508847010385
+2022,"Hampshire and Isle of Wight","access_pct",0.580821886401874,0.622116709067208,0.573884071338012
+2022,"North Central London","access_pct",0.580821886401874,0.622397561308387,0.536358562106338
+2022,"England","access_pct",0.580821886401874,0.644356608895715,0.514506533251126
+2022,"Somerset","access_pct",0.580821886401874,0.752230320331172,NA
+2022,"Shropshire, Telford and Wrekin","access_pct",0.580821886401874,0.468024934537185,0.337740607563606
+2022,"North East London","access_pct",0.580821886401874,0.743502450578607,0.537491194211291
+2022,"Suffolk and North East Essex","access_pct",0.580821886401874,0.599332820385937,0.490348963496106
+2022,"South East London","access_pct",0.580821886401874,0.542034594227774,0.533613123693257
+2022,"North East and North Cumbria","access_pct",0.580821886401874,0.81421807363789,0.557226961261902
+2022,"Surrey Heartlands","access_pct",0.580821886401874,0.590964046713734,NA
+2022,"South Yorkshire","access_pct",0.580821886401874,0.702307973166141,0.446206919708625
+2022,"North West London","access_pct",0.580821886401874,0.630739436227181,0.620322546729788
+2022,"Sussex","continuity_pct",0.371569577820001,0.426197042688345,0.408212946464425
+2022,"Kent and Medway","continuity_pct",0.371569577820001,0.476111189913246,0.276855974478104
+2022,"West Yorkshire","continuity_pct",0.371569577820001,0.494458463998933,0.326350660354742
+2022,"Cornwall and the Isles of Scilly","continuity_pct",0.371569577820001,NA,0.16722846682519
+2022,"Lancashire and South Cumbria","continuity_pct",0.371569577820001,0.420109065461508,0.314806168421998
+2022,"Dorset","continuity_pct",0.371569577820001,0.514948172055118,NA
+2022,"England","continuity_pct",0.371569577820001,0.417093400790554,0.342684646053257
+2022,"Devon","continuity_pct",0.371569577820001,0.501407075110471,0.428401820444307
+2022,"Derby and Derbyshire","continuity_pct",0.371569577820001,0.419623228076708,0.245812598350677
+2022,"Bath and North East Somerset, Swindon and Wiltshire","continuity_pct",0.371569577820001,0.455187159884615,0.398496038840446
+2022,"Northamptonshire","continuity_pct",0.371569577820001,0.437213102397879,0.34139273056897
+2022,"Cheshire and Merseyside","continuity_pct",0.371569577820001,0.366012422742073,0.349881128401411
+2022,"Bristol, North Somerset and South Gloucestershire","continuity_pct",0.371569577820001,0.381115303144006,0.348884419872611
+2022,"Bedfordshire, Luton and Milton Keynes","continuity_pct",0.371569577820001,0.299374867195654,0.156412029614715
+2022,"Nottingham and Nottinghamshire","continuity_pct",0.371569577820001,0.4045505198126,0.315627778949533
+2022,"South East London","continuity_pct",0.371569577820001,0.411124857176441,0.467738324553834
+2022,"Buckinghamshire, Oxfordshire and Berkshire West","continuity_pct",0.371569577820001,0.472687327217832,NA
+2022,"Birmingham and Solihull","continuity_pct",0.371569577820001,0.170978021808063,0.312816666068192
+2022,"Shropshire, Telford and Wrekin","continuity_pct",0.371569577820001,0.349144357977959,0.245579056339767
+2022,"Coventry and Warwickshire","continuity_pct",0.371569577820001,0.419359746301971,0.38252994343493
+2022,"Cambridgeshire and Peterborough","continuity_pct",0.371569577820001,0.44469483956776,0.33286569683466
+2022,"Black Country","continuity_pct",0.371569577820001,0.436137433015082,0.32777629270889
+2022,"Frimley","continuity_pct",0.371569577820001,0.400486097093166,NA
+2022,"Lincolnshire","continuity_pct",0.371569577820001,0.406486765301986,0.3195198666653
+2022,"Somerset","continuity_pct",0.371569577820001,0.353860288670249,NA
+2022,"Herefordshire and Worcestershire","continuity_pct",0.371569577820001,0.346852057265559,NA
+2022,"Gloucestershire","continuity_pct",0.371569577820001,0.467154694857637,0.415931295574
+2022,"Mid and South Essex","continuity_pct",0.371569577820001,0.353519638331565,0.361700942229153
+2022,"Leicester, Leicestershire and Rutland","continuity_pct",0.371569577820001,0.406047699566052,0.347483792500206
+2022,"Hertfordshire and West Essex","continuity_pct",0.371569577820001,0.378635102083748,NA
+2022,"Greater Manchester","continuity_pct",0.371569577820001,0.548680035881825,0.370406995237599
+2022,"Norfolk and Waveney","continuity_pct",0.371569577820001,0.341853491294523,0.374105121633315
+2022,"South Yorkshire","continuity_pct",0.371569577820001,0.405281842912416,0.339481364480272
+2022,"Humber and North Yorkshire","continuity_pct",0.371569577820001,0.435812098808306,0.350739674335974
+2022,"Hampshire and Isle of Wight","continuity_pct",0.371569577820001,0.407935397456283,0.348856995552607
+2022,"North Central London","continuity_pct",0.371569577820001,0.337597524200212,0.284439336120115
+2022,"Staffordshire and Stoke-on-Trent","continuity_pct",0.371569577820001,0.369052853751239,0.402003688055132
+2022,"South West London","continuity_pct",0.371569577820001,0.408728027766333,0.36093465844367
+2022,"North East London","continuity_pct",0.371569577820001,0.547384460466354,0.359394132586624
+2022,"Suffolk and North East Essex","continuity_pct",0.371569577820001,0.375017298292773,0.328664265278069
+2022,"North East and North Cumbria","continuity_pct",0.371569577820001,0.483105451964821,0.390777436694301
+2022,"Surrey Heartlands","continuity_pct",0.371569577820001,0.423592182526433,NA
+2022,"North West London","continuity_pct",0.371569577820001,0.386927390078433,0.299505545589853
+2022,"Bath and North East Somerset, Swindon and Wiltshire","overall_pct",0.745845720693296,0.849041369226051,0.828425403996543
+2022,"Bedfordshire, Luton and Milton Keynes","overall_pct",0.745845720693296,0.692471338139541,0.658261371445033
+2022,"Derby and Derbyshire","overall_pct",0.745845720693296,0.858870784631487,0.615862228630684
+2022,"Kent and Medway","overall_pct",0.745845720693296,0.754132487283857,0.582207769870117
+2022,"Nottingham and Nottinghamshire","overall_pct",0.745845720693296,0.804380909074975,0.674785670371579
+2022,"Birmingham and Solihull","overall_pct",0.745845720693296,0.747330884024261,0.627941622128767
+2022,"Devon","overall_pct",0.745845720693296,0.865981352808785,0.733915852935703
+2022,"Lancashire and South Cumbria","overall_pct",0.745845720693296,0.824193061281162,0.707915401530139
+2022,"Shropshire, Telford and Wrekin","overall_pct",0.745845720693296,0.806015470515143,0.729687699480059
+2022,"England","overall_pct",0.745845720693296,0.801938922146577,0.694392035749948
+2022,"Somerset","overall_pct",0.745845720693296,0.806585353548232,NA
+2022,"Northamptonshire","overall_pct",0.745845720693296,0.819077954167902,0.56199971037961
+2022,"Sussex","overall_pct",0.745845720693296,0.815276900184349,0.773907829644563
+2022,"Staffordshire and Stoke-on-Trent","overall_pct",0.745845720693296,0.797082167457619,0.735771370780703
+2022,"South East London","overall_pct",0.745845720693296,0.732553527421918,0.796775290266845
+2022,"West Yorkshire","overall_pct",0.745845720693296,0.852527063917159,0.680732535100522
+2022,"Gloucestershire","overall_pct",0.745845720693296,0.837785546847793,0.689334387055404
+2022,"Suffolk and North East Essex","overall_pct",0.745845720693296,0.798003093555317,0.761196248405895
+2022,"South West London","overall_pct",0.745845720693296,0.799920130793989,0.709600522921164
+2022,"Buckinghamshire, Oxfordshire and Berkshire West","overall_pct",0.745845720693296,0.798136698650051,NA
+2022,"Dorset","overall_pct",0.745845720693296,0.885471108766366,NA
+2022,"Surrey Heartlands","overall_pct",0.745845720693296,0.781914254437565,NA
+2022,"South Yorkshire","overall_pct",0.745845720693296,0.848600109624287,0.662638754328551
+2022,"Cambridgeshire and Peterborough","overall_pct",0.745845720693296,0.768011284658644,0.650244331795549
+2022,"Black Country","overall_pct",0.745845720693296,0.758115914186108,0.641828445552384
+2022,"Frimley","overall_pct",0.745845720693296,0.750222010498811,NA
+2022,"Lincolnshire","overall_pct",0.745845720693296,0.875299261175094,0.643561077954791
+2022,"Cheshire and Merseyside","overall_pct",0.745845720693296,0.786956346539197,0.724827994481941
+2022,"Bristol, North Somerset and South Gloucestershire","overall_pct",0.745845720693296,0.807687052502432,0.740225661270001
+2022,"North East London","overall_pct",0.745845720693296,0.835189933321263,0.685203879343179
+2022,"Mid and South Essex","overall_pct",0.745845720693296,0.713773408470629,0.651443089700199
+2022,"Cornwall and the Isles of Scilly","overall_pct",0.745845720693296,0.85514746924612,0.794534149718516
+2022,"Hertfordshire and West Essex","overall_pct",0.745845720693296,0.779922911629749,NA
+2022,"Greater Manchester","overall_pct",0.745845720693296,0.842934441216127,0.704516803003874
+2022,"Leicester, Leicestershire and Rutland","overall_pct",0.745845720693296,0.782940690501933,0.621796029852607
+2022,"Coventry and Warwickshire","overall_pct",0.745845720693296,0.863493933488378,0.692071833615534
+2022,"Humber and North Yorkshire","overall_pct",0.745845720693296,0.866616727460005,0.717269838555432
+2022,"Hampshire and Isle of Wight","overall_pct",0.745845720693296,0.790321931791479,0.676671202484473
+2022,"North Central London","overall_pct",0.745845720693296,0.712954408430883,0.663629282505083
+2022,"Norfolk and Waveney","overall_pct",0.745845720693296,0.74933071818595,0.771297077978784
+2022,"Herefordshire and Worcestershire","overall_pct",0.745845720693296,0.872834148453432,NA
+2022,"North East and North Cumbria","overall_pct",0.745845720693296,0.862466741323534,0.770821272650573
+2022,"North West London","overall_pct",0.745845720693296,0.753248353492835,0.667692322894513
+2022,"Kent and Medway","trust_pct",0.937940064397473,0.965152774249707,0.86856006727751
+2022,"Lancashire and South Cumbria","trust_pct",0.937940064397473,0.976888953128699,0.909760935958406
+2022,"Bedfordshire, Luton and Milton Keynes","trust_pct",0.937940064397473,0.928882786874035,0.905103184756076
+2022,"Dorset","trust_pct",0.937940064397473,0.985783889322372,NA
+2022,"Bath and North East Somerset, Swindon and Wiltshire","trust_pct",0.937940064397473,0.968208241418453,0.979695777739237
+2022,"Northamptonshire","trust_pct",0.937940064397473,0.936388739541669,0.923416508981421
+2022,"Herefordshire and Worcestershire","trust_pct",0.937940064397473,0.973968981929811,NA
+2022,"Gloucestershire","trust_pct",0.937940064397473,0.95867408680674,0.914016203570279
+2022,"Devon","trust_pct",0.937940064397473,0.971346181850794,0.937090077922642
+2022,"Nottingham and Nottinghamshire","trust_pct",0.937940064397473,0.944921270720875,0.913372867946818
+2022,"Hertfordshire and West Essex","trust_pct",0.937940064397473,0.956395286030531,NA
+2022,"Greater Manchester","trust_pct",0.937940064397473,0.972458160924998,0.919310728146584
+2022,"Norfolk and Waveney","trust_pct",0.937940064397473,0.964182736849504,0.9685529044629
+2022,"Leicester, Leicestershire and Rutland","trust_pct",0.937940064397473,0.949653782146482,0.877051199622557
+2022,"Humber and North Yorkshire","trust_pct",0.937940064397473,0.975434160295648,0.90590832410049
+2022,"Hampshire and Isle of Wight","trust_pct",0.937940064397473,0.959006181590459,0.861861878520566
+2022,"Frimley","trust_pct",0.937940064397473,0.932870627099595,NA
+2022,"Lincolnshire","trust_pct",0.937940064397473,0.974266499494802,0.92076269609641
+2022,"Somerset","trust_pct",0.937940064397473,0.964095664157624,NA
+2022,"Sussex","trust_pct",0.937940064397473,0.964166948716745,0.934921899572053
+2022,"North East London","trust_pct",0.937940064397473,0.966915450119128,0.893082549179504
+2022,"Mid and South Essex","trust_pct",0.937940064397473,0.93943477484692,0.860268720734879
+2022,"South East London","trust_pct",0.937940064397473,0.94929198236885,0.887915913694594
+2022,"West Yorkshire","trust_pct",0.937940064397473,0.964318214610958,0.894381529306087
+2022,"North East and North Cumbria","trust_pct",0.937940064397473,0.970232925770745,0.931573141570021
+2022,"Suffolk and North East Essex","trust_pct",0.937940064397473,0.964025003761567,0.915191053590282
+2022,"South West London","trust_pct",0.937940064397473,0.957316944859092,0.838685618001426
+2022,"Shropshire, Telford and Wrekin","trust_pct",0.937940064397473,0.969532224591259,0.946781025960469
+2022,"North West London","trust_pct",0.937940064397473,0.951605618973449,0.901425182586123
+2022,"North Central London","trust_pct",0.937940064397473,0.923274285499664,0.872801661046622
+2022,"South Yorkshire","trust_pct",0.937940064397473,0.970151278132137,0.922454258541561
+2022,"Cambridgeshire and Peterborough","trust_pct",0.937940064397473,0.95014517334877,0.91557597939852
+2022,"Black Country","trust_pct",0.937940064397473,0.957422882762609,0.895215558275757
+2022,"Derby and Derbyshire","trust_pct",0.937940064397473,0.965894844341339,0.884123184702376
+2022,"Staffordshire and Stoke-on-Trent","trust_pct",0.937940064397473,0.960741567848066,0.927682648391521
+2022,"Cheshire and Merseyside","trust_pct",0.937940064397473,0.968386603413453,0.928407026503915
+2022,"Bristol, North Somerset and South Gloucestershire","trust_pct",0.937940064397473,0.976414532990963,0.936009778649227
+2022,"Birmingham and Solihull","trust_pct",0.937940064397473,0.964557763925657,0.881542375962323
+2022,"Surrey Heartlands","trust_pct",0.937940064397473,0.961007805167312,NA
+2022,"Cornwall and the Isles of Scilly","trust_pct",0.937940064397473,0.976086309275534,0.908058213839661
+2022,"Buckinghamshire, Oxfordshire and Berkshire West","trust_pct",0.937940064397473,0.964790850082363,NA
+2022,"Coventry and Warwickshire","trust_pct",0.937940064397473,0.961910164743166,0.902749914752297
+2022,"England","trust_pct",0.937940064397473,0.96058955998096,0.910337144417786
+2023,"Cambridgeshire and Peterborough","access_pct",0.548602135,0.522478367,0.410925188
+2023,"Bath and North East Somerset, Swindon and Wiltshire","access_pct",0.548602135,0.710989929,0.6065397895
+2023,"Frimley","access_pct",0.548602135,0.565487616,NA
+2023,"Derby and Derbyshire","access_pct",0.548602135,0.683620845,0.362100438
+2023,"Cheshire and Merseyside","access_pct",0.548602135,0.493253294,0.45971015
+2023,"Black Country","access_pct",0.548602135,0.572046867,0.420471393
+2023,"Bedfordshire, Luton and Milton Keynes","access_pct",0.548602135,0.337221567,0.3186406765
+2023,"Devon","access_pct",0.548602135,0.6748758385,0.589724797
+2023,"Cornwall and the Isles of Scilly","access_pct",0.548602135,0.965530558,0.264984756
+2023,"Bristol, North Somerset and South Gloucestershire","access_pct",0.548602135,0.578772832,0.402556044
+2023,"Birmingham and Solihull","access_pct",0.548602135,0.423116015,0.4274837975
+2023,"Dorset","access_pct",0.548602135,0.7080652875,NA
+2023,"Coventry and Warwickshire","access_pct",0.548602135,0.739117251,0.5800738305
+2023,"North West London","access_pct",0.548602135,0.599235031,0.5827300585
+2023,"Hampshire and Isle of Wight","access_pct",0.548602135,0.583297294,0.461452382
+2023,"Kent and Medway","access_pct",0.548602135,0.509204914,0.255657251
+2023,"Lincolnshire","access_pct",0.548602135,0.585151245,0.374538513
+2023,"Northamptonshire","access_pct",0.548602135,0.6998027275,0.326516901
+2023,"Herefordshire and Worcestershire","access_pct",0.548602135,0.700926976,NA
+2023,"Gloucestershire","access_pct",0.548602135,0.744959266,0.3368878205
+2023,"Mid and South Essex","access_pct",0.548602135,0.411975234,0.420573865
+2023,"Lancashire and South Cumbria","access_pct",0.548602135,0.684304681,0.5294326085
+2023,"Buckinghamshire, Oxfordshire and Berkshire West","access_pct",0.548602135,0.6035477085,NA
+2023,"Greater Manchester","access_pct",0.548602135,0.668082787,0.5237457375
+2023,"Norfolk and Waveney","access_pct",0.548602135,0.623343855,0.620226121
+2023,"Leicester, Leicestershire and Rutland","access_pct",0.548602135,0.57066103,0.4077551285
+2023,"Humber and North Yorkshire","access_pct",0.548602135,0.734320196,0.553771746
+2023,"Surrey Heartlands","access_pct",0.548602135,0.566875378,NA
+2023,"North Central London","access_pct",0.548602135,0.5237482605,0.512385596
+2023,"South Yorkshire","access_pct",0.548602135,0.668356695,0.432855562
+2023,"Somerset","access_pct",0.548602135,0.750850153,NA
+2023,"Sussex","access_pct",0.548602135,0.530902381,0.5304705745
+2023,"North East London","access_pct",0.548602135,0.739087549,0.5726106565
+2023,"Staffordshire and Stoke-on-Trent","access_pct",0.548602135,0.543565247,0.448070123
+2023,"South East London","access_pct",0.548602135,0.5136730525,0.504403462
+2023,"Hertfordshire and West Essex","access_pct",0.548602135,0.5407138335,NA
+2023,"North East and North Cumbria","access_pct",0.548602135,0.814758557,0.5692561705
+2023,"Suffolk and North East Essex","access_pct",0.548602135,0.489201195,0.452940174
+2023,"South West London","access_pct",0.548602135,0.668946294,0.659090611
+2023,"Shropshire, Telford and Wrekin","access_pct",0.548602135,0.400122367,0.3397836895
+2023,"England","access_pct",0.548602135,0.610073619,0.481780413
+2023,"West Yorkshire","access_pct",0.548602135,0.647900294,0.490117079
+2023,"Nottingham and Nottinghamshire","access_pct",0.548602135,0.778539519,0.44037514
+2023,"Northamptonshire","continuity_pct",0.343209755,0.4065801915,0.289689488
+2023,"Bath and North East Somerset, Swindon and Wiltshire","continuity_pct",0.343209755,0.436938161,0.38446144
+2023,"Coventry and Warwickshire","continuity_pct",0.343209755,0.367312607,0.3646500085
+2023,"North West London","continuity_pct",0.343209755,0.380621177,0.384163029
+2023,"Cambridgeshire and Peterborough","continuity_pct",0.343209755,0.385339606,0.330744557
+2023,"Derby and Derbyshire","continuity_pct",0.343209755,0.3649546775,0.3011750905
+2023,"Lincolnshire","continuity_pct",0.343209755,0.3641011935,0.205702703
+2023,"Cheshire and Merseyside","continuity_pct",0.343209755,0.355364285,0.336592603
+2023,"Black Country","continuity_pct",0.343209755,0.416337984,0.3218729135
+2023,"Bedfordshire, Luton and Milton Keynes","continuity_pct",0.343209755,0.2432650295,0.279592785
+2023,"Devon","continuity_pct",0.343209755,0.4581650265,0.292387539
+2023,"Cornwall and the Isles of Scilly","continuity_pct",0.343209755,0.633037906,0.103965135
+2023,"Buckinghamshire, Oxfordshire and Berkshire West","continuity_pct",0.343209755,0.4293902835,NA
+2023,"Birmingham and Solihull","continuity_pct",0.343209755,0.304864349,0.294769296
+2023,"Dorset","continuity_pct",0.343209755,0.4322284625,NA
+2023,"Humber and North Yorkshire","continuity_pct",0.343209755,0.4042844335,0.326943535
+2023,"Surrey Heartlands","continuity_pct",0.343209755,0.368773503,NA
+2023,"Kent and Medway","continuity_pct",0.343209755,0.39519529,0.245527297
+2023,"Frimley","continuity_pct",0.343209755,0.365786933,NA
+2023,"South Yorkshire","continuity_pct",0.343209755,0.520386806,0.322331284
+2023,"Sussex","continuity_pct",0.343209755,0.346946808,0.2858684025
+2023,"Bristol, North Somerset and South Gloucestershire","continuity_pct",0.343209755,0.379062042,0.28210162
+2023,"Gloucestershire","continuity_pct",0.343209755,0.467577022,0.1899936895
+2023,"Mid and South Essex","continuity_pct",0.343209755,0.306367471,0.342846497
+2023,"Lancashire and South Cumbria","continuity_pct",0.343209755,0.3915044935,0.318008242
+2023,"Hertfordshire and West Essex","continuity_pct",0.343209755,0.320232023,NA
+2023,"Greater Manchester","continuity_pct",0.343209755,0.498514068,0.330721381
+2023,"Norfolk and Waveney","continuity_pct",0.343209755,0.3424388125,0.396542215
+2023,"Leicester, Leicestershire and Rutland","continuity_pct",0.343209755,0.340727206,0.214636435
+2023,"England","continuity_pct",0.343209755,0.3847187865,0.323250742
+2023,"Hampshire and Isle of Wight","continuity_pct",0.343209755,0.39395087,0.410849726
+2023,"North Central London","continuity_pct",0.343209755,0.322551293,0.2775618045
+2023,"Staffordshire and Stoke-on-Trent","continuity_pct",0.343209755,0.381902949,0.319307899
+2023,"Somerset","continuity_pct",0.343209755,0.344435242,NA
+2023,"Herefordshire and Worcestershire","continuity_pct",0.343209755,0.4132011,NA
+2023,"North East London","continuity_pct",0.343209755,0.489581228,0.328404379
+2023,"Suffolk and North East Essex","continuity_pct",0.343209755,0.2861543815,0.2309609945
+2023,"South East London","continuity_pct",0.343209755,0.402298235,0.3637678685
+2023,"Nottingham and Nottinghamshire","continuity_pct",0.343209755,0.414564927,0.321991272
+2023,"North East and North Cumbria","continuity_pct",0.343209755,0.441330226,0.360276319
+2023,"West Yorkshire","continuity_pct",0.343209755,0.39836798,0.29191355
+2023,"South West London","continuity_pct",0.343209755,0.4189363865,0.301740041
+2023,"Shropshire, Telford and Wrekin","continuity_pct",0.343209755,0.402882948,0.2635629945
+2023,"Bath and North East Somerset, Swindon and Wiltshire","overall_pct",0.739484646,0.833342649,0.7846253105
+2023,"Derby and Derbyshire","overall_pct",0.739484646,0.828625339,0.669430669
+2023,"England","overall_pct",0.739484646,0.791602916,0.690257576
+2023,"Humber and North Yorkshire","overall_pct",0.739484646,0.8600197105,0.680330947
+2023,"Coventry and Warwickshire","overall_pct",0.739484646,0.843112365,0.6927907905
+2023,"South Yorkshire","overall_pct",0.739484646,0.818455442,0.700982381
+2023,"Kent and Medway","overall_pct",0.739484646,0.714656918,0.520190058
+2023,"Sussex","overall_pct",0.739484646,0.776442963,0.707271834
+2023,"Frimley","overall_pct",0.739484646,0.737603336,NA
+2023,"Staffordshire and Stoke-on-Trent","overall_pct",0.739484646,0.771090946,0.737713749
+2023,"South East London","overall_pct",0.739484646,0.712231543,0.6864157245
+2023,"Nottingham and Nottinghamshire","overall_pct",0.739484646,0.78143054,0.699880499
+2023,"Bedfordshire, Luton and Milton Keynes","overall_pct",0.739484646,0.652031841,0.6208661395
+2023,"Suffolk and North East Essex","overall_pct",0.739484646,0.752860229,0.6898909535
+2023,"South West London","overall_pct",0.739484646,0.814489483,0.744275399
+2023,"Shropshire, Telford and Wrekin","overall_pct",0.739484646,0.827696365,0.6532134365
+2023,"Birmingham and Solihull","overall_pct",0.739484646,0.813642049,0.627568242
+2023,"Surrey Heartlands","overall_pct",0.739484646,0.783577928,NA
+2023,"North West London","overall_pct",0.739484646,0.731378543,0.723097138
+2023,"Somerset","overall_pct",0.739484646,0.776045084,NA
+2023,"Black Country","overall_pct",0.739484646,0.83382451,0.636595882
+2023,"North Central London","overall_pct",0.739484646,0.6971259415,0.654461437
+2023,"Northamptonshire","overall_pct",0.739484646,0.794877443,0.532123
+2023,"Cheshire and Merseyside","overall_pct",0.739484646,0.7984107575,0.704169048
+2023,"Bristol, North Somerset and South Gloucestershire","overall_pct",0.739484646,0.817590634,0.733855573
+2023,"West Yorkshire","overall_pct",0.739484646,0.840225219,0.661744807
+2023,"Devon","overall_pct",0.739484646,0.856958394,0.741294549
+2023,"Cornwall and the Isles of Scilly","overall_pct",0.739484646,0.962400379,0.592285518
+2023,"Buckinghamshire, Oxfordshire and Berkshire West","overall_pct",0.739484646,0.78531755,NA
+2023,"Greater Manchester","overall_pct",0.739484646,0.803329361,0.7131756625
+2023,"Dorset","overall_pct",0.739484646,0.8572320245,NA
+2023,"Leicester, Leicestershire and Rutland","overall_pct",0.739484646,0.778710571,0.6411697425
+2023,"Cambridgeshire and Peterborough","overall_pct",0.739484646,0.786423307,0.707779744
+2023,"Hampshire and Isle of Wight","overall_pct",0.739484646,0.803972948,0.606648478
+2023,"Gloucestershire","overall_pct",0.739484646,0.844594692,0.616301649
+2023,"Lincolnshire","overall_pct",0.739484646,0.785020188,0.674846938
+2023,"Lancashire and South Cumbria","overall_pct",0.739484646,0.8096593485,0.699783314
+2023,"Herefordshire and Worcestershire","overall_pct",0.739484646,0.843037544,NA
+2023,"North East and North Cumbria","overall_pct",0.739484646,0.860311273,0.7678156785
+2023,"Mid and South Essex","overall_pct",0.739484646,0.723616887,0.633461121
+2023,"Hertfordshire and West Essex","overall_pct",0.739484646,0.7767808795,NA
+2023,"Norfolk and Waveney","overall_pct",0.739484646,0.7877063405,0.806757545
+2023,"North East London","overall_pct",0.739484646,0.84304006,0.663569637
+2023,"Frimley","trust_pct",0.938109009,0.93771167,NA
+2023,"Lincolnshire","trust_pct",0.938109009,0.9563599505,0.947299467
+2023,"Hampshire and Isle of Wight","trust_pct",0.938109009,0.957140513,0.922657273
+2023,"Gloucestershire","trust_pct",0.938109009,0.968326123,0.907633933
+2023,"Devon","trust_pct",0.938109009,0.9586473275,0.930597154
+2023,"Northamptonshire","trust_pct",0.938109009,0.95667835,0.8054158035
+2023,"Herefordshire and Worcestershire","trust_pct",0.938109009,0.970672,NA
+2023,"Greater Manchester","trust_pct",0.938109009,0.967719409,0.914765605
+2023,"Dorset","trust_pct",0.938109009,0.974506568,NA
+2023,"Leicester, Leicestershire and Rutland","trust_pct",0.938109009,0.947620128,0.908268458
+2023,"Humber and North Yorkshire","trust_pct",0.938109009,0.9663624235,0.904788511
+2023,"North West London","trust_pct",0.938109009,0.948136187,0.9201121595
+2023,"North Central London","trust_pct",0.938109009,0.940684263,0.9050331745
+2023,"Kent and Medway","trust_pct",0.938109009,0.945984847,0.869557291
+2023,"Somerset","trust_pct",0.938109009,0.97894171,NA
+2023,"Sussex","trust_pct",0.938109009,0.96385961,0.937527835
+2023,"North East London","trust_pct",0.938109009,0.941848768,0.9027344035
+2023,"Mid and South Essex","trust_pct",0.938109009,0.933533049,0.904808164
+2023,"Lancashire and South Cumbria","trust_pct",0.938109009,0.9580034785,0.924364703
+2023,"Hertfordshire and West Essex","trust_pct",0.938109009,0.9600156095,NA
+2023,"North East and North Cumbria","trust_pct",0.938109009,0.978639902,0.9459125795
+2023,"Norfolk and Waveney","trust_pct",0.938109009,0.9432456735,0.964291471
+2023,"South West London","trust_pct",0.938109009,0.953638502,0.870640277
+2023,"Shropshire, Telford and Wrekin","trust_pct",0.938109009,0.979027515,0.903427059
+2023,"Birmingham and Solihull","trust_pct",0.938109009,0.958872304,0.884938913
+2023,"Coventry and Warwickshire","trust_pct",0.938109009,0.9696948215,0.8897922785
+2023,"South Yorkshire","trust_pct",0.938109009,0.9838825275,0.914444453
+2023,"Cambridgeshire and Peterborough","trust_pct",0.938109009,0.956799605,0.8891595655
+2023,"Black Country","trust_pct",0.938109009,0.968544724,0.8764329655
+2023,"Bath and North East Somerset, Swindon and Wiltshire","trust_pct",0.938109009,0.97549565,0.929608069
+2023,"Staffordshire and Stoke-on-Trent","trust_pct",0.938109009,0.968432586,0.924303091
+2023,"South East London","trust_pct",0.938109009,0.949553222,0.9227210765
+2023,"Nottingham and Nottinghamshire","trust_pct",0.938109009,0.975856082,0.90833728
+2023,"Bedfordshire, Luton and Milton Keynes","trust_pct",0.938109009,0.932415347,0.8556442245
+2023,"Suffolk and North East Essex","trust_pct",0.938109009,0.9436138895,0.9082382645
+2023,"Cornwall and the Isles of Scilly","trust_pct",0.938109009,0.972398807,0.894710164
+2023,"Buckinghamshire, Oxfordshire and Berkshire West","trust_pct",0.938109009,0.9587294165,NA
+2023,"England","trust_pct",0.938109009,0.958584082,0.910963313
+2023,"Surrey Heartlands","trust_pct",0.938109009,0.96437979,NA
+2023,"Derby and Derbyshire","trust_pct",0.938109009,0.9722834755,0.9324541175
+2023,"Cheshire and Merseyside","trust_pct",0.938109009,0.96707088,0.921835414
+2023,"Bristol, North Somerset and South Gloucestershire","trust_pct",0.938109009,0.9648812,0.93207183
+2023,"West Yorkshire","trust_pct",0.938109009,0.971222139,0.907233617
+2024,"Bath and North East Somerset, Swindon and Wiltshire","access_pct",0.7057726055,0.814383238,0.870395591
+2024,"Black Country","access_pct",0.7057726055,0.718034841,0.631848309
+2024,"Bedfordshire, Luton and Milton Keynes","access_pct",0.7057726055,0.614739566,0.5178344135
+2024,"Devon","access_pct",0.7057726055,0.787163388,0.69243767
+2024,"Cornwall and the Isles of Scilly","access_pct",0.7057726055,0.885289563,0.555337333
+2024,"Buckinghamshire, Oxfordshire and Berkshire West","access_pct",0.7057726055,0.742182528,NA
+2024,"Birmingham and Solihull","access_pct",0.7057726055,0.633190136,0.619739618
+2024,"Dorset","access_pct",0.7057726055,0.7882112715,NA
+2024,"Coventry and Warwickshire","access_pct",0.7057726055,0.828225265,0.7133365485
+2024,"Cambridgeshire and Peterborough","access_pct",0.7057726055,0.7400271845,0.5845048355
+2024,"Hampshire and Isle of Wight","access_pct",0.7057726055,0.7590327235,0.617103687
+2024,"Frimley","access_pct",0.7057726055,0.718458978,NA
+2024,"Derby and Derbyshire","access_pct",0.7057726055,0.8180890755,0.574281455
+2024,"Cheshire and Merseyside","access_pct",0.7057726055,0.73163694,0.659515293
+2024,"Bristol, North Somerset and South Gloucestershire","access_pct",0.7057726055,0.697399351,0.681845503
+2024,"Gloucestershire","access_pct",0.7057726055,0.7890289155,0.6746991
+2024,"Mid and South Essex","access_pct",0.7057726055,0.686768657,0.658341157
+2024,"Lancashire and South Cumbria","access_pct",0.7057726055,0.7611871405,0.675628491
+2024,"England","access_pct",0.7057726055,0.747208763,0.659427922
+2024,"Greater Manchester","access_pct",0.7057726055,0.8036790685,0.670486156
+2024,"Norfolk and Waveney","access_pct",0.7057726055,0.789980859,0.688599958
+2024,"Leicester, Leicestershire and Rutland","access_pct",0.7057726055,0.7373295875,0.6120817
+2024,"Humber and North Yorkshire","access_pct",0.7057726055,0.812369002,0.621387642
+2024,"North West London","access_pct",0.7057726055,0.716838178,0.7335563295
+2024,"North Central London","access_pct",0.7057726055,0.697559681,0.617884249
+2024,"Lincolnshire","access_pct",0.7057726055,0.6922759035,0.651624672
+2024,"Kent and Medway","access_pct",0.7057726055,0.712562134,0.536418341
+2024,"Herefordshire and Worcestershire","access_pct",0.7057726055,0.824844909,NA
+2024,"North East London","access_pct",0.7057726055,0.7811705915,0.690875943
+2024,"Staffordshire and Stoke-on-Trent","access_pct",0.7057726055,0.804385192,0.704652799
+2024,"South East London","access_pct",0.7057726055,0.6356602945,0.7125062435
+2024,"Hertfordshire and West Essex","access_pct",0.7057726055,0.7225979325,NA
+2024,"North East and North Cumbria","access_pct",0.7057726055,0.8200407095,0.706610479
+2024,"Suffolk and North East Essex","access_pct",0.7057726055,0.698060126,0.683745006
+2024,"South West London","access_pct",0.7057726055,0.8078545375,0.735995162
+2024,"Shropshire, Telford and Wrekin","access_pct",0.7057726055,0.72849233,0.582110136
+2024,"Northamptonshire","access_pct",0.7057726055,0.7061301135,0.56447991
+2024,"Surrey Heartlands","access_pct",0.7057726055,0.7284999335,NA
+2024,"South Yorkshire","access_pct",0.7057726055,0.803577191,0.670359154
+2024,"Somerset","access_pct",0.7057726055,0.735644021,NA
+2024,"Nottingham and Nottinghamshire","access_pct",0.7057726055,0.818942731,0.621576266
+2024,"Sussex","access_pct",0.7057726055,0.7197470125,0.6180326675
+2024,"West Yorkshire","access_pct",0.7057726055,0.800857199,0.65034453
+2024,"England","continuity_pct",0.389459011,0.4290897725,0.360690507
+2024,"Bath and North East Somerset, Swindon and Wiltshire","continuity_pct",0.389459011,0.481701559,0.4476331165
+2024,"Derby and Derbyshire","continuity_pct",0.389459011,0.4507502875,0.29705571
+2024,"Cambridgeshire and Peterborough","continuity_pct",0.389459011,0.4323253675,0.3647222895
+2024,"Birmingham and Solihull","continuity_pct",0.389459011,0.256728041,0.317643487
+2024,"Bedfordshire, Luton and Milton Keynes","continuity_pct",0.389459011,0.30943837,0.317291987
+2024,"Devon","continuity_pct",0.389459011,0.485809163,0.40937524
+2024,"Cornwall and the Isles of Scilly","continuity_pct",0.389459011,0.663860291,0.194850171
+2024,"Buckinghamshire, Oxfordshire and Berkshire West","continuity_pct",0.389459011,0.470501648,NA
+2024,"Greater Manchester","continuity_pct",0.389459011,0.4758624065,0.38733808
+2024,"Dorset","continuity_pct",0.389459011,0.515535982,NA
+2024,"Coventry and Warwickshire","continuity_pct",0.389459011,0.4612075715,0.4019811625
+2024,"Humber and North Yorkshire","continuity_pct",0.389459011,0.448161461,0.296279288
+2024,"Black Country","continuity_pct",0.389459011,0.530407029,0.361268912
+2024,"Frimley","continuity_pct",0.389459011,0.416877195,NA
+2024,"Lincolnshire","continuity_pct",0.389459011,0.388639888,0.270382659
+2024,"Cheshire and Merseyside","continuity_pct",0.389459011,0.419837174,0.401182237
+2024,"Bristol, North Somerset and South Gloucestershire","continuity_pct",0.389459011,0.407871652,0.373782044
+2024,"Gloucestershire","continuity_pct",0.389459011,0.4403509885,0.4305396455
+2024,"Mid and South Essex","continuity_pct",0.389459011,0.357073639,0.391062381
+2024,"Lancashire and South Cumbria","continuity_pct",0.389459011,0.3900356135,0.35975739
+2024,"Hertfordshire and West Essex","continuity_pct",0.389459011,0.3584091635,NA
+2024,"North East and North Cumbria","continuity_pct",0.389459011,0.5159497255,0.406216619
+2024,"Norfolk and Waveney","continuity_pct",0.389459011,0.466667783,0.324970386
+2024,"Leicester, Leicestershire and Rutland","continuity_pct",0.389459011,0.4121109745,0.254824891
+2024,"Surrey Heartlands","continuity_pct",0.389459011,0.4480582025,NA
+2024,"Hampshire and Isle of Wight","continuity_pct",0.389459011,0.405770055,0.28989916
+2024,"North Central London","continuity_pct",0.389459011,0.383922766,0.254862466
+2024,"South Yorkshire","continuity_pct",0.389459011,0.4704639725,0.367036172
+2024,"Kent and Medway","continuity_pct",0.389459011,0.472806566,0.287403965
+2024,"Herefordshire and Worcestershire","continuity_pct",0.389459011,0.449655692,NA
+2024,"North East London","continuity_pct",0.389459011,0.5338985515,0.336501864
+2024,"Staffordshire and Stoke-on-Trent","continuity_pct",0.389459011,0.390600078,0.382010993
+2024,"South East London","continuity_pct",0.389459011,0.4418435795,0.4817593885
+2024,"Nottingham and Nottinghamshire","continuity_pct",0.389459011,0.485041487,0.304313234
+2024,"West Yorkshire","continuity_pct",0.389459011,0.4422999025,0.359170281
+2024,"Suffolk and North East Essex","continuity_pct",0.389459011,0.346723761,0.262703527
+2024,"South West London","continuity_pct",0.389459011,0.4532039155,0.339848567
+2024,"Shropshire, Telford and Wrekin","continuity_pct",0.389459011,0.337449894,0.340788516
+2024,"North West London","continuity_pct",0.389459011,0.4346388345,0.3168178065
+2024,"Sussex","continuity_pct",0.389459011,0.416326026,0.386786056
+2024,"Somerset","continuity_pct",0.389459011,0.372021935,NA
+2024,"Northamptonshire","continuity_pct",0.389459011,0.43310643,0.334235778
+2024,"England","overall_pct",0.766146257,0.809208696,0.729119193
+2024,"South West London","overall_pct",0.766146257,0.833527927,0.846193969
+2024,"Surrey Heartlands","overall_pct",0.766146257,0.776465494,NA
+2024,"Coventry and Warwickshire","overall_pct",0.766146257,0.8704877835,0.791870038
+2024,"Bath and North East Somerset, Swindon and Wiltshire","overall_pct",0.766146257,0.874307373,0.851056004
+2024,"Staffordshire and Stoke-on-Trent","overall_pct",0.766146257,0.830132816,0.7617132905
+2024,"South East London","overall_pct",0.766146257,0.7273155905,0.7695194925
+2024,"Nottingham and Nottinghamshire","overall_pct",0.766146257,0.813380726,0.681909294
+2024,"Bedfordshire, Luton and Milton Keynes","overall_pct",0.766146257,0.700382602,0.6080779715
+2024,"Suffolk and North East Essex","overall_pct",0.766146257,0.7683987495,0.8044727685
+2024,"Cornwall and the Isles of Scilly","overall_pct",0.766146257,0.833199562,0.613703705
+2024,"Shropshire, Telford and Wrekin","overall_pct",0.766146257,0.811137717,0.663855675
+2024,"Birmingham and Solihull","overall_pct",0.766146257,0.720660296,0.676025263
+2024,"Dorset","overall_pct",0.766146257,0.8468610365,NA
+2024,"South Yorkshire","overall_pct",0.766146257,0.873840915,0.745863524
+2024,"Somerset","overall_pct",0.766146257,0.750684736,NA
+2024,"Black Country","overall_pct",0.766146257,0.7543617655,0.695245595
+2024,"Sussex","overall_pct",0.766146257,0.784749718,0.7793170005
+2024,"Derby and Derbyshire","overall_pct",0.766146257,0.860091608,0.658492567
+2024,"Cheshire and Merseyside","overall_pct",0.766146257,0.797344376,0.7484651815
+2024,"Bristol, North Somerset and South Gloucestershire","overall_pct",0.766146257,0.78766251,0.75265472
+2024,"West Yorkshire","overall_pct",0.766146257,0.872448606,0.717107713
+2024,"Devon","overall_pct",0.766146257,0.839268136,0.747330602
+2024,"Lancashire and South Cumbria","overall_pct",0.766146257,0.8243130205,0.7373257955
+2024,"Buckinghamshire, Oxfordshire and Berkshire West","overall_pct",0.766146257,0.785236691,NA
+2024,"Greater Manchester","overall_pct",0.766146257,0.847787875,0.7362179425
+2024,"Norfolk and Waveney","overall_pct",0.766146257,0.859189129,0.767525951
+2024,"Humber and North Yorkshire","overall_pct",0.766146257,0.8473390585,0.713378643
+2024,"Cambridgeshire and Peterborough","overall_pct",0.766146257,0.807746514,0.6450932435
+2024,"Hampshire and Isle of Wight","overall_pct",0.766146257,0.8117365955,0.670070346
+2024,"Frimley","overall_pct",0.766146257,0.754369011,NA
+2024,"Lincolnshire","overall_pct",0.766146257,0.7767892885,0.717150205
+2024,"Kent and Medway","overall_pct",0.766146257,0.770017516,0.637719512
+2024,"Herefordshire and Worcestershire","overall_pct",0.766146257,0.849136463,NA
+2024,"Gloucestershire","overall_pct",0.766146257,0.8329731415,0.665558127
+2024,"Mid and South Essex","overall_pct",0.766146257,0.743879274,0.693229238
+2024,"Leicester, Leicestershire and Rutland","overall_pct",0.766146257,0.79391078,0.646985714
+2024,"Hertfordshire and West Essex","overall_pct",0.766146257,0.7985730715,NA
+2024,"North East and North Cumbria","overall_pct",0.766146257,0.875000568,0.781580617
+2024,"North Central London","overall_pct",0.766146257,0.724793391,0.691703156
+2024,"North West London","overall_pct",0.766146257,0.73798599,0.758703504
+2024,"Northamptonshire","overall_pct",0.766146257,0.8001259195,0.612378749
+2024,"North East London","overall_pct",0.766146257,0.8504333085,0.761891057
+2024,"Gloucestershire","trust_pct",0.9332127635,0.9533423495,0.9261664865
+2024,"Devon","trust_pct",0.9332127635,0.964679111,0.897385859
+2024,"Humber and North Yorkshire","trust_pct",0.9332127635,0.9646554685,0.886884484
+2024,"Greater Manchester","trust_pct",0.9332127635,0.9624150815,0.915839984
+2024,"Dorset","trust_pct",0.9332127635,0.971607917,NA
+2024,"Leicester, Leicestershire and Rutland","trust_pct",0.9332127635,0.937835036,0.88364255
+2024,"Shropshire, Telford and Wrekin","trust_pct",0.9332127635,0.936712616,0.9252221065
+2024,"Hampshire and Isle of Wight","trust_pct",0.9332127635,0.9581027915,0.91255209
+2024,"Frimley","trust_pct",0.9332127635,0.936917052,NA
+2024,"Lincolnshire","trust_pct",0.9332127635,0.948368302,0.904707398
+2024,"Kent and Medway","trust_pct",0.9332127635,0.954535561,0.852157858
+2024,"Herefordshire and Worcestershire","trust_pct",0.9332127635,0.950943792,NA
+2024,"North East London","trust_pct",0.9332127635,0.9467826455,0.9061600865
+2024,"Mid and South Essex","trust_pct",0.9332127635,0.906638854,0.883808923
+2024,"Lancashire and South Cumbria","trust_pct",0.9332127635,0.9638861,0.9075834945
+2024,"Hertfordshire and West Essex","trust_pct",0.9332127635,0.949063506,NA
+2024,"North East and North Cumbria","trust_pct",0.9332127635,0.965101409,0.927310164
+2024,"Norfolk and Waveney","trust_pct",0.9332127635,0.976908755,0.936128343
+2024,"South West London","trust_pct",0.9332127635,0.9504345025,0.921618366
+2024,"Buckinghamshire, Oxfordshire and Berkshire West","trust_pct",0.9332127635,0.9492509545,NA
+2024,"North West London","trust_pct",0.9332127635,0.937367974,0.911019921
+2024,"North Central London","trust_pct",0.9332127635,0.933000342,0.882532334
+2024,"South Yorkshire","trust_pct",0.9332127635,0.972340933,0.907435361
+2024,"Somerset","trust_pct",0.9332127635,0.939426699,NA
+2024,"Northamptonshire","trust_pct",0.9332127635,0.9496664375,0.87883411
+2024,"Bath and North East Somerset, Swindon and Wiltshire","trust_pct",0.9332127635,0.958406613,0.9406443375
+2024,"Staffordshire and Stoke-on-Trent","trust_pct",0.9332127635,0.946101753,0.9056839085
+2024,"South East London","trust_pct",0.9332127635,0.9386358175,0.9338456095
+2024,"Nottingham and Nottinghamshire","trust_pct",0.9332127635,0.967675646,0.898671897
+2024,"Bedfordshire, Luton and Milton Keynes","trust_pct",0.9332127635,0.914342843,0.826817901
+2024,"Suffolk and North East Essex","trust_pct",0.9332127635,0.943067896,0.88506731
+2024,"Cornwall and the Isles of Scilly","trust_pct",0.9332127635,0.94350758,0.901206249
+2024,"England","trust_pct",0.9332127635,0.951083456,0.908302364
+2024,"Birmingham and Solihull","trust_pct",0.9332127635,0.959794055,0.901128951
+2024,"Surrey Heartlands","trust_pct",0.9332127635,0.9547025105,NA
+2024,"Coventry and Warwickshire","trust_pct",0.9332127635,0.971987274,0.9186754805
+2024,"Cambridgeshire and Peterborough","trust_pct",0.9332127635,0.949146025,0.8664904035
+2024,"Black Country","trust_pct",0.9332127635,0.944534743,0.896813944
+2024,"Sussex","trust_pct",0.9332127635,0.957392793,0.9322146945
+2024,"Derby and Derbyshire","trust_pct",0.9332127635,0.952179304,0.894233846
+2024,"Cheshire and Merseyside","trust_pct",0.9332127635,0.949137867,0.918717883
+2024,"Bristol, North Somerset and South Gloucestershire","trust_pct",0.9332127635,0.952860722,0.934701152
+2024,"West Yorkshire","trust_pct",0.9332127635,0.973738833,0.911493689
+2024,"England","cqc_rating",0.943971745063413,0.948235294117647,0.944120100083403
+2024,"Bath and North East Somerset, Swindon and Wiltshire","cqc_rating",0.943971745063413,0.952380952380952,1
+2024,"Bedfordshire, Luton and Milton Keynes","cqc_rating",0.943971745063413,0.96,1
+2024,"Birmingham and Solihull","cqc_rating",0.943971745063413,1,0.916666666666667
+2024,"Black Country","cqc_rating",0.943971745063413,1,0.902654867256637
+2024,"Bristol, North Somerset and South Gloucestershire","cqc_rating",0.943971745063413,0.966666666666667,0.75
+2024,"Buckinghamshire, Oxfordshire and Berkshire West","cqc_rating",0.943971745063413,0.99009900990099,1
+2024,"Cambridgeshire and Peterborough","cqc_rating",0.943971745063413,0.904761904761905,0.666666666666667
+2024,"Cheshire and Merseyside","cqc_rating",0.943971745063413,0.904761904761905,0.918518518518519
+2024,"Cornwall and the Isles of Scilly","cqc_rating",0.943971745063413,1,0
+2024,"Coventry and Warwickshire","cqc_rating",0.943971745063413,0.961538461538462,0.888888888888889
+2024,"Derby and Derbyshire","cqc_rating",0.943971745063413,0.888888888888889,0.875
+2024,"Devon","cqc_rating",0.943971745063413,1,1
+2024,"Dorset","cqc_rating",0.943971745063413,1,NA
+2024,"Frimley","cqc_rating",0.943971745063413,0.945945945945946,NA
+2024,"Gloucestershire","cqc_rating",0.943971745063413,1,1
+2024,"Greater Manchester","cqc_rating",0.943971745063413,1,0.98314606741573
+2024,"Hampshire and Isle of Wight","cqc_rating",0.943971745063413,0.962264150943396,1
+2024,"Herefordshire and Worcestershire","cqc_rating",0.943971745063413,1,NA
+2024,"Hertfordshire and West Essex","cqc_rating",0.943971745063413,0.925373134328358,NA
+2024,"Humber and North Yorkshire","cqc_rating",0.943971745063413,0.979591836734694,0.966666666666667
+2024,"Kent and Medway","cqc_rating",0.943971745063413,0.923076923076923,0.785714285714286
+2024,"Lancashire and South Cumbria","cqc_rating",0.943971745063413,1,1
+2024,"Leicester, Leicestershire and Rutland","cqc_rating",0.943971745063413,0.954545454545455,1
+2024,"Lincolnshire","cqc_rating",0.943971745063413,0.75,0.75
+2024,"Mid and South Essex","cqc_rating",0.943971745063413,0.954545454545455,0.928571428571429
+2024,"Norfolk and Waveney","cqc_rating",0.943971745063413,0.818181818181818,0.666666666666667
+2024,"North Central London","cqc_rating",0.943971745063413,1,0.964285714285714
+2024,"North East London","cqc_rating",0.943971745063413,0.95,0.946428571428571
+2024,"North East and North Cumbria","cqc_rating",0.943971745063413,0.9375,0.990990990990991
+2024,"North West London","cqc_rating",0.943971745063413,0.911764705882353,1
+2024,"Northamptonshire","cqc_rating",0.943971745063413,0.944444444444444,1
+2024,"Nottingham and Nottinghamshire","cqc_rating",0.943971745063413,0.95,0.970588235294118
+2024,"Shropshire, Telford and Wrekin","cqc_rating",0.943971745063413,1,1
+2024,"Somerset","cqc_rating",0.943971745063413,1,NA
+2024,"South East London","cqc_rating",0.943971745063413,0.9375,1
+2024,"South West London","cqc_rating",0.943971745063413,0.916666666666667,1
+2024,"South Yorkshire","cqc_rating",0.943971745063413,1,0.984375
+2024,"Staffordshire and Stoke-on-Trent","cqc_rating",0.943971745063413,1,1
+2024,"Suffolk and North East Essex","cqc_rating",0.943971745063413,0.909090909090909,0.666666666666667
+2024,"Surrey Heartlands","cqc_rating",0.943971745063413,0.951807228915663,NA
+2024,"Sussex","cqc_rating",0.943971745063413,0.875,0.777777777777778
+2024,"West Yorkshire","cqc_rating",0.943971745063413,1,0.950980392156863
