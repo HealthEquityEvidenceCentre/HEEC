@@ -761,7 +761,7 @@ appt_england <- appt_mar %>%
   select(-c(count, patients)) %>%
   rename(Indicator = APPT_MODE) %>%
   mutate(Year = 2024, ICB_NAME = "England")
-  
+
 appt_agg <- appt_mar %>%
   mutate(APPT_MODE = case_when(
     APPT_STATUS == "DNA" ~ "DNA",
@@ -815,7 +815,7 @@ df <- bind_rows(df, appt)
 write.csv(df, "final_data.csv", row.names = FALSE)
 
 ### Secondary care impact ---------------------------------------------------------
-sec <- read.csv("../data/secondary_care/secondary_care.csv") %>% 
+sec <- read.csv("../data/secondary_care/secondary_care.csv") %>%
   rename(ICB.NAME = ICB_NAME) %>%
   select(-c(Practice.Code, Area.Name, IMD)) %>%
   mutate(Value = as.numeric(Value))
@@ -882,7 +882,7 @@ if (!dir.exists(folder_name)) {
   print(paste("Folder", folder_name, "already exists."))
 }
 
-for (i in 1:length(ICBs)) {
+for (i in 1:seq_along(ICBs)) {
   rmarkdown::render(
     input = "slides.Rmd",
     output_file = str_glue("ICB Reports/{ICBs[i]}.pptx"),
