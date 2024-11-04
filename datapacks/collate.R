@@ -833,13 +833,14 @@ if (!dir.exists(output_dir)) {
   dir.create(output_dir)
 }
 
+
 # Loop through each ICB, render the file, and move it to the output directory
 for (icb in ICBs) {
-  # Render the file in the current directory with markdown output
+  # Render the file in the current directory with Markdown output
   quarto::quarto_render(
     input = "slides.qmd",
-    output_format = "markdown",
-    output_file = paste0(icb, ".md"),      # Only specify the filename with .md extension
+    output_format = "gfm",                # GitHub-flavored Markdown
+    output_file = paste0(icb, ".md"),     # Specify the filename with .md extension
     execute_params = list(ICB_NAME = icb)
   )
   

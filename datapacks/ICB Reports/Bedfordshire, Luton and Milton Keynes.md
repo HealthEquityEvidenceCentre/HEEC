@@ -1,110 +1,74 @@
----
-author:
-- Health Equity Evidence Centre
-params:
-  ICB_NAME: England
-subtitle: Data from latest period for Bedfordshire, Luton and Milton
-  Keynes
-title: Primary Care Equity Datapack
-toc-title: Table of contents
----
+# Primary Care Equity Datapack
+Health Equity Evidence Centre
 
--   [Introduction](#introduction){#toc-introduction}
--   [ICB Overview](#icb-overview){#toc-icb-overview}
--   [Inequality in Life
-    Expectancy](#inequality-in-life-expectancy){#toc-inequality-in-life-expectancy}
+- [Introduction](#introduction)
+- [ICB Overview](#icb-overview)
+- [Inequality in Life Expectancy](#inequality-in-life-expectancy)
 
-::: cell
-`<details>
-<summary>`{=html}Code`</summary>`{=html}
+<details>
+<summary>Code</summary>
 
-``` {.r .cell-code}
+``` r
 # Load necessary libraries
 library(ggplot2)
 library(showtext)
 ```
 
-```{=html}
 </details>
-```
-::: {.cell-output .cell-output-stderr}
+
     Loading required package: sysfonts
-:::
 
-::: {.cell-output .cell-output-stderr}
     Loading required package: showtextdb
-:::
 
-`<details>
-<summary>`{=html}Code`</summary>`{=html}
+<details>
+<summary>Code</summary>
 
-``` {.r .cell-code}
+``` r
 library(patchwork)
 library(ggtext)
 library(fingertipsR)
 library(tidyverse)
 ```
 
-```{=html}
 </details>
-```
-::: {.cell-output .cell-output-stderr}
+
     ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
     ✔ dplyr     1.1.2     ✔ readr     2.1.4
     ✔ forcats   1.0.0     ✔ stringr   1.5.1
     ✔ lubridate 1.9.2     ✔ tibble    3.2.1
     ✔ purrr     1.0.1     ✔ tidyr     1.3.0
-:::
 
-::: {.cell-output .cell-output-stderr}
     ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
     ✖ dplyr::filter() masks stats::filter()
     ✖ dplyr::lag()    masks stats::lag()
     ℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
-:::
 
-`<details>
-<summary>`{=html}Code`</summary>`{=html}
+<details>
+<summary>Code</summary>
 
-``` {.r .cell-code}
+``` r
 library(purrr)
 library(tibble)
 library(spatstat)
 ```
 
-```{=html}
 </details>
-```
-::: {.cell-output .cell-output-stderr}
+
     Warning: package 'spatstat' was built under R version 4.3.3
-:::
 
-::: {.cell-output .cell-output-stderr}
     Loading required package: spatstat.data
-:::
 
-::: {.cell-output .cell-output-stderr}
     Warning: package 'spatstat.data' was built under R version 4.3.3
-:::
 
-::: {.cell-output .cell-output-stderr}
     Loading required package: spatstat.univar
-:::
 
-::: {.cell-output .cell-output-stderr}
     Warning: package 'spatstat.univar' was built under R version 4.3.3
-:::
 
-::: {.cell-output .cell-output-stderr}
     spatstat.univar 3.0-1
     Loading required package: spatstat.geom
-:::
 
-::: {.cell-output .cell-output-stderr}
     Warning: package 'spatstat.geom' was built under R version 4.3.3
-:::
 
-::: {.cell-output .cell-output-stderr}
     spatstat.geom 3.3-2
 
     Attaching package: 'spatstat.geom'
@@ -114,22 +78,14 @@ library(spatstat)
         area
 
     Loading required package: spatstat.random
-:::
 
-::: {.cell-output .cell-output-stderr}
     Warning: package 'spatstat.random' was built under R version 4.3.3
-:::
 
-::: {.cell-output .cell-output-stderr}
     spatstat.random 3.3-1
     Loading required package: spatstat.explore
-:::
 
-::: {.cell-output .cell-output-stderr}
     Warning: package 'spatstat.explore' was built under R version 4.3.3
-:::
 
-::: {.cell-output .cell-output-stderr}
     Loading required package: nlme
 
     Attaching package: 'nlme'
@@ -140,74 +96,57 @@ library(spatstat)
 
     spatstat.explore 3.3-2
     Loading required package: spatstat.model
-:::
 
-::: {.cell-output .cell-output-stderr}
     Warning: package 'spatstat.model' was built under R version 4.3.3
-:::
 
-::: {.cell-output .cell-output-stderr}
     Loading required package: rpart
     spatstat.model 3.3-1
     Loading required package: spatstat.linnet
-:::
 
-::: {.cell-output .cell-output-stderr}
     Warning: package 'spatstat.linnet' was built under R version 4.3.3
-:::
 
-::: {.cell-output .cell-output-stderr}
     spatstat.linnet 3.2-1
 
     spatstat 3.1-1 
     For an introduction to spatstat, type 'beginner' 
-:::
 
-`<details>
-<summary>`{=html}Code`</summary>`{=html}
+<details>
+<summary>Code</summary>
 
-``` {.r .cell-code}
+``` r
 library(lubridate)
 library(readODS)
 ```
 
-```{=html}
 </details>
-```
-::: {.cell-output .cell-output-stderr}
+
     Warning: package 'readODS' was built under R version 4.3.3
-:::
 
-`<details>
-<summary>`{=html}Code`</summary>`{=html}
+<details>
+<summary>Code</summary>
 
-``` {.r .cell-code}
+``` r
 library(janitor)
 ```
 
-```{=html}
 </details>
-```
-::: {.cell-output .cell-output-stderr}
+
 
     Attaching package: 'janitor'
 
     The following objects are masked from 'package:stats':
 
         chisq.test, fisher.test
-:::
 
-`<details>
-<summary>`{=html}Code`</summary>`{=html}
+<details>
+<summary>Code</summary>
 
-``` {.r .cell-code}
+``` r
 library(gdata)
 ```
 
-```{=html}
 </details>
-```
-::: {.cell-output .cell-output-stderr}
+
 
     Attaching package: 'gdata'
 
@@ -234,12 +173,11 @@ library(gdata)
     The following object is masked from 'package:base':
 
         startsWith
-:::
 
-`<details>
-<summary>`{=html}Code`</summary>`{=html}
+<details>
+<summary>Code</summary>
 
-``` {.r .cell-code}
+``` r
 # Set up Google font and automatic display for text rendering
 font_add_google("Poppins", family = "Poppins")
 showtext_auto()
@@ -262,18 +200,15 @@ theme_set(
 )
 ```
 
-```{=html}
 </details>
-```
-::: {.cell-output .cell-output-stderr}
+
     Warning: The `size` argument of `element_line()` is deprecated as of ggplot2 3.4.0.
     ℹ Please use the `linewidth` argument instead.
-:::
 
-`<details>
-<summary>`{=html}Code`</summary>`{=html}
+<details>
+<summary>Code</summary>
 
-``` {.r .cell-code}
+``` r
 # Update default settings for geom_point size
 update_geom_defaults("point", list(size = 50))
 
@@ -293,10 +228,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{=html}
 </details>
-```
-:::
 
 ## Introduction
 
@@ -310,24 +242,18 @@ of Multiple Deprivation (IMD) to examine inequalities in patient health
 determinants and outcomes. We analyze the data according to the
 following categories:
 
--   **Resources (supply)**: Payments, Workforce
--   **Population (demand)**: Disease prevalence, Health-related
-    behaviors
--   **Service quality**: Quality and Outcomes Framework (QOF)
-    achievement
--   **Access**: Patient experience, Appointments
--   **Impact on secondary care**: Emergency admissions, A&E attendances
+- **Resources (supply)**: Payments, Workforce
+- **Population (demand)**: Disease prevalence, Health-related behaviors
+- **Service quality**: Quality and Outcomes Framework (QOF) achievement
+- **Access**: Patient experience, Appointments
+- **Impact on secondary care**: Emergency admissions, A&E attendances
 
 For further information or to discuss the results, please contact
 [Dr. John Ford](mailto:j.a.ford@qmul.ac.uk).
 
 ## ICB Overview
 
-::: cell
-::: cell-output-display
-![](slides_files/figure-markdown/overview-1.png)
-:::
-:::
+![](slides_files/figure-commonmark/overview-1.png)
 
 Each practice in England is assigned an Index of Multiple Deprivation
 (IMD) based on the population it serves, divided into deprivation
@@ -338,10 +264,6 @@ practices serve the most deprived quintile of patients in England.
 
 ## Inequality in Life Expectancy
 
-::: cell
-::: cell-output-display
-![](slides_files/figure-markdown/Life_Expectancy-1.png)
-:::
-:::
+![](slides_files/figure-commonmark/Life_Expectancy-1.png)
 
 Average life expectancy for men is in the least deprived 20%.
