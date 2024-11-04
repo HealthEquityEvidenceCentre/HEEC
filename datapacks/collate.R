@@ -835,16 +835,17 @@ if (!dir.exists(output_dir)) {
 
 # Loop through each ICB, render the file, and move it to the output directory
 for (icb in ICBs) {
-  # Render the file in the current directory
+  # Render the file in the current directory with markdown output
   quarto::quarto_render(
     input = "slides.qmd",
-    output_file = paste0(icb, ".html"),      # Only specify the filename
+    output_format = "markdown",
+    output_file = paste0(icb, ".md"),      # Only specify the filename with .md extension
     execute_params = list(ICB_NAME = icb)
   )
   
   # Move the rendered file to the output directory
   file.rename(
-    from = paste0(icb, ".html"),
-    to = file.path(output_dir, paste0(icb, ".html"))
+    from = paste0(icb, ".md"),
+    to = file.path(output_dir, paste0(icb, ".md"))
   )
 }

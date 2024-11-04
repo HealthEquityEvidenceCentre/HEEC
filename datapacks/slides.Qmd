@@ -1,9 +1,9 @@
 ---
 title: "Primary Care Equity Datapack"
 author: "Health Equity Evidence Centre"
-subtitle: "Data from latest period for {{params.ICB_NAME}}"
+subtitle: "Data from latest period for `r params$ICB_NAME`"
 format: 
-  html:
+  markdown:
     code-fold: true
     toc: true
 params:
@@ -158,7 +158,7 @@ df_filter %>%
   scale_color_manual(values = c("Least deprived" = "#28B788", "Most deprived" = "#007AA8", "National average" = "#A80026")) +
   labs(
     x = NULL, y = NULL,
-    title = paste0("Life expectancy by practice, birth cohort 2015-19 (", params$ICB_NAME, ")"),
+    title = paste0("Life expectancy by practice, birth cohort 2016-20 (", params$ICB_NAME, ")"),
     subtitle = "Practices in most and least deprived IMD quintiles. Larger circles represent stronger socio-economic gradient.",
     colour = "",
     caption = "Source: NHS England GP Workforce statistics, 2024. © Health Equity Evidence Centre, 2024."
