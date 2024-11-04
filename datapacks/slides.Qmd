@@ -1,71 +1,142 @@
 ---
 title: "Primary Care Equity Datapack"
-subtitle: "Data from latest period for {{ params.ICB_NAME }}"
-#author: "Health Equity Evidence Centre"
-format:
-  pptx:
-    reference-doc: "template.pptx"
-    fig-width: 12
-    fig-height: 8
-    fig-fullwidth: TRUE
+author: "Health Equity Evidence Centre"
+subtitle: "Data from latest period for {{params.ICB_NAME}}"
+format: 
+  html:
+    code-fold: true
+    toc: true
 params:
-  ICB_NAME: England
+  ICB_NAME: "England"
 ---
 
 ```{r setup, include=FALSE}
-
-# Setup code
+# Load necessary libraries
 library(ggplot2)
 library(showtext)
 library(patchwork)
 library(ggtext)
-font_add_google("Poppins", family = "Poppins")
+library(fingertipsR)
+library(tidyverse)
+library(purrr)
+library(tibble)
+library(spatstat)
+library(lubridate)
+library(readODS)
+library(janitor)
+library(gdata)
 
+# Set up Google font and automatic display for text rendering
+font_add_google("Poppins", family = "Poppins")
 showtext_auto()
 
-ggplot + theme_set(theme_minimal() + theme(
-  axis.title = element_text(size = 80, family = "Poppins"),
-  axis.text = element_text(size = 80, family = "Poppins"),
-  plot.caption = element_text(size = 60, family = "Poppins"),
-  plot.title = element_text(size = 100, family = "Poppins"),
-  plot.subtitle = element_text(size = 90, family = "Poppins"),
-  panel.grid = element_line(size = 5),
-  legend.title = element_text(size = 60, family = "Poppins"),
-  legend.text = element_text(size = 60, family = "Poppins"),
-  legend.key.width = unit(3.5, "cm"),
-  plot.title.position = "plot"
-))
-
-update_geom_defaults("point", list(size = 50))
-
-pks <- c(
-  "fingertipsR", "tidyverse", "purrr", "tibble",
-  "spatstat", "lubridate", "readODS", "janitor", "patchwork", "gdata"
+# Set up the ggplot theme
+theme_set(
+  theme_minimal() +
+    theme(
+      axis.title = element_text(size = 80, family = "Poppins"),
+      axis.text = element_text(size = 80, family = "Poppins"),
+      plot.caption = element_text(size = 60, family = "Poppins"),
+      plot.title = element_text(size = 100, family = "Poppins"),
+      plot.subtitle = element_text(size = 90, family = "Poppins"),
+      panel.grid = element_line(size = 5),
+      legend.title = element_text(size = 60, family = "Poppins"),
+      legend.text = element_text(size = 60, family = "Poppins"),
+      legend.key.width = unit(3.5, "cm"),
+      plot.title.position = "plot"
+    )
 )
 
-sapply(pks, library, character.only = T)
+# Update default settings for geom_point size
+update_geom_defaults("point", list(size = 50))
+
+# Import data
+df <- read.csv("final_data.csv")
+
+# Define helper functions or custom operators if needed
 "%ni%" <- Negate("%in%")
 
-df <- read.csv("final_data.csv")
+# Optional: suppress warnings and set figure dimensions globally for knitr
+knitr::opts_chunk$set(
+  echo = FALSE,
+  warning = FALSE,
+  fig.width = 90,
+  fig.height = 25,
+  fig.fullwidth = TRUE
+)
 ```
 
 ## Introduction
-Primary care (in contrast to specialty care) is associated with a more equitable distribution of health in populations.
 
-A key role of commissioners is to ensure the equitable distribution of resources across the system.
+Primary care, in contrast to specialty care, is associated with a more equitable distribution of health across populations. One of the key roles of commissioners is to ensure that resources are distributed equitably across the healthcare system.
 
-We present the latest NHS primary care data, using Index of Multiple Deprivation (IMD) to examine inequalities in patient health determinants and outcomes, according to the following categories:
+This report presents the latest NHS primary care data, using the Index of Multiple Deprivation (IMD) to examine inequalities in patient health determinants and outcomes. We analyze the data according to the following categories:
 
-Resources (supply): Payments, Workforce
-Population (demand): Disease prevalence, Health-related behaviours
-Service quality: QOF achievement
-Access: Patient experience, Appointments
-Impact on secondary care: Emergency admissions, A&E attendances
-For further information or to discuss the results, please contact Dr John Ford
+- **Resources (supply)**: Payments, Workforce
+- **Population (demand)**: Disease prevalence, Health-related behaviors
+- **Service quality**: Quality and Outcomes Framework (QOF) achievement
+- **Access**: Patient experience, Appointments
+- **Impact on secondary care**: Emergency admissions, A&E attendances
 
-## Inequality in Life Expectancy
-Average life expectancy for men is in the least deprived 20%.
-      
+For further information or to discuss the results, please contact [Dr. John Ford](mailto:j.a.ford@qmul.ac.uk).
+
+## ICB Overview
+
+```{r overview, warning = FALSE}
+payments <- read.csv("../data/payments/payments.csv")
+
+england <- payments %>%
+  filter(Year == 2019) %>%
+  group_by(Year) %>%
+  summarise(total = n(), .groups = "drop")
+
+# Calculate total count by Year, ICB.NAME
+total_counts <- payments %>%
+  filter(Year == 2019) %>%
+  group_by(Year, ICB.NAME) %>%
+  summarise(total = n(), .groups = "drop")
+
+# Calculate count and percentage by IMD_quintile for all ICBs
+result <- payments %>%
+  filter(Year == 2019) %>%
+  group_by(Year, IMD_quintile, ICB.NAME) %>%
+  summarise(n = n(), .groups = "drop") %>%
+  left_join(total_counts, by = c("Year", "ICB.NAME")) %>%
+  mutate(perc = (n / total) * 100) %>%
+  select(Year, ICB.NAME, IMD_quintile, n, perc)
+
+# Filter and organize data for specific ICBs
+result <- result %>%
+  filter(!is.na(IMD_quintile)) %>%
+  filter(ICB.NAME %in% c("Hertfordshire and West Essex", "Bedfordshire, Luton and Milton Keynes", "Norfolk and Waveney", "Mid and South Essex", "Cambridgeshire and Peterborough", "Suffolk and North East Essex")) %>%
+  mutate(ICB.NAME = factor(ICB.NAME, levels = c("Mid and South Essex", "Norfolk and Waveney", "Cambridgeshire and Peterborough", "Suffolk and North East Essex", "Bedfordshire, Luton and Milton Keynes", "Hertfordshire and West Essex")))
+
+# Plot: Percentage of practices in each IMD quintile by ICB
+result %>%
+  ggplot(aes(x = ICB.NAME, y = perc, fill = factor(IMD_quintile))) +
+  geom_bar(stat = "identity", position = "fill") +
+  scale_y_continuous(labels = scales::percent) +
+  scale_fill_manual(
+    values = c("5" = "#A80026", "4" = "#D35400", "3" = "#8E44AD", "2" = "#3498DB", "1" = "#00A676"),
+    name = "",
+    labels = c("Quintile 1 (least deprived)", "2", "3", "4", "Quintile 5 (most deprived)")
+  ) +
+  labs(
+    x = NULL,
+    y = NULL,
+    title = "Percentage of practices in each IMD quintile by ICB (East of England)"
+  ) +
+  theme(
+    legend.position = "bottom"
+  ) +
+  coord_flip()
+```
+
+Each practice in England is assigned an Index of Multiple Deprivation (IMD) based on the population it serves, divided into deprivation quintiles.
+
+For `r params$ICB_NAME`, approximately **`r round(result[result$ICB.NAME == params$ICB_NAME, ]$perc[5], 0)`%** of practices serve the most deprived quintile of patients in England.
+
+## Inequality in Life Expectancy      
 ```{r Life_Expectancy}
 year <- 2019
 
@@ -96,4 +167,4 @@ df_filter %>%
   guides(colour = guide_legend(override.aes = list(size = 50, shape = c(16, 16, 18))))
 ```
 
-
+Average life expectancy for men is in the least deprived 20%.
