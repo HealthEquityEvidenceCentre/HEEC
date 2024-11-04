@@ -9,3 +9,11 @@ Raw and processed data is available in the data subdirectory. We have complete c
 RShiny iframes are available in the shiny subdirectory.
 
 Analyses and the relevant code is available in the analysis subdirectory.
+
+## Datasets Overview
+| Dataset Name |   Source  | Current Release | Notes | Notes |
+|--------------|-----------|-----------------|--------------------------|
+| IMD          | (DoHSC) [https://www.gov.uk/government/collections/english-indices-of-deprivation]    | 2019-09-26   | [Check for latest](#how-to-check-for-updates) |
+| Dataset 2    | v2.3      | YYYY-MM-DD   | [Check for latest](#how-to-check-for-updates) |
+| Dataset 3    | v1.7      | YYYY-MM-DD   | [Check for latest](#how-to-check-for-updates) |
+
