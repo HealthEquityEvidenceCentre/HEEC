@@ -10,7 +10,7 @@ params:
   ICB_NAME: "England"
 ---
 
-```{r setup}
+```{r setup, include=FALSE}
 # Load necessary libraries
 library(ggplot2)
 library(showtext)
