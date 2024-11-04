@@ -1,293 +1,289 @@
 pks <- c(
   "fingertipsR", "tidyverse", "purrr", "tibble",
-  "spatstat", "lubridate", "readODS", "janitor", "patchwork"
+  "spatstat", "lubridate", "readODS", "janitor", "patchwork", "magrittr"
 )
 
 sapply(pks, library, character.only = T)
 
 "%ni%" <- Negate("%in%")
 
+df <- data.frame()
+
+### quintile counts ---------------------------------------------------------
+payments <- read.csv("../data/payments/payments.csv")
+
+england <- payments %>%
+  filter(Year == 2019) %>%
+  group_by(Year) %>%
+  summarise(total = n(), .groups = "drop")
+
+# Calculate total count by Year, ICB.NAME
+total_counts <- payments %>%
+  filter(Year == 2019) %>%
+  group_by(Year, ICB.NAME) %>%
+  summarise(total = n(), .groups = "drop")
+
+# Calculate count and percentage by IMD_quintile for all ICBs
+result <- payments %>%
+  filter(Year == 2019) %>%
+  group_by(Year, IMD_quintile, ICB.NAME) %>%
+  summarise(n = n(), .groups = "drop") %>%
+  left_join(total_counts, by = c("Year", "ICB.NAME")) %>%
+  mutate(perc = (n / total) * 100) %>%
+  select(Year, ICB.NAME, IMD_quintile, n, perc)
+
+result
+
 ### Life expectancy ---------------------------------------------------------
-le <- read.csv("../data/life_expectancy/life_expectancy.csv")
-
-le <- le %>% filter(!is.na(IMD_quintile))
-
-le_england <- le %>%
-  group_by(Year, IMD_quintile) %>%
-  summarise(
-    ICB.NAME = "England",
-    Life_Expectancy_Male = mean(Life_Expectancy_Male, na.rm = TRUE),
-    Life_Expectancy_Female = mean(Life_Expectancy_Female, na.rm = TRUE)
-  ) %>%
-  ungroup()
-
-# Step 1: Aggregate both male and female life expectancy
-le_agg <- le %>%
-  group_by(Year, ICB.NAME, IMD_quintile) %>%
-  summarise(
-    Life_Expectancy_Male = mean(Life_Expectancy_Male, na.rm = TRUE),
-    Life_Expectancy_Female = mean(Life_Expectancy_Female, na.rm = TRUE)
-  ) %>%
-  ungroup()
-
-# Step 3: Combine the regional data with the national aggregate for England
-le_agg <- bind_rows(le_agg, le_england)
-
-# Step 2: Pivot longer to create an 'Indicator' column for Male and Female
-le_long <- le_agg %>%
+le <- read.csv("../data/life_expectancy/life_expectancy.csv") %>%
   pivot_longer(
     cols = c(Life_Expectancy_Male, Life_Expectancy_Female),
     names_to = "Indicator",
     values_to = "Value"
+  ) %>%
+  filter(!is.na(Value), !is.na(IMD_quintile))
+
+avg <- le %>%
+  group_by(Indicator, Year) %>%
+  summarise(
+    avg = median(Value, na.rm = TRUE),
   )
 
-# Step 3: Calculate the average life expectancy per Year and Indicator
-le_long <- le_long %>%
-  group_by(Year, Indicator) %>%
-  mutate(avg = median(Value, na.rm = TRUE)) %>%
-  ungroup()
-
-# for each indicator and year, calculate the correlation coefficient between the life expectancy and the IMD quintile
-# corr <- le_long %>%
-#   group_by(Year, ICB.NAME, Indicator) %>%
-#   dplyr::summarise(cor(Value, IMD_quintile, use = "pairwise.complete.obs")) %>%
-#   rename(corr_coeff = 4)
-
-# Step 4: Handle edge cases by replacing quintile 2 with 1 (if 1 is missing) and 4 with 5 (if 5 is missing)
-le_edge_handled <- le_long %>%
-  group_by(Year, ICB.NAME, Indicator) %>%
-  # First, we identify if quintile 1 or 5 is missing, and replace them with 2 or 4, respectively.
-  mutate(
-    IMD_quintile = case_when(
-      IMD_quintile == 2 & !any(IMD_quintile == 1) ~ 1, # Replace quintile 2 with 1 if 1 is missing
-      IMD_quintile == 4 & !any(IMD_quintile == 5) ~ 5, # Replace quintile 4 with 5 if 5 is missing
-      TRUE ~ IMD_quintile # Otherwise, keep the original quintile
-    )
+le_england <- le %>%
+  group_by(Indicator, Year, IMD_quintile) %>%
+  summarise(
+    ICB.NAME = "England",
+    Value = median(Value, na.rm = TRUE),
   ) %>%
   ungroup()
 
-# Step 5: Pivot wider, creating two columns for the selected quin 1 (or 2) and quin 5 (or 4)
-le_wide <- le_edge_handled %>%
-  filter(IMD_quintile %in% c(1, 5)) %>%
+le_agg <- le %>%
+  group_by(Indicator, Year, IMD_quintile, ICB.NAME) %>%
+  summarise(
+    Value = median(Value, na.rm = TRUE)
+  ) %>%
+  ungroup()
+
+le <- bind_rows(le_england, le_agg) %>%
   pivot_wider(
     names_from = IMD_quintile,
     values_from = Value,
     names_prefix = "quin_"
-  )
+  ) %>%
+  merge(., avg, by = c("Year", "Indicator"))
 
-# where corr is greater than 0.2 or less than -0.2, set logic to TRUE
-# le_wide <- le_wide %>%
-#   left_join(corr) %>%
-#   mutate(logic = case_when(
-#     corr_coeff > 0.2 | corr_coeff < -0.2 ~ TRUE,
-#     corr_coeff < 0.2 | corr_coeff > -0.2 ~ FALSE
-#   ))
+df <- bind_rows(df, le)
 
-df <- le_wide
+df$ICB.NAME %>%
+  unique() %>%
+  length()
+
+df %>%
+  filter(Year == 2023) %>%
+  filter(is.na(quin_1)) %>%
+  select(Year, Indicator, ICB.NAME) %>%
+  arrange(ICB.NAME)
+
+df %>%
+  filter(Year == 2023) %>%
+  filter(is.na(quin_5)) %>%
+  select(Year, Indicator, ICB.NAME) %>%
+  arrange(ICB.NAME)
 
 write.csv(df, "final_data.csv", row.names = FALSE)
 
 ### Payments to General Practice -----------------------------------
-payments <- read.csv("../data/payments/payments.csv")
+payments <- read.csv("../data/payments/payments.csv") %>%
+  select(Practice.Code, Year, IMD_quintile, ICB.NAME, Dispensing.Practice, Total.NHS.Payments.to.General.Practice, Number.of.Weighted.Patients..Last.Known.Figure.)
 
 # All practices
-payments <- payments %>% filter(!is.na(IMD_quintile))
+avg_all <- payments %>%
+  group_by(Year) %>%
+  summarise(
+    Total.Payments = sum(Total.NHS.Payments.to.General.Practice, na.rm = TRUE),
+    Number.of.Weighted.Patients = sum(Number.of.Weighted.Patients..Last.Known.Figure., na.rm = TRUE)
+  ) %>%
+  mutate(
+    avg = Total.Payments / Number.of.Weighted.Patients,
+    Indicator = "payment_per_patient_all"
+  ) %>%
+  select(-c(Total.Payments, Number.of.Weighted.Patients))
 
-payments_england <- payments %>%
+payments_england_all <- payments %>%
+  group_by(Year, IMD_quintile) %>%
+  summarise(
+    Total.Payments = sum(Total.NHS.Payments.to.General.Practice, na.rm = TRUE),
+    Number.of.Weighted.Patients = sum(Number.of.Weighted.Patients..Last.Known.Figure., na.rm = TRUE)
+  ) %>%
+  mutate(Value = Total.Payments / Number.of.Weighted.Patients) %>%
+  select(-c(Total.Payments, Number.of.Weighted.Patients)) %>%
   group_by(Year, IMD_quintile) %>%
   summarise(
     ICB.NAME = "England",
-    total_payments_all = sum(Total.NHS.Payments.to.General.Practice, na.rm = TRUE),
-    weighted_patients_all = sum(Number.of.Weighted.Patients..Last.Known.Figure., na.rm = TRUE),
+    Indicator = "payment_per_patient_all",
+    Value = median(Value, na.rm = TRUE),
   ) %>%
   ungroup() %>%
-  mutate(
-    payment_per_patient_all = total_payments_all / weighted_patients_all
-  )
+  filter(!is.na(IMD_quintile))
 
-payments_agg <- payments %>%
+payments_agg_all <- payments %>%
   group_by(Year, ICB.NAME, IMD_quintile) %>%
   summarise(
-    total_payments_all = sum(Total.NHS.Payments.to.General.Practice, na.rm = TRUE),
-    weighted_patients_all = sum(Number.of.Weighted.Patients..Last.Known.Figure., na.rm = TRUE),
+    Total.Payments = sum(Total.NHS.Payments.to.General.Practice, na.rm = TRUE),
+    Number.of.Weighted.Patients = sum(Number.of.Weighted.Patients..Last.Known.Figure., na.rm = TRUE)
+  ) %>%
+  mutate(Value = Total.Payments / Number.of.Weighted.Patients) %>%
+  select(-c(Total.Payments, Number.of.Weighted.Patients)) %>%
+  group_by(Year, ICB.NAME, IMD_quintile) %>%
+  summarise(
+    Indicator = "payment_per_patient_all",
+    Value = median(Value, na.rm = TRUE),
   ) %>%
   ungroup() %>%
-  mutate(
-    payment_per_patient_all = total_payments_all / weighted_patients_all
-  )
+  filter(!is.na(IMD_quintile))
 
-payments_agg <- bind_rows(payments_agg, payments_england)
-
-payments_long <- payments_agg %>%
-  pivot_longer(
-    cols = c(payment_per_patient_all, total_payments_all, weighted_patients_all),
-    names_to = "Indicator",
-    values_to = "Value"
-  )
-
-payments_long <- payments_long %>%
-  group_by(Year, Indicator) %>%
-  mutate(avg = median(Value, na.rm = TRUE)) %>%
-  ungroup()
-
-payments_edge_handled <- payments_long %>%
-  group_by(Year, ICB.NAME, Indicator) %>%
-  # First, we identify if quintile 1 or 5 is missing, and replace them with 2 or 4, respectively.
-  mutate(
-    IMD_quintile = case_when(
-      IMD_quintile == 2 & !any(IMD_quintile == 1) ~ 1, # Replace quintile 2 with 1 if 1 is missing
-      IMD_quintile == 4 & !any(IMD_quintile == 5) ~ 5, # Replace quintile 4 with 5 if 5 is missing
-      TRUE ~ IMD_quintile # Otherwise, keep the original quintile
-    )
-  ) %>%
-  ungroup()
-
-payments_wide <- payments_edge_handled %>%
-  filter(IMD_quintile %in% c(1, 5)) %>%
+payments_all <- bind_rows(payments_england_all, payments_agg_all) %>%
   pivot_wider(
     names_from = IMD_quintile,
     values_from = Value,
     names_prefix = "quin_"
-  )
+  ) %>%
+  merge(., avg_all, by = c("Year", "Indicator"))
 
-df <- bind_rows(df, payments_wide)
+df <- bind_rows(df, payments_all)
 
 # Dispensing practices
-payments_dispensing <- payments[payments$Dispensing.Practice == "Yes", ]
+avg_disp <- payments[payments$Dispensing.Practice == "Yes", ] %>%
+  group_by(Year) %>%
+  summarise(
+    Total.Payments = sum(Total.NHS.Payments.to.General.Practice, na.rm = TRUE),
+    Number.of.Weighted.Patients = sum(Number.of.Weighted.Patients..Last.Known.Figure., na.rm = TRUE)
+  ) %>%
+  mutate(
+    avg = Total.Payments / Number.of.Weighted.Patients,
+    Indicator = "payment_per_patient_disp"
+  ) %>%
+  select(-c(Total.Payments, Number.of.Weighted.Patients))
 
-payments_england <- payments_dispensing %>%
+payments_england_disp <- payments[payments$Dispensing.Practice == "Yes", ] %>%
+  group_by(Year, IMD_quintile) %>%
+  summarise(
+    Total.Payments = sum(Total.NHS.Payments.to.General.Practice, na.rm = TRUE),
+    Number.of.Weighted.Patients = sum(Number.of.Weighted.Patients..Last.Known.Figure., na.rm = TRUE)
+  ) %>%
+  mutate(Value = Total.Payments / Number.of.Weighted.Patients) %>%
+  select(-c(Total.Payments, Number.of.Weighted.Patients)) %>%
   group_by(Year, IMD_quintile) %>%
   summarise(
     ICB.NAME = "England",
-    total_payments_dispensing = sum(Total.NHS.Payments.to.General.Practice, na.rm = TRUE),
-    weighted_patients_dispensing = sum(Number.of.Weighted.Patients..Last.Known.Figure., na.rm = TRUE),
+    Indicator = "payment_per_patient_disp",
+    Value = median(Value, na.rm = TRUE),
   ) %>%
   ungroup() %>%
-  mutate(
-    payment_per_patient_dispensing = total_payments_dispensing / weighted_patients_dispensing
-  )
+  filter(!is.na(IMD_quintile))
 
-payments_agg <- payments_dispensing %>%
+payments_agg_disp <- payments[payments$Dispensing.Practice == "Yes", ] %>%
   group_by(Year, ICB.NAME, IMD_quintile) %>%
   summarise(
-    total_payments_dispensing = sum(Total.NHS.Payments.to.General.Practice, na.rm = TRUE),
-    weighted_patients_dispensing = sum(Number.of.Weighted.Patients..Last.Known.Figure., na.rm = TRUE),
+    Total.Payments = sum(Total.NHS.Payments.to.General.Practice, na.rm = TRUE),
+    Number.of.Weighted.Patients = sum(Number.of.Weighted.Patients..Last.Known.Figure., na.rm = TRUE)
+  ) %>%
+  mutate(Value = Total.Payments / Number.of.Weighted.Patients) %>%
+  select(-c(Total.Payments, Number.of.Weighted.Patients)) %>%
+  group_by(Year, ICB.NAME, IMD_quintile) %>%
+  summarise(
+    Indicator = "payment_per_patient_disp",
+    Value = median(Value, na.rm = TRUE),
   ) %>%
   ungroup() %>%
-  mutate(
-    payment_per_patient_dispensing = total_payments_dispensing / weighted_patients_dispensing
-  )
+  filter(!is.na(IMD_quintile))
 
-payments_agg <- bind_rows(payments_agg, payments_england)
-
-payments_long <- payments_agg %>%
-  pivot_longer(
-    cols = c(payment_per_patient_dispensing, total_payments_dispensing, weighted_patients_dispensing),
-    names_to = "Indicator",
-    values_to = "Value"
-  )
-
-payments_long <- payments_long %>%
-  group_by(Year, Indicator) %>%
-  mutate(avg = median(Value, na.rm = TRUE)) %>%
-  ungroup()
-
-payments_edge_handled <- payments_long %>%
-  group_by(Year, ICB.NAME, Indicator) %>%
-  # First, we identify if quintile 1 or 5 is missing, and replace them with 2 or 4, respectively.
-  mutate(
-    IMD_quintile = case_when(
-      IMD_quintile == 2 & !any(IMD_quintile == 1) ~ 1, # Replace quintile 2 with 1 if 1 is missing
-      IMD_quintile == 4 & !any(IMD_quintile == 5) ~ 5, # Replace quintile 4 with 5 if 5 is missing
-      TRUE ~ IMD_quintile # Otherwise, keep the original quintile
-    )
-  ) %>%
-  ungroup()
-
-payments_wide <- payments_edge_handled %>%
-  filter(IMD_quintile %in% c(1, 5)) %>%
+payments_disp <- bind_rows(payments_england_disp, payments_agg_disp) %>%
   pivot_wider(
     names_from = IMD_quintile,
     values_from = Value,
     names_prefix = "quin_"
-  )
+  ) %>%
+  merge(., avg_disp, by = c("Year", "Indicator"))
 
-df <- bind_rows(df, payments_wide)
+df <- bind_rows(df, payments_disp)
 
 # Non-dispensing
-payments_non_dispensing <- payments[payments$Dispensing.Practice == "No", ]
+avg_non_disp <- payments[payments$Dispensing.Practice == "No", ] %>%
+  group_by(Year) %>%
+  summarise(
+    Total.Payments = sum(Total.NHS.Payments.to.General.Practice, na.rm = TRUE),
+    Number.of.Weighted.Patients = sum(Number.of.Weighted.Patients..Last.Known.Figure., na.rm = TRUE)
+  ) %>%
+  mutate(
+    avg = Total.Payments / Number.of.Weighted.Patients,
+    Indicator = "payment_per_patient_non_disp"
+  ) %>%
+  select(-c(Total.Payments, Number.of.Weighted.Patients))
 
-payments_england <- payments_non_dispensing %>%
+payments_england_non_disp <- payments[payments$Dispensing.Practice == "No", ] %>%
+  group_by(Year, IMD_quintile) %>%
+  summarise(
+    Total.Payments = sum(Total.NHS.Payments.to.General.Practice, na.rm = TRUE),
+    Number.of.Weighted.Patients = sum(Number.of.Weighted.Patients..Last.Known.Figure., na.rm = TRUE)
+  ) %>%
+  mutate(Value = Total.Payments / Number.of.Weighted.Patients) %>%
+  select(-c(Total.Payments, Number.of.Weighted.Patients)) %>%
   group_by(Year, IMD_quintile) %>%
   summarise(
     ICB.NAME = "England",
-    total_payments_non_dispensing = sum(Total.NHS.Payments.to.General.Practice, na.rm = TRUE),
-    weighted_patients_non_dispensing = sum(Number.of.Weighted.Patients..Last.Known.Figure., na.rm = TRUE),
+    Indicator = "payment_per_patient_non_disp",
+    Value = median(Value, na.rm = TRUE),
   ) %>%
   ungroup() %>%
-  mutate(
-    payment_per_patient_non_dispensing = total_payments_non_dispensing / weighted_patients_non_dispensing
-  )
+  filter(!is.na(IMD_quintile))
 
-payments_agg <- payments_non_dispensing %>%
+payments_agg_non_disp <- payments[payments$Dispensing.Practice == "No", ] %>%
   group_by(Year, ICB.NAME, IMD_quintile) %>%
   summarise(
-    total_payments_non_dispensing = sum(Total.NHS.Payments.to.General.Practice, na.rm = TRUE),
-    weighted_patients_non_dispensing = sum(Number.of.Weighted.Patients..Last.Known.Figure., na.rm = TRUE),
+    Total.Payments = sum(Total.NHS.Payments.to.General.Practice, na.rm = TRUE),
+    Number.of.Weighted.Patients = sum(Number.of.Weighted.Patients..Last.Known.Figure., na.rm = TRUE)
+  ) %>%
+  mutate(Value = Total.Payments / Number.of.Weighted.Patients) %>%
+  select(-c(Total.Payments, Number.of.Weighted.Patients)) %>%
+  group_by(Year, ICB.NAME, IMD_quintile) %>%
+  summarise(
+    Indicator = "payment_per_patient_non_disp",
+    Value = median(Value, na.rm = TRUE),
   ) %>%
   ungroup() %>%
-  mutate(
-    payment_per_patient_non_dispensing = total_payments_non_dispensing / weighted_patients_non_dispensing
-  )
+  filter(!is.na(IMD_quintile))
 
-payments_agg <- bind_rows(payments_agg, payments_england)
-
-payments_long <- payments_agg %>%
-  pivot_longer(
-    cols = c(payment_per_patient_non_dispensing, total_payments_non_dispensing, weighted_patients_non_dispensing),
-    names_to = "Indicator",
-    values_to = "Value"
-  )
-
-payments_long <- payments_long %>%
-  group_by(Year, Indicator) %>%
-  mutate(avg = median(Value, na.rm = TRUE)) %>%
-  ungroup()
-
-payments_edge_handled <- payments_long %>%
-  group_by(Year, ICB.NAME, Indicator) %>%
-  # First, we identify if quintile 1 or 5 is missing, and replace them with 2 or 4, respectively.
-  mutate(
-    IMD_quintile = case_when(
-      IMD_quintile == 2 & !any(IMD_quintile == 1) ~ 1, # Replace quintile 2 with 1 if 1 is missing
-      IMD_quintile == 4 & !any(IMD_quintile == 5) ~ 5, # Replace quintile 4 with 5 if 5 is missing
-      TRUE ~ IMD_quintile # Otherwise, keep the original quintile
-    )
-  ) %>%
-  ungroup()
-
-payments_wide <- payments_edge_handled %>%
-  filter(IMD_quintile %in% c(1, 5)) %>%
+payments_non_disp <- bind_rows(payments_england_non_disp, payments_agg_non_disp) %>%
   pivot_wider(
     names_from = IMD_quintile,
     values_from = Value,
     names_prefix = "quin_"
-  )
+  ) %>%
+  merge(., avg_non_disp, by = c("Year", "Indicator"))
 
-df <- bind_rows(df, payments_wide)
+df <- bind_rows(df, payments_non_disp)
 
 write.csv(df, "final_data.csv", row.names = FALSE)
 
 ### Workforce ---------------------------------------------------------
-workforce <- read.csv("../data/workforce/workforce_year.csv") %>% select(-IMD)
+workforce <- read.csv("../data/workforce/workforce_year.csv") %>%
+  select(-IMD) %>%
+  rename(ICB.NAME = ICB_NAME)
 
-workforce <- workforce %>% filter(!is.na(IMD_quintile))
-
-workforce_england <- workforce %>%
-  group_by(Year, IMD_quintile) %>%
+n_w_patients <- payments[, c("Practice.Code", "Year", "Number.of.Weighted.Patients..Last.Known.Figure.")] %>%
+  filter(Year == 2023) %>%
+  group_by(Year, Practice.Code) %>%
   summarise(
-    ICB.NAME = "England",
-    TOTAL_PATIENTS = sum(TOTAL_PATIENTS, na.rm = TRUE),
+    Number.of.Weighted.Patients..Last.Known.Figure. = sum(Number.of.Weighted.Patients..Last.Known.Figure., na.rm = TRUE)
+  )
+
+avg <- workforce %>%
+  filter(Year == 2023) %>%
+  merge(., n_w_patients, by = c("Practice.Code", "Year")) %>%
+  group_by(Year) %>%
+  summarise(
+    TOTAL_PATIENTS = sum(Number.of.Weighted.Patients..Last.Known.Figure., na.rm = TRUE),
     TOTAL_GP_EXTGL_FTE = sum(TOTAL_GP_EXTGL_FTE, na.rm = TRUE),
     TOTAL_LOCUUM_TRN_FTE = sum(TOTAL_LOCUUM_TRN_FTE, na.rm = TRUE),
     TOTAL_NURSES_FTE = sum(TOTAL_NURSES_FTE, na.rm = TRUE),
@@ -301,11 +297,41 @@ workforce_england <- workforce %>%
     TOTAL_NURSES_FTE = TOTAL_NURSES_FTE / TOTAL_PATIENTS * 10000,
     TOTAL_ADMIN_FTE = TOTAL_ADMIN_FTE / TOTAL_PATIENTS * 10000,
     TOTAL_DPC_FTE = TOTAL_DPC_FTE / TOTAL_PATIENTS * 10000
+  ) %>%
+  select(-TOTAL_PATIENTS) %>%
+  pivot_longer(
+    cols = c(TOTAL_GP_EXTGL_FTE, TOTAL_LOCUUM_TRN_FTE, TOTAL_NURSES_FTE, TOTAL_ADMIN_FTE, TOTAL_DPC_FTE),
+    names_to = "Indicator",
+    values_to = "avg"
   )
 
-workforce <- workforce %>% rename(ICB.NAME = ICB_NAME)
+workforce_england <- workforce %>%
+  filter(Year == 2023) %>%
+  merge(., n_w_patients, by = c("Practice.Code", "Year")) %>%
+  group_by(Year, IMD_quintile) %>%
+  summarise(
+    ICB.NAME = "England",
+    TOTAL_PATIENTS = sum(Number.of.Weighted.Patients..Last.Known.Figure., na.rm = TRUE),
+    TOTAL_GP_EXTGL_FTE = sum(TOTAL_GP_EXTGL_FTE, na.rm = TRUE),
+    TOTAL_LOCUUM_TRN_FTE = sum(TOTAL_LOCUUM_TRN_FTE, na.rm = TRUE),
+    TOTAL_NURSES_FTE = sum(TOTAL_NURSES_FTE, na.rm = TRUE),
+    TOTAL_ADMIN_FTE = sum(TOTAL_ADMIN_FTE, na.rm = TRUE),
+    TOTAL_DPC_FTE = sum(TOTAL_DPC_FTE, na.rm = TRUE),
+  ) %>%
+  ungroup() %>%
+  mutate(
+    TOTAL_GP_EXTGL_FTE = TOTAL_GP_EXTGL_FTE / TOTAL_PATIENTS * 10000,
+    TOTAL_LOCUUM_TRN_FTE = TOTAL_LOCUUM_TRN_FTE / TOTAL_PATIENTS * 10000,
+    TOTAL_NURSES_FTE = TOTAL_NURSES_FTE / TOTAL_PATIENTS * 10000,
+    TOTAL_ADMIN_FTE = TOTAL_ADMIN_FTE / TOTAL_PATIENTS * 10000,
+    TOTAL_DPC_FTE = TOTAL_DPC_FTE / TOTAL_PATIENTS * 10000
+  ) %>%
+  select(-TOTAL_PATIENTS) %>%
+  filter(!is.na(IMD_quintile))
 
 workforce_agg <- workforce %>%
+  filter(Year == 2023) %>%
+  merge(., n_w_patients, by = c("Practice.Code", "Year")) %>%
   group_by(Year, ICB.NAME, IMD_quintile) %>%
   summarise(
     TOTAL_PATIENTS = sum(TOTAL_PATIENTS, na.rm = TRUE),
@@ -322,57 +348,37 @@ workforce_agg <- workforce %>%
     TOTAL_NURSES_FTE = TOTAL_NURSES_FTE / TOTAL_PATIENTS * 10000,
     TOTAL_ADMIN_FTE = TOTAL_ADMIN_FTE / TOTAL_PATIENTS * 10000,
     TOTAL_DPC_FTE = TOTAL_DPC_FTE / TOTAL_PATIENTS * 10000
-  )
+  ) %>%
+  filter(!is.na(IMD_quintile))
 
-workforce_agg <- bind_rows(workforce_agg, workforce_england)
-
-workforce_long <- workforce_agg %>%
+workforce <- bind_rows(workforce_england, workforce_agg) %>%
   select(-TOTAL_PATIENTS) %>%
   pivot_longer(
     cols = c(TOTAL_GP_EXTGL_FTE, TOTAL_LOCUUM_TRN_FTE, TOTAL_NURSES_FTE, TOTAL_ADMIN_FTE, TOTAL_DPC_FTE),
     names_to = "Indicator",
     values_to = "Value"
-  )
-
-workforce_long <- workforce_long %>%
-  group_by(Year, Indicator) %>%
-  mutate(avg = median(Value, na.rm = TRUE)) %>%
-  ungroup()
-
-workforce_edge_handled <- workforce_long %>%
-  group_by(Year, ICB.NAME, Indicator) %>%
-  # First, we identify if quintile 1 or 5 is missing, and replace them with 2 or 4, respectively.
-  mutate(
-    IMD_quintile = case_when(
-      IMD_quintile == 2 & !any(IMD_quintile == 1) ~ 1, # Replace quintile 2 with 1 if 1 is missing
-      IMD_quintile == 4 & !any(IMD_quintile == 5) ~ 5, # Replace quintile 4 with 5 if 5 is missing
-      TRUE ~ IMD_quintile # Otherwise, keep the original quintile
-    )
   ) %>%
-  ungroup()
-
-workforce_wide <- workforce_edge_handled %>%
-  filter(IMD_quintile %in% c(1, 5)) %>%
+  filter(!is.na(Value), !is.na(IMD_quintile)) %>%
   pivot_wider(
     names_from = IMD_quintile,
     values_from = Value,
     names_prefix = "quin_"
-  )
+  ) %>%
+  merge(., avg, by = c("Year", "Indicator"))
 
-df <- bind_rows(df, workforce_wide)
-
-write.csv(df, "final_data.csv", row.names = FALSE)
+df <- bind_rows(df, workforce)
 
 ### PCN Workforce -----------------
 pcn <- read.csv("../data/pcn_workforce/pcn_workforce.csv") %>% select(-IMD)
 
-n_w_patients <- payments[, c("Practice.Code", "Year", "Number.of.Weighted.Patients..Last.Known.Figure.", "PCN.Name")] %>%
+n_w_patients <- read.csv("../data/payments/payments.csv") %>%
+  select(Practice.Code, Year, Number.of.Weighted.Patients..Last.Known.Figure., PCN.Name) %>%
   rename(PCN_NAME = PCN.Name) %>%
   filter(Year == 2022) %>%
   group_by(Year, PCN_NAME) %>%
   summarise(Number.of.Weighted.Patients..Last.Known.Figure. = sum(Number.of.Weighted.Patients..Last.Known.Figure., na.rm = TRUE)) %>%
   filter(!is.na(PCN_NAME)) %>%
-  mutate(Year = 2024)
+  mutate(Year = 2023)
 
 pcn <- merge(pcn, n_w_patients, by = c("Year", "PCN_NAME"))
 
@@ -380,10 +386,10 @@ avg <- pcn %>%
   group_by(Year) %>%
   summarise(
     Number.of.Weighted.Patients..Last.Known.Figure. = sum(Number.of.Weighted.Patients..Last.Known.Figure., na.rm = TRUE),
-    Value = sum(FTE, na.rm = TRUE)
+    FTE = sum(FTE, na.rm = TRUE)
   ) %>%
-  mutate(avg = Value / Number.of.Weighted.Patients..Last.Known.Figure. * 10000) %>%
-  select(-c(Value, Number.of.Weighted.Patients..Last.Known.Figure.))
+  mutate(avg = FTE / Number.of.Weighted.Patients..Last.Known.Figure. * 10000) %>%
+  select(-c(FTE, Number.of.Weighted.Patients..Last.Known.Figure.))
 
 pcn_england <- pcn %>%
   group_by(Year, IMD_quintile) %>%
@@ -408,33 +414,18 @@ pcn_agg <- pcn %>%
   ) %>%
   select(-Number.of.Weighted.Patients..Last.Known.Figure.)
 
-# Check if quintiles 1 and 5 are present in the data
-quintile_1_present <- any(pcn_agg$IMD_quintile == 1)
-quintile_5_present <- any(pcn_agg$IMD_quintile == 5)
-
-pcn_edge_handled <- pcn_agg %>%
-  # Then use the flags to conditionally replace quintiles
-  mutate(
-    IMD_quintile = case_when(
-      IMD_quintile == 2 & !quintile_1_present ~ 1, # Replace quintile 2 with 1 if 1 is missing
-      IMD_quintile == 4 & !quintile_5_present ~ 5, # Replace quintile 4 with 5 if 5 is missing
-      TRUE ~ IMD_quintile # Otherwise, keep the original quintile
-    )
-  ) %>%
-  ungroup()
-
-pcn <- bind_rows(pcn_england, pcn_edge_handled)
-
-pcn %<>%
-  filter(IMD_quintile %in% c(1, 5)) %>%
+pcn <- bind_rows(pcn_england, pcn_agg) %>%
+  mutate(Indicator = "PCN_staff") %>%
   pivot_wider(
     names_from = IMD_quintile,
     values_from = Value,
     names_prefix = "quin_"
   ) %>%
-  mutate(Indicator = "PCN_staff")
+  merge(., avg, by = "Year") %>%
+  rename(ICB.NAME = ICB_NAME)
 
-pcn <- merge(pcn, avg, by = "Year") %>% rename(ICB.NAME = ICB_NAME)
+pcn[pcn$ICB.NAME == "Cornwall and The Isles Of Scilly", ]$ICB.NAME <- "Cornwall and the Isles of Scilly"
+pcn[pcn$ICB.NAME == "Hampshire and Isle Of Wight", ]$ICB.NAME <- "Hampshire and Isle of Wight"
 
 df <- bind_rows(df, pcn)
 
@@ -442,98 +433,63 @@ write.csv(df, "final_data.csv", row.names = FALSE)
 
 ### Behaviours ---------------------------------------------------------
 # Smoking
-prev <- read.csv("../data/behaviours/behaviours.csv")
-
-prev %<>% select(-c(IMD, Area.Name, Practice.Code)) %>% rename(ICB.NAME = ICB_NAME)
+prev <- read.csv("../data/behaviours/behaviours.csv") %>%
+  select(-c(IMD, Area.Name, Practice.Code)) %>%
+  rename(ICB.NAME = ICB_NAME) %>%
+  filter(!is.na(ICB.NAME))
 
 avg <- prev %>%
-  group_by(Year, Indicator) %>%
+  group_by(Indicator, Year) %>%
   summarise(avg = median(Value, na.rm = TRUE))
 
 prev_england <- prev %>%
-  group_by(Year, Indicator, IMD_quintile) %>%
+  group_by(Indicator, Year, IMD_quintile) %>%
   summarise(Value = median(Value, na.rm = TRUE)) %>%
   mutate(ICB.NAME = "England")
 
 prev_agg <- prev %>%
-  group_by(Year, Indicator, IMD_quintile, ICB.NAME) %>%
+  group_by(Indicator, Year, IMD_quintile, ICB.NAME) %>%
   summarise(Value = median(Value, na.rm = TRUE))
 
-# Check if quintiles 1 and 5 are present in the data
-quintile_1_present <- any(prev_agg$IMD_quintile == 1)
-quintile_5_present <- any(prev_agg$IMD_quintile == 5)
-
-prev_edge_handled <- prev_agg %>%
-  # Then use the flags to conditionally replace quintiles
-  mutate(
-    IMD_quintile = case_when(
-      IMD_quintile == 2 & !quintile_1_present ~ 1, # Replace quintile 2 with 1 if 1 is missing
-      IMD_quintile == 4 & !quintile_5_present ~ 5, # Replace quintile 4 with 5 if 5 is missing
-      TRUE ~ IMD_quintile # Otherwise, keep the original quintile
-    )
-  ) %>%
-  ungroup()
-
-prev <- bind_rows(prev_england, prev_edge_handled)
-
-prev %<>%
-  filter(IMD_quintile %in% c(1, 5)) %>%
+prev_all <- bind_rows(prev_england, prev_agg) %>%
+  filter(!is.na(IMD_quintile)) %>%
   pivot_wider(
     names_from = IMD_quintile,
     values_from = Value,
     names_prefix = "quin_"
-  )
+  ) %>%
+  merge(., avg, by = c("Year", "Indicator"))
 
-prev <- merge(prev, avg, by = c("Year", "Indicator"))
-
-df <- bind_rows(df, prev)
+df <- bind_rows(df, prev_all)
 
 write.csv(df, "final_data.csv", row.names = FALSE)
 
 ### Prevalence ---------------------------------------------------------
-prev <- read.csv("../data/prevalence/ltc_prevalence.csv")
-
-prev %<>% select(-c(IMD, area_name, Practice.Code)) %>% rename(ICB.NAME = ICB_NAME)
+prev <- read.csv("../data/prevalence/ltc_prevalence.csv") %>%
+  select(-c(IMD, area_name, Practice.Code)) %>%
+  rename(ICB.NAME = ICB_NAME)
 
 avg <- prev %>%
-  group_by(Year, Indicator) %>%
+  group_by(Indicator, Year) %>%
   summarise(avg = median(Value, na.rm = TRUE))
 
 prev_england <- prev %>%
-  group_by(Year, Indicator, IMD_quintile) %>%
+  group_by(Indicator, Year, IMD_quintile) %>%
   summarise(Value = median(Value, na.rm = TRUE)) %>%
   mutate(ICB.NAME = "England")
 
 prev_agg <- prev %>%
-  group_by(Year, Indicator, IMD_quintile, ICB.NAME) %>%
+  group_by(Indicator, Year, IMD_quintile, ICB.NAME) %>%
   summarise(Value = median(Value, na.rm = TRUE))
 
-# Check if quintiles 1 and 5 are present in the data
-quintile_1_present <- any(prev_agg$IMD_quintile == 1)
-quintile_5_present <- any(prev_agg$IMD_quintile == 5)
-
-prev_edge_handled <- prev_agg %>%
-  # Then use the flags to conditionally replace quintiles
-  mutate(
-    IMD_quintile = case_when(
-      IMD_quintile == 2 & !quintile_1_present ~ 1, # Replace quintile 2 with 1 if 1 is missing
-      IMD_quintile == 4 & !quintile_5_present ~ 5, # Replace quintile 4 with 5 if 5 is missing
-      TRUE ~ IMD_quintile # Otherwise, keep the original quintile
-    )
-  ) %>%
-  ungroup()
-
-prev <- bind_rows(prev_england, prev_edge_handled)
-
-prev %<>%
-  filter(IMD_quintile %in% c(1, 5)) %>%
+prev <- bind_rows(prev_england, prev_agg) %>%
+  filter(!is.na(IMD_quintile)) %>%
   pivot_wider(
     names_from = IMD_quintile,
     values_from = Value,
     names_prefix = "quin_"
-  )
-
-prev <- merge(prev, avg, by = c("Year", "Indicator"))
+  ) %>%
+  merge(., avg, by = c("Year", "Indicator"))
 
 df <- bind_rows(df, prev)
 
@@ -543,47 +499,30 @@ write.csv(df, "final_data.csv", row.names = FALSE)
 qof_points <- read.csv("../data/qof/total_qof_points.csv") %>%
   rename(ICB.NAME = ICB_NAME) %>%
   select(-c(Practice.Code, Area.Name, IMD)) %>%
-  mutate(Value = as.numeric(Value))
+  mutate(Value = as.numeric(Value)) %>%
+  filter(!is.na(ICB.NAME))
 
 avg <- qof_points %>%
-  group_by(Year, Indicator) %>%
+  group_by(Indicator, Year) %>%
   summarise(avg = median(Value, na.rm = TRUE))
 
 qof_england <- qof_points %>%
-  group_by(Year, Indicator, IMD_quintile) %>%
+  group_by(Indicator, Year, IMD_quintile) %>%
   summarise(Value = median(Value, na.rm = TRUE)) %>%
   mutate(ICB.NAME = "England")
 
 qof_agg <- qof_points %>%
-  group_by(Year, Indicator, IMD_quintile, ICB.NAME) %>%
+  group_by(Indicator, Year, IMD_quintile, ICB.NAME) %>%
   summarise(Value = median(Value, na.rm = TRUE))
 
-# Check if quintiles 1 and 5 are present in the data
-quintile_1_present <- any(qof_agg$IMD_quintile == 1)
-quintile_5_present <- any(qof_agg$IMD_quintile == 5)
-
-qof_edge_handled <- qof_agg %>%
-  # Then use the flags to conditionally replace quintiles
-  mutate(
-    IMD_quintile = case_when(
-      IMD_quintile == 2 & !quintile_1_present ~ 1, # Replace quintile 2 with 1 if 1 is missing
-      IMD_quintile == 4 & !quintile_5_present ~ 5, # Replace quintile 4 with 5 if 5 is missing
-      TRUE ~ IMD_quintile # Otherwise, keep the original quintile
-    )
-  ) %>%
-  ungroup()
-
-qof <- bind_rows(qof_england, qof_edge_handled)
-
-qof %<>%
-  filter(IMD_quintile %in% c(1, 5)) %>%
+qof <- bind_rows(qof_england, qof_agg) %>%
+  filter(!is.na(IMD_quintile)) %>%
   pivot_wider(
     names_from = IMD_quintile,
     values_from = Value,
     names_prefix = "quin_"
-  )
-
-qof <- merge(qof, avg, by = c("Year", "Indicator"))
+  ) %>%
+  merge(., avg, by = c("Year", "Indicator"))
 
 df <- bind_rows(df, qof)
 
@@ -705,7 +644,7 @@ cqc %<>%
   ) %>%
   mutate(avg = avg$Value) %>%
   mutate(Indicator = "cqc_rating") %>%
-  mutate(Year = 2024) %>%
+  mutate(Year = 2023) %>%
   rename(ICB.NAME = ICB_NAME)
 
 df <- bind_rows(df, cqc)
@@ -882,7 +821,7 @@ if (!dir.exists(folder_name)) {
   print(paste("Folder", folder_name, "already exists."))
 }
 
-for (i in 1:seq_along(ICBs)) {
+for (i in 1:length(ICBs)) {
   rmarkdown::render(
     input = "slides.Rmd",
     output_file = str_glue("ICB Reports/{ICBs[i]}.pptx"),
