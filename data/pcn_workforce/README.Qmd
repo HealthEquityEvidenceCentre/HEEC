@@ -1,7 +1,7 @@
 ---
 title: "Primary Care Network"
 author: "Cameron Appel"
-date: "2024-08-20"
+date: "2024-10-20"
 format: gfm
 ---
 
@@ -13,6 +13,12 @@ library(magrittr)
 ```
 
 # Primary Care Network
+Primary Care Networks were created in July 2019 to provide accessible and integrated primary, mental health, and community care for patients. The bulk of the PCN workforce consists of Direct Patient Care staff, funded by the Additional Roles Reimbursement Scheme (ARRS), and each PCN has the flexibility and autonomy to determine which roles are required to meet the specific needs of their local populations. Initially, recruitment focused on clinical pharmacists and social prescribing link workers, with more roles being included over subsequent years.
+
+[NHS Digital](https://digital.nhs.uk/data-and-information/publications/statistical/primary-care-network-workforce) provides public CSVs on the PCN workforce at the PCN-level.
+
+We take the average IMD of each practice in the PCN to assign the PCN to a deprivation quintile.
+
 
 ```{r 1}
 # List all relevant files from the raw directory
@@ -35,6 +41,8 @@ pcn %<>% group_by(CENSUS_YEAR, PCN_CODE, PCN_NAME, ICB_NAME, STAFF_GROUP) %>% su
 pcn$ICB_NAME <- gsub("NHS ", "", pcn$ICB_NAME)
 pcn$ICB_NAME <- gsub(" Integrated Care Board", "", pcn$ICB_NAME)
 pcn$ICB_NAME <- gsub(" ICB", "", pcn$ICB_NAME)
+pcn$ICB_NAME <- gsub("Cornwall and The Isles Of Scilly", "Cornwall and the Isles of Scilly", pcn$ICB_NAME)
+pcn$ICB_NAME <- gsub("Hampshire and Isle Of Wight", "Hampshire and Isle of Wight", pcn$ICB_NAME)
 
 pcn %>% head()
 ```

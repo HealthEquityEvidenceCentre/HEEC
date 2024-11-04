@@ -276,10 +276,11 @@ n_w_patients <- payments[, c("Practice.Code", "Year", "Number.of.Weighted.Patien
   group_by(Year, Practice.Code) %>%
   summarise(
     Number.of.Weighted.Patients..Last.Known.Figure. = sum(Number.of.Weighted.Patients..Last.Known.Figure., na.rm = TRUE)
-  )
+  ) %>%
+  mutate(Year = ifelse(Year == 2023, 2024, Year))
 
 avg <- workforce %>%
-  filter(Year == 2023) %>%
+  filter(Year == 2024) %>%
   merge(., n_w_patients, by = c("Practice.Code", "Year")) %>%
   group_by(Year) %>%
   summarise(
@@ -306,7 +307,7 @@ avg <- workforce %>%
   )
 
 workforce_england <- workforce %>%
-  filter(Year == 2023) %>%
+  filter(Year == 2024) %>%
   merge(., n_w_patients, by = c("Practice.Code", "Year")) %>%
   group_by(Year, IMD_quintile) %>%
   summarise(
@@ -330,7 +331,7 @@ workforce_england <- workforce %>%
   filter(!is.na(IMD_quintile))
 
 workforce_agg <- workforce %>%
-  filter(Year == 2023) %>%
+  filter(Year == 2024) %>%
   merge(., n_w_patients, by = c("Practice.Code", "Year")) %>%
   group_by(Year, ICB.NAME, IMD_quintile) %>%
   summarise(
@@ -378,7 +379,7 @@ n_w_patients <- read.csv("../data/payments/payments.csv") %>%
   group_by(Year, PCN_NAME) %>%
   summarise(Number.of.Weighted.Patients..Last.Known.Figure. = sum(Number.of.Weighted.Patients..Last.Known.Figure., na.rm = TRUE)) %>%
   filter(!is.na(PCN_NAME)) %>%
-  mutate(Year = 2023)
+  mutate(Year = 2024)
 
 pcn <- merge(pcn, n_w_patients, by = c("Year", "PCN_NAME"))
 
@@ -423,9 +424,6 @@ pcn <- bind_rows(pcn_england, pcn_agg) %>%
   ) %>%
   merge(., avg, by = "Year") %>%
   rename(ICB.NAME = ICB_NAME)
-
-pcn[pcn$ICB.NAME == "Cornwall and The Isles Of Scilly", ]$ICB.NAME <- "Cornwall and the Isles of Scilly"
-pcn[pcn$ICB.NAME == "Hampshire and Isle Of Wight", ]$ICB.NAME <- "Hampshire and Isle of Wight"
 
 df <- bind_rows(df, pcn)
 
