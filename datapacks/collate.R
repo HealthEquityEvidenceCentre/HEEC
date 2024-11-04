@@ -826,3 +826,25 @@ for (i in 1:length(ICBs)) {
     params = list(ICB_NAME = ICBs[i])
   )
 }
+
+# Create the output directory if it doesn't exist
+output_dir <- "ICB Reports"
+if (!dir.exists(output_dir)) {
+  dir.create(output_dir)
+}
+
+# Loop through each ICB, render the file, and move it to the output directory
+for (icb in ICBs) {
+  # Render the file in the current directory
+  quarto::quarto_render(
+    input = "slides.qmd",
+    output_file = paste0(icb, ".html"),      # Only specify the filename
+    execute_params = list(ICB_NAME = icb)
+  )
+  
+  # Move the rendered file to the output directory
+  file.rename(
+    from = paste0(icb, ".html"),
+    to = file.path(output_dir, paste0(icb, ".html"))
+  )
+}
