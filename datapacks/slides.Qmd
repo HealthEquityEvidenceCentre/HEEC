@@ -3,7 +3,7 @@ title: "Primary Care Equity Datapack"
 author: "Health Equity Evidence Centre"
 subtitle: "Data from latest period for `r params$ICB_NAME`"
 format: 
-  markdown:
+  gfm:    # GitHub-flavored Markdown to ensure compatibility
     code-fold: true
     toc: true
 params:
