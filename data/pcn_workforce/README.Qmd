@@ -10,6 +10,7 @@ knitr::opts_chunk$set(warning = FALSE)
 
 library(dplyr)
 library(magrittr)
+library(ggplot2)
 ```
 
 # Primary Care Network
@@ -27,16 +28,29 @@ files <- list.files("raw", pattern = "Primary Care Networks.*Individual Level.cs
 # Load and combine all files
 pcn <- lapply(files, function(file) {
   df <- read.csv(file)
+
   df <- df %>% 
     select(CENSUS_YEAR, CENSUS_MONTH,
            PCN_CODE, PCN_NAME, 
            ICB_CODE, ICB_NAME, STAFF_GROUP, 
            FTE)
+
+  month <- df$CENSUS_MONTH %>% unique()
+  year <- df$CENSUS_YEAR %>% unique()
+
+  if (month >= 4) {
+    df$fiscal_year <- year + 1
+  }  else {
+    df$fiscal_year <- year
+  }
+  
   return(df)
 }) %>% 
   bind_rows()
 
-pcn %<>% group_by(CENSUS_YEAR, PCN_CODE, PCN_NAME, ICB_NAME, STAFF_GROUP) %>% summarise(FTE = sum(FTE, na.rm = TRUE)) %>% rename(Year = CENSUS_YEAR)
+# pcn %<>% group_by(fiscal_year, PCN_CODE, PCN_NAME, ICB_NAME, STAFF_GROUP) %>% summarise(FTE = sum(FTE, na.rm = TRUE)) %>% rename(Year = CENSUS_YEAR)
+
+pcn %<>% group_by(fiscal_year, PCN_CODE, PCN_NAME, ICB_NAME, STAFF_GROUP) %>% summarise(FTE = mean(FTE, na.rm = TRUE)) %>% rename(Year = fiscal_year) %>% group_by(Year, PCN_CODE, PCN_NAME, ICB_NAME, STAFF_GROUP) %>% summarise(FTE = sum(FTE, na.rm=TRUE))
 
 pcn$ICB_NAME <- gsub("NHS ", "", pcn$ICB_NAME)
 pcn$ICB_NAME <- gsub(" Integrated Care Board", "", pcn$ICB_NAME)
@@ -81,4 +95,56 @@ pcn <- merge(pcn, IMD, by = "PCN_CODE") %>%
 head(pcn)
 
 write.csv(pcn, "pcn_workforce.csv", row.names = FALSE)
+```
+
+# Disparity
+```{r 4}
+agg <- pcn %>%
+  group_by(Year, IMD_quintile, STAFF_GROUP) %>%
+  summarise(
+    Value = mean(FTE, na.rm=TRUE)
+  )
+
+pcn$STAFF_GROUP %>% unique()
+```
+
+```{r 5}
+# Define colors and labels for IMD quintile
+colors <- c("#EF7A34", "#00A865", "#007AA8", "#531A5C", "#A80026")
+imd_labels <- c("Q1 (least deprived)", "Q2", "Q3", "Q4", "Q5 (most deprived)")
+
+# Loop over each unique STAFF_GROUP
+for (group in unique(agg$STAFF_GROUP)) {
+  
+  # Filter data for the current STAFF_GROUP
+  data_group <- agg[agg$STAFF_GROUP == group, ]
+  data_group$IMD_quintile <- as.factor(data_group$IMD_quintile)
+  
+  # Plot
+  p <- data_group %>%
+    ggplot(aes(x = Year, y = Value, group = IMD_quintile, colour = IMD_quintile)) +
+    geom_line(size = 1.5) +
+    geom_point(size = 3) +
+    labs(
+      x = "", 
+      y = "FTE", 
+      title = paste("PCN-funded", group, "(FTE)")
+    ) +
+    theme_minimal() +
+    theme(
+      legend.position = "bottom",
+      legend.justification = "center",
+      axis.text.x = element_text(size = 10),
+      axis.title.x = element_text(size = 12),
+      axis.line.x = element_line(size = 1),
+      panel.grid.minor.x = element_blank(),
+      panel.grid.minor.y = element_blank()
+    ) +
+    scale_color_manual(values = colors, labels = imd_labels) +
+    labs(color = "IMD quintile") +
+    scale_x_continuous(breaks = unique(agg$Year)) # Show every year on the x-axis
+
+  # Print the plot (or save it, if you prefer to save each plot as a file)
+  print(p)
+}
 ```
