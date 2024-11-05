@@ -1,8 +1,24 @@
 # Primary Care Network
 Cameron Appel
-2024-08-20
+2024-10-20
 
 # Primary Care Network
+
+Primary Care Networks were created in July 2019 to provide accessible
+and integrated primary, mental health, and community care for patients.
+The bulk of the PCN workforce consists of Direct Patient Care staff,
+funded by the Additional Roles Reimbursement Scheme (ARRS), and each PCN
+has the flexibility and autonomy to determine which roles are required
+to meet the specific needs of their local populations. Initially,
+recruitment focused on clinical pharmacists and social prescribing link
+workers, with more roles being included over subsequent years.
+
+[NHS
+Digital](https://digital.nhs.uk/data-and-information/publications/statistical/primary-care-network-workforce)
+provides public CSVs on the PCN workforce at the PCN-level.
+
+We take the average IMD of each practice in the PCN to assign the PCN to
+a deprivation quintile.
 
 ``` r
 # List all relevant files from the raw directory
@@ -11,35 +27,56 @@ files <- list.files("raw", pattern = "Primary Care Networks.*Individual Level.cs
 # Load and combine all files
 pcn <- lapply(files, function(file) {
   df <- read.csv(file)
+
   df <- df %>% 
     select(CENSUS_YEAR, CENSUS_MONTH,
            PCN_CODE, PCN_NAME, 
            ICB_CODE, ICB_NAME, STAFF_GROUP, 
            FTE)
+
+  month <- df$CENSUS_MONTH %>% unique()
+  year <- df$CENSUS_YEAR %>% unique()
+
+  if (month >= 4) {
+    df$fiscal_year <- year + 1
+  }  else {
+    df$fiscal_year <- year
+  }
+  
   return(df)
 }) %>% 
   bind_rows()
 
-pcn %<>% group_by(CENSUS_YEAR, PCN_CODE, ICB_NAME, STAFF_GROUP) %>% summarise(FTE = sum(FTE, na.rm = TRUE)) %>% rename(Year = CENSUS_YEAR)
+# pcn %<>% group_by(fiscal_year, PCN_CODE, PCN_NAME, ICB_NAME, STAFF_GROUP) %>% summarise(FTE = sum(FTE, na.rm = TRUE)) %>% rename(Year = CENSUS_YEAR)
+
+pcn %<>% group_by(fiscal_year, PCN_CODE, PCN_NAME, ICB_NAME, STAFF_GROUP) %>% summarise(FTE = mean(FTE, na.rm = TRUE)) %>% rename(Year = fiscal_year) %>% group_by(Year, PCN_CODE, PCN_NAME, ICB_NAME, STAFF_GROUP) %>% summarise(FTE = sum(FTE, na.rm=TRUE))
 ```
 
-    `summarise()` has grouped output by 'CENSUS_YEAR', 'PCN_CODE', 'ICB_NAME'. You
-    can override using the `.groups` argument.
+    `summarise()` has grouped output by 'fiscal_year', 'PCN_CODE', 'PCN_NAME',
+    'ICB_NAME'. You can override using the `.groups` argument.
+    `summarise()` has grouped output by 'Year', 'PCN_CODE', 'PCN_NAME', 'ICB_NAME'.
+    You can override using the `.groups` argument.
 
 ``` r
+pcn$ICB_NAME <- gsub("NHS ", "", pcn$ICB_NAME)
+pcn$ICB_NAME <- gsub(" Integrated Care Board", "", pcn$ICB_NAME)
+pcn$ICB_NAME <- gsub(" ICB", "", pcn$ICB_NAME)
+pcn$ICB_NAME <- gsub("Cornwall and The Isles Of Scilly", "Cornwall and the Isles of Scilly", pcn$ICB_NAME)
+pcn$ICB_NAME <- gsub("Hampshire and Isle Of Wight", "Hampshire and Isle of Wight", pcn$ICB_NAME)
+
 pcn %>% head()
 ```
 
-    # A tibble: 6 × 5
-    # Groups:   Year, PCN_CODE, ICB_NAME [4]
-       Year PCN_CODE ICB_NAME                                      STAFF_GROUP   FTE
-      <int> <chr>    <chr>                                         <chr>       <dbl>
-    1  2020 U00070   NHS South West London ICB                     Other Dire… 6    
-    2  2020 U00254   NHS South East London ICB                     Directors   0.800
-    3  2020 U00254   NHS South East London ICB                     Other Dire… 6    
-    4  2020 U00351   NHS Birmingham and Solihull ICB               Other Admi… 2.24 
-    5  2020 U00351   NHS Birmingham and Solihull ICB               Other Dire… 2.64 
-    6  2020 U00402   NHS Bristol, North Somerset and South Glouce… Other Admi… 0.8  
+    # A tibble: 6 × 6
+    # Groups:   Year, PCN_CODE, PCN_NAME, ICB_NAME [4]
+       Year PCN_CODE PCN_NAME                             ICB_NAME STAFF_GROUP   FTE
+      <dbl> <chr>    <chr>                                <chr>    <chr>       <dbl>
+    1  2020 U01092   CISSBURY INTEGRATED CARE PCN         Sussex   Directors   0.16 
+    2  2020 U01092   CISSBURY INTEGRATED CARE PCN         Sussex   Other Admi… 0.08 
+    3  2020 U01092   CISSBURY INTEGRATED CARE PCN         Sussex   Other Dire… 1    
+    4  2020 U01096   LOUGHTON BUCKHURST HILL and CHIGWEL… Hertfor… Other Dire… 1    
+    5  2020 U01989   DURHAM WEST PCN                      North E… Directors   0.248
+    6  2020 U02671   GREATER MIDDLESBROUGH PCN            North E… Directors   0.125
 
 # Get IMD from fingertipsR
 
@@ -86,17 +123,117 @@ pcn <- merge(pcn, IMD, by = "PCN_CODE") %>%
 head(pcn)
 ```
 
-    # A tibble: 6 × 7
+    # A tibble: 6 × 8
     # Groups:   Year [5]
-      PCN_CODE  Year ICB_NAME                  STAFF_GROUP    FTE   IMD IMD_quintile
-      <chr>    <int> <chr>                     <chr>        <dbl> <dbl>        <int>
-    1 U00070    2022 NHS South West London ICB Other Direc…  16.7  8.41            1
-    2 U00070    2023 NHS South West London ICB Other Direc…  80.0  8.41            1
-    3 U00070    2024 NHS South West London ICB Other Direc…  22.0  8.41            1
-    4 U00070    2022 NHS South West London ICB Other Admin…   4    8.41            1
-    5 U00070    2021 NHS South West London ICB Other Direc…  13.7  8.41            1
-    6 U00070    2020 NHS South West London ICB Other Direc…   6    8.41            1
+      PCN_CODE  Year PCN_NAME         ICB_NAME  STAFF_GROUP   FTE   IMD IMD_quintile
+      <chr>    <dbl> <chr>            <chr>     <chr>       <dbl> <dbl>        <int>
+    1 U00000    2025 WEST NORWICH PCN Norfolk … Other Dire… 0.900 22.0             3
+    2 U00070    2023 WEST MERTON PCN  South We… Other Admi… 0.917  8.41            1
+    3 U00070    2024 WEST MERTON PCN  South We… Other Dire… 0.915  8.41            1
+    4 U00070    2021 WEST MERTON PCN  South We… Other Dire… 1      8.41            1
+    5 U00070    2025 WEST MERTON PCN  South We… Other Dire… 0.912  8.41            1
+    6 U00070    2022 WEST MERTON PCN  South We… Other Admi… 1      8.41            1
 
 ``` r
-write.csv(pcn, "pcn_workforce.csv")
+write.csv(pcn, "pcn_workforce.csv", row.names = FALSE)
 ```
+
+# Disparity
+
+``` r
+agg <- pcn %>%
+  group_by(Year, IMD_quintile, STAFF_GROUP) %>%
+  summarise(
+    Value = mean(FTE, na.rm=TRUE)
+  )
+```
+
+    `summarise()` has grouped output by 'Year', 'IMD_quintile'. You can override
+    using the `.groups` argument.
+
+``` r
+pcn$STAFF_GROUP %>% unique()
+```
+
+    [1] "Other Direct Patient Care staff" "Other Admin/Non-clinical staff" 
+    [3] "Other Nurses"                    "Directors"                      
+    [5] "Other GPs"                      
+
+``` r
+dpc <- agg[agg$STAFF_GROUP == "Other Direct Patient Care staff",]
+dpc$IMD_quintile <- as.factor(dpc$IMD_quintile)
+
+colors <- c("#EF7A34", "#00A865", "#007AA8", "#531A5C", "#A80026")
+
+dpc %>%
+  ggplot(., aes(x = Year, y = Value, group = IMD_quintile, colour = IMD_quintile)) +
+  geom_line(size = 1.5) +
+  geom_point(size = 3) +
+  labs(x = "", y = "FTE", title = "PCN-funded Direct Patient Care staff (FTE)") +
+  theme_minimal() +
+    theme(
+        legend.position = "bottom",
+        legend.justification = "center", # Adjust as needed
+        axis.text.x = element_text(size = 10),
+        axis.title.x = element_text(size = 12),
+        axis.line.x = element_line(size = 1), # Adjust x-axis line thickness
+        panel.grid.minor.x = element_blank(), # Remove minor vertical grid lines
+        panel.grid.minor.y = element_blank(), # Remove minor horizontal grid lines
+    ) +
+    scale_color_manual(values = colors, labels = c("Q1 (least deprived)", "Q2", "Q3", "Q4", "Q5 (most deprived)")) +
+    labs(color = "IMD quintile") +
+    scale_x_continuous(breaks = unique(agg$Year)) # Show every year on the x-axis
+```
+
+![](README_files/figure-commonmark/4-1.png)
+
+``` r
+# Define colors and labels for IMD quintile
+colors <- c("#EF7A34", "#00A865", "#007AA8", "#531A5C", "#A80026")
+imd_labels <- c("Q1 (least deprived)", "Q2", "Q3", "Q4", "Q5 (most deprived)")
+
+# Loop over each unique STAFF_GROUP
+for (group in unique(agg$STAFF_GROUP)) {
+  
+  # Filter data for the current STAFF_GROUP
+  data_group <- agg[agg$STAFF_GROUP == group, ]
+  data_group$IMD_quintile <- as.factor(data_group$IMD_quintile)
+  
+  # Plot
+  p <- data_group %>%
+    ggplot(aes(x = Year, y = Value, group = IMD_quintile, colour = IMD_quintile)) +
+    geom_line(size = 1.5) +
+    geom_point(size = 3) +
+    labs(
+      x = "", 
+      y = "FTE", 
+      title = paste("PCN-funded", group, "(FTE)")
+    ) +
+    theme_minimal() +
+    theme(
+      legend.position = "bottom",
+      legend.justification = "center",
+      axis.text.x = element_text(size = 10),
+      axis.title.x = element_text(size = 12),
+      axis.line.x = element_line(size = 1),
+      panel.grid.minor.x = element_blank(),
+      panel.grid.minor.y = element_blank()
+    ) +
+    scale_color_manual(values = colors, labels = imd_labels) +
+    labs(color = "IMD quintile") +
+    scale_x_continuous(breaks = unique(agg$Year)) # Show every year on the x-axis
+
+  # Print the plot (or save it, if you prefer to save each plot as a file)
+  print(p)
+}
+```
+
+![](README_files/figure-commonmark/5-1.png)
+
+![](README_files/figure-commonmark/5-2.png)
+
+![](README_files/figure-commonmark/5-3.png)
+
+![](README_files/figure-commonmark/5-4.png)
+
+![](README_files/figure-commonmark/5-5.png)
