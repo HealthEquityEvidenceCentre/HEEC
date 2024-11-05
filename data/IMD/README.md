@@ -1,12 +1,15 @@
 # Index of Multiple Deprivation (IMD) Data
 
-The Office for Health Improvement and Disparities (OHID), part of the
-Department of Health and Social Care (DHSC), provides the [Index of
-Multiple Deprivation (IMD)
-data](https://fingertips.phe.org.uk/search/deprivation%20index#page/4/gid/1/pat/159/par/K02000001/ati/15/are/E92000001/iid/93553/age/1/sex/4/cat/-1/ctp/-1/yrr/1/cid/4/tbm/1) -
-a measure of relative deprivation - at the practice level. This data is
-used to assess the socio-economic status of the population served by
-each practice.
+The Ministry of Housing, Communities and Local Government calculates the
+English Indices of Deprivation, which includes the Index of Multiple
+Deprivation
+([IMD](https://www.gov.uk/government/collections/english-indices-of-deprivation)) -
+the official measure of relative deprivation in England - at the
+practice-level. This data is used to assess the socio-economic status of
+the population served by each practice.
+
+The latest release is IoD2019; no new release has been announced as of
+Nov 2024.
 
 ### API
 
@@ -201,7 +204,7 @@ as `IMD_raw.csv`.
 
 IMD values are only provided for 2010, 2015, and 2019. In order to have
 a continuous time series, we interpolate the values between these years,
-and extrapolate the values for 2020-2024. The resultant data is saved
+and extrapolate the values for 2020-2025. The resultant data is saved
 [here](https://github.com/camappel/HEEC/blob/main/data/IMD/IMD_interpolated.csv)
 as `IMD_interpolated.csv`.
 
@@ -220,9 +223,9 @@ for (i in unique(IMD$Practice.Code)) {
   has_2015 <- any(IMD$Practice.Code == i & IMD$Year == 2015)
   has_2019 <- any(IMD$Practice.Code == i & IMD$Year == 2019)
 
-  # if data is only available for 2010, extrapolate to 2011-2024
+  # if data is only available for 2010, extrapolate to 2011-2025
   if (has_2010 & !has_2015) {
-    for (year in 2011:2024) {
+    for (year in 2011:2025) {
       new_row <- data.frame(
         Year = year,
         Practice.Code = i,
@@ -254,9 +257,9 @@ for (i in unique(IMD$Practice.Code)) {
     }
   }
 
-  # if data is available for 2015 but not 2019, extrapolate to 2016-2024
+  # if data is available for 2015 but not 2019, extrapolate to 2016-2025
   if (has_2015 & !has_2019) {
-    for (year in 2016:2024) {
+    for (year in 2016:2025) {
       new_row <- data.frame(
         Year = year,
         Practice.Code = i,
@@ -288,9 +291,9 @@ for (i in unique(IMD$Practice.Code)) {
     }
   }
 
-  # if data is available for 2019, extrapolate to 2020-2024
+  # if data is available for 2019, extrapolate to 2020-2025
   if (has_2019) {
-    for (year in 2020:2024) {
+    for (year in 2020:2025) {
       new_row <- data.frame(
         Year = year,
         Practice.Code = i,
@@ -331,7 +334,7 @@ IMD %>%
   )
 ```
 
-    ## # A tibble: 15 × 6
+    ## # A tibble: 16 × 6
     ##     Year mean_IMD sd_IMD min_IMD max_IMD     n
     ##    <int>    <dbl>  <dbl>   <dbl>   <dbl> <int>
     ##  1  2010     24.2   12.8    2.60    68.9  8222
@@ -349,3 +352,4 @@ IMD %>%
     ## 13  2022     24.1   11.9    3.21    68.7  8461
     ## 14  2023     24.1   11.9    3.21    68.7  8461
     ## 15  2024     24.1   11.9    3.21    68.7  8461
+    ## 16  2025     24.1   11.9    3.21    68.7  8461

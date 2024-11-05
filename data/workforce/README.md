@@ -22,13 +22,16 @@ December 2020-June 2021, and monthly from July 2021 henceforth.
     -   Telephonist
     -   Estates and Ancillary
 
+We present a practice-level annual time-series of GP workforce and
+deprivation data:
+
 ``` r
 workforce <- data.frame()
 
 for (file in list.files("raw")) {
   print(file)
 
-  df <- read.csv(paste0("raw/", file))[c("PRAC_CODE", "TOTAL_PATIENTS", "TOTAL_GP_EXTGL_HC", "TOTAL_GP_EXTGL_FTE", "TOTAL_ADMIN_FTE", "TOTAL_ADMIN_MANAGER_FTE", "TOTAL_ADMIN_RECEPT_FTE", "TOTAL_ADMIN_TELEPH_FTE")]
+  df <- read.csv(paste0("raw/", file))[c("PRAC_CODE", "TOTAL_PATIENTS", "TOTAL_GP_EXTGL_FTE", "TOTAL_GP_FTE", "TOTAL_NURSES_FTE", "TOTAL_GP_EXL_FTE", "TOTAL_DPC_FTE", "TOTAL_ADMIN_FTE")]
 
   parts <- strsplit(file, "_")[[1]]
   year <- as.numeric(parts[1])
@@ -88,6 +91,14 @@ for (file in list.files("raw")) {
     ## [1] "23_8.csv"
     ## [1] "23_9.csv"
     ## [1] "24_1.csv"
+    ## [1] "24_2.csv"
+    ## [1] "24_3.csv"
+    ## [1] "24_4.csv"
+    ## [1] "24_5.csv"
+    ## [1] "24_6.csv"
+    ## [1] "24_7.csv"
+    ## [1] "24_8.csv"
+    ## [1] "24_9.csv"
 
 ``` r
 library(dplyr)
@@ -107,24 +118,28 @@ library(dplyr)
 ``` r
 library(magrittr)
 
-workforce$TOTAL_GP_EXTGL_HC %<>% as.numeric()
+workforce$TOTAL_PATIENTS %<>% as.numeric()
 workforce$TOTAL_GP_EXTGL_FTE %<>% as.numeric()
+workforce$TOTAL_GP_FTE %<>% as.numeric()
+workforce$TOTAL_NURSES_FTE %<>% as.numeric()
+workforce$TOTAL_GP_EXL_FTE %<>% as.numeric()
+workforce$TOTAL_DPC_FTE %<>% as.numeric()
 workforce$TOTAL_ADMIN_FTE %<>% as.numeric()
-workforce$TOTAL_ADMIN_MANAGER_FTE %<>% as.numeric()
-workforce$TOTAL_ADMIN_RECEPT_FTE %<>% as.numeric()
-workforce$TOTAL_ADMIN_TELEPH_FTE %<>% as.numeric()
+
+workforce %<>% mutate(
+  TOTAL_LOCUUM_TRN_FTE = TOTAL_GP_FTE - TOTAL_GP_EXTGL_FTE
+)
 
 # Calculate average workforce across all available values in each financial year
 workforce_year <- workforce %>%
   group_by(PRAC_CODE, fiscal_year) %>%
   summarise(
     TOTAL_PATIENTS = mean(TOTAL_PATIENTS, na.rm = TRUE),
-    TOTAL_GP_EXTGL_HC = round(mean(TOTAL_GP_EXTGL_HC, na.rm = TRUE), 0),
     TOTAL_GP_EXTGL_FTE = round(mean(TOTAL_GP_EXTGL_FTE, na.rm = TRUE), 1),
-    TOTAL_ADMIN_FTE = round(mean(TOTAL_ADMIN_FTE, na.rm = TRUE), 1),
-    TOTAL_ADMIN_MANAGER_FTE = round(mean(TOTAL_ADMIN_MANAGER_FTE, na.rm = TRUE), 1),
-    TOTAL_ADMIN_RECEPT_FTE = round(mean(TOTAL_ADMIN_RECEPT_FTE, na.rm = TRUE), 1),
-    TOTAL_ADMIN_TELEPH_FTE = round(mean(TOTAL_ADMIN_TELEPH_FTE, na.rm = TRUE), 1)
+    TOTAL_LOCUUM_TRN_FTE = round(mean(TOTAL_LOCUUM_TRN_FTE, na.rm = TRUE), 1),
+    TOTAL_NURSES_FTE = round(mean(TOTAL_NURSES_FTE, na.rm = TRUE), 1),
+    TOTAL_DPC_FTE = round(mean(TOTAL_DPC_FTE, na.rm = TRUE), 1),
+    TOTAL_ADMIN_FTE = round(mean(TOTAL_ADMIN_FTE, na.rm = TRUE), 1)
   )
 ```
 
@@ -143,22 +158,22 @@ source("../data_processing.R")
 workforce_year <- merge_and_assign_quintiles(
   data = workforce_year,
   start_year = 2016,
-  end_year = 2024
+  end_year = 2025
 )
 ```
 
     ## [1] "Year: 2016"
     ## 
     ##    1    2    3    4    5 
-    ## 1524 1524 1523 1524 1524 
+    ## 1524 1524 1524 1524 1523 
     ## [1] "Year: 2017"
     ## 
     ##    1    2    3    4    5 
-    ## 1508 1507 1507 1507 1508 
+    ## 1508 1508 1507 1507 1507 
     ## [1] "Year: 2018"
     ## 
     ##    1    2    3    4    5 
-    ## 1467 1466 1466 1466 1467 
+    ## 1467 1467 1466 1466 1466 
     ## [1] "Year: 2019"
     ## 
     ##    1    2    3    4    5 
@@ -174,7 +189,7 @@ workforce_year <- merge_and_assign_quintiles(
     ## [1] "Year: 2022"
     ## 
     ##    1    2    3    4    5 
-    ## 1313 1313 1312 1313 1313 
+    ## 1313 1313 1313 1313 1312 
     ## [1] "Year: 2023"
     ## 
     ##    1    2    3    4    5 
@@ -182,9 +197,17 @@ workforce_year <- merge_and_assign_quintiles(
     ## [1] "Year: 2024"
     ## 
     ##    1    2    3    4    5 
-    ## 1273 1273 1273 1273 1273
+    ## 1274 1274 1274 1273 1273 
+    ## [1] "Year: 2025"
+    ## 
+    ##    1    2    3    4    5 
+    ## 1253 1253 1252 1252 1252
 
 ``` r
+workforce_year <- assign_icb_name(
+  data = workforce_year
+)
+
 write.csv(workforce_year, "workforce_year.csv", row.names = FALSE)
 ```
 
@@ -204,6 +227,8 @@ agg <- workforce_year %>%
     ## `.groups` argument.
 
 ``` r
+agg$IMD_quintile <- as.factor(agg$IMD_quintile)
+
 colors <- c("#EF7A34", "#00A865", "#007AA8", "#531A5C", "#A80026")
 
 ggplot(agg[!is.na(agg$IMD_quintile), ], aes(x = Year, y = TOTAL_GP_PER_100k_PATIENTS, group = IMD_quintile, color = IMD_quintile)) +
@@ -246,6 +271,8 @@ agg <- workforce_year %>%
     ## `.groups` argument.
 
 ``` r
+agg$IMD_quintile <- as.factor(agg$IMD_quintile)
+
 colors <- c("#EF7A34", "#00A865", "#007AA8", "#531A5C", "#A80026")
 
 ggplot(agg[!is.na(agg$IMD_quintile), ], aes(x = Year, y = TOTAL_ADMIN_PER_100k_PATIENTS, group = IMD_quintile, color = IMD_quintile)) +
