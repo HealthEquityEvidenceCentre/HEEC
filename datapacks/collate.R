@@ -373,7 +373,7 @@ df <- bind_rows(df, workforce)
 pcn <- read.csv("../data/pcn_workforce/pcn_workforce.csv") %>% select(-IMD)
 
 n_w_patients <- read.csv("../data/payments/payments.csv") %>%
-  select(Practice.Code, Year, Number.of.Weighted.Patients..Last.Known.Figure., PCN.Name) %>%
+  select(Practice.Code, Year, Number.of.Weighted.Patients..Last.Known.Figure., PCN.Name, PCN.CODE) %>%
   rename(PCN_NAME = PCN.Name) %>%
   filter(Year == 2022) %>%
   group_by(Year, PCN_NAME) %>%
@@ -382,6 +382,13 @@ n_w_patients <- read.csv("../data/payments/payments.csv") %>%
   mutate(Year = 2024)
 
 pcn <- merge(pcn, n_w_patients, by = c("Year", "PCN_NAME"))
+
+pcn %>%
+  group_by(Year, PCN_NAME, PCN_CODE, ICB_NAME, IMD_quintile) %>%
+  summarise(
+    Number.of.Weighted.Patients..Last.Known.Figure. = mean(Number.of.Weighted.Patients..Last.Known.Figure., na.rm=TRUE),
+    FTE = sum(FTE, na.rm = TRUE)
+  )
 
 avg <- pcn %>%
   group_by(Year) %>%
@@ -821,8 +828,8 @@ if (!dir.exists(folder_name)) {
 
 for (i in 1:length(ICBs)) {
   rmarkdown::render(
-    input = "slides.Rmd",
-    output_file = str_glue("ICB Reports/{ICBs[i]}.pptx"),
+    input = "ICB Reports/slides.Rmd",
+    output_file = str_glue("slides/{ICBs[i]}.pptx"),
     params = list(ICB_NAME = ICBs[i])
   )
 }
