@@ -160,34 +160,6 @@ pcn$STAFF_GROUP %>% unique()
     [5] "Other GPs"                      
 
 ``` r
-dpc <- agg[agg$STAFF_GROUP == "Other Direct Patient Care staff",]
-dpc$IMD_quintile <- as.factor(dpc$IMD_quintile)
-
-colors <- c("#EF7A34", "#00A865", "#007AA8", "#531A5C", "#A80026")
-
-dpc %>%
-  ggplot(., aes(x = Year, y = Value, group = IMD_quintile, colour = IMD_quintile)) +
-  geom_line(size = 1.5) +
-  geom_point(size = 3) +
-  labs(x = "", y = "FTE", title = "PCN-funded Direct Patient Care staff (FTE)") +
-  theme_minimal() +
-    theme(
-        legend.position = "bottom",
-        legend.justification = "center", # Adjust as needed
-        axis.text.x = element_text(size = 10),
-        axis.title.x = element_text(size = 12),
-        axis.line.x = element_line(size = 1), # Adjust x-axis line thickness
-        panel.grid.minor.x = element_blank(), # Remove minor vertical grid lines
-        panel.grid.minor.y = element_blank(), # Remove minor horizontal grid lines
-    ) +
-    scale_color_manual(values = colors, labels = c("Q1 (least deprived)", "Q2", "Q3", "Q4", "Q5 (most deprived)")) +
-    labs(color = "IMD quintile") +
-    scale_x_continuous(breaks = unique(agg$Year)) # Show every year on the x-axis
-```
-
-![](README_files/figure-commonmark/4-1.png)
-
-``` r
 # Define colors and labels for IMD quintile
 colors <- c("#EF7A34", "#00A865", "#007AA8", "#531A5C", "#A80026")
 imd_labels <- c("Q1 (least deprived)", "Q2", "Q3", "Q4", "Q5 (most deprived)")
