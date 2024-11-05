@@ -22,8 +22,8 @@ December 2020-June 2021, and monthly from July 2021 henceforth.
     -   Telephonist
     -   Estates and Ancillary
 
-We present a practice-level annual time-series of GP workforce and
-deprivation data:
+We present a practice-level time-series of GP workforce and deprivation
+data. We aggregate monthly data by fiscal year (April-March):
 
 ``` r
 workforce <- data.frame()
