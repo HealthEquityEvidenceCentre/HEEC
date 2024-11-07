@@ -812,11 +812,13 @@ write.csv(df, "final_data.csv", row.names = FALSE)
 df <- read.csv("final_data.csv")
 
 ICBs <- df$ICB.NAME %>% unique()
+ICBs<-ICBs[ICBs != "England"]
 ICBs %>% length()
 
 # Specify the folder name
 folder_name <- "ICB Reports"
 
+###Slides
 # Check if the folder exists
 if (!dir.exists(folder_name)) {
   # Create the folder if it doesn't exist
@@ -827,6 +829,7 @@ if (!dir.exists(folder_name)) {
 }
 
 for (i in 1:length(ICBs)) {
+  print(ICBs[i])
   rmarkdown::render(
     input = "ICB Reports/slides.Rmd",
     output_file = str_glue("slides/{ICBs[i]}.pptx"),
@@ -834,6 +837,7 @@ for (i in 1:length(ICBs)) {
   )
 }
 
+###Quarto 
 # Create the output directory if it doesn't exist
 output_dir <- "ICB Reports"
 if (!dir.exists(output_dir)) {
