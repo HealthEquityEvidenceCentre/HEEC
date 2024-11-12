@@ -208,6 +208,12 @@ payments_disp <- bind_rows(payments_england_disp, payments_agg_disp) %>%
 
 df <- bind_rows(df, payments_disp)
 
+payments_disp
+
+payments_disp[is.na(payments_disp$quin_4) & is.na(payments_disp$quin_5), ] %>%
+  filter(Year == 2023) %>% pull(ICB.NAME)
+
+
 # Non-dispensing
 avg_non_disp <- payments[payments$Dispensing.Practice == "No", ] %>%
   group_by(Year) %>%
@@ -373,7 +379,7 @@ df <- bind_rows(df, workforce)
 pcn <- read.csv("../data/pcn_workforce/pcn_workforce.csv") %>% select(-IMD)
 
 n_w_patients <- read.csv("../data/payments/payments.csv") %>%
-  select(Practice.Code, Year, Number.of.Weighted.Patients..Last.Known.Figure., PCN.Name, PCN.CODE) %>%
+  select(Practice.Code, Year, Number.of.Weighted.Patients..Last.Known.Figure., PCN.Name, PCN.Code) %>%
   rename(PCN_NAME = PCN.Name) %>%
   filter(Year == 2022) %>%
   group_by(Year, PCN_NAME) %>%
@@ -558,7 +564,12 @@ gpps_england <- gpps %>%
     overall_pct = median(overall_pct, na.rm = TRUE),
     trust_pct = median(trust_pct, na.rm = TRUE),
   ) %>%
-  mutate(ICB.NAME = "England")
+  mutate(ICB.NAME = "England") %>%
+  pivot_longer(
+    cols = c(overall_pct, continuity_pct, access_pct, trust_pct),
+    names_to = "Indicator",
+    values_to = "Value"
+  )
 
 gpps_agg <- gpps %>%
   group_by(Year, IMD_quintile, ICB.NAME) %>%
@@ -567,41 +578,21 @@ gpps_agg <- gpps %>%
     access_pct = median(access_pct, na.rm = TRUE),
     overall_pct = median(overall_pct, na.rm = TRUE),
     trust_pct = median(trust_pct, na.rm = TRUE),
-  )
-
-# Check if quintiles 1 and 5 are present in the data
-quintile_1_present <- any(gpps_agg$IMD_quintile == 1)
-quintile_5_present <- any(gpps_agg$IMD_quintile == 5)
-
-gpps_edge_handled <- gpps_agg %>%
-  # Then use the flags to conditionally replace quintiles
-  mutate(
-    IMD_quintile = case_when(
-      IMD_quintile == 2 & !quintile_1_present ~ 1, # Replace quintile 2 with 1 if 1 is missing
-      IMD_quintile == 4 & !quintile_5_present ~ 5, # Replace quintile 4 with 5 if 5 is missing
-      TRUE ~ IMD_quintile # Otherwise, keep the original quintile
-    )
   ) %>%
-  ungroup()
-
-gpps <- bind_rows(gpps_england, gpps_edge_handled)
-
-gpps %<>%
   pivot_longer(
     cols = c(overall_pct, continuity_pct, access_pct, trust_pct),
     names_to = "Indicator",
     values_to = "Value"
   )
 
-gpps %<>%
-  filter(IMD_quintile %in% c(1, 5)) %>%
+gpps <- bind_rows(gpps_england, gpps_agg) %>%
+  filter(!is.na(IMD_quintile)) %>%
   pivot_wider(
     names_from = IMD_quintile,
     values_from = Value,
     names_prefix = "quin_"
-  )
-
-gpps <- merge(gpps, avg, by = c("Year", "Indicator"))
+  ) %>%
+  merge(., avg, by = c("Year", "Indicator"))
 
 df <- bind_rows(df, gpps)
 
@@ -612,44 +603,31 @@ cqc <- read.csv("../data/cqc/cqc.csv") %>% select(-c(Year, IMD, service_populati
 
 avg <- cqc %>%
   filter(latest_rating %in% c("Good", "Outstanding")) %>%
-  summarise(Value = n() / nrow(cqc))
+  summarise(avg = n() / nrow(cqc)) %>%
+  mutate(
+    Year = 2023,
+    Indicator = "cqc_rating"
+  )
 
 cqc_england <- cqc %>%
   group_by(IMD_quintile) %>%
   summarise(Value = sum(latest_rating %in% c("Good", "Outstanding")) / n()) %>%
-  mutate(ICB_NAME = "England")
+  mutate(ICB_NAME = "England", Year = 2023, Indicator = "cqc_rating")
 
 cqc_agg <- cqc %>%
   group_by(IMD_quintile, ICB_NAME) %>%
-  summarise(Value = sum(latest_rating %in% c("Good", "Outstanding")) / n())
+  summarise(Value = sum(latest_rating %in% c("Good", "Outstanding")) / n()) %>%
+  mutate(Year = 2023, Indicator = "cqc_rating")
 
-# Check if quintiles 1 and 5 are present in the data
-quintile_1_present <- any(cqc_agg$IMD_quintile == 1)
-quintile_5_present <- any(cqc_agg$IMD_quintile == 5)
-
-cqc_edge_handled <- cqc_agg %>%
-  # Then use the flags to conditionally replace quintiles
-  mutate(
-    IMD_quintile = case_when(
-      IMD_quintile == 2 & !quintile_1_present ~ 1, # Replace quintile 2 with 1 if 1 is missing
-      IMD_quintile == 4 & !quintile_5_present ~ 5, # Replace quintile 4 with 5 if 5 is missing
-      TRUE ~ IMD_quintile # Otherwise, keep the original quintile
-    )
-  ) %>%
-  ungroup()
-
-cqc <- bind_rows(cqc_england, cqc_edge_handled)
-
-cqc %<>%
-  filter(IMD_quintile %in% c(1, 5)) %>%
+cqc <- bind_rows(cqc_england, cqc_agg) %>%
+  filter(!is.na(IMD_quintile)) %>%
+  filter(!is.na(ICB_NAME)) %>%
   pivot_wider(
     names_from = IMD_quintile,
     values_from = Value,
     names_prefix = "quin_"
   ) %>%
-  mutate(avg = avg$Value) %>%
-  mutate(Indicator = "cqc_rating") %>%
-  mutate(Year = 2023) %>%
+  merge(., avg, by = c("Year", "Indicator")) %>%
   rename(ICB.NAME = ICB_NAME)
 
 df <- bind_rows(df, cqc)
@@ -726,33 +704,15 @@ appt_agg <- appt_mar %>%
   rename(Indicator = APPT_MODE) %>%
   mutate(Year = 2024)
 
-# Check if quintiles 1 and 5 are present in the data
-quintile_1_present <- any(appt_agg$IMD_quintile == 1)
-quintile_5_present <- any(appt_agg$IMD_quintile == 5)
-
-appt_edge_handled <- appt_agg %>%
-  # Then use the flags to conditionally replace quintiles
-  mutate(
-    IMD_quintile = case_when(
-      IMD_quintile == 2 & !quintile_1_present ~ 1, # Replace quintile 2 with 1 if 1 is missing
-      IMD_quintile == 4 & !quintile_5_present ~ 5, # Replace quintile 4 with 5 if 5 is missing
-      TRUE ~ IMD_quintile # Otherwise, keep the original quintile
-    )
-  ) %>%
-  ungroup()
-
-appt <- bind_rows(appt_england, appt_edge_handled)
-
-appt %<>%
-  filter(IMD_quintile %in% c(1, 5)) %>%
+appt <- bind_rows(appt_england, appt_agg) %>%
+  filter(!is.na(IMD_quintile)) %>%
   pivot_wider(
     names_from = IMD_quintile,
     values_from = Value,
     names_prefix = "quin_"
   ) %>%
+  merge(., avg, by = c("Year", "Indicator")) %>% 
   rename(ICB.NAME = ICB_NAME)
-
-appt <- merge(appt, avg, by = c("Year", "Indicator"))
 
 df <- bind_rows(df, appt)
 
@@ -777,43 +737,33 @@ sec_agg <- sec %>%
   group_by(Year, Indicator, IMD_quintile, ICB.NAME) %>%
   summarise(Value = median(Value, na.rm = TRUE))
 
-# Check if quintiles 1 and 5 are present in the data
-quintile_1_present <- any(sec_agg$IMD_quintile == 1)
-quintile_5_present <- any(sec_agg$IMD_quintile == 5)
-
-sec_edge_handled <- sec_agg %>%
-  # Then use the flags to conditionally replace quintiles
-  mutate(
-    IMD_quintile = case_when(
-      IMD_quintile == 2 & !quintile_1_present ~ 1, # Replace quintile 2 with 1 if 1 is missing
-      IMD_quintile == 4 & !quintile_5_present ~ 5, # Replace quintile 4 with 5 if 5 is missing
-      TRUE ~ IMD_quintile # Otherwise, keep the original quintile
-    )
-  ) %>%
-  ungroup()
-
-sec <- bind_rows(sec_england, sec_edge_handled)
-
-sec %<>%
-  filter(IMD_quintile %in% c(1, 5)) %>%
+sec <- bind_rows(sec_england, sec_agg) %>%
+  filter(!is.na(IMD_quintile)) %>%
   pivot_wider(
     names_from = IMD_quintile,
     values_from = Value,
     names_prefix = "quin_"
-  )
+  ) %>%
+  merge(., avg, by = c("Year", "Indicator"))
 
-sec <- merge(sec, avg, by = c("Year", "Indicator"))
 
 df <- bind_rows(df, sec)
 
 write.csv(df, "final_data.csv", row.names = FALSE)
 
 ### Render ---------------------------------------------------------
-df <- read.csv("final_data.csv")
+df <- read.csv("final_data.csv") %>% filter(!is.na(ICB.NAME))
 
 ICBs <- df$ICB.NAME %>% unique()
 ICBs<-ICBs[ICBs != "England"]
 ICBs %>% length()
+
+set.seed(123)  # Set a seed for reproducibility
+subset_size <- ceiling(length(ICBs) / 3)  # Calculate one-third of the list, rounding up
+sample(ICBs, subset_size)
+
+# Print the selected elements
+print(selected_ICBs)
 
 # Specify the folder name
 folder_name <- "ICB Reports"
@@ -839,25 +789,52 @@ for (i in 1:length(ICBs)) {
 
 ###Quarto 
 # Create the output directory if it doesn't exist
-output_dir <- "ICB Reports"
-if (!dir.exists(output_dir)) {
-  dir.create(output_dir)
-}
+dir.create("ICB Reports/markdown", showWarnings = FALSE, recursive = TRUE)
 
 
-# Loop through each ICB, render the file, and move it to the output directory
 for (icb in ICBs) {
-  # Render the file in the current directory with Markdown output
+  # Define output paths
+  icb_dir <- file.path("ICB Reports/markdown", icb)  # Subfolder for each ICB
+  output_md <- paste0(icb, ".md")  # Markdown file name
+  slides_files <- "slides_files"  # Default Quarto output folder
+  figure_markdown <- file.path(slides_files, "figure-markdown")  # Figures folder
+  
+  # Create the subfolder for the ICB
+  dir.create(icb_dir, showWarnings = FALSE, recursive = TRUE)
+  
+  # Render the Quarto file
   quarto::quarto_render(
     input = "slides.qmd",
-    output_format = "gfm",                # GitHub-flavored Markdown
-    output_file = paste0(icb, ".md"),     # Specify the filename with .md extension
-    execute_params = list(ICB_NAME = icb)
+    output_format = "markdown",  # Render to Markdown
+    output_file = output_md,     # Save Markdown in the working directory
+    execute_params = list(ICB_NAME = icb)  # Pass ICB as a parameter
   )
   
-  # Move the rendered file to the output directory
+  # Move the .md file to the ICB's subfolder
+  md_path <- file.path(icb_dir, output_md)
   file.rename(
-    from = paste0(icb, ".md"),
-    to = file.path(output_dir, paste0(icb, ".md"))
+    from = output_md,
+    to = md_path
   )
+  
+  # Check if the slides_files/figure-markdown folder exists
+  if (dir.exists(figure_markdown)) {
+    # Define target figure directory in the ICB folder
+    target_figure_dir <- file.path(icb_dir, "figure-markdown")
+    dir.create(target_figure_dir, showWarnings = FALSE)
+    
+    # Copy all .png files to the target figure directory
+    png_files <- list.files(figure_markdown, pattern = "\\.png$", full.names = TRUE)
+    file.copy(from = png_files, to = target_figure_dir, overwrite = TRUE)
+    
+    # Optionally, clear the slides_files directory
+    unlink(slides_files, recursive = TRUE)
+    
+    # Update paths in the .md file
+    md_content <- readLines(md_path)
+    md_content <- gsub("slides_files/figure-markdown/", "figure-markdown/", md_content)
+    writeLines(md_content, md_path)
+  } else {
+    warning(paste("No figure-markdown folder found for", icb))
+  }
 }
