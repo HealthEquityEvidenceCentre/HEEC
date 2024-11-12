@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Health Equity Evidence Centre">
+
+<title>Primary Care Equity Datapack</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="slides_files/libs/clipboard/clipboard.min.js"></script>
+<script src="slides_files/libs/quarto-html/quarto.js"></script>
+<script src="slides_files/libs/quarto-html/popper.min.js"></script>
+<script src="slides_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="slides_files/libs/quarto-html/anchor.min.js"></script>
+<link href="slides_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="slides_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="slides_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="slides_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="slides_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#icb-overview" id="toc-icb-overview" class="nav-link" data-scroll-target="#icb-overview">ICB Overview</a></li>
+  <li><a href="#inequality-in-life-expectancy" id="toc-inequality-in-life-expectancy" class="nav-link" data-scroll-target="#inequality-in-life-expectancy">Inequality in Life Expectancy</a></li>
+  <li><a href="#inequality-in-nhs-payments" id="toc-inequality-in-nhs-payments" class="nav-link" data-scroll-target="#inequality-in-nhs-payments">Inequality in NHS Payments</a></li>
+  <li><a href="#inequality-in-workforce" id="toc-inequality-in-workforce" class="nav-link" data-scroll-target="#inequality-in-workforce">Inequality in Workforce</a></li>
+  <li><a href="#inequality-in-health-related-behaviours" id="toc-inequality-in-health-related-behaviours" class="nav-link" data-scroll-target="#inequality-in-health-related-behaviours">Inequality in Health-related Behaviours</a></li>
+  <li><a href="#inequality-in-disease-prevalence" id="toc-inequality-in-disease-prevalence" class="nav-link" data-scroll-target="#inequality-in-disease-prevalence">Inequality in Disease Prevalence</a></li>
+  <li><a href="#inequality-in-quality-of-service" id="toc-inequality-in-quality-of-service" class="nav-link" data-scroll-target="#inequality-in-quality-of-service">Inequality in Quality of Service</a></li>
+  <li><a href="#inequality-in-patient-experience" id="toc-inequality-in-patient-experience" class="nav-link" data-scroll-target="#inequality-in-patient-experience">Inequality in Patient Experience</a></li>
+  <li><a href="#inequality-in-appointments" id="toc-inequality-in-appointments" class="nav-link" data-scroll-target="#inequality-in-appointments">Inequality in Appointments</a></li>
+  <li><a href="#inequality-in-impact-on-secondary-care" id="toc-inequality-in-impact-on-secondary-care" class="nav-link" data-scroll-target="#inequality-in-impact-on-secondary-care">Inequality in Impact on Secondary Care</a></li>
+  <li><a href="#acknowledgements" id="toc-acknowledgements" class="nav-link" data-scroll-target="#acknowledgements">Acknowledgements</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Primary Care Equity Datapack</h1>
+<p class="subtitle lead">Data from latest period for Bath and North East Somerset, Swindon and Wiltshire</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Health Equity Evidence Centre </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<ul>
+<li><p>Strong primary care is associated with more equitable health outcomes.</p></li>
+<li><p>A key role of commissioners is to ensure the equitable distribution of resources across the system.</p></li>
+<li><p>We present the latest NHS primary care data, using Index of Multiple Deprivation (IMD) to examine inequalities existing in primary care access, experience and outcomes, across the following categories:</p>
+<ul>
+<li><strong>Resources (supply)</strong>: Payments, Workforce</li>
+<li><strong>Population (demand)</strong>: Disease prevalence, Health-related behaviours</li>
+<li><strong>Service quality</strong>: QOF achievement</li>
+<li><strong>Access</strong>: Patient experience, Appointments</li>
+<li><strong>Impact on secondary care</strong>: Emergency admissions, A&amp;E attendances</li>
+</ul></li>
+<li><p>For further information or to discuss the results, please contact <a href="j.a.ford@qmul.ac.uk">Dr John Ford</a></p></li>
+</ul>
+</section>
+<section id="icb-overview" class="level2">
+<h2 class="anchored" data-anchor-id="icb-overview">ICB Overview</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="slides_files/figure-html/overview-1.png" class="img-fluid" width="8640"></p>
+</div>
+</div>
+<p>Each practice in England is assigned an Index of Multiple Deprivation based on the population served, which we divide into deprivation quintiles. <strong>2</strong>% of practices in Bath and North East Somerset, Swindon and Wiltshire, serve the most deprived quintile of patients in England.</p>
+<p>If data for the most deprived quintile is missing, we use the second most deprived. If both are missing, we omit the data point from the figure.</p>
+</section>
+<section id="inequality-in-life-expectancy" class="level2">
+<h2 class="anchored" data-anchor-id="inequality-in-life-expectancy">Inequality in Life Expectancy</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="slides_files/figure-html/Life_Expectancy-1.png" class="img-fluid" width="8640"></p>
+</div>
+</div>
+<p>Average life expectancy for men is <strong>77.9</strong> in the least deprived 20% and <strong>77.9</strong> in the most deprived 20%.</p>
+<p>Average life expectancy for women is <strong>81.9</strong> in the least deprived 20% and <strong>81.9</strong> in the most deprived 20%.</p>
+</section>
+<section id="inequality-in-nhs-payments" class="level2">
+<h2 class="anchored" data-anchor-id="inequality-in-nhs-payments">Inequality in NHS Payments</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="slides_files/figure-html/payments-1.png" class="img-fluid" width="8640"></p>
+</div>
+</div>
+<p>Average payment per weighted patient is £<strong>161.88</strong> in the most deprived 20% of practices, versus £<strong>211.26</strong> in the least deprived 20%.</p>
+<p>If there are no dispensing practices in the most deprived quintile, we use the second most deprived. If both are missing, we omit the data point from the figure.</p>
+</section>
+<section id="inequality-in-workforce" class="level2">
+<h2 class="anchored" data-anchor-id="inequality-in-workforce">Inequality in Workforce</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="slides_files/figure-html/workforce-1.png" class="img-fluid" width="8640"></p>
+</div>
+</div>
+<p>Average fully-qualified GPs FTE per 10,000 weighted patients is <strong>2.9</strong> per weighted patient in the most deprived 20% of practices in Bath and North East Somerset, Swindon and Wiltshire versus <strong>4.6</strong> in the least deprived 20%.</p>
+</section>
+<section id="inequality-in-health-related-behaviours" class="level2">
+<h2 class="anchored" data-anchor-id="inequality-in-health-related-behaviours">Inequality in Health-related Behaviours</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="slides_files/figure-html/behaviours-1.png" class="img-fluid" width="8640"></p>
+</div>
+</div>
+<p>Average prevalence of current smokers (15+ years) is <strong>17.9</strong>% in the most deprived 20% of practices in Bath and North East Somerset, Swindon and Wiltshire versus **10.1% in the least deprived 20%.</p>
+</section>
+<section id="inequality-in-disease-prevalence" class="level2">
+<h2 class="anchored" data-anchor-id="inequality-in-disease-prevalence">Inequality in Disease Prevalence</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="slides_files/figure-html/prevalence-1.png" class="img-fluid" width="8640"></p>
+</div>
+</div>
+<p>Average prevalence of diabetes (17+ years) is <strong>10.3% in the most deprived 20% of practices in Bath and North East Somerset, Swindon and Wiltshire, versus </strong>6.6% in the least deprived 20%.</p>
+<p>Average prevalence of depression (18+ years) is <strong>13.5</strong>% in the most deprived 20% of practices in Bath and North East Somerset, Swindon and Wiltshire, versus <strong>10.8</strong> % in the least deprived 20%.</p>
+</section>
+<section id="inequality-in-quality-of-service" class="level2">
+<h2 class="anchored" data-anchor-id="inequality-in-quality-of-service">Inequality in Quality of Service</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="slides_files/figure-html/quality-1.png" class="img-fluid" width="8640"></p>
+</div>
+</div>
+<p>Average QOF points achieved is <strong>89.3</strong>% in the most deprived 20% of practices in Bath and North East Somerset, Swindon and Wiltshire, versus <strong>95.6</strong>% in the least deprived 20%.</p>
+</section>
+<section id="inequality-in-patient-experience" class="level2">
+<h2 class="anchored" data-anchor-id="inequality-in-patient-experience">Inequality in Patient Experience</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="slides_files/figure-html/exp-1.png" class="img-fluid" width="8640"></p>
+</div>
+</div>
+<p>Average % of practices receiving 'Good' or 'Outstanding' CQC ratings is <strong>100</strong>% in the most deprived 20% of practices in Bath and North East Somerset, Swindon and Wiltshire, versus <strong>95.2%</strong> in the least deprived 20%.</p>
+<p>Average % of patients describing their experience as 'Good' is <strong>85.1%</strong> in the most deprived 20% of practices in Bath and North East Somerset, Swindon and Wiltshire, versus <strong>87.4%</strong> in the least deprived 20%.</p>
+</section>
+<section id="inequality-in-appointments" class="level2">
+<h2 class="anchored" data-anchor-id="inequality-in-appointments">Inequality in Appointments</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="slides_files/figure-html/appts-1.png" class="img-fluid" width="8640"></p>
+</div>
+</div>
+<p>Average number of Face-to-Face appointments per 10,000 weighted patients is <strong>1696.6</strong> in the most deprived 20% of practices in Bath and North East Somerset, Swindon and Wiltshire, versus <strong>1478.3</strong> in the least deprived 20%.</p>
+</section>
+<section id="inequality-in-impact-on-secondary-care" class="level2">
+<h2 class="anchored" data-anchor-id="inequality-in-impact-on-secondary-care">Inequality in Impact on Secondary Care</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="slides_files/figure-html/secondary-1.png" class="img-fluid" width="8640"></p>
+</div>
+</div>
+<p>Average number of emergency admissions (0-4 years) is <strong>175.9</strong> in the most deprived 20% of practices in Bath and North East Somerset, Swindon and Wiltshire, versus <strong>140.9</strong> in the least deprived 20%.</p>
+</section>
+<section id="acknowledgements" class="level2">
+<h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
+<ul>
+<li><p>The work of the Health Equity Evidence Centre is made possible through seed funding from NHS East of England team.</p></li>
+<li><p>The views expressed in this publication are those of the Health Equity Evidence Centre and not necessarily those of NHS England.</p></li>
+</ul>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
