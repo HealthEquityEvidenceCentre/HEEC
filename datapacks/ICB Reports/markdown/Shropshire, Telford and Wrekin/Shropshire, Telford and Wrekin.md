@@ -39,7 +39,7 @@ Health Equity Evidence Centre
 
 ## ICB Overview
 
-![](slides_files/figure-commonmark/overview-1.png)
+![](figure-commonmark/overview-1.png)
 
 Each practice in England is assigned an Index of Multiple Deprivation
 based on the population served, which we divide into deprivation
@@ -52,7 +52,7 @@ figure.
 
 ## Inequality in Life Expectancy
 
-![](slides_files/figure-commonmark/Life_Expectancy-1.png)
+![](figure-commonmark/Life_Expectancy-1.png)
 
 Average life expectancy for men is **77.3** in the least deprived 20%
 and **77.3** in the most deprived 20%.
@@ -62,7 +62,7 @@ and **81.5** in the most deprived 20%.
 
 ## Inequality in NHS Payments
 
-![](slides_files/figure-commonmark/payments-1.png)
+![](figure-commonmark/payments-1.png)
 
 Average payment per weighted patient is £**165.18** in the most deprived
 20% of practices, versus £**166.18** in the least deprived 20%.
@@ -73,7 +73,7 @@ point from the figure.
 
 ## Inequality in Workforce
 
-![](slides_files/figure-commonmark/workforce-1.png)
+![](figure-commonmark/workforce-1.png)
 
 Average fully-qualified GPs FTE per 10,000 weighted patients is **3.6**
 per weighted patient in the most deprived 20% of practices in
@@ -81,7 +81,7 @@ Shropshire, Telford and Wrekin versus **5.1** in the least deprived 20%.
 
 ## Inequality in Health-related Behaviours
 
-![](slides_files/figure-commonmark/behaviours-1.png)
+![](figure-commonmark/behaviours-1.png)
 
 Average prevalence of current smokers (15+ years) is **20.5**% in the
 most deprived 20% of practices in Shropshire, Telford and Wrekin versus
@@ -89,7 +89,7 @@ most deprived 20% of practices in Shropshire, Telford and Wrekin versus
 
 ## Inequality in Disease Prevalence
 
-![](slides_files/figure-commonmark/prevalence-1.png)
+![](figure-commonmark/prevalence-1.png)
 
 Average prevalence of diabetes (17+ years) is **9.1% in the most
 deprived 20% of practices in Shropshire, Telford and Wrekin, versus
@@ -101,7 +101,7 @@ deprived 20% of practices in Shropshire, Telford and Wrekin, versus
 
 ## Inequality in Quality of Service
 
-![](slides_files/figure-commonmark/quality-1.png)
+![](figure-commonmark/quality-1.png)
 
 Average QOF points achieved is **92**% in the most deprived 20% of
 practices in Shropshire, Telford and Wrekin, versus **96.8**% in the
@@ -109,7 +109,7 @@ least deprived 20%.
 
 ## Inequality in Patient Experience
 
-![](slides_files/figure-commonmark/exp-1.png)
+![](figure-commonmark/exp-1.png)
 
 Average % of practices receiving 'Good' or 'Outstanding' CQC ratings is
 **100**% in the most deprived 20% of practices in Shropshire, Telford
@@ -121,7 +121,7 @@ versus **81.1%** in the least deprived 20%.
 
 ## Inequality in Appointments
 
-![](slides_files/figure-commonmark/appts-1.png)
+![](figure-commonmark/appts-1.png)
 
 Average number of Face-to-Face appointments per 10,000 weighted patients
 is **1067.6** in the most deprived 20% of practices in Shropshire,
@@ -129,7 +129,7 @@ Telford and Wrekin, versus **1338.3** in the least deprived 20%.
 
 ## Inequality in Impact on Secondary Care
 
-![](slides_files/figure-commonmark/secondary-1.png)
+![](figure-commonmark/secondary-1.png)
 
 Average number of emergency admissions (0-4 years) is **208.5** in the
 most deprived 20% of practices in Shropshire, Telford and Wrekin, versus
