@@ -39,7 +39,7 @@ Health Equity Evidence Centre
 
 ## ICB Overview
 
-![](slides_files/figure-commonmark/overview-1.png)
+![](figure-commonmark/overview-1.png)
 
 Each practice in England is assigned an Index of Multiple Deprivation
 based on the population served, which we divide into deprivation
@@ -52,7 +52,7 @@ figure.
 
 ## Inequality in Life Expectancy
 
-![](slides_files/figure-commonmark/Life_Expectancy-1.png)
+![](figure-commonmark/Life_Expectancy-1.png)
 
 Average life expectancy for men is **76.7** in the least deprived 20%
 and **76.7** in the most deprived 20%.
@@ -62,7 +62,7 @@ and **80.6** in the most deprived 20%.
 
 ## Inequality in NHS Payments
 
-![](slides_files/figure-commonmark/payments-1.png)
+![](figure-commonmark/payments-1.png)
 
 Average payment per weighted patient is £**148.04** in the most deprived
 20% of practices, versus £**180.57** in the least deprived 20%.
@@ -73,7 +73,7 @@ point from the figure.
 
 ## Inequality in Workforce
 
-![](slides_files/figure-commonmark/workforce-1.png)
+![](figure-commonmark/workforce-1.png)
 
 Average fully-qualified GPs FTE per 10,000 weighted patients is **4.4**
 per weighted patient in the most deprived 20% of practices in Nottingham
@@ -81,7 +81,7 @@ and Nottinghamshire versus **5.5** in the least deprived 20%.
 
 ## Inequality in Health-related Behaviours
 
-![](slides_files/figure-commonmark/behaviours-1.png)
+![](figure-commonmark/behaviours-1.png)
 
 Average prevalence of current smokers (15+ years) is **20.8**% in the
 most deprived 20% of practices in Nottingham and Nottinghamshire versus
@@ -89,7 +89,7 @@ most deprived 20% of practices in Nottingham and Nottinghamshire versus
 
 ## Inequality in Disease Prevalence
 
-![](slides_files/figure-commonmark/prevalence-1.png)
+![](figure-commonmark/prevalence-1.png)
 
 Average prevalence of diabetes (17+ years) is **8.5% in the most
 deprived 20% of practices in Nottingham and Nottinghamshire, versus **6%
@@ -101,7 +101,7 @@ deprived 20% of practices in Nottingham and Nottinghamshire, versus
 
 ## Inequality in Quality of Service
 
-![](slides_files/figure-commonmark/quality-1.png)
+![](figure-commonmark/quality-1.png)
 
 Average QOF points achieved is **85.6**% in the most deprived 20% of
 practices in Nottingham and Nottinghamshire, versus **91.5**% in the
@@ -109,7 +109,7 @@ least deprived 20%.
 
 ## Inequality in Patient Experience
 
-![](slides_files/figure-commonmark/exp-1.png)
+![](figure-commonmark/exp-1.png)
 
 Average % of practices receiving 'Good' or 'Outstanding' CQC ratings is
 **97.1**% in the most deprived 20% of practices in Nottingham and
@@ -121,7 +121,7 @@ versus **81.3%** in the least deprived 20%.
 
 ## Inequality in Appointments
 
-![](slides_files/figure-commonmark/appts-1.png)
+![](figure-commonmark/appts-1.png)
 
 Average number of Face-to-Face appointments per 10,000 weighted patients
 is **1331.1** in the most deprived 20% of practices in Nottingham and
@@ -129,7 +129,7 @@ Nottinghamshire, versus **1462.9** in the least deprived 20%.
 
 ## Inequality in Impact on Secondary Care
 
-![](slides_files/figure-commonmark/secondary-1.png)
+![](figure-commonmark/secondary-1.png)
 
 Average number of emergency admissions (0-4 years) is **122.4** in the
 most deprived 20% of practices in Nottingham and Nottinghamshire, versus

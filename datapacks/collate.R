@@ -805,8 +805,8 @@ for (icb in ICBs) {
   # Render the Quarto file
   quarto::quarto_render(
     input = "slides.qmd",
-    output_format = "markdown",  # Render to Markdown
-    output_file = output_md,     # Save Markdown in the working directory
+    output_format = "gfm",         # Render to GitHub-Flavored Markdown
+    output_file = output_md,       # Save Markdown in the working directory
     execute_params = list(ICB_NAME = icb)  # Pass ICB as a parameter
   )
   
@@ -821,7 +821,7 @@ for (icb in ICBs) {
   if (dir.exists(figure_markdown)) {
     # Define target figure directory in the ICB folder
     target_figure_dir <- file.path(icb_dir, "figure-markdown")
-    dir.create(target_figure_dir, showWarnings = FALSE)
+    dir.create(target_figure_dir, showWarnings = FALSE, recursive = TRUE)
     
     # Copy all .png files to the target figure directory
     png_files <- list.files(figure_markdown, pattern = "\\.png$", full.names = TRUE)

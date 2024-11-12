@@ -43,8 +43,8 @@ Health Equity Evidence Centre
 
 Each practice in England is assigned an Index of Multiple Deprivation
 based on the population served, which we divide into deprivation
-quintiles. **41**% of practices in West Yorkshire, serve the most
-deprived quintile of patients in England.
+quintiles. **5**% of practices in Bedfordshire, Luton and Milton Keynes,
+serve the most deprived quintile of patients in England.
 
 If data for the most deprived quintile is missing, we use the second
 most deprived. If both are missing, we omit the data point from the
@@ -54,18 +54,18 @@ figure.
 
 ![](figure-commonmark/Life_Expectancy-1.png)
 
-Average life expectancy for men is **76.1** in the least deprived 20%
-and **76.1** in the most deprived 20%.
+Average life expectancy for men is **75.5** in the least deprived 20%
+and **75.5** in the most deprived 20%.
 
-Average life expectancy for women is **80.8** in the least deprived 20%
-and **80.8** in the most deprived 20%.
+Average life expectancy for women is **79.7** in the least deprived 20%
+and **79.7** in the most deprived 20%.
 
 ## Inequality in NHS Payments
 
 ![](figure-commonmark/payments-1.png)
 
-Average payment per weighted patient is £**190.81** in the most deprived
-20% of practices, versus £**205.91** in the least deprived 20%.
+Average payment per weighted patient is £**153.45** in the most deprived
+20% of practices, versus £**169.54** in the least deprived 20%.
 
 If there are no dispensing practices in the most deprived quintile, we
 use the second most deprived. If both are missing, we omit the data
@@ -75,64 +75,66 @@ point from the figure.
 
 ![](figure-commonmark/workforce-1.png)
 
-Average fully-qualified GPs FTE per 10,000 weighted patients is **3.9**
-per weighted patient in the most deprived 20% of practices in West
-Yorkshire versus **5.5** in the least deprived 20%.
+Average fully-qualified GPs FTE per 10,000 weighted patients is **3.4**
+per weighted patient in the most deprived 20% of practices in
+Bedfordshire, Luton and Milton Keynes versus **3.5** in the least
+deprived 20%.
 
 ## Inequality in Health-related Behaviours
 
 ![](figure-commonmark/behaviours-1.png)
 
-Average prevalence of current smokers (15+ years) is **19.4**% in the
-most deprived 20% of practices in West Yorkshire versus \*\*7.9% in the
-least deprived 20%.
+Average prevalence of current smokers (15+ years) is **19.8**% in the
+most deprived 20% of practices in Bedfordshire, Luton and Milton Keynes
+versus \*\*10.5% in the least deprived 20%.
 
 ## Inequality in Disease Prevalence
 
 ![](figure-commonmark/prevalence-1.png)
 
-Average prevalence of diabetes (17+ years) is **9.7% in the most
-deprived 20% of practices in West Yorkshire, versus **6.4% in the least
-deprived 20%.
+Average prevalence of diabetes (17+ years) is **9.1% in the most
+deprived 20% of practices in Bedfordshire, Luton and Milton Keynes,
+versus **6.5% in the least deprived 20%.
 
-Average prevalence of depression (18+ years) is **13.8**% in the most
-deprived 20% of practices in West Yorkshire, versus **12.3** % in the
-least deprived 20%.
+Average prevalence of depression (18+ years) is **11.6**% in the most
+deprived 20% of practices in Bedfordshire, Luton and Milton Keynes,
+versus **11.7** % in the least deprived 20%.
 
 ## Inequality in Quality of Service
 
 ![](figure-commonmark/quality-1.png)
 
-Average QOF points achieved is **89.7**% in the most deprived 20% of
-practices in West Yorkshire, versus **97.6**% in the least deprived 20%.
+Average QOF points achieved is **90.6**% in the most deprived 20% of
+practices in Bedfordshire, Luton and Milton Keynes, versus **94.5**% in
+the least deprived 20%.
 
 ## Inequality in Patient Experience
 
 ![](figure-commonmark/exp-1.png)
 
 Average % of practices receiving 'Good' or 'Outstanding' CQC ratings is
-**95.1**% in the most deprived 20% of practices in West Yorkshire,
-versus **100%** in the least deprived 20%.
+**100**% in the most deprived 20% of practices in Bedfordshire, Luton
+and Milton Keynes, versus **96%** in the least deprived 20%.
 
-Average % of patients describing their experience as 'Good' is **71.7%**
-in the most deprived 20% of practices in West Yorkshire, versus
-**87.2%** in the least deprived 20%.
+Average % of patients describing their experience as 'Good' is **60.8%**
+in the most deprived 20% of practices in Bedfordshire, Luton and Milton
+Keynes, versus **70%** in the least deprived 20%.
 
 ## Inequality in Appointments
 
 ![](figure-commonmark/appts-1.png)
 
 Average number of Face-to-Face appointments per 10,000 weighted patients
-is **1379.1** in the most deprived 20% of practices in West Yorkshire,
-versus **1490.6** in the least deprived 20%.
+is **930.4** in the most deprived 20% of practices in Bedfordshire,
+Luton and Milton Keynes, versus **1281.4** in the least deprived 20%.
 
 ## Inequality in Impact on Secondary Care
 
 ![](figure-commonmark/secondary-1.png)
 
-Average number of emergency admissions (0-4 years) is **144.1** in the
-most deprived 20% of practices in West Yorkshire, versus **126.2** in
-the least deprived 20%.
+Average number of emergency admissions (0-4 years) is **176.5** in the
+most deprived 20% of practices in Bedfordshire, Luton and Milton Keynes,
+versus **163.9** in the least deprived 20%.
 
 ## Acknowledgements
 
