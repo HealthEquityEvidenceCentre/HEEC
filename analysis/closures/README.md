@@ -466,11 +466,41 @@ closed_in_saunders <- definitely_closed[definitely_closed %in% merged_practices]
 closed_not_in_saunders <- definitely_closed[!definitely_closed %in% merged_practices]
 ```
 
-1007 practices that closed according to the NHS Payments data merged
-with another practice according to the Saunders et al. dataset.
+``` r
+closed_in_saunders <- df %>%
+  filter(Practice.Code %in% closed_in_saunders)
+closed_in_saunders <- inner_join(closed_in_saunders, closure, by = "Practice.Code", multiple = "any")
+closed_in_saunders <- closed_in_saunders[, c("Practice.Code", "Year", "IMD_quintile", "last_year", "closureYear")] %>%
+  mutate(Year_Closure = pmin(last_year, closureYear, na.rm = TRUE)) %>%
+  select(-last_year, -closureYear, -Year)
+closed_in_saunders <- closed_in_saunders[!duplicated(closed_in_saunders$Practice.Code), ]
+closed_in_saunders <- closed_in_saunders[closed_in_saunders$Year_Closure < 2021, ]
 
-574 practices that closed according to the NHS Payments data did not
-merge with another practice according to the Saunders et al. dataset. We
+# get date and drop after 2020
+closed_not_in_saunders <- df %>%
+  filter(Practice.Code %in% closed_not_in_saunders)
+
+# then, we need to merge it with the self-reported closure date df
+closed_not_in_saunders <- inner_join(closed_not_in_saunders, closure, by = "Practice.Code", multiple = "any")
+
+closed_not_in_saunders <- closed_not_in_saunders[, c("Practice.Code", "Year", "IMD_quintile", "last_year", "closureYear")] %>%
+  mutate(Year_Closure = pmin(last_year, closureYear, na.rm = TRUE)) %>%
+  select(-last_year, -closureYear, -Year)
+
+# Remove duplicates based on 'Practice.Code'
+closed_not_in_saunders <- closed_not_in_saunders[!duplicated(closed_not_in_saunders$Practice.Code), ]
+
+closed_not_in_saunders <- closed_not_in_saunders[closed_not_in_saunders$Year_Closure < 2021, ]
+
+write.csv(closed_in_saunders, "merged.csv", row.names = FALSE)
+write.csv(closed_not_in_saunders, "closed.csv", row.names = FALSE)
+```
+
+810 practices that closed according to the NHS Payments data merged with
+another practice according to the Saunders et al. dataset.
+
+3 practices that closed according to the NHS Payments data did not merge
+with another practice according to the Saunders et al. dataset. We
 consider these practices to be completely closed without replacement.
 
 Here we identify and plot the IMD quintile of practices that closed
@@ -523,16 +553,8 @@ table$p_q1 <- (table$n_q1 / table$n_closed * 100) %>% round(2)
 table
 ```
 
-    ##   last_year n_closed n_q5 n_q1  p_q5  p_q1
-    ## 1      2015       34   16    2 47.06  5.88
-    ## 2      2016       29    9    2 31.03  6.90
-    ## 3      2017       35   10    3 28.57  8.57
-    ## 4      2018       52   17    6 32.69 11.54
-    ## 5      2019       37   13    1 35.14  2.70
-    ## 6      2020       72   18   13 25.00 18.06
-    ## 7      2021       89   23   18 25.84 20.22
-    ## 8      2022      115   29   15 25.22 13.04
-    ## 9      2023      111   31   31 27.93 27.93
+    ## [1] last_year n_closed  n_q5      n_q1      p_q5      p_q1     
+    ## <0 rows> (or 0-length row.names)
 
 Again, we see that practices serving the most deprived quintile of the
 population are over-represented in practice closures.
@@ -800,7 +822,7 @@ IMD %>%
   )
 ```
 
-    ## # A tibble: 15 × 6
+    ## # A tibble: 16 × 6
     ##     Year mean_IMD sd_IMD min_IMD max_IMD     n
     ##    <int>    <dbl>  <dbl>   <dbl>   <dbl> <int>
     ##  1  2010     24.2   12.8    2.60    68.9  8222
@@ -818,6 +840,7 @@ IMD %>%
     ## 13  2022     24.1   11.9    3.21    68.7  8461
     ## 14  2023     24.1   11.9    3.21    68.7  8461
     ## 15  2024     24.1   11.9    3.21    68.7  8461
+    ## 16  2025     24.1   11.9    3.21    68.7  8461
 
 ``` r
 # how many practices in closure are not in IMD
@@ -894,13 +917,13 @@ t.test(closure_IMD$IMD, IMD$IMD, alternative = "two.sided")
     ##  Welch Two Sample t-test
     ## 
     ## data:  closure_IMD$IMD and IMD$IMD
-    ## t = 5.4235, df = 1364.1, p-value = 6.905e-08
+    ## t = 5.4289, df = 1362.3, p-value = 6.705e-08
     ## alternative hypothesis: true difference in means is not equal to 0
     ## 95 percent confidence interval:
-    ##  1.157342 2.469004
+    ##  1.158752 2.469973
     ## sample estimates:
     ## mean of x mean of y 
-    ##  25.93179  24.11861
+    ##  25.93179  24.11742
 
 Based on the results of the t-test, we can conclude that there *is* a
 statistically significant difference between the IMD values of closed
