@@ -97,7 +97,8 @@ nhs_payments$ICB.NAME <- CCG_ICB[match(nhs_payments$CCG.Code, CCG_ICB$CCG.Code),
 nhs_payments <- nhs_payments %>%
   mutate(ICB.NAME = ICB.NAME %>%
     gsub("^NHS ", "", .) %>%
-    gsub(" Integrated Care Board$", "", .))
+    gsub(" Integrated Care Board$", "", .) %>%
+    gsub(" ICB", "", .))
 ```
 
 ``` r
@@ -291,11 +292,11 @@ nhs_payments <- merge_and_assign_quintiles(
     ## [1] "Year: 2015"
     ## 
     ##    1    2    3    4    5 
-    ## 1589 1588 1588 1588 1589 
+    ## 1589 1589 1588 1588 1588 
     ## [1] "Year: 2016"
     ## 
     ##    1    2    3    4    5 
-    ## 1565 1565 1564 1565 1565 
+    ## 1565 1565 1565 1565 1564 
     ## [1] "Year: 2017"
     ## 
     ##    1    2    3    4    5 
@@ -303,11 +304,11 @@ nhs_payments <- merge_and_assign_quintiles(
     ## [1] "Year: 2018"
     ## 
     ##    1    2    3    4    5 
-    ## 1502 1502 1501 1502 1502 
+    ## 1502 1502 1502 1502 1501 
     ## [1] "Year: 2019"
     ## 
     ##    1    2    3    4    5 
-    ## 1453 1452 1453 1452 1453 
+    ## 1453 1453 1453 1452 1452 
     ## [1] "Year: 2020"
     ## 
     ##    1    2    3    4    5 
@@ -319,11 +320,11 @@ nhs_payments <- merge_and_assign_quintiles(
     ## [1] "Year: 2022"
     ## 
     ##    1    2    3    4    5 
-    ## 1347 1347 1346 1347 1347 
+    ## 1347 1347 1347 1347 1346 
     ## [1] "Year: 2023"
     ## 
     ##    1    2    3    4    5 
-    ## 1329 1328 1328 1328 1329
+    ## 1329 1329 1328 1328 1328
 
 ``` r
 # Count missing IMD values per year
@@ -352,16 +353,156 @@ write.csv(nhs_payments, "payments.csv", row.names = FALSE)
 ```
 
 ``` r
-# ### 2014/15
-# # Calculate the row sums for columns 18 to 50
-# row_sums <- nhs_payments[nhs_payments$Year == 2015, 18:50] %>% rowSums()
-# total <- nhs_payments[nhs_payments$Year == 2015, ]$Total.NHS.Payments.to.General.Practice
+library(ggplot2)
 
-# # Compare the two sets of values, allowing a tolerance of 5
-# comparison <- abs(row_sums - total) <= 5
-# all(comparison)
+nhs_payments <- read.csv("payments.csv")
+nhs_payments$IMD_quintile <- as.factor(nhs_payments$IMD_quintile)
 
-# ### 2015/16
-# df <- read.csv("nhs_payments/raw/15-16.csv")
-# df %>% colnames()
+nhs_payments %>% colnames()
 ```
+
+    ##   [1] "Practice.Code"                                                                                               
+    ##   [2] "Year"                                                                                                        
+    ##   [3] "NHS.England..Region..code"                                                                                   
+    ##   [4] "NHS.England..Region..Name"                                                                                   
+    ##   [5] "CCG.Code"                                                                                                    
+    ##   [6] "CCG.NAME"                                                                                                    
+    ##   [7] "Practice.Name"                                                                                               
+    ##   [8] "Practice.Address"                                                                                            
+    ##   [9] "Practice.Postcode"                                                                                           
+    ##  [10] "Practice.Open.Date"                                                                                          
+    ##  [11] "Practice.Close.Date"                                                                                         
+    ##  [12] "Contract.Type"                                                                                               
+    ##  [13] "Dispensing.Practice"                                                                                         
+    ##  [14] "Quarter.used.for.patient.data"                                                                               
+    ##  [15] "Number.of.Registered.Patients..Last.Known.Figure."                                                           
+    ##  [16] "Number.of.Weighted.Patients..Last.Known.Figure."                                                             
+    ##  [17] "Average.payments.per.registered.patient"                                                                     
+    ##  [18] "Average.payments.per.weighted.patient"                                                                       
+    ##  [19] "Global.Sum"                                                                                                  
+    ##  [20] "MPIG.Correction.factor"                                                                                      
+    ##  [21] "Premises.Payments"                                                                                           
+    ##  [22] "Seniority"                                                                                                   
+    ##  [23] "Doctors.Retainer.Scheme.Payments"                                                                            
+    ##  [24] "Total.Locum.Allowances"                                                                                      
+    ##  [25] "Prolonged.Study.Leave"                                                                                       
+    ##  [26] "Appraisal.Costs"                                                                                             
+    ##  [27] "PCO.Admin.Other"                                                                                             
+    ##  [28] "Total.QOF.Payments"                                                                                          
+    ##  [29] "Alcohol"                                                                                                     
+    ##  [30] "Childhood.Vaccination.and.Immunisation.Scheme"                                                               
+    ##  [31] "GP.Extended.Hours.Access"                                                                                    
+    ##  [32] "Facilitating.Timely.Diagnosis.and.Support.for.People.with.Dementia"                                          
+    ##  [33] "Improving.Patient.Online.Access"                                                                             
+    ##  [34] "Influenza.and.Pneumococcal.Immunisations"                                                                    
+    ##  [35] "Learning.Disabilities"                                                                                       
+    ##  [36] "Minor.Surgery"                                                                                               
+    ##  [37] "Patient.Participation"                                                                                       
+    ##  [38] "Remote.Care.Monitoring"                                                                                      
+    ##  [39] "Risk.Profiling.and.Case.Management"                                                                          
+    ##  [40] "Rotavirus.and.Shingles.Immunisation"                                                                         
+    ##  [41] "Services.for.Violent.Patients"                                                                               
+    ##  [42] "Unplanned.Admissions"                                                                                        
+    ##  [43] "Total.National.Enhanced.Services"                                                                            
+    ##  [44] "Total.Local.Enhanced.Services"                                                                               
+    ##  [45] "Information.Management.and.Technology"                                                                       
+    ##  [46] "Balance.of.PMS.Expenditure"                                                                                  
+    ##  [47] "Non.DES.Item.Pneumococcal.Vaccine..Childhood.Immunisation.Main.Programme"                                    
+    ##  [48] "Prescribing.Fee.Payments"                                                                                    
+    ##  [49] "Dispensing.Fee.Payments"                                                                                     
+    ##  [50] "Reimbursement.of.Drugs"                                                                                      
+    ##  [51] "Other.Payments"                                                                                              
+    ##  [52] "Total.NHS.Payments.to.General.Practice"                                                                      
+    ##  [53] "Deductions.for.Pensions..Levies.and.Prescription.Charge.Income"                                              
+    ##  [54] "Total.NHS.Payments.to.General.Practice.Minus.Deductions"                                                     
+    ##  [55] "Out.Of.Area.in.Hours.Urgent.Care"                                                                            
+    ##  [56] "Meningitis"                                                                                                  
+    ##  [57] "LocalEnhancedServices_NHAIS_"                                                                                
+    ##  [58] "LocalEnhancedServices_ISFE_"                                                                                 
+    ##  [59] "General.Practice.Forward.View"                                                                               
+    ##  [60] "Pertussis"                                                                                                   
+    ##  [61] "Total.Local.Incentive.Schemes"                                                                               
+    ##  [62] "PCN.Name"                                                                                                    
+    ##  [63] "PCN.Participation"                                                                                           
+    ##  [64] "PCN.Leadership"                                                                                              
+    ##  [65] "PCN.Support"                                                                                                 
+    ##  [66] "PCN.Extended.Hours.Access"                                                                                   
+    ##  [67] "PCN.Workforce"                                                                                               
+    ##  [68] "PCN.Investment.and.impact.Fund"                                                                              
+    ##  [69] "PCN.Care.Home.Premium"                                                                                       
+    ##  [70] "Covid.Immunisation"                                                                                          
+    ##  [71] "Covid.Support.and.Expansion"                                                                                 
+    ##  [72] "Average.payments.per.registered.patient.including.PCN.Workforce..Leadership.and.Support"                     
+    ##  [73] "Average.payments.per.weighted.patient.including.PCN.Workforce..Leadership.and.Support"                       
+    ##  [74] "Average.payments.per.registered.patient.including.covid.vaccination.and.covid.support.and.expansion.payments"
+    ##  [75] "Average.payments.per.weighted.patient.including.covid.vaccination.and.covid.support.and.expansion.payments"  
+    ##  [76] "Total.COVID.Payments"                                                                                        
+    ##  [77] "Total.PCN.Payments"                                                                                          
+    ##  [78] "Medical.Assessment.Reviews"                                                                                  
+    ##  [79] "Weight.Management.Service"                                                                                   
+    ##  [80] "General.Practice.Transformation"                                                                             
+    ##  [81] "winter.Access.Fund"                                                                                          
+    ##  [82] "Long.Covid"                                                                                                  
+    ##  [83] "Average.payments.per.registered.patient.including.covid.vaccination..covid.support.and.long.covid.payments"  
+    ##  [84] "Average.payments.per.weighted.patient.including.covid.vaccination..covid.support.and.long.covid.payments"    
+    ##  [85] "Sub.ICB.NAME"                                                                                                
+    ##  [86] "Local.Incentive.Schemes"                                                                                     
+    ##  [87] "Appraisal...Appraiser.Costs.in.Respect.of.Locums"                                                            
+    ##  [88] "PCN.Enhanced.Access"                                                                                         
+    ##  [89] "ICB.NAME"                                                                                                    
+    ##  [90] "Practice.Type"                                                                                               
+    ##  [91] "Practice.Rurality"                                                                                           
+    ##  [92] "Atypical.Characteristics"                                                                                    
+    ##  [93] "PCN.Code"                                                                                                    
+    ##  [94] "Total.Global.Sum"                                                                                            
+    ##  [95] "Total.IT.Premises"                                                                                           
+    ##  [96] "Total.PCO"                                                                                                   
+    ##  [97] "Total.Contracted.Services"                                                                                   
+    ##  [98] "Total.Prescribing"                                                                                           
+    ##  [99] "Total.COVID"                                                                                                 
+    ## [100] "IMD"                                                                                                         
+    ## [101] "IMD_quintile"
+
+``` r
+nhs_payments$Total.NHS.Payments.Minus.COVID.PCN <-
+  nhs_payments$Total.NHS.Payments.to.General.Practice -
+  ifelse(is.na(nhs_payments$Total.COVID.Payments), 0, nhs_payments$Total.COVID.Payments) -
+  ifelse(is.na(nhs_payments$Total.PCN.Payments), 0, nhs_payments$Total.PCN.Payments)
+
+### Create graph of average payments per patient by IMD decile
+agg <- nhs_payments %>%
+  # agg <- nhs_payments[nhs_payments$ICB.NAME == ICB, ] %>% # for specific ICB
+  group_by(Year, IMD_quintile) %>%
+  summarise(
+    Number.of.Registered.Patients..Last.Known.Figure. = sum(Number.of.Registered.Patients..Last.Known.Figure., na.rm = TRUE),
+    Number.of.Weighted.Patients..Last.Known.Figure. = sum(Number.of.Weighted.Patients..Last.Known.Figure., na.rm = TRUE),
+    Total.NHS.Payments.to.General.Practice = sum(Total.NHS.Payments.Minus.COVID.PCN, na.rm = TRUE),
+  ) %>%
+  mutate(
+    Average.payments.per.registered.patient = Total.NHS.Payments.to.General.Practice / Number.of.Registered.Patients..Last.Known.Figure.,
+    Average.payments.per.weighted.patient = Total.NHS.Payments.to.General.Practice / Number.of.Weighted.Patients..Last.Known.Figure.
+  )
+
+colors <- c("#EF7A34", "#00A865", "#007AA8", "#531A5C", "#A80026")
+
+agg[!is.na(agg$IMD_quintile), ] %>%
+  ggplot(aes(x = Year, y = Average.payments.per.weighted.patient, group = IMD_quintile, colour = IMD_quintile)) +
+  geom_line(size = 1.5) + # Adjust the size as needed
+  geom_point(size = 3) +
+  labs(x = "", y = "Average payment (£)", title = "Total NHS payments per weighted patient by IMD quintile (England)") +
+  theme_minimal() +
+  theme(
+    legend.position = "bottom",
+    legend.justification = "center", # Adjust as needed
+    axis.text.x = element_text(size = 10),
+    axis.title.x = element_text(size = 12),
+    axis.line.x = element_line(size = 1), # Adjust x-axis line thickness
+    panel.grid.minor.x = element_blank(), # Remove minor vertical grid lines
+    panel.grid.minor.y = element_blank(), # Remove minor horizontal grid lines
+  ) +
+  scale_color_manual(values = colors, labels = c("Q1 (least deprived)", "Q2", "Q3", "Q4", "Q5 (most deprived)")) +
+  labs(color = "IMD quintile") +
+  scale_x_continuous(breaks = unique(agg$Year)) # Show every year on the x-axis
+```
+
+![](README_files/figure-markdown_github/sanity%20check-1.png)
