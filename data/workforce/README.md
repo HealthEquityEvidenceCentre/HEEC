@@ -21,17 +21,30 @@ December 2020-June 2021, and monthly from July 2021 henceforth.
     -   Receptionist
     -   Telephonist
     -   Estates and Ancillary
+-   The practice-level counts of partners are available by role type,
+    which we sum to determine TOTAL_PTNR_HC (Total Partner headcount):
+    -   Total GP Senior Partner (HC/FTE)
+    -   Total GP Partner/Provider (HC/FTE)
+    -   Total Practice Nurse Partner (HC/FTE)
+    -   Total Management Partner (HC/FTE)
 
 We present a practice-level time-series of GP workforce and deprivation
-data. We aggregate monthly data by fiscal year (April-March):
+data. We aggregate monthly data by fiscal year (April-March).
 
 ``` r
 workforce <- data.frame()
 
+# read raw monthly files and collate into df
 for (file in list.files("raw")) {
   print(file)
 
-  df <- read.csv(paste0("raw/", file))[c("PRAC_CODE", "TOTAL_PATIENTS", "TOTAL_GP_EXTGL_FTE", "TOTAL_GP_FTE", "TOTAL_NURSES_FTE", "TOTAL_GP_EXL_FTE", "TOTAL_DPC_FTE", "TOTAL_ADMIN_FTE")]
+  df <- read.csv(paste0("raw/", file))[c(
+    "PRAC_CODE", "TOTAL_PATIENTS", "TOTAL_GP_EXTGL_FTE", "TOTAL_GP_FTE", "TOTAL_NURSES_FTE", "TOTAL_GP_EXL_FTE", "TOTAL_DPC_FTE", "TOTAL_ADMIN_FTE",
+    "TOTAL_GP_SEN_PTNR_HC",
+    "TOTAL_GP_PTNR_PROV_HC",
+    "TOTAL_N_NURSE_PTNR_HC",
+    "TOTAL_ADMIN_MANAGE_PTNR_HC"
+  )]
 
   parts <- strsplit(file, "_")[[1]]
   year <- as.numeric(parts[1])
@@ -91,6 +104,7 @@ for (file in list.files("raw")) {
     ## [1] "23_8.csv"
     ## [1] "23_9.csv"
     ## [1] "24_1.csv"
+    ## [1] "24_10.csv"
     ## [1] "24_2.csv"
     ## [1] "24_3.csv"
     ## [1] "24_4.csv"
@@ -125,9 +139,14 @@ workforce$TOTAL_NURSES_FTE %<>% as.numeric()
 workforce$TOTAL_GP_EXL_FTE %<>% as.numeric()
 workforce$TOTAL_DPC_FTE %<>% as.numeric()
 workforce$TOTAL_ADMIN_FTE %<>% as.numeric()
+workforce$TOTAL_GP_SEN_PTNR_HC %<>% as.numeric()
+workforce$TOTAL_GP_PTNR_PROV_HC %<>% as.numeric()
+workforce$TOTAL_N_NURSE_PTNR_HC %<>% as.numeric()
+workforce$TOTAL_ADMIN_MANAGE_PTNR_HC %<>% as.numeric()
 
 workforce %<>% mutate(
-  TOTAL_LOCUUM_TRN_FTE = TOTAL_GP_FTE - TOTAL_GP_EXTGL_FTE
+  TOTAL_LOCUUM_TRN_FTE = TOTAL_GP_FTE - TOTAL_GP_EXTGL_FTE,
+  TOTAL_PTNR_HC = TOTAL_GP_SEN_PTNR_HC + TOTAL_GP_PTNR_PROV_HC + TOTAL_N_NURSE_PTNR_HC + TOTAL_ADMIN_MANAGE_PTNR_HC
 )
 
 # Calculate average workforce across all available values in each financial year
@@ -139,7 +158,12 @@ workforce_year <- workforce %>%
     TOTAL_LOCUUM_TRN_FTE = round(mean(TOTAL_LOCUUM_TRN_FTE, na.rm = TRUE), 1),
     TOTAL_NURSES_FTE = round(mean(TOTAL_NURSES_FTE, na.rm = TRUE), 1),
     TOTAL_DPC_FTE = round(mean(TOTAL_DPC_FTE, na.rm = TRUE), 1),
-    TOTAL_ADMIN_FTE = round(mean(TOTAL_ADMIN_FTE, na.rm = TRUE), 1)
+    TOTAL_ADMIN_FTE = round(mean(TOTAL_ADMIN_FTE, na.rm = TRUE), 1),
+    TOTAL_GP_SEN_PTNR_HC = round(mean(TOTAL_GP_SEN_PTNR_HC, na.rm = TRUE), 1),
+    TOTAL_GP_PTNR_PROV_HC = round(mean(TOTAL_GP_PTNR_PROV_HC, na.rm = TRUE), 1),
+    TOTAL_N_NURSE_PTNR_HC = round(mean(TOTAL_N_NURSE_PTNR_HC, na.rm = TRUE), 1),
+    TOTAL_ADMIN_MANAGE_PTNR_HC = round(mean(TOTAL_ADMIN_MANAGE_PTNR_HC, na.rm = TRUE), 1),
+    TOTAL_PTNR_HC = round(mean(TOTAL_PTNR_HC, na.rm = TRUE), 1)
   )
 ```
 
