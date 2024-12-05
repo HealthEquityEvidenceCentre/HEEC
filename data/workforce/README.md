@@ -147,6 +147,7 @@ workforce$TOTAL_ADMIN_MANAGE_PTNR_FTE %<>% as.numeric()
 
 workforce %<>% mutate(
   TOTAL_LOCUUM_TRN_FTE = TOTAL_GP_FTE - TOTAL_GP_EXTGL_FTE,
+  # sum ptner/provider and senior partner to get total partners
   TOTAL_PTNR_PER_GP_FTE = (TOTAL_GP_PTNR_PROV_FTE + TOTAL_GP_SEN_PTNR_FTE) / TOTAL_GP_FTE
 )
 
@@ -183,7 +184,7 @@ source("../data_processing.R")
 workforce_year <- merge_and_assign_quintiles(
   data = workforce_year,
   start_year = 2016,
-  end_year = 2025
+  end_year = 2024
 )
 ```
 
@@ -222,11 +223,7 @@ workforce_year <- merge_and_assign_quintiles(
     ## [1] "Year: 2024"
     ## 
     ##    1    2    3    4    5 
-    ## 1274 1274 1274 1273 1273 
-    ## [1] "Year: 2025"
-    ## 
-    ##    1    2    3    4    5 
-    ## 1253 1253 1252 1252 1252
+    ## 1274 1274 1274 1273 1273
 
 ``` r
 workforce_year <- assign_icb_name(
@@ -237,6 +234,8 @@ write.csv(workforce_year, "workforce_year.csv", row.names = FALSE)
 ```
 
 ``` r
+workforce_year <- read.csv("workforce_year.csv")
+
 library(ggplot2)
 
 agg <- workforce_year %>%
@@ -325,5 +324,58 @@ ggplot(agg[!is.na(agg$IMD_quintile), ], aes(x = Year, y = TOTAL_ADMIN_PER_100k_P
 ![](README_files/figure-markdown_github/plot%20manager%20workforce%20FTE-1.png)
 
 ``` r
-# TOTAL_PTNR_HC <- TOTAL_GP_SEN_PTNR_HC + TOTAL_GP_PTNR_PROV_HC + TOTAL_N_NURSE_PTNR_HC + TOTAL_ADMIN_MANAGE_PTNR_HC
+# practices where there are more GP partners than GPs
+workforce_year %>%
+  filter(TOTAL_PTNR_PER_GP_FTE > 1) %>%
+  arrange(desc(TOTAL_PTNR_PER_GP_FTE))
 ```
+
+    ##  [1] Practice.Code               Year                       
+    ##  [3] TOTAL_PATIENTS              TOTAL_GP_EXTGL_FTE         
+    ##  [5] TOTAL_LOCUUM_TRN_FTE        TOTAL_NURSES_FTE           
+    ##  [7] TOTAL_DPC_FTE               TOTAL_ADMIN_FTE            
+    ##  [9] TOTAL_GP_SEN_PTNR_FTE       TOTAL_GP_PTNR_PROV_FTE     
+    ## [11] TOTAL_N_NURSE_PTNR_FTE      TOTAL_ADMIN_MANAGE_PTNR_FTE
+    ## [13] TOTAL_PTNR_PER_GP_FTE       IMD                        
+    ## [15] IMD_quintile                ICB_NAME                   
+    ## <0 rows> (or 0-length row.names)
+
+``` r
+agg <- workforce_year %>%
+  group_by(Year, IMD_quintile) %>%
+  summarise(
+    TOTAL_PTNR_PER_GP_FTE = mean(TOTAL_PTNR_PER_GP_FTE, na.rm = TRUE),
+  )
+```
+
+    ## `summarise()` has grouped output by 'Year'. You can override using the
+    ## `.groups` argument.
+
+``` r
+agg$IMD_quintile <- as.factor(agg$IMD_quintile)
+
+colors <- c("#EF7A34", "#00A865", "#007AA8", "#531A5C", "#A80026")
+
+ggplot(agg[!is.na(agg$IMD_quintile), ], aes(x = Year, y = TOTAL_PTNR_PER_GP_FTE, group = IMD_quintile, color = IMD_quintile)) +
+  geom_line(size = 1.5) +
+  geom_point(size = 3) +
+  labs(
+    title = "Ration of Partners to GPs by IMD Quintile",
+    x = "Year",
+    y = "Total Admin FTE"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "bottom",
+    legend.justification = "center",
+    axis.text.x = element_text(size = 10),
+    axis.title.x = element_text(size = 12),
+    axis.line.x = element_line(size = 1),
+    panel.grid.minor.x = element_blank(),
+    panel.grid.minor.y = element_blank()
+  ) +
+  scale_color_manual(values = colors, labels = c("Q1 (least deprived)", "Q2", "Q3", "Q4", "Q5 (most deprived)")) +
+  labs(color = "IMD quintile")
+```
+
+![](README_files/figure-markdown_github/plot%20partners-1.png)
