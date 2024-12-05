@@ -23,8 +23,9 @@ December 2020-June 2021, and monthly from July 2021 henceforth.
     -   Estates and Ancillary
 -   The practice-level counts of partners are available by role type,
     which we sum to determine TOTAL_PTNR_HC (Total Partner headcount):
-    -   Total GP Senior Partner (HC/FTE)
-    -   Total GP Partner/Provider (HC/FTE)
+    -   Total GP Partners:
+        -   Senior Partner (HC/FTE)
+        -   GP Partner/Provider (HC/FTE)
     -   Total Practice Nurse Partner (HC/FTE)
     -   Total Management Partner (HC/FTE)
 
@@ -146,7 +147,7 @@ workforce$TOTAL_ADMIN_MANAGE_PTNR_FTE %<>% as.numeric()
 
 workforce %<>% mutate(
   TOTAL_LOCUUM_TRN_FTE = TOTAL_GP_FTE - TOTAL_GP_EXTGL_FTE,
-  TOTAL_PTNR_PER_GP_FTE = TOTAL_GP_PTNR_PROV_FTE / TOTAL_GP_FTE
+  TOTAL_PTNR_PER_GP_FTE = (TOTAL_GP_PTNR_PROV_FTE + TOTAL_GP_SEN_PTNR_FTE) / TOTAL_GP_FTE
 )
 
 # Calculate average workforce across all available values in each financial year
