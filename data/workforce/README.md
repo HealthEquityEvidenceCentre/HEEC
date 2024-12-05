@@ -40,10 +40,10 @@ for (file in list.files("raw")) {
 
   df <- read.csv(paste0("raw/", file))[c(
     "PRAC_CODE", "TOTAL_PATIENTS", "TOTAL_GP_EXTGL_FTE", "TOTAL_GP_FTE", "TOTAL_NURSES_FTE", "TOTAL_GP_EXL_FTE", "TOTAL_DPC_FTE", "TOTAL_ADMIN_FTE",
-    "TOTAL_GP_SEN_PTNR_HC",
-    "TOTAL_GP_PTNR_PROV_HC",
-    "TOTAL_N_NURSE_PTNR_HC",
-    "TOTAL_ADMIN_MANAGE_PTNR_HC"
+    "TOTAL_GP_SEN_PTNR_FTE",
+    "TOTAL_GP_PTNR_PROV_FTE",
+    "TOTAL_N_NURSE_PTNR_FTE",
+    "TOTAL_ADMIN_MANAGE_PTNR_FTE"
   )]
 
   parts <- strsplit(file, "_")[[1]]
@@ -139,14 +139,14 @@ workforce$TOTAL_NURSES_FTE %<>% as.numeric()
 workforce$TOTAL_GP_EXL_FTE %<>% as.numeric()
 workforce$TOTAL_DPC_FTE %<>% as.numeric()
 workforce$TOTAL_ADMIN_FTE %<>% as.numeric()
-workforce$TOTAL_GP_SEN_PTNR_HC %<>% as.numeric()
-workforce$TOTAL_GP_PTNR_PROV_HC %<>% as.numeric()
-workforce$TOTAL_N_NURSE_PTNR_HC %<>% as.numeric()
-workforce$TOTAL_ADMIN_MANAGE_PTNR_HC %<>% as.numeric()
+workforce$TOTAL_GP_SEN_PTNR_FTE %<>% as.numeric()
+workforce$TOTAL_GP_PTNR_PROV_FTE %<>% as.numeric()
+workforce$TOTAL_N_NURSE_PTNR_FTE %<>% as.numeric()
+workforce$TOTAL_ADMIN_MANAGE_PTNR_FTE %<>% as.numeric()
 
 workforce %<>% mutate(
   TOTAL_LOCUUM_TRN_FTE = TOTAL_GP_FTE - TOTAL_GP_EXTGL_FTE,
-  TOTAL_PTNR_HC = TOTAL_GP_SEN_PTNR_HC + TOTAL_GP_PTNR_PROV_HC + TOTAL_N_NURSE_PTNR_HC + TOTAL_ADMIN_MANAGE_PTNR_HC
+  TOTAL_PTNR_PER_GP_FTE = TOTAL_GP_PTNR_PROV_FTE / TOTAL_GP_FTE
 )
 
 # Calculate average workforce across all available values in each financial year
@@ -159,11 +159,11 @@ workforce_year <- workforce %>%
     TOTAL_NURSES_FTE = round(mean(TOTAL_NURSES_FTE, na.rm = TRUE), 1),
     TOTAL_DPC_FTE = round(mean(TOTAL_DPC_FTE, na.rm = TRUE), 1),
     TOTAL_ADMIN_FTE = round(mean(TOTAL_ADMIN_FTE, na.rm = TRUE), 1),
-    TOTAL_GP_SEN_PTNR_HC = round(mean(TOTAL_GP_SEN_PTNR_HC, na.rm = TRUE), 1),
-    TOTAL_GP_PTNR_PROV_HC = round(mean(TOTAL_GP_PTNR_PROV_HC, na.rm = TRUE), 1),
-    TOTAL_N_NURSE_PTNR_HC = round(mean(TOTAL_N_NURSE_PTNR_HC, na.rm = TRUE), 1),
-    TOTAL_ADMIN_MANAGE_PTNR_HC = round(mean(TOTAL_ADMIN_MANAGE_PTNR_HC, na.rm = TRUE), 1),
-    TOTAL_PTNR_HC = round(mean(TOTAL_PTNR_HC, na.rm = TRUE), 1)
+    TOTAL_GP_SEN_PTNR_FTE = round(mean(TOTAL_GP_SEN_PTNR_FTE, na.rm = TRUE), 1),
+    TOTAL_GP_PTNR_PROV_FTE = round(mean(TOTAL_GP_PTNR_PROV_FTE, na.rm = TRUE), 1),
+    TOTAL_N_NURSE_PTNR_FTE = round(mean(TOTAL_N_NURSE_PTNR_FTE, na.rm = TRUE), 1),
+    TOTAL_ADMIN_MANAGE_PTNR_FTE = round(mean(TOTAL_ADMIN_MANAGE_PTNR_FTE, na.rm = TRUE), 1),
+    TOTAL_PTNR_PER_GP_FTE = round(mean(TOTAL_PTNR_PER_GP_FTE, na.rm = TRUE), 1)
   )
 ```
 
@@ -322,3 +322,7 @@ ggplot(agg[!is.na(agg$IMD_quintile), ], aes(x = Year, y = TOTAL_ADMIN_PER_100k_P
 ```
 
 ![](README_files/figure-markdown_github/plot%20manager%20workforce%20FTE-1.png)
+
+``` r
+# TOTAL_PTNR_HC <- TOTAL_GP_SEN_PTNR_HC + TOTAL_GP_PTNR_PROV_HC + TOTAL_N_NURSE_PTNR_HC + TOTAL_ADMIN_MANAGE_PTNR_HC
+```
