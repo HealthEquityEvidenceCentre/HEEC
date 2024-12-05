@@ -148,7 +148,7 @@ workforce$TOTAL_ADMIN_MANAGE_PTNR_FTE %<>% as.numeric()
 workforce %<>% mutate(
   TOTAL_LOCUUM_TRN_FTE = TOTAL_GP_FTE - TOTAL_GP_EXTGL_FTE,
   # sum ptner/provider and senior partner to get total partners
-  TOTAL_PTNR_PER_GP_FTE = (TOTAL_GP_PTNR_PROV_FTE + TOTAL_GP_SEN_PTNR_FTE) / TOTAL_GP_FTE
+  TOTAL_PTNR_PER_GP_FTE = (TOTAL_GP_PTNR_PROV_FTE + TOTAL_GP_SEN_PTNR_FTE) / TOTAL_GP_EXTGL_FTE
 )
 
 # Calculate average workforce across all available values in each financial year
