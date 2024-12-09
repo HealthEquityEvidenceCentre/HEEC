@@ -449,3 +449,67 @@ ggplot(plot_long, aes(x = Value, y = Indicator, color = Quintile)) +
     ## Warning: Removed 2 rows containing missing values (`geom_point()`).
 
 ![](README_files/figure-markdown_github/plot%20prevalence-1.png)
+
+``` r
+satisfaction <- read.csv("../satisfaction/satisfaction.csv") %>%
+  filter(Year == 2023) %>%
+  select(-ICB.NAME, -Year, -IMD, -IMD_quintile, -Practice.Name, -ICB.NAME)
+
+df <- merge(df, satisfaction, by = "Practice.Code")
+```
+
+``` r
+plot <- df %>%
+  group_by(prop65_quintile) %>%
+  summarise(
+    overall_pct = mean(overall_pct, na.rm = TRUE),
+    continuity_pct = mean(continuity_pct, na.rm = TRUE),
+    access_pct = mean(access_pct, na.rm = TRUE),
+    trust_pct = mean(trust_pct, na.rm = TRUE)
+  )
+
+print(plot)
+```
+
+    ## # A tibble: 5 × 5
+    ##   prop65_quintile overall_pct continuity_pct access_pct trust_pct
+    ##             <int>       <dbl>          <dbl>      <dbl>     <dbl>
+    ## 1               1       0.675          0.354      0.534     0.898
+    ## 2               2       0.693          0.347      0.514     0.912
+    ## 3               3       0.721          0.350      0.527     0.929
+    ## 4               4       0.737          0.346      0.525     0.937
+    ## 5               5       0.783          0.400      0.614     0.952
+
+``` r
+plot_long <- plot %>%
+  pivot_longer(
+    cols = 2:5, # Adjust the range as needed
+    names_to = "Indicator",
+    values_to = "Value"
+  ) %>%
+  group_by(Indicator, prop65_quintile) %>%
+  summarise(Value = mean(Value, na.rm = TRUE), .groups = "drop") %>%
+  filter(prop65_quintile %in% c(1, 5)) %>% # Keep only quintiles 1 and 5
+  mutate(Quintile = ifelse(prop65_quintile == 1, "Least represented", "Most represented"))
+
+# Plot the data
+ggplot(plot_long, aes(x = Value, y = Indicator, color = Quintile)) +
+  geom_point(size = 4) +
+  scale_color_manual(values = c("Least represented" = "#28B788", "Most represented" = "#007AA8")) +
+  labs(
+    x = "Average Prevalence (%)",
+    y = NULL,
+    color = "Quintile",
+    title = "Average GPSS Response by Propensity Quintile",
+    subtitle = "Comparison of least and most represented prop65 quintiles",
+    caption = "Source: Office for Health Improvements and Disparities National GP Profiles"
+  ) +
+  theme_minimal(base_size = 14) +
+  theme(
+    axis.text.y = element_text(size = 10, face = "bold"),
+    plot.title = element_text(size = 16, face = "bold"),
+    plot.subtitle = element_text(size = 12)
+  )
+```
+
+![](README_files/figure-markdown_github/plot%20satisfaction-1.png)
