@@ -142,12 +142,14 @@ print(paste0(
     ## [1] "Total GMS practices after merge, 22/23: 4587"
 
 ``` r
+library(ggplot2)
+
 df %<>%
   mutate(
     Average.payment.per.weight.patient = Total.NHS.Payments.to.General.Practice.Minus.Deductions / Number.of.Registered.Patients..Last.Known.Figure.
   )
 
-df %>%
+plot <- df %>%
   group_by(prop65_quintile) %>%
   summarise(
     Total.average = sum(Average.payment.per.weight.patient),
@@ -166,6 +168,25 @@ df %>%
     ## 3               3   728        139.
     ## 4               4   923        148.
     ## 5               5  1410        196.
+
+``` r
+plot %>%
+  ggplot(., aes(x = factor(prop65_quintile), y = per.patient, fill = prop65_quintile)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(
+    title = "Payments per Patient by Proportion of Patients 65+ Quintile",
+    x = "Proportion of Patients 65+ (Quintile)",
+    y = "Payment per Patient"
+  ) +
+  scale_x_discrete(labels = c("1 (Youngest)", "2", "3", "4", "5 (Oldest)")) +
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+    legend.position = "top"
+  )
+```
+
+![](README_files/figure-markdown_github/agg-1.png)
 
 ``` r
 IMD <- read.csv("../IMD/IMD_interpolated.csv")
@@ -218,8 +239,6 @@ df %>%
 plot <- df %>%
   select("Practice.Code", "prop65", "IMD", "Practice.Rurality") %>%
   arrange(Practice.Rurality == "Rural")
-
-library(ggplot2)
 
 ggplot(plot, aes(x = prop65, y = IMD, color = Practice.Rurality)) +
   geom_point(alpha = 0.6, size = 2) + # Adjust transparency and size
@@ -355,33 +374,6 @@ ggplot(data_long, aes(x = factor(prop65_quintile), y = Rate, fill = Metric)) +
 ```
 
 ![](README_files/figure-markdown_github/plot%20appts-1.png)
-
-``` r
-# Assuming the data is stored in a tibble called `data`
-ggplot(plot, aes(x = prop65_quintile)) +
-  geom_line(aes(y = per_10000patientDNA, color = "DNA per 10,000 Patients"), size = 1) +
-  geom_line(aes(y = `per_10000patientHome Visit`, color = "Home Visits per 10,000 Patients"), size = 1) +
-  labs(
-    title = "Trends in DNA and Home Visit Rates by Proportion of Patients 65+ Quintile",
-    x = "Proportion of Patients 65+ (Quintile)",
-    y = "Rate per 10,000 Patients",
-    color = "Metric"
-  ) +
-  scale_x_continuous(breaks = 1:5, labels = c("1 (Youngest)", "2", "3", "4", "5 (Oldest)")) +
-  theme_minimal(base_size = 14) +
-  theme(
-    plot.title = element_text(hjust = 0.5), # Center-align title
-    legend.position = "top" # Move legend to the top
-  )
-```
-
-    ## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-    ## ℹ Please use `linewidth` instead.
-    ## This warning is displayed once every 8 hours.
-    ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-    ## generated.
-
-![](README_files/figure-markdown_github/plot%20appts-2.png)
 
 ``` r
 prevalence <- read.csv("../prevalence/ltc_prevalence.csv") %>%
