@@ -216,7 +216,8 @@ df %>%
 
 ``` r
 plot <- df %>%
-  select("Practice.Code", "prop65", "IMD", "Practice.Rurality")
+  select("Practice.Code", "prop65", "IMD", "Practice.Rurality") %>%
+  arrange(Practice.Rurality == "Rural")
 
 library(ggplot2)
 
