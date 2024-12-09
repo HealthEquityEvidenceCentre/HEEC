@@ -270,10 +270,6 @@ appt <- merge(appt, n_w_patients, by = c("Year", "Practice.Code"))
 appt_mar <- appt %>% filter(Month == 3)
 
 appt <- appt_mar %>%
-  mutate(APPT_MODE = case_when(
-    APPT_STATUS == "DNA" ~ "DNA",
-    TRUE ~ as.character(APPT_MODE)
-  )) %>%
   group_by(Practice.Code, APPT_MODE) %>%
   summarise(
     count = sum(COUNT_OF_APPOINTMENTS),
@@ -299,40 +295,41 @@ df <- merge(df, appt, by = "Practice.Code")
 df %>%
   group_by(prop65_quintile) %>%
   summarise(
-    per_10000patientDNA = mean(per_10000patientDNA, na.rm = TRUE),
-    # `per_10000patientFace-to-Face` = mean(`per_10000patientFace-to-Face`, na.rm = TRUE),
-    # per_10000patientTelephone = mean(per_10000patientTelephone, na.rm = TRUE),
+    # per_10000patientDNA = mean(per_10000patientDNA, na.rm = TRUE),
+    `per_10000patientFace-to-Face` = mean(`per_10000patientFace-to-Face`, na.rm = TRUE),
+    per_10000patientTelephone = mean(per_10000patientTelephone, na.rm = TRUE),
     `per_10000patientHome Visit` = mean(`per_10000patientHome Visit`, na.rm = TRUE),
     # count = n()
   ) %>%
   print()
 ```
 
-    ## # A tibble: 5 × 3
-    ##   prop65_quintile per_10000patientDNA `per_10000patientHome Visit`
-    ##             <int>               <dbl>                        <dbl>
-    ## 1               1                93.2                         21.1
-    ## 2               2                74.1                         35.5
-    ## 3               3                66.7                         39.8
-    ## 4               4                56.7                         44.0
-    ## 5               5                44.2                         43.5
+    ## # A tibble: 5 × 4
+    ##   prop65_quintile `per_10000patientFace-to-Face` per_10000patientTelephone
+    ##             <int>                          <dbl>                     <dbl>
+    ## 1               1                          1429.                      773.
+    ## 2               2                          1429.                      735.
+    ## 3               3                          1383.                      787.
+    ## 4               4                          1384.                      706.
+    ## 5               5                          1352.                      709.
+    ## # ℹ 1 more variable: `per_10000patientHome Visit` <dbl>
 
 ``` r
 library(ggplot2)
 plot <- df %>%
   group_by(prop65_quintile) %>%
   summarise(
-    per_10000patientDNA = mean(per_10000patientDNA, na.rm = TRUE),
-    # `per_10000patientFace-to-Face` = mean(`per_10000patientFace-to-Face`, na.rm = TRUE),
-    # per_10000patientTelephone = mean(per_10000patientTelephone, na.rm = TRUE),
+    `per_10000patientFace-to-Face` = mean(`per_10000patientFace-to-Face`, na.rm = TRUE),
+    per_10000patientTelephone = mean(per_10000patientTelephone, na.rm = TRUE),
     `per_10000patientHome Visit` = mean(`per_10000patientHome Visit`, na.rm = TRUE),
-    # count = n()
+    `per_10000patientVideo Conference/Online` = mean(`per_10000patientVideo Conference/Online`, na.rm = TRUE),
+    per_10000patientUnknown = mean(per_10000patientUnknown, na.rm = TRUE)
   )
 
 # Reshape the data into a long format for easier plotting
 data_long <- plot %>%
   tidyr::pivot_longer(
-    cols = c(per_10000patientDNA, `per_10000patientHome Visit`),
+    cols = c(`per_10000patientFace-to-Face`, per_10000patientTelephone, `per_10000patientHome Visit`, `per_10000patientVideo Conference/Online`, per_10000patientUnknown),
     names_to = "Metric",
     values_to = "Rate"
   )
@@ -357,31 +354,23 @@ ggplot(data_long, aes(x = factor(prop65_quintile), y = Rate, fill = Metric)) +
 ![](README_files/figure-markdown_github/plot%20appts-1.png)
 
 ``` r
-# Assuming the data is stored in a tibble called `data`
-ggplot(plot, aes(x = prop65_quintile)) +
-  geom_line(aes(y = per_10000patientDNA, color = "DNA per 10,000 Patients"), size = 1) +
-  geom_line(aes(y = `per_10000patientHome Visit`, color = "Home Visits per 10,000 Patients"), size = 1) +
-  labs(
-    title = "Trends in DNA and Home Visit Rates by Proportion of Patients 65+ Quintile",
-    x = "Proportion of Patients 65+ (Quintile)",
-    y = "Rate per 10,000 Patients",
-    color = "Metric"
-  ) +
-  scale_x_continuous(breaks = 1:5, labels = c("1 (Youngest)", "2", "3", "4", "5 (Oldest)")) +
-  theme_minimal(base_size = 14) +
-  theme(
-    plot.title = element_text(hjust = 0.5), # Center-align title
-    legend.position = "top" # Move legend to the top
-  )
+# # Assuming the data is stored in a tibble called `data`
+# ggplot(plot, aes(x = prop65_quintile)) +
+#   geom_line(aes(y = per_10000patientDNA, color = "DNA per 10,000 Patients"), size = 1) +
+#   geom_line(aes(y = `per_10000patientHome Visit`, color = "Home Visits per 10,000 Patients"), size = 1) +
+#   labs(
+#     title = "Trends in DNA and Home Visit Rates by Proportion of Patients 65+ Quintile",
+#     x = "Proportion of Patients 65+ (Quintile)",
+#     y = "Rate per 10,000 Patients",
+#     color = "Metric"
+#   ) +
+#   scale_x_continuous(breaks = 1:5, labels = c("1 (Youngest)", "2", "3", "4", "5 (Oldest)")) +
+#   theme_minimal(base_size = 14) +
+#   theme(
+#     plot.title = element_text(hjust = 0.5), # Center-align title
+#     legend.position = "top" # Move legend to the top
+#   )
 ```
-
-    ## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
-    ## ℹ Please use `linewidth` instead.
-    ## This warning is displayed once every 8 hours.
-    ## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-    ## generated.
-
-![](README_files/figure-markdown_github/plot%20appts-2.png)
 
 ``` r
 prevalence <- read.csv("../prevalence/ltc_prevalence.csv") %>%
