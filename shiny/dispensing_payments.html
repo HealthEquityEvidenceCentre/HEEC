@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NVD3 Scatter Chart</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.6/nv.d3.min.css">
+</head>
+
+<body>
+  <div id="chart" style="width: 800px; height: 400px;">
+    <svg></svg>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.6/nv.d3.min.js"></script>
+  <script>
+    nv.addGraph(function () {
+      var chart = nv.models.scatterChart()
+        .showDistX(true) // Show distribution on X-axis
+        .showDistY(true) // Show distribution on Y-axis
+        .transitionDuration(350)
+        .color(["#007AA8", "#00A865"]);
+
+      // Configure tooltip content
+      chart.tooltipContent(function (key) {
+        return '<h3>' + key + '</h3>';
+      });
+
+      // Axis settings
+      chart.xAxis
+        .axisLabel('Average Payment per Weighted Patient (£)')
+        .tickFormat(d3.format('.02f'));
+      chart.yAxis
+        .axisLabel('Index of Multiple Deprivation (IMD)')
+        .tickFormat(d3.format('.02f'));
+
+      // Configure scatter point shapes
+      chart.scatter.onlyCircles(true); // Use only circles for this example
+
+      // Data
+      var myData = [
+        {
+          "key": "Dispensing",
+          "values": [
+            { "x": 250.49, "y": 20.27 },
+            { "x": 132.75, "y": 12.36 },
+            { "x": 146.79, "y": 16.45 }
+            // Add remaining "Dispensing" data points here
+          ]
+        },
+        {
+          "key": "Non-Dispensing",
+          "values": [
+            { "x": 148.21, "y": 15.40 },
+            { "x": 140.65, "y": 35.61 }
+            // Add remaining "Non-Dispensing" data points here
+          ]
+        }
+      ];
+
+      // Render the chart
+      d3.select('#chart svg')
+        .datum(myData)
+        .call(chart);
+
+      nv.utils.windowResize(chart.update);
+
+      return chart;
+    });
+  </script>
+</body>
+
+</html>
