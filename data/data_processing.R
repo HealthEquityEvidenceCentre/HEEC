@@ -28,8 +28,9 @@ merge_and_assign_quintiles <- function(data, start_year = 2017, end_year = 2024)
 # Define the generic function to match CCG.Code in df with CCG.Code in CCG_ICB and return ICB.Code
 clean_icb_name <- function(data) {
   # Clean up ICB.NAME by removing "NHS " and " Integrated Care Board"
-  data$ICB.NAME <- gsub("NHS ", "", data$ICB.NAME)
-  data$ICB.NAME <- gsub(" Integrated Care Board", "", data$ICB.NAME)
+  data$ICB_NAME <- gsub("NHS ", "", data$ICB_NAME)
+  data$ICB_NAME <- gsub(" Integrated Care Board", "", data$ICB_NAME)
+  data$ICB_NAME <- gsub(" ICB", "", data$ICB_NAME)
 
   return(data)
 }
