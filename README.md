@@ -17,3 +17,6 @@ Analyses and the relevant code is available in the analysis subdirectory.
 | Dataset 2    | v2.3      | YYYY-MM-DD   | [Check for latest](#how-to-check-for-updates) |
 | Dataset 3    | v1.7      | YYYY-MM-DD   | [Check for latest](#how-to-check-for-updates) |
 
+## Analysis
+1.	[Structural inequalities in primary care – the facts and figures](https://www.heec.co.uk/resource/structural-inequalities-primary-care/)
+  - Charts and data
