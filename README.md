@@ -88,7 +88,9 @@ In 2023/24, 6,669 practices received £10.2 billion from the NHS. Capitation pay
 [age_structure](https://github.com/HealthEquityEvidenceCentre/HEEC/tree/main/analysis/age_structure)
 
 - **Charts**:\
-nvd3
+nvd3\
+![](https://github.com/HealthEquityEvidenceCentre/HEEC/blob/main/analysis/age_structure/README_files/patient_by_age.jpg)\
+![][https://github.com/HealthEquityEvidenceCentre/HEEC/blob/main/analysis/age_structure/README_files/payments_per_patient.jpg]
 
 ### 7. [Dispensing Practices, NHS Funding, and the Geography of Inequality](https://www.heec.co.uk/resource/dispensing-practices-nhs-funding-and-the-geography-of-inequality/)
 In 2023, 6,669 general practices received £10.2 billion in NHS funding across England, increasing to £11 billion with COVID-related and Primary Care Network (PCN) payments. Almost 10% of this—£870 million—was allocated to prescribing- and dispensing-related payments, supporting 944 dispensing practices serving 9.5 million patients (£625 million) and 5,537 non-dispensing practices covering 53 million patients (£245 million).
