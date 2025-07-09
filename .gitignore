@@ -7,4 +7,5 @@
 # README_files
 appointments
 *.js
-*.htmldata/age_group/raw_age.csv
+*.html
+data/age_group/raw_age.csv
