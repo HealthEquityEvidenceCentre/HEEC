@@ -75,7 +75,7 @@ Within the datapacks, we calculate the disparity between practices serving the m
 -Impact on secondary care: Emergency admissions, A&E attendances
 
 - **Code**:
-[NHS Health Inequalities Notebook](https://github.com/nhs-r-community/health-inequalities-notebook)
+[NHS Health Inequalities Notebook](https://health-inequalities.nhsrcommunity.com/england.html)
 
 - **Charts**:
 If you’d like a copy of your own ICBs datapack, please email us contact@heec.co.uk
