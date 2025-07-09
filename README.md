@@ -67,12 +67,12 @@ We’ve developed datapacks for each ICB England to help them understand their i
 
 Below are the datapacks for the East of England ICBs. If you’d like a copy of your own ICBs datapack, please email us contact@heec.co.uk
 
-Within the datapacks, we calculate the disparity between practices serving the most and least deprived patients for each ICB, across the following categories:
-* Resources (supply): Payments, Workforce
-* Population (demand): Disease prevalence, Health-related behaviours
-* Service quality: QOF achievement
-* Access: Patient experience, Appointments
-* Impact on secondary care: Emergency admissions, A&E attendances
+Within the datapacks, we calculate the disparity between practices serving the most and least deprived patients for each ICB, across the following categories:\
+-Resources (supply): Payments, Workforce
+-Population (demand): Disease prevalence, Health-related behaviours
+-Service quality: QOF achievement
+-Access: Patient experience, Appointments
+-Impact on secondary care: Emergency admissions, A&E attendances
 
 - **Code**:
 [NHS Health Inequalities Notebook](https://github.com/nhs-r-community/health-inequalities-notebook)
