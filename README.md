@@ -19,7 +19,7 @@ The factors determining the quality and quantity of primary care services vary a
   [healthcare_need](https://github.com/HealthEquityEvidenceCentre/HEEC/tree/main/analysis/healthcare_need)
 
 - **Charts**:\
-  ![](analysis/healthcare_need/README_files/figure-markdown_github/weighted patients-1.png)\
+  ![](https://github.com/HealthEquityEvidenceCentre/HEEC/blob/main/analysis/healthcare_need/README_files/figure-markdown_github/weighted%20patients-1.png)\
   [QOF Shiny App](https://heec.shinyapps.io/QOF_shiny/)
 
 ### 2. [NHS payments to practices in the East of England](https://www.heec.co.uk/resource/nhs-payments-general-practice-east-england/)
@@ -31,7 +31,7 @@ In this resource, we explore structural inequalities in primary care at the ICB 
 - **Charts**:\
 [Payments per weighted patient](https://heec.shinyapps.io/Payments_shiny/)\
 [Total payments by type](https://heec.shinyapps.io/Type_shiny/)\
-[Overall experience by ICB](https://heec.shinyapps.io/Satisfaction_shiny/)\
+[Overall experience by ICB](https://heec.shinyapps.io/Satisfaction_shiny/)
 
 ### 3. [What does the latest GP Patient Survey tell us about socio-economic inequalities in general practice?](https://www.heec.co.uk/resource/what-does-the-latest-gp-patient-survey-tell-us-about-socio-economic-inequalities-in-general-practice/)
 
