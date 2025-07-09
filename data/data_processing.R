@@ -3,7 +3,7 @@ library(dplyr)
 library(magrittr)
 
 # Define the generic function to merge and assign IMD quintiles
-merge_and_assign_quintiles <- function(data, start_year = 2017, end_year = 2024) {
+merge_and_assign_quintiles <- function(data, start_year = 2016, end_year = 2025) {
   # Read the IMD data
   IMD <- read.csv("../IMD/IMD_interpolated.csv")
 

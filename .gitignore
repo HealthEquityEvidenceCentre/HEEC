@@ -9,3 +9,4 @@ appointments
 *.js
 *.html
 data/age_group/raw_age.csv
+*.DS_Store
