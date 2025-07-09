@@ -118,6 +118,22 @@ In 2023, 6,669 general practices received £10.2 billion in NHS funding across E
 - **Code**:
 [dispensing_2]()
 
+- **Charts**:
+
+### 8. [Understanding the Index of Multiple Deprivation (IMD) in public health research](https://www.heec.co.uk/resource/understanding-the-index-of-multiple-deprivation-imd-in-public-health-research/)
+
+The Index of Multiple Deprivation (IMD) is a widely used measure in public health research and policymaking relating to health inequalities. By identifying areas with the greatest levels of deprivation, resources can be allocated more effectively to tackle systemic issues that contribute to unequal health outcomes. This blog provides an overview of the IMD and it’s use in public health research.
+
+### 9. Sorry we’re closed: Exploring general practice closures
+
+In 2019, there were 7,029 General Practice surgeries in England, providing essential healthcare to more than 60 million patients. However, recent data reveals a concerning trend: this number has fallen by over 10%, leaving just 6,256 practices in operation. While many of these closures represented mergers in with other practices, 193 (24%) shut down completely, leaving no direct replacement. This has displaced an estimated 718,000 – equivalent to nearly 1 in every 80 patients in England – forcing them to seek new healthcare providers.
+
+As the number of surgeries dwindled, the strain on existing practices increased. Over the same period, the average GP list size grew from 8,737 to 9,613 patients. The practices that closed were, on average, significantly smaller, with around 4,004 per surgery. At the same time, the structure of NHS workforce has shifted dramatically, with the number of salaried GPs surpassing the number of GP partners for the first time in NHS history. This shift signals a move away from traditional, independently managed practices toward a system increasingly dominated by large, consolidate healthcare providers.
+
+- **Code**
+
+- **Charts**
+
 ## Datasets
 
 | Dataset Name | Source | Current Release | Notes |
