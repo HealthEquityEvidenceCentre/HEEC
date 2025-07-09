@@ -75,32 +75,10 @@ Access: Patient experience, Appointments
 Impact on secondary care: Emergency admissions, A&E attendances
 
 - **Code**:
-[datapacks](https://github.com/HealthEquityEvidenceCentre/HEEC/tree/main/analysis/datapacks)
+[NHS Health Inequalities Notebook](https://github.com/nhs-r-community/health-inequalities-notebook)
 
 - **Charts**:
-![Overview](https://github.com/HealthEquityEvidenceCentre/HEEC/blob/main/datapacks/slides_files/figure-commonmark/overview-1.png)
-
-### 6. [Structural inequalities in General Practice in England]
-Strong primary care is associated with more equitable health outcomes.
-
-A key role of commissioners is to ensure the equitable distribution of resources across the system.
-
-We present the latest NHS primary care data, using Index of Multiple Deprivation (IMD) to examine inequalities existing in primary care access, experience and outcomes, across the following categories:
-
-Resources (supply): Payments, Workforce
-Population (demand): Disease prevalence, Health-related behaviours
-Service quality: QOF achievement
-Access: Patient experience, Appointments
-Impact on secondary care: Emergency admissions, A&E attendances
-This analysis was produced by the Health Equity Evidence Centre. Additional data and analysis is available on GitHub.
-
-For further information or to discuss the results, please contact Dr John Ford or Mr Cameron Appel.
-
-- **Code**:
-[Health Inequalities Notebook](https://github.com/nhs-r-community/health-inequalities-notebook)
-
-- **Charts**:
-[Health Inequalities Notebook](https://health-inequalities.nhsrcommunity.com/england.html)
+If you’d like a copy of your own ICBs datapack, please email us contact@heec.co.uk
 
 ### 6. [How does the age structure of patients affect NHS payments to General Practice?](https://www.heec.co.uk/resource/how-does-the-age-structure-of-patients-affect-nhs-payments-to-general-practice/)
 
@@ -131,6 +109,7 @@ In 2019, there were 7,029 General Practice surgeries in England, providing essen
 As the number of surgeries dwindled, the strain on existing practices increased. Over the same period, the average GP list size grew from 8,737 to 9,613 patients. The practices that closed were, on average, significantly smaller, with around 4,004 per surgery. At the same time, the structure of NHS workforce has shifted dramatically, with the number of salaried GPs surpassing the number of GP partners for the first time in NHS history. This shift signals a move away from traditional, independently managed practices toward a system increasingly dominated by large, consolidate healthcare providers.
 
 - **Code**
+[closures](https://github.com/HealthEquityEvidenceCentre/HEEC/tree/main/analysis/closures)
 
 - **Charts**
 
