@@ -96,19 +96,19 @@ query_params <- list(
 #   # Write the content to a temporary file
 #   temp_file <- tempfile(fileext = ".csv")
 #   writeBin(content(response, "raw"), temp_file)
-# 
+#
 #   # Read the CSV data
 #   age <- read_csv(temp_file)
-# 
+#
 #   # Display the first few rows of the data
 #   print(head(age))
 # } else {
 #   cat("Failed to retrieve data. Status code:", status_code(response), "\n")
 #   cat("Response content:", content(response, "text"), "\n")
 # }
-# 
+#
 # write.csv(age, "raw_age.csv")
-# 
+#
 # age %<>%
 #   rename(Practice.Code = `Area Code`) %>%
 #   rename(Year = `Time period`) %>%
@@ -117,7 +117,7 @@ query_params <- list(
 #   mutate(prop65_quintile = ntile(Value, 5)) %>%
 #   select("Practice.Code", "Year", "Value", "prop65_quintile") %>%
 #   rename(prop65 = Value)
-# 
+#
 # write.csv(age, "age.csv", row.names = FALSE)
 ```
 
@@ -243,17 +243,24 @@ quantile(df$average.payment, probs = seq(0, 1, by = 0.2), na.rm = TRUE)
     ##           0%          20%          40%          60%          80%         100% 
     ## 7.703294e-03 1.342021e+02 1.472735e+02 1.606986e+02 1.837331e+02 5.938784e+02
 
+# Summary of Patient Age, IMD and Payments across Rural and Urban Practices
+
 ``` r
 df %>%
-  # group_by(Practice.Rurality) %>%
+  group_by(Practice.Rurality) %>%
   summarise(
+    n = n(),
     IMDm = mean(IMD),
-    IMDsd = sd(IMD),
+    # IMDsd = sd(IMD),
     prop65m = mean(prop65),
     # prop65sd = sd(prop65),
     average.paymentm = mean(average.payment),
-    average.paymentsd = sd(average.payment)
-  ) %>% pull(average.paymentsd)
+    # average.paymentsd = sd(average.payment),
+  )
 ```
 
-    ## [1] 52.6076
+    ## # A tibble: 2 × 5
+    ##   Practice.Rurality     n  IMDm prop65m average.paymentm
+    ##   <chr>             <int> <dbl>   <dbl>            <dbl>
+    ## 1 Rural              1063  15.1    25.5             232.
+    ## 2 Urban              5289  25.0    16.3             154.
