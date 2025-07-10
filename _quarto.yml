@@ -1,7 +1,18 @@
 project:
   type: website
+  output-dir: _site
   render:
     - README.qmd
+
+website:
+  title: "Health Equity Evidence Centre"
+  navbar:
+    left:
+      - text: "Home"
+        file: README.qmd
+    right:
+      - icon: github
+        href: https://github.com/HealthEquityEvidenceCentre/HEEC
 
 format:
   html:
