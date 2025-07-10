@@ -959,6 +959,48 @@ age_analysis %>%
     4               4        1270       21.7          181.     19.2
     5               5        1270       28.0          230.     15.9
 
+``` r
+# Chart showing payments per patient by age quintile
+payment_by_age <- age_analysis %>%
+  group_by(prop65_quintile) %>%
+  summarise(
+    avg_payment_per_patient = mean(average_payment_per_patient, na.rm = TRUE),
+    n_practices = n(),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    quintile_label = case_when(
+      prop65_quintile == 1 ~ "Q1 (Youngest)",
+      prop65_quintile == 2 ~ "Q2",
+      prop65_quintile == 3 ~ "Q3",
+      prop65_quintile == 4 ~ "Q4",
+      prop65_quintile == 5 ~ "Q5 (Oldest)"
+    ),
+    quintile_label = factor(quintile_label, levels = c("Q1 (Youngest)", "Q2", "Q3", "Q4", "Q5 (Oldest)"))
+  )
+
+payment_by_age %>%
+  ggplot(aes(x = quintile_label, y = avg_payment_per_patient, fill = factor(prop65_quintile))) +
+  geom_bar(stat = "identity", alpha = 0.8) +
+  scale_fill_manual(
+    values = imd_colors,
+    guide = "none"
+  ) +
+  labs(
+    title = "NHS Payments per Patient by Age Structure of Practice Population",
+    subtitle = "Average payment per registered patient by proportion of patients 65+ (quintiles)",
+    x = "Proportion of Patients 65+ (Quintile)",
+    y = "Payment per patient (£)"
+  ) +
+  heec_theme +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) +
+  scale_y_continuous(labels = label_comma(prefix = "£"))
+```
+
+![](README_files/figure-commonmark/age_payments_chart-1.png)
+
 ## Satisfaction
 
 The GP Patient Survey is an independent survey run by Ipsos MORI on
@@ -973,9 +1015,10 @@ Annual practice-level .csv files are available \[here\].
 Execute the following code to merge the data to create a single
 time-series dataset:
 
-<!-- ```{r sastifaction_data}
+``` r
 practice_information <- c("Practice_Code", "Practice_Name", "CCG_Code", "CCG_Name", "ICS_Code", "ICS_Name")
-&#10;# Define the variable mappings as a named list
+
+# Define the variable mappings as a named list
 variable_mappings <- list(
   access_pct = "Q3_12pct",
   continuity_pct = "Q9_12pct",
@@ -983,56 +1026,71 @@ variable_mappings <- list(
   trust_pct_default = "Q89_12pct",
   trust_pct_2017 = "Q22_12pct"
 )
-&#10;# Initialize empty data frames
+
+# Initialize empty data frames
 satisfaction <- data.frame()
 trust <- data.frame()
-&#10;# Function to load and process a single file
+
+# Function to load and process a single file
 process_file <- function(file, variables) {
   df <- read.csv(paste0("data/satisfaction/raw/", file))
-&#10;  # Select CCG or ICB Code
+
+  # Select CCG or ICB Code
   dataset_columns <- colnames(df)
   selected_column_names <- intersect(practice_information, dataset_columns)
   df <- df[, c(selected_column_names, variables)]
-&#10;  # Assign year
+
+  # Assign year
   year <- substr(file, 1, nchar(file) - 4)
   df$Year <- as.numeric(year)
-&#10;  return(df)
+
+  return(df)
 }
-&#10;# Process all files for satisfaction
+
+# Process all files for satisfaction
 for (file in list.files("data/satisfaction/raw/")) {
   df <- process_file(file, unlist(variable_mappings[-c(4, 5)])) # Exclude trust variables, as the variable code is not consistent; it will be collated separately
   satisfaction <- bind_rows(satisfaction, df)
 }
-&#10;# Process a subset of files for trust
+
+# Process a subset of files for trust
 for (file in list.files("data/satisfaction/raw/")) {
   year <- as.numeric(substr(file, 1, nchar(file) - 4))
   trust_variable <- ifelse(year == 2017, variable_mappings$trust_pct_2017, variable_mappings$trust_pct_default)
   df <- process_file(file, c("Practice_Code", trust_variable))
-&#10;  # Rename the trust column to a common name for merging
+
+  # Rename the trust column to a common name for merging
   colnames(df)[colnames(df) == trust_variable] <- "trust_pct"
-&#10;  trust <- bind_rows(trust, df)
+
+  trust <- bind_rows(trust, df)
 }
-&#10;# Keep only the relevant columns in trust
+
+# Keep only the relevant columns in trust
 trust <- trust[, c("Practice_Code", "trust_pct", "Year")]
-&#10;# Merge satisfaction and trust data frames
+
+# Merge satisfaction and trust data frames
 satisfaction <- merge(satisfaction, trust, by = c("Practice_Code", "Year"), all.x = TRUE)
-&#10;# Rename columns based on variable_mappings
+
+# Rename columns based on variable_mappings
 for (new_name in names(variable_mappings)[-c(4, 5)]) { # Exclude trust variables
   old_name <- variable_mappings[[new_name]]
   colnames(satisfaction)[colnames(satisfaction) == old_name] <- new_name
 }
-&#10;# Rename Practice_Code and Practice_Name
+
+# Rename Practice_Code and Practice_Name
 satisfaction <- satisfaction %>%
   rename(
     `Practice.Code` = Practice_Code,
     `Practice.Name` = Practice_Name
   )
-&#10;# drop rows where pct is negative
+
+# drop rows where pct is negative
 satisfaction$overall_pct <- ifelse(satisfaction$overall_pct < 0, NA, satisfaction$overall_pct)
 satisfaction$access_pct <- ifelse(satisfaction$access_pct < 0, NA, satisfaction$access_pct)
 satisfaction$continuity_pct <- ifelse(satisfaction$continuity_pct < 0, NA, satisfaction$continuity_pct)
 satisfaction$trust_pct <- ifelse(satisfaction$trust_pct < 0, NA, satisfaction$trust_pct)
-&#10;satisfaction %>%
+
+satisfaction %>%
   group_by(Year) %>%
   summarise(
     mean_overall = mean(overall_pct, na.rm = TRUE),
@@ -1041,25 +1099,142 @@ satisfaction$trust_pct <- ifelse(satisfaction$trust_pct < 0, NA, satisfaction$tr
     max_overall = max(overall_pct, na.rm = TRUE),
     n = n()
   )
-``` -->
+```
 
-<!-- ```{r clean_satisfaction}
+    # A tibble: 8 × 6
+       Year mean_overall sd_overall min_overall max_overall     n
+      <dbl>        <dbl>      <dbl>       <dbl>       <dbl> <int>
+    1  2017        0.849     0.0972       0.289           1  7522
+    2  2018        0.840     0.0982       0.373           1  7254
+    3  2019        0.834     0.0984       0.322           1  6999
+    4  2020        0.824     0.103        0.370           1  6821
+    5  2021        0.834     0.0943       0.296           1  6658
+    6  2022        0.734     0.131        0.276           1  6507
+    7  2023        0.727     0.134        0.112           1  6418
+    8  2024        0.754     0.123        0.244           1  6307
+
+``` r
 # match CCG.Code in df with CCG.Code in CCG_ICB and return ICB.Code
 satisfaction$ICB.NAME <- CCG_ICB[match(satisfaction$CCG_Code, CCG_ICB$CCG.Code), ]$ICB.NAME
 satisfaction[is.na(satisfaction$ICB.NAME), ]$ICB.NAME <- CCG_ICB[match(satisfaction[is.na(satisfaction$ICB.NAME), ]$ICS_Code, CCG_ICB$ICB.Code), ]$ICB.NAME
-&#10;satisfaction$ICB.NAME <- gsub("NHS ", "", satisfaction$ICB.NAME)
+
+satisfaction$ICB.NAME <- gsub("NHS ", "", satisfaction$ICB.NAME)
 satisfaction$ICB.NAME <- gsub(" Integrated Care Board", "", satisfaction$ICB.NAME)
-&#10;satisfaction <- satisfaction[, c("Practice.Code", "Practice.Name", "ICB.NAME", "Year", "overall_pct", "continuity_pct", "access_pct", "trust_pct")]
-&#10;# Call the function to merge and assign national-level quintiles
+
+satisfaction <- satisfaction[, c("Practice.Code", "Practice.Name", "ICB.NAME", "Year", "overall_pct", "continuity_pct", "access_pct", "trust_pct")]
+
+# Call the function to merge and assign national-level quintiles
 satisfaction <- merge_and_assign_quintiles(
   data = satisfaction
 )
-&#10;satisfaction %>%
+```
+
+    [1] "Year: 2016"
+    < table of extent 0 >
+    [1] "Year: 2017"
+
+       1    2    3    4    5 
+    1502 1502 1502 1502 1502 
+    [1] "Year: 2018"
+
+       1    2    3    4    5 
+    1447 1447 1447 1447 1447 
+    [1] "Year: 2019"
+
+       1    2    3    4    5 
+    1400 1400 1399 1399 1399 
+    [1] "Year: 2020"
+
+       1    2    3    4    5 
+    1363 1363 1363 1363 1362 
+    [1] "Year: 2021"
+
+       1    2    3    4    5 
+    1330 1330 1329 1329 1329 
+    [1] "Year: 2022"
+
+       1    2    3    4    5 
+    1298 1298 1298 1297 1297 
+    [1] "Year: 2023"
+
+       1    2    3    4    5 
+    1279 1279 1279 1279 1278 
+    [1] "Year: 2024"
+
+       1    2    3    4    5 
+    1257 1257 1256 1256 1256 
+    [1] "Year: 2025"
+    < table of extent 0 >
+
+``` r
+satisfaction %>%
   group_by(Year) %>%
   summarise(
     missing_imd = sum(is.na(IMD))
   )
-``` -->
+```
+
+    # A tibble: 8 × 2
+       Year missing_imd
+      <dbl>       <int>
+    1  2017          12
+    2  2018          19
+    3  2019           2
+    4  2020           7
+    5  2021          11
+    6  2022          19
+    7  2023          24
+    8  2024          25
+
+``` r
+# Calculate overall satisfaction by IMD quintile and year
+satisfaction_by_imd <- satisfaction %>%
+  filter(!is.na(IMD_quintile), !is.na(overall_pct)) %>%
+  group_by(Year, IMD_quintile) %>%
+  summarise(
+    mean_satisfaction = mean(overall_pct, na.rm = TRUE),
+    median_satisfaction = median(overall_pct, na.rm = TRUE),
+    n_practices = n(),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    IMD_quintile = factor(IMD_quintile, levels = 1:5)
+  )
+
+# Create the plot
+satisfaction_by_imd %>%
+  ggplot(aes(
+    x = Year, y = mean_satisfaction,
+    color = IMD_quintile, group = IMD_quintile
+  )) +
+  geom_line(size = 1.2, alpha = 0.8) +
+  geom_point(size = 2.5, alpha = 0.9) +
+  scale_color_manual(
+    values = imd_colors,
+    name = "IMD Quintile",
+    labels = c("1 (least deprived)", "2", "3", "4", "5 (most deprived)")
+  ) +
+  labs(
+    x = "Year",
+    y = "Overall satisfaction (%)",
+    title = "Patient Satisfaction with GP Services by Deprivation Level",
+    subtitle = "Percentage of patients reporting good overall experience by IMD quintile"
+  ) +
+  heec_theme +
+  theme(
+    legend.position = "bottom",
+    axis.text.x = element_text(angle = 0)
+  ) +
+  scale_y_continuous(
+    labels = function(x) paste0(x, "%"),
+    limits = c(60, 90),
+    breaks = seq(60, 90, by = 5)
+  ) +
+  scale_x_continuous(breaks = unique(satisfaction_by_imd$Year)) +
+  guides(color = guide_legend(reverse = TRUE, nrow = 1))
+```
+
+![](README_files/figure-commonmark/satisfaction_by_imd-1.png)
 
 ## GP Workforce
 
@@ -1257,7 +1432,7 @@ workforce_by_imd %>%
     x = "Year",
     y = "GP FTE per 10,000 patients",
     title = "GP Workforce Density by Deprivation Level",
-    subtitle = "Fully qualified GP FTE per 1,000 patients by IMD quintile"
+    subtitle = "Fully qualified GP FTE per 10,000 patients by IMD quintile"
   ) +
   heec_theme +
   theme(
@@ -1948,48 +2123,6 @@ practices are informed by the age structure, deprivation and rurality of
 registered patients.
 
 ``` r
-# Chart showing payments per patient by age quintile
-payment_by_age <- age_analysis %>%
-  group_by(prop65_quintile) %>%
-  summarise(
-    avg_payment_per_patient = mean(average_payment_per_patient, na.rm = TRUE),
-    n_practices = n(),
-    .groups = "drop"
-  ) %>%
-  mutate(
-    quintile_label = case_when(
-      prop65_quintile == 1 ~ "Q1 (Youngest)",
-      prop65_quintile == 2 ~ "Q2",
-      prop65_quintile == 3 ~ "Q3",
-      prop65_quintile == 4 ~ "Q4",
-      prop65_quintile == 5 ~ "Q5 (Oldest)"
-    ),
-    quintile_label = factor(quintile_label, levels = c("Q1 (Youngest)", "Q2", "Q3", "Q4", "Q5 (Oldest)"))
-  )
-
-payment_by_age %>%
-  ggplot(aes(x = quintile_label, y = avg_payment_per_patient, fill = factor(prop65_quintile))) +
-  geom_bar(stat = "identity", alpha = 0.8) +
-  scale_fill_manual(
-    values = imd_colors,
-    guide = "none"
-  ) +
-  labs(
-    title = "NHS Payments per Patient by Age Structure of Practice Population",
-    subtitle = "Average payment per registered patient by proportion of patients 65+ (quintiles)",
-    x = "Proportion of Patients 65+ (Quintile)",
-    y = "Payment per patient (£)"
-  ) +
-  heec_theme +
-  theme(
-    axis.text.x = element_text(angle = 45, hjust = 1)
-  ) +
-  scale_y_continuous(labels = label_comma(prefix = "£"))
-```
-
-![](README_files/figure-commonmark/age_payments_chart-1.png)
-
-``` r
 # Scatter plot showing relationship between age and deprivation
 age_analysis %>%
   mutate(
@@ -2028,6 +2161,74 @@ age_analysis %>%
 ```
 
 ![](README_files/figure-commonmark/age_imd_scatter-1.png)
+
+``` r
+# Create stacked bar chart showing payment breakdown by IMD quintile
+# Use 2023 payments data for most recent complete picture
+payment_breakdown <- nhs_payments %>%
+  filter(Year == 2023, !is.na(IMD_quintile)) %>%
+  mutate(
+    # Calculate per-patient amounts for each category
+    global_sum_per_patient = Total.Global.Sum / Number.of.Registered.Patients..Last.Known.Figure.,
+    prescribing_per_patient = Total.Prescribing / Number.of.Registered.Patients..Last.Known.Figure.,
+    other_per_patient = (Total.NHS.Payments.to.General.Practice - Total.Global.Sum - Total.Prescribing) / Number.of.Registered.Patients..Last.Known.Figure.
+  ) %>%
+  # Filter out extreme outliers
+  filter(
+    global_sum_per_patient < 200,
+    prescribing_per_patient < 200,
+    other_per_patient < 200,
+    global_sum_per_patient > 0,
+    prescribing_per_patient >= 0,
+    other_per_patient > 0
+  ) %>%
+  group_by(IMD_quintile) %>%
+  summarise(
+    global_sum = mean(global_sum_per_patient, na.rm = TRUE),
+    prescribing = mean(prescribing_per_patient, na.rm = TRUE),
+    other = mean(other_per_patient, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    IMD_quintile = factor(IMD_quintile, levels = 1:5)
+  ) %>%
+  pivot_longer(
+    cols = c(global_sum, prescribing, other),
+    names_to = "payment_type",
+    values_to = "amount_per_patient"
+  ) %>%
+  mutate(
+    payment_type = factor(
+      payment_type,
+      levels = c("global_sum", "other", "prescribing"),
+      labels = c("Global Sum", "Other Payments", "Prescribing")
+    )
+  )
+
+# Create the stacked bar chart
+payment_breakdown %>%
+  ggplot(aes(x = IMD_quintile, y = amount_per_patient, fill = payment_type)) +
+  geom_bar(stat = "identity", alpha = 0.8) +
+  scale_fill_manual(
+    values = c("Global Sum" = heec_colors[1], "Other Payments" = heec_colors[2], "Prescribing" = heec_colors[3]),
+    name = "Payment Type"
+  ) +
+  labs(
+    title = "NHS Payment Breakdown per Patient by Deprivation Level",
+    subtitle = "Average payment per registered patient by payment category and IMD quintile (2023)",
+    x = "IMD Quintile (1 = least deprived, 5 = most deprived)",
+    y = "Payment per patient (£)"
+  ) +
+  heec_theme +
+  theme(
+    legend.position = "bottom",
+    axis.text.x = element_text(angle = 0)
+  ) +
+  scale_y_continuous(labels = label_comma(prefix = "£")) +
+  guides(fill = guide_legend(nrow = 1))
+```
+
+![](README_files/figure-commonmark/payment_breakdown_by_imd-1.png)
 
 ## 7. Sorry we’re closed: Exploring general practice closures
 
