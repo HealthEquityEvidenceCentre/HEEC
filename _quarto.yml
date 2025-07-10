@@ -9,6 +9,8 @@ website:
     left:
       - text: "Home"
         file: README.qmd
+      - text: "Datapacks"
+        href: https://github.com/HealthEquityEvidenceCentre/HEEC/tree/main/datapacks
     right:
       - icon: github
         href: https://github.com/HealthEquityEvidenceCentre/HEEC
