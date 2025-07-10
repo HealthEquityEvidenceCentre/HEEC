@@ -125,6 +125,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link active" href="./README.html" aria-current="page"> 
 <span class="menu-text">Home</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/HealthEquityEvidenceCentre/HEEC/tree/main/datapacks"> 
+<span class="menu-text">Datapacks</span></a>
+  </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
@@ -148,7 +152,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#datasets" id="toc-datasets" class="nav-link active" data-scroll-target="#datasets">Datasets</a>
+  <li><a href="#project-overview" id="toc-project-overview" class="nav-link active" data-scroll-target="#project-overview">Project Overview</a></li>
+  <li><a href="#key-findings" id="toc-key-findings" class="nav-link" data-scroll-target="#key-findings">Key Findings</a>
+  <ul class="collapse">
+  <li><a href="#payment-disparities" id="toc-payment-disparities" class="nav-link" data-scroll-target="#payment-disparities">💰 <strong>Payment Disparities</strong></a></li>
+  <li><a href="#workforce-challenges" id="toc-workforce-challenges" class="nav-link" data-scroll-target="#workforce-challenges">👨‍⚕️ <strong>Workforce Challenges</strong></a></li>
+  <li><a href="#patient-experience-gaps" id="toc-patient-experience-gaps" class="nav-link" data-scroll-target="#patient-experience-gaps">😟 <strong>Patient Experience Gaps</strong></a></li>
+  <li><a href="#system-wide-pressures" id="toc-system-wide-pressures" class="nav-link" data-scroll-target="#system-wide-pressures">🏥 <strong>System-Wide Pressures</strong></a></li>
+  </ul></li>
+  <li><a href="#data-sources" id="toc-data-sources" class="nav-link" data-scroll-target="#data-sources">Data Sources</a></li>
+  <li><a href="#interactive-tools" id="toc-interactive-tools" class="nav-link" data-scroll-target="#interactive-tools">Interactive Tools</a></li>
+  <li><a href="#datasets" id="toc-datasets" class="nav-link" data-scroll-target="#datasets">Datasets</a>
   <ul class="collapse">
   <li><a href="#index-of-multiple-deprivation-imd" id="toc-index-of-multiple-deprivation-imd" class="nav-link" data-scroll-target="#index-of-multiple-deprivation-imd">Index of Multiple Deprivation (IMD)</a>
   <ul class="collapse">
@@ -230,16 +244,68 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>my_colors <span class="ot">&lt;-</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"#1B2C57"</span>, <span class="st">"#00A865"</span>))(<span class="dv">42</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>This repository serves as a hub for data and analysis related to the Health Equity Evidence Centre project.</p>
-<p>Raw and processed data is available in the <a href="data/">data</a> subdirectory. We have complete collated practice-level time-series for the data made available by <a href="https://digital.nhs.uk/">NHS Digital</a>:</p>
+<p>This repository contains a comprehensive analysis of health inequalities in primary care across England, examining how healthcare resources, access, and outcomes vary by socioeconomic deprivation level.</p>
+<section id="project-overview" class="level2">
+<h2 class="anchored" data-anchor-id="project-overview">Project Overview</h2>
+<p>The Health Equity Evidence Centre has compiled and analyzed practice-level data from multiple NHS sources to understand patterns of inequality in general practice. Our analysis covers <strong>6,669 GP practices</strong> serving over <strong>60 million patients</strong>, examining disparities across:</p>
 <ul>
-<li>Index of Multiple Deprivation</li>
-<li>NHS Payments to General Practice<br>
+<li><strong>NHS funding and payments</strong> to general practices</li>
+<li><strong>Workforce density</strong> and staffing patterns<br>
 </li>
-<li>GP Patient Survey</li>
+<li><strong>Patient satisfaction</strong> and access to care</li>
+<li><strong>Health outcomes</strong> and disease prevalence</li>
+<li><strong>Practice characteristics</strong> including rurality and size</li>
 </ul>
-<p>RShiny iframes are available in the <a href="shiny/">shiny</a> subdirectory.</p>
-<p>Analyses and the relevant code is available in the <a href="analysis/">analysis</a> subdirectory.</p>
+</section>
+<section id="key-findings" class="level2">
+<h2 class="anchored" data-anchor-id="key-findings">Key Findings</h2>
+<p>Our analysis reveals significant health inequalities in primary care across England:</p>
+<section id="payment-disparities" class="level3">
+<h3 class="anchored" data-anchor-id="payment-disparities">💰 <strong>Payment Disparities</strong></h3>
+<ul>
+<li>Practices serving the <strong>most deprived 20% of the population received £14 less in NHS payments per weighted patient</strong> in 2022-23 than those serving the least deprived quintile</li>
+<li><strong>Dispensing practices</strong> earn substantially more per patient due to additional prescribing revenues, creating geographic inequities</li>
+<li>Despite higher healthcare needs in deprived areas, <strong>funding mechanisms don’t fully compensate</strong> for increased complexity and demand</li>
+</ul>
+</section>
+<section id="workforce-challenges" class="level3">
+<h3 class="anchored" data-anchor-id="workforce-challenges">👨‍⚕️ <strong>Workforce Challenges</strong></h3>
+<ul>
+<li><strong>GP workforce density varies significantly</strong> across deprivation levels, with fewer fully qualified GPs per patient in more deprived areas</li>
+<li><strong>Rural practices face acute staffing shortages</strong> while serving populations with greater healthcare needs</li>
+<li>The shift from <strong>GP partners to salaried GPs</strong> threatens traditional practice models, particularly affecting smaller practices in disadvantaged areas</li>
+</ul>
+</section>
+<section id="patient-experience-gaps" class="level3">
+<h3 class="anchored" data-anchor-id="patient-experience-gaps">😟 <strong>Patient Experience Gaps</strong></h3>
+<ul>
+<li><strong>Patient satisfaction consistently lower</strong> in practices serving more deprived populations across all measured domains</li>
+<li><strong>Access to appointments and continuity of care</strong> shows persistent inequalities, with worse outcomes in deprived communities</li>
+<li><strong>Trust and confidence in healthcare providers</strong> varies by practice characteristics and local socioeconomic factors</li>
+</ul>
+</section>
+<section id="system-wide-pressures" class="level3">
+<h3 class="anchored" data-anchor-id="system-wide-pressures">🏥 <strong>System-Wide Pressures</strong></h3>
+<ul>
+<li><strong>Practice closures disproportionately impact</strong> smaller communities, with 718,000 patients displaced since 2019</li>
+<li><strong>Age structure of populations</strong> significantly influences payment levels, with practices serving older patients receiving higher capitation</li>
+</ul>
+</section>
+</section>
+<section id="data-sources" class="level2">
+<h2 class="anchored" data-anchor-id="data-sources">Data Sources</h2>
+<p>This repository includes complete practice-level time-series data from authoritative NHS sources:</p>
+<ul>
+<li><strong>NHS Digital</strong>: Payments, workforce, appointments, and QOF data (2015-2025)</li>
+<li><strong>OHID Fingertips</strong>: Disease prevalence, health behaviors, and life expectancy</li>
+<li><strong>GP Patient Survey</strong>: Patient satisfaction and experience metrics (2017-2024)</li>
+<li><strong>NHS England</strong>: Practice characteristics, PCN data, and geographic mappings</li>
+</ul>
+</section>
+<section id="interactive-tools" class="level2">
+<h2 class="anchored" data-anchor-id="interactive-tools">Interactive Tools</h2>
+<p>The project features multiple interactive applications for data exploration: - <strong><a href="https://healthequityevidencecentre.github.io/HEEC/">Interactive Website</a></strong> with code folding and dynamic visualizations - <strong><a href="https://heec.shinyapps.io/Payments_shiny/">9 Shiny Applications</a></strong> for detailed data exploration - <strong><a href="https://github.com/HealthEquityEvidenceCentre/HEEC/tree/main/datapacks">42 ICB Datapacks</a></strong> with automated reporting for all Integrated Care Boards</p>
+</section>
 <section id="datasets" class="level1">
 <h1>Datasets</h1>
 <table class="caption-top table">
@@ -1479,50 +1545,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <details class="code-fold">
 <summary>Click to show code</summary>
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate overall satisfaction by IMD quintile and year</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>satisfaction_by_imd <span class="ot">&lt;-</span> satisfaction <span class="sc">%&gt;%</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(IMD_quintile), <span class="sc">!</span><span class="fu">is.na</span>(overall_pct)) <span class="sc">%&gt;%</span></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year, IMD_quintile) <span class="sc">%&gt;%</span></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_satisfaction =</span> <span class="fu">mean</span>(overall_pct, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_satisfaction =</span> <span class="fu">median</span>(overall_pct, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_practices =</span> <span class="fu">n</span>(),</span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">IMD_quintile =</span> <span class="fu">factor</span>(IMD_quintile, <span class="at">levels =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span>
-<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the plot</span></span>
-<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a>satisfaction_by_imd <span class="sc">%&gt;%</span></span>
-<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
-<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> Year, <span class="at">y =</span> mean_satisfaction,</span>
-<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> IMD_quintile, <span class="at">group =</span> IMD_quintile</span>
-<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">+</span></span>
-<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">1.2</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
-<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.5</span>, <span class="at">alpha =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
-<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
-<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> imd_colors,</span>
-<span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"IMD Quintile"</span>,</span>
-<span id="cb34-26"><a href="#cb34-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"1 (least deprived)"</span>, <span class="st">"2"</span>, <span class="st">"3"</span>, <span class="st">"4"</span>, <span class="st">"5 (most deprived)"</span>)</span>
-<span id="cb34-27"><a href="#cb34-27" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb34-28"><a href="#cb34-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb34-29"><a href="#cb34-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
-<span id="cb34-30"><a href="#cb34-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Overall satisfaction (%)"</span>,</span>
-<span id="cb34-31"><a href="#cb34-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Patient Satisfaction with GP Services by Deprivation Level"</span>,</span>
-<span id="cb34-32"><a href="#cb34-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Percentage of patients reporting good overall experience by IMD quintile"</span></span>
-<span id="cb34-33"><a href="#cb34-33" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb34-34"><a href="#cb34-34" aria-hidden="true" tabindex="-1"></a>  heec_theme <span class="sc">+</span></span>
-<span id="cb34-35"><a href="#cb34-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb34-36"><a href="#cb34-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
-<span id="cb34-37"><a href="#cb34-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>)</span>
-<span id="cb34-38"><a href="#cb34-38" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb34-39"><a href="#cb34-39" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(</span>
-<span id="cb34-40"><a href="#cb34-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="cf">function</span>(x) <span class="fu">paste0</span>(x, <span class="st">"%"</span>),</span>
-<span id="cb34-41"><a href="#cb34-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">60</span>, <span class="dv">90</span>),</span>
-<span id="cb34-42"><a href="#cb34-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">60</span>, <span class="dv">90</span>, <span class="at">by =</span> <span class="dv">5</span>)</span>
-<span id="cb34-43"><a href="#cb34-43" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb34-44"><a href="#cb34-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">unique</span>(satisfaction_by_imd<span class="sc">$</span>Year)) <span class="sc">+</span></span>
-<span id="cb34-45"><a href="#cb34-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="at">reverse =</span> <span class="cn">TRUE</span>, <span class="at">nrow =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>satisfaction <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'data/satisfaction/satisfaction.csv'</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>satisfaction_by_imd <span class="ot">&lt;-</span> satisfaction <span class="sc">%&gt;%</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(IMD_quintile), <span class="sc">!</span><span class="fu">is.na</span>(overall_pct)) <span class="sc">%&gt;%</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Year, IMD_quintile) <span class="sc">%&gt;%</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_satisfaction =</span> <span class="fu">mean</span>(overall_pct, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">median_satisfaction =</span> <span class="fu">median</span>(overall_pct, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_practices =</span> <span class="fu">n</span>(),</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb34-13"><a href="#cb34-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">IMD_quintile =</span> <span class="fu">factor</span>(IMD_quintile, <span class="at">levels =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb34-14"><a href="#cb34-14" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb34-15"><a href="#cb34-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-16"><a href="#cb34-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the plot</span></span>
+<span id="cb34-17"><a href="#cb34-17" aria-hidden="true" tabindex="-1"></a>satisfaction_by_imd <span class="sc">%&gt;%</span></span>
+<span id="cb34-18"><a href="#cb34-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(</span>
+<span id="cb34-19"><a href="#cb34-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> Year, <span class="at">y =</span> mean_satisfaction,</span>
+<span id="cb34-20"><a href="#cb34-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> IMD_quintile, <span class="at">group =</span> IMD_quintile</span>
+<span id="cb34-21"><a href="#cb34-21" aria-hidden="true" tabindex="-1"></a>  )) <span class="sc">+</span></span>
+<span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">1.2</span>, <span class="at">alpha =</span> <span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">2.5</span>, <span class="at">alpha =</span> <span class="fl">0.9</span>) <span class="sc">+</span></span>
+<span id="cb34-24"><a href="#cb34-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(</span>
+<span id="cb34-25"><a href="#cb34-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">values =</span> imd_colors,</span>
+<span id="cb34-26"><a href="#cb34-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">name =</span> <span class="st">"IMD Quintile"</span>,</span>
+<span id="cb34-27"><a href="#cb34-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"1 (least deprived)"</span>, <span class="st">"2"</span>, <span class="st">"3"</span>, <span class="st">"4"</span>, <span class="st">"5 (most deprived)"</span>)</span>
+<span id="cb34-28"><a href="#cb34-28" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb34-29"><a href="#cb34-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb34-30"><a href="#cb34-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb34-31"><a href="#cb34-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Overall satisfaction (%)"</span>,</span>
+<span id="cb34-32"><a href="#cb34-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Patient Satisfaction with GP Services by Deprivation Level"</span>,</span>
+<span id="cb34-33"><a href="#cb34-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Percentage of patients reporting good overall experience by IMD quintile"</span></span>
+<span id="cb34-34"><a href="#cb34-34" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb34-35"><a href="#cb34-35" aria-hidden="true" tabindex="-1"></a>  heec_theme <span class="sc">+</span></span>
+<span id="cb34-36"><a href="#cb34-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb34-37"><a href="#cb34-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,</span>
+<span id="cb34-38"><a href="#cb34-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">0</span>)</span>
+<span id="cb34-39"><a href="#cb34-39" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb34-40"><a href="#cb34-40" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">unique</span>(satisfaction_by_imd<span class="sc">$</span>Year)) <span class="sc">+</span></span>
+<span id="cb34-41"><a href="#cb34-41" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color =</span> <span class="fu">guide_legend</span>(<span class="at">reverse =</span> <span class="cn">TRUE</span>, <span class="at">nrow =</span> <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -2579,7 +2641,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <th>Application</th>
 <th>Description</th>
 <th>URL</th>
-<th>Purpose</th>
 </tr>
 </thead>
 <tbody>
@@ -2587,57 +2648,43 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td><strong>QOF Shiny</strong></td>
 <td>Quality and Outcomes Framework data explorer</td>
 <td><a href="https://camappel.shinyapps.io/QOF_shiny/">camappel.shinyapps.io/QOF_shiny</a></td>
-<td>Interactive visualization of QOF disease prevalence and achievement data</td>
 </tr>
 <tr class="even">
 <td><strong>Payments Shiny</strong></td>
 <td>NHS payments analysis tool</td>
 <td><a href="https://heec.shinyapps.io/Payments_shiny/">heec.shinyapps.io/Payments_shiny</a></td>
-<td>Total payments per weighted patient by practice type, ICB, and year</td>
 </tr>
 <tr class="odd">
 <td><strong>Overall Satisfaction</strong></td>
 <td>Patient satisfaction explorer</td>
 <td><a href="https://heec.shinyapps.io/overall_shiny/">heec.shinyapps.io/overall_shiny</a></td>
-<td>Overall satisfaction with General Practice by ICB and year</td>
 </tr>
-</tbody>
-</table>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Application</th>
-<th>Description</th>
-<th>URL</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
+<tr class="even">
 <td><strong>GPPS App</strong></td>
 <td>GP Patient Survey data</td>
 <td><a href="https://heec.shinyapps.io/GPPS/">heec.shinyapps.io/GPPS</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong>Access App</strong></td>
 <td>Access satisfaction metrics</td>
 <td><a href="https://heec.shinyapps.io/access_shiny/">heec.shinyapps.io/access_shiny</a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong>Continuity App</strong></td>
 <td>Continuity of care metrics</td>
 <td><a href="https://heec.shinyapps.io/continuity_shiny/">heec.shinyapps.io/continuity_shiny</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong>Trust App</strong></td>
 <td>Trust in healthcare providers</td>
 <td><a href="https://heec.shinyapps.io/trust_shiny/">heec.shinyapps.io/trust_shiny</a></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong>Type App</strong></td>
 <td>Practice type comparisons</td>
 <td><a href="https://heec.shinyapps.io/Type_shiny/">heec.shinyapps.io/Type_shiny</a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong>Satisfaction App</strong></td>
 <td>General satisfaction metrics</td>
 <td><a href="https://heec.shinyapps.io/Satisfaction_shiny/">heec.shinyapps.io/Satisfaction_shiny</a></td>

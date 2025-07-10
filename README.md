@@ -1,6 +1,15 @@
 # Health Equity Evidence Centre
 
 
+- [Project Overview](#project-overview)
+- [Key Findings](#key-findings)
+  - [💰 **Payment Disparities**](#moneybag-payment-disparities)
+  - [👨‍⚕️ **Workforce
+    Challenges**](#man_health_worker-workforce-challenges)
+  - [😟 **Patient Experience Gaps**](#worried-patient-experience-gaps)
+  - [🏥 **System-Wide Pressures**](#hospital-system-wide-pressures)
+- [Data Sources](#data-sources)
+- [Interactive Tools](#interactive-tools)
 - [Datasets](#datasets)
   - [Index of Multiple Deprivation
     (IMD)](#index-of-multiple-deprivation-imd)
@@ -60,21 +69,92 @@ imd_colors <- c("5" = "#A80026", "4" = "#D35400", "3" = "#8E44AD", "2" = "#3498D
 my_colors <- colorRampPalette(c("#1B2C57", "#00A865"))(42)
 ```
 
-This repository serves as a hub for data and analysis related to the
-Health Equity Evidence Centre project.
+This repository contains a comprehensive analysis of health inequalities
+in primary care across England, examining how healthcare resources,
+access, and outcomes vary by socioeconomic deprivation level.
 
-Raw and processed data is available in the [data](data/) subdirectory.
-We have complete collated practice-level time-series for the data made
-available by [NHS Digital](https://digital.nhs.uk/):
+## Project Overview
 
-- Index of Multiple Deprivation
-- NHS Payments to General Practice  
-- GP Patient Survey
+The Health Equity Evidence Centre has compiled and analyzed
+practice-level data from multiple NHS sources to understand patterns of
+inequality in general practice. Our analysis covers **6,669 GP
+practices** serving over **60 million patients**, examining disparities
+across:
 
-RShiny iframes are available in the [shiny](shiny/) subdirectory.
+- **NHS funding and payments** to general practices
+- **Workforce density** and staffing patterns  
+- **Patient satisfaction** and access to care
+- **Health outcomes** and disease prevalence
+- **Practice characteristics** including rurality and size
 
-Analyses and the relevant code is available in the [analysis](analysis/)
-subdirectory.
+## Key Findings
+
+Our analysis reveals significant health inequalities in primary care
+across England:
+
+### 💰 **Payment Disparities**
+
+- Practices serving the **most deprived 20% of the population received
+  £14 less in NHS payments per weighted patient** in 2022-23 than those
+  serving the least deprived quintile
+- **Dispensing practices** earn substantially more per patient due to
+  additional prescribing revenues, creating geographic inequities
+- Despite higher healthcare needs in deprived areas, **funding
+  mechanisms don’t fully compensate** for increased complexity and
+  demand
+
+### 👨‍⚕️ **Workforce Challenges**
+
+- **GP workforce density varies significantly** across deprivation
+  levels, with fewer fully qualified GPs per patient in more deprived
+  areas
+- **Rural practices face acute staffing shortages** while serving
+  populations with greater healthcare needs
+- The shift from **GP partners to salaried GPs** threatens traditional
+  practice models, particularly affecting smaller practices in
+  disadvantaged areas
+
+### 😟 **Patient Experience Gaps**
+
+- **Patient satisfaction consistently lower** in practices serving more
+  deprived populations across all measured domains
+- **Access to appointments and continuity of care** shows persistent
+  inequalities, with worse outcomes in deprived communities
+- **Trust and confidence in healthcare providers** varies by practice
+  characteristics and local socioeconomic factors
+
+### 🏥 **System-Wide Pressures**
+
+- **Practice closures disproportionately impact** smaller communities,
+  with 718,000 patients displaced since 2019
+- **Age structure of populations** significantly influences payment
+  levels, with practices serving older patients receiving higher
+  capitation
+
+## Data Sources
+
+This repository includes complete practice-level time-series data from
+authoritative NHS sources:
+
+- **NHS Digital**: Payments, workforce, appointments, and QOF data
+  (2015-2025)
+- **OHID Fingertips**: Disease prevalence, health behaviors, and life
+  expectancy
+- **GP Patient Survey**: Patient satisfaction and experience metrics
+  (2017-2024)
+- **NHS England**: Practice characteristics, PCN data, and geographic
+  mappings
+
+## Interactive Tools
+
+The project features multiple interactive applications for data
+exploration: - **[Interactive
+Website](https://healthequityevidencecentre.github.io/HEEC/)** with code
+folding and dynamic visualizations - **[9 Shiny
+Applications](https://heec.shinyapps.io/Payments_shiny/)** for detailed
+data exploration - **[42 ICB
+Datapacks](https://github.com/HealthEquityEvidenceCentre/HEEC/tree/main/datapacks)**
+with automated reporting for all Integrated Care Boards
 
 # Datasets
 
@@ -1188,6 +1268,7 @@ satisfaction %>%
 
 ``` r
 # Calculate overall satisfaction by IMD quintile and year
+satisfaction <- read.csv('data/satisfaction/satisfaction.csv')
 satisfaction_by_imd <- satisfaction %>%
   filter(!is.na(IMD_quintile), !is.na(overall_pct)) %>%
   group_by(Year, IMD_quintile) %>%
@@ -1224,11 +1305,6 @@ satisfaction_by_imd %>%
   theme(
     legend.position = "bottom",
     axis.text.x = element_text(angle = 0)
-  ) +
-  scale_y_continuous(
-    labels = function(x) paste0(x, "%"),
-    limits = c(60, 90),
-    breaks = seq(60, 90, by = 5)
   ) +
   scale_x_continuous(breaks = unique(satisfaction_by_imd$Year)) +
   guides(color = guide_legend(reverse = TRUE, nrow = 1))
@@ -2258,14 +2334,11 @@ by large, consolidate healthcare providers.
 This project includes several interactive Shiny applications for
 exploring health equity data:
 
-| Application | Description | URL | Purpose |
-|----|----|----|----|
-| **QOF Shiny** | Quality and Outcomes Framework data explorer | [camappel.shinyapps.io/QOF_shiny](https://camappel.shinyapps.io/QOF_shiny/) | Interactive visualization of QOF disease prevalence and achievement data |
-| **Payments Shiny** | NHS payments analysis tool | [heec.shinyapps.io/Payments_shiny](https://heec.shinyapps.io/Payments_shiny/) | Total payments per weighted patient by practice type, ICB, and year |
-| **Overall Satisfaction** | Patient satisfaction explorer | [heec.shinyapps.io/overall_shiny](https://heec.shinyapps.io/overall_shiny/) | Overall satisfaction with General Practice by ICB and year |
-
 | Application | Description | URL |
 |----|----|----|
+| **QOF Shiny** | Quality and Outcomes Framework data explorer | [camappel.shinyapps.io/QOF_shiny](https://camappel.shinyapps.io/QOF_shiny/) |
+| **Payments Shiny** | NHS payments analysis tool | [heec.shinyapps.io/Payments_shiny](https://heec.shinyapps.io/Payments_shiny/) |
+| **Overall Satisfaction** | Patient satisfaction explorer | [heec.shinyapps.io/overall_shiny](https://heec.shinyapps.io/overall_shiny/) |
 | **GPPS App** | GP Patient Survey data | [heec.shinyapps.io/GPPS](https://heec.shinyapps.io/GPPS/) |
 | **Access App** | Access satisfaction metrics | [heec.shinyapps.io/access_shiny](https://heec.shinyapps.io/access_shiny/) |
 | **Continuity App** | Continuity of care metrics | [heec.shinyapps.io/continuity_shiny](https://heec.shinyapps.io/continuity_shiny/) |
