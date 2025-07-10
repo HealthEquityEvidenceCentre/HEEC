@@ -645,6 +645,46 @@ age_analysis %>%
   )
 ```
 
+```{r age_payments_chart, echo=TRUE, fig.width=12, fig.height=8}
+# Chart showing payments per patient by age quintile
+payment_by_age <- age_analysis %>%
+  group_by(prop65_quintile) %>%
+  summarise(
+    avg_payment_per_patient = mean(average_payment_per_patient, na.rm = TRUE),
+    n_practices = n(),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    quintile_label = case_when(
+      prop65_quintile == 1 ~ "Q1 (Youngest)",
+      prop65_quintile == 2 ~ "Q2",
+      prop65_quintile == 3 ~ "Q3",
+      prop65_quintile == 4 ~ "Q4",
+      prop65_quintile == 5 ~ "Q5 (Oldest)"
+    ),
+    quintile_label = factor(quintile_label, levels = c("Q1 (Youngest)", "Q2", "Q3", "Q4", "Q5 (Oldest)"))
+  )
+
+payment_by_age %>%
+  ggplot(aes(x = quintile_label, y = avg_payment_per_patient, fill = factor(prop65_quintile))) +
+  geom_bar(stat = "identity", alpha = 0.8) +
+  scale_fill_manual(
+    values = imd_colors,
+    guide = "none"
+  ) +
+  labs(
+    title = "NHS Payments per Patient by Age Structure of Practice Population",
+    subtitle = "Average payment per registered patient by proportion of patients 65+ (quintiles)",
+    x = "Proportion of Patients 65+ (Quintile)",
+    y = "Payment per patient (£)"
+  ) +
+  heec_theme +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) +
+  scale_y_continuous(labels = label_comma(prefix = "£"))
+```
+
 ## Satisfaction
 The GP Patient Survey is an independent survey run by Ipsos MORI on behalf of NHS England on the GP Patient Survey website. The survey is sent out to over a million people across the UK and covers a range of topics related to the quality of care provided by GP practices. The data from the survey is used to assess patient experience and satisfaction with GP services.
 
@@ -1487,46 +1527,6 @@ If you'd like a copy of your own ICBs datapack, please email us contact@heec.co.
 
 In 2023/24, 6,669 practices received £10.2 billion from the NHS. Capitation payments to individual practices are adjusted using the Carr-Hill formula. On average, practices received £164.64 per patient, with higher payments for practices serving older populations due to higher healthcare needs, prescribing costs and the specific needs of rural areas. This analysis explores how NHS payments to general practices are informed by the age structure, deprivation and rurality of registered patients.
 
-```{r age_payments_chart, echo=TRUE, fig.width=12, fig.height=8}
-# Chart showing payments per patient by age quintile
-payment_by_age <- age_analysis %>%
-  group_by(prop65_quintile) %>%
-  summarise(
-    avg_payment_per_patient = mean(average_payment_per_patient, na.rm = TRUE),
-    n_practices = n(),
-    .groups = "drop"
-  ) %>%
-  mutate(
-    quintile_label = case_when(
-      prop65_quintile == 1 ~ "Q1 (Youngest)",
-      prop65_quintile == 2 ~ "Q2",
-      prop65_quintile == 3 ~ "Q3",
-      prop65_quintile == 4 ~ "Q4",
-      prop65_quintile == 5 ~ "Q5 (Oldest)"
-    ),
-    quintile_label = factor(quintile_label, levels = c("Q1 (Youngest)", "Q2", "Q3", "Q4", "Q5 (Oldest)"))
-  )
-
-payment_by_age %>%
-  ggplot(aes(x = quintile_label, y = avg_payment_per_patient, fill = factor(prop65_quintile))) +
-  geom_bar(stat = "identity", alpha = 0.8) +
-  scale_fill_manual(
-    values = imd_colors,
-    guide = "none"
-  ) +
-  labs(
-    title = "NHS Payments per Patient by Age Structure of Practice Population",
-    subtitle = "Average payment per registered patient by proportion of patients 65+ (quintiles)",
-    x = "Proportion of Patients 65+ (Quintile)",
-    y = "Payment per patient (£)"
-  ) +
-  heec_theme +
-  theme(
-    axis.text.x = element_text(angle = 45, hjust = 1)
-  ) +
-  scale_y_continuous(labels = label_comma(prefix = "£"))
-```
-
 ```{r age_imd_scatter, echo=TRUE, fig.width=12, fig.height=8}
 # Scatter plot showing relationship between age and deprivation
 age_analysis %>%
@@ -1563,6 +1563,72 @@ age_analysis %>%
   theme(
     legend.position = "bottom"
   )
+```
+
+```{r payment_breakdown_by_imd, echo=TRUE, fig.width=12, fig.height=8}
+# Create stacked bar chart showing payment breakdown by IMD quintile
+# Use 2023 payments data for most recent complete picture
+payment_breakdown <- nhs_payments %>%
+  filter(Year == 2023, !is.na(IMD_quintile)) %>%
+  mutate(
+    # Calculate per-patient amounts for each category
+    global_sum_per_patient = Total.Global.Sum / Number.of.Registered.Patients..Last.Known.Figure.,
+    prescribing_per_patient = Total.Prescribing / Number.of.Registered.Patients..Last.Known.Figure.,
+    other_per_patient = (Total.NHS.Payments.to.General.Practice - Total.Global.Sum - Total.Prescribing) / Number.of.Registered.Patients..Last.Known.Figure.
+  ) %>%
+  # Filter out extreme outliers
+  filter(
+    global_sum_per_patient < 200,
+    prescribing_per_patient < 200,
+    other_per_patient < 200,
+    global_sum_per_patient > 0,
+    prescribing_per_patient >= 0,
+    other_per_patient > 0
+  ) %>%
+  group_by(IMD_quintile) %>%
+  summarise(
+    global_sum = mean(global_sum_per_patient, na.rm = TRUE),
+    prescribing = mean(prescribing_per_patient, na.rm = TRUE),
+    other = mean(other_per_patient, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    IMD_quintile = factor(IMD_quintile, levels = 1:5)
+  ) %>%
+  pivot_longer(
+    cols = c(global_sum, prescribing, other),
+    names_to = "payment_type",
+    values_to = "amount_per_patient"
+  ) %>%
+  mutate(
+    payment_type = factor(
+      payment_type,
+      levels = c("global_sum", "other", "prescribing"),
+      labels = c("Global Sum", "Other Payments", "Prescribing")
+    )
+  )
+
+# Create the stacked bar chart
+payment_breakdown %>%
+  ggplot(aes(x = IMD_quintile, y = amount_per_patient, fill = payment_type)) +
+  geom_bar(stat = "identity", alpha = 0.8) +
+  scale_fill_manual(
+    values = c("Global Sum" = heec_colors[1], "Other Payments" = heec_colors[2], "Prescribing" = heec_colors[3]),
+    name = "Payment Type"
+  ) +
+  labs(
+    title = "NHS Payment Breakdown per Patient by Deprivation Level",
+    subtitle = "Average payment per registered patient by payment category and IMD quintile (2023)",
+    x = "IMD Quintile (1 = least deprived, 5 = most deprived)",
+    y = "Payment per patient (£)"
+  ) +
+  heec_theme +
+  theme(
+    legend.position = "bottom",
+    axis.text.x = element_text(angle = 0)
+  ) +
+  scale_y_continuous(labels = label_comma(prefix = "£")) +
+  guides(fill = guide_legend(nrow = 1))
 ```
 
 ## 7. Sorry we're closed: Exploring general practice closures
