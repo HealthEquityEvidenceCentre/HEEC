@@ -19,9 +19,10 @@ _site/
 *.tmp
 *.bak
 
-# Specific temporary files
+# Specific files
 data/age_group/raw_age.csv
 appointments/
+data/pcn_workforce/pcn_workforce.csv
 
 # PowerPoint presentations (if not needed for version control)
 *.pptx
