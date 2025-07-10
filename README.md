@@ -20,7 +20,7 @@ The factors determining the quality and quantity of primary care services vary a
 
 - **Charts**:\
   ![](https://github.com/HealthEquityEvidenceCentre/HEEC/blob/main/analysis/healthcare_need/README_files/figure-markdown_github/weighted%20patients-1.png)\
-  ![](README_files/figure-markdown_github/overview-1.png)\
+  ![](https://github.com/HealthEquityEvidenceCentre/HEEC/blob/main/analysis/healthcare_need/README_files/figure-markdown_github/overview-1.png)\
   [QOF Shiny App](https://heec.shinyapps.io/QOF_shiny/)
 
 ### 2. [NHS payments to practices in the East of England](https://www.heec.co.uk/resource/nhs-payments-general-practice-east-england/)
