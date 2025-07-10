@@ -9,7 +9,6 @@
   - [😟 **Patient Experience Gaps**](#worried-patient-experience-gaps)
   - [🏥 **System-Wide Pressures**](#hospital-system-wide-pressures)
 - [Data Sources](#data-sources)
-- [Interactive Tools](#interactive-tools)
 - [Datasets](#datasets)
   - [Index of Multiple Deprivation
     (IMD)](#index-of-multiple-deprivation-imd)
@@ -144,17 +143,6 @@ authoritative NHS sources:
   (2017-2024)
 - **NHS England**: Practice characteristics, PCN data, and geographic
   mappings
-
-## Interactive Tools
-
-The project features multiple interactive applications for data
-exploration: - **[Interactive
-Website](https://healthequityevidencecentre.github.io/HEEC/)** with code
-folding and dynamic visualizations - **[9 Shiny
-Applications](https://heec.shinyapps.io/Payments_shiny/)** for detailed
-data exploration - **[42 ICB
-Datapacks](https://github.com/HealthEquityEvidenceCentre/HEEC/tree/main/datapacks)**
-with automated reporting for all Integrated Care Boards
 
 # Datasets
 
@@ -2182,7 +2170,7 @@ following categories:
 If you’d like a copy of your own ICBs datapack, please email us
 contact@heec.co.uk
 
-\*\*[datapacks](https://github.com/HealthEquityEvidenceCentre/HEEC/tree/main/datapacks)
+**[datapacks](https://github.com/HealthEquityEvidenceCentre/HEEC/tree/main/datapacks)**
 
 **[NHS Health Inequalities
 Notebook](https://health-inequalities.nhsrcommunity.com/england.html)**
@@ -2393,8 +2381,3 @@ To work with this project:
 1.  Ensure you have R and Quarto installed
 2.  Run analysis scripts with: `Rscript <script_name>.R`
 3.  Render Quarto documents with: `quarto render <document_name>.qmd`
-4.  Launch Shiny apps with:
-    `R -e "shiny::runApp('<app_directory>/app.R')"`
-
-For more information, see the [CLAUDE.md](CLAUDE.md) file for detailed
-project guidelines and commands.

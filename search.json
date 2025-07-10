@@ -28,13 +28,6 @@
     "text": "Data Sources\nThis repository includes complete practice-level time-series data from authoritative NHS sources:\n\nNHS Digital: Payments, workforce, appointments, and QOF data (2015-2025)\nOHID Fingertips: Disease prevalence, health behaviors, and life expectancy\nGP Patient Survey: Patient satisfaction and experience metrics (2017-2024)\nNHS England: Practice characteristics, PCN data, and geographic mappings"
   },
   {
-    "objectID": "README.html#interactive-tools",
-    "href": "README.html#interactive-tools",
-    "title": "Health Equity Evidence Centre",
-    "section": "Interactive Tools",
-    "text": "Interactive Tools\nThe project features multiple interactive applications for data exploration: - Interactive Website with code folding and dynamic visualizations - 9 Shiny Applications for detailed data exploration - 42 ICB Datapacks with automated reporting for all Integrated Care Boards"
-  },
-  {
     "objectID": "README.html#index-of-multiple-deprivation-imd",
     "href": "README.html#index-of-multiple-deprivation-imd",
     "title": "Health Equity Evidence Centre",
@@ -109,7 +102,7 @@
     "href": "README.html#general-practice-inequalities-datapacks",
     "title": "Health Equity Evidence Centre",
     "section": "5. General Practice Inequalities Datapacks",
-    "text": "5. General Practice Inequalities Datapacks\nThere are stark inequalities in the supply, demand and need of general practice. ICBs can take action to address these inequalities.\nWe’ve developed datapacks for each ICB England to help them understand their inequalities and take action.\nWithin the datapacks, we calculate the disparity between practices serving the most and least deprived patients for each ICB, across the following categories:\n\nResources (supply): Payments, Workforce\nPopulation (demand): Disease prevalence, Health-related behaviours\nService quality: QOF achievement\nAccess: Patient experience, Appointments\nImpact on secondary care: Emergency admissions, A&E attendances\n\nIf you’d like a copy of your own ICBs datapack, please email us contact@heec.co.uk\n**datapacks\nNHS Health Inequalities Notebook"
+    "text": "5. General Practice Inequalities Datapacks\nThere are stark inequalities in the supply, demand and need of general practice. ICBs can take action to address these inequalities.\nWe’ve developed datapacks for each ICB England to help them understand their inequalities and take action.\nWithin the datapacks, we calculate the disparity between practices serving the most and least deprived patients for each ICB, across the following categories:\n\nResources (supply): Payments, Workforce\nPopulation (demand): Disease prevalence, Health-related behaviours\nService quality: QOF achievement\nAccess: Patient experience, Appointments\nImpact on secondary care: Emergency admissions, A&E attendances\n\nIf you’d like a copy of your own ICBs datapack, please email us contact@heec.co.uk\ndatapacks\nNHS Health Inequalities Notebook"
   },
   {
     "objectID": "README.html#how-does-the-age-structure-of-patients-affect-nhs-payments-to-general-practice",
@@ -130,6 +123,6 @@
     "href": "README.html#getting-started",
     "title": "Health Equity Evidence Centre",
     "section": "Getting Started",
-    "text": "Getting Started\nTo work with this project:\n\nEnsure you have R and Quarto installed\nRun analysis scripts with: Rscript &lt;script_name&gt;.R\nRender Quarto documents with: quarto render &lt;document_name&gt;.qmd\nLaunch Shiny apps with: R -e \"shiny::runApp('&lt;app_directory&gt;/app.R')\"\n\nFor more information, see the CLAUDE.md file for detailed project guidelines and commands."
+    "text": "Getting Started\nTo work with this project:\n\nEnsure you have R and Quarto installed\nRun analysis scripts with: Rscript &lt;script_name&gt;.R\nRender Quarto documents with: quarto render &lt;document_name&gt;.qmd"
   }
 ]
