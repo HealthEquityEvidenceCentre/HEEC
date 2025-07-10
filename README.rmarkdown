@@ -39,6 +39,11 @@ imd_colors <- c("5" = "#A80026", "4" = "#D35400", "3" = "#8E44AD", "2" = "#3498D
 my_colors <- colorRampPalette(c("#1B2C57", "#00A865"))(42)
 ```
 
+
+
+
+
+
 This repository serves as a hub for data and analysis related to the Health Equity Evidence Centre project.
 
 Raw and processed data is available in the [data](data/) subdirectory. We have complete collated practice-level time-series for the data made available by [NHS Digital](https://digital.nhs.uk/):
@@ -79,6 +84,11 @@ The latest release is IoD2019; no new release has been announced as of Nov 2024.
 
 ### API
 This data can be accessed through the [API](https://fingertips.phe.org.uk/api) provided by the Fingertips platform.
+
+
+
+
+
 ```{r API}
 # Load necessary libraries
 library(httr)
@@ -118,8 +128,18 @@ if (http_status(response)$category == "Success") {
 head(IMD)
 ```
 
+
+
+
+
+
 ### FingertipsR Package
 The IMD data can also be accessed using the `fingertipsR` [package](https://github.com/ropensci/fingertipsR).
+
+
+
+
+
 
 ```{r fingertipsR}
 # Load necessary library
@@ -149,10 +169,20 @@ IMD <- fingertips_data(IndicatorID = indicator_id, AreaTypeID = 7) # AreaTypeID 
 head(IMD)
 ```
 
+
+
+
+
+
 ### Direct download
 However, this data only provides values for practices that are still active in 2019. To get the data for all practices, we obtained the CSV directly from OHID via email, which is available [here](https://github.com/camappel/HEEC/blob/main/data/IMD/IMD_raw.csv) as `IMD_raw.csv`.
 
 IMD values are only provided for 2010, 2015, and 2019. In order to have a continuous time series, we interpolate the values between these years, and extrapolate the values for 2020-2025. The resultant data is saved [here](https://github.com/camappel/HEEC/blob/main/data/IMD/IMD_interpolated.csv) as `IMD_interpolated.csv`.
+
+
+
+
+
 
 ```{r interpolate}
 IMD <- read.csv("data/IMD/IMD_raw.csv")
@@ -267,12 +297,22 @@ IMD %>%
   )
 ```
 
+
+
+
+
+
 ## Payments
 NHS Digital provided annual data on payments made to general practices in England from 2014/15 to 22/23.
 
 Annual practice level .csv files are available [here](https://digital.nhs.uk/data-and-information/publications/statistical/nhs-payments-to-general-practice); some preprocessing has been done to clean the data and ensure consistency in variable names across years.
 
 Execute the following code to merge the data to create a single time-series dataset:
+
+
+
+
+
 
 ```{r datasets, echo = TRUE}
 library(magrittr)
@@ -605,12 +645,22 @@ payments_by_imd %>%
   guides(color = guide_legend(reverse = TRUE, nrow = 1))
 ```
 
+
+
+
+
+
 ## Age Group Data
 The Office for Health Improvement and Disparities (OHID) provides data on the proportion of GP registered populations by age group through the Fingertips platform. This data helps analyze how the age structure of practice populations affects NHS payments.
 
 The data can be accessed through the [Fingertips API](https://fingertips.phe.org.uk/api) using indicator ID 93468.
 
 Execute the following code to retrieve and process the age group data:
+
+
+
+
+
 
 ```{r age_group_data}
 ```{r age_analysis_setup, echo=TRUE}
@@ -644,6 +694,11 @@ age_analysis %>%
     .groups = "drop"
   )
 ```
+
+
+
+
+
 
 ## Satisfaction
 The GP Patient Survey is an independent survey run by Ipsos MORI on behalf of NHS England on the GP Patient Survey website. The survey is sent out to over a million people across the UK and covers a range of topics related to the quality of care provided by GP practices. The data from the survey is used to assess patient experience and satisfaction with GP services.
@@ -905,6 +960,11 @@ NHS Digital publishes annual data on GP earnings based on tax returns submitted 
 
 The earnings data includes total earnings, expenses, income before tax for both partners and salaried GPs, income distribution percentiles, and inflation-adjusted figures using GDP deflator and RPI.
 
+
+
+
+
+
 ```{r gp_earnings_processing}
 # Load GP earnings data
 gp_earnings <- read.csv("data/GP_earnings/raw/GP_earn_exp.csv")
@@ -958,11 +1018,21 @@ practice_size_earnings %>%
   scale_x_continuous(breaks = unique(practice_size_earnings$Year))
 ```
 
+
+
+
+
+
 # Analysis
 
 ## 1. [Structural inequalities in primary care – the facts and figures](https://www.heec.co.uk/resource/structural-inequalities-primary-care/)
 
 The factors determining the quality and quantity of primary care services vary across England. Here we analyse practice level data relating to the supply, demand, and need for primary care, according to the socioeconomic status of the patients served.
+
+
+
+
+
 
 ```{r weighted-patients, echo: true, fig.width=12, fig.height=8}
 payments <- read.csv("data/payments/payments.csv")
@@ -1058,6 +1128,11 @@ t %>%
   guides(fill = guide_legend(reverse = TRUE, nrow = 1))
 ```
 
+
+
+
+
+
 [QOF Shiny App](https://heec.shinyapps.io/QOF_shiny/)
 
 ## 2. [NHS payments to practices in the East of England](https://www.heec.co.uk/resource/nhs-payments-general-practice-east-england/)
@@ -1083,6 +1158,11 @@ Overall patient satisfaction with general practice has improved slightly accordi
 ## 4. [Exploring the impact of dispensing practices on equity in NHS payments to general practices](https://www.heec.co.uk/resource/exploring-the-impact-of-dispensing-practicing-on-equity-in-nhs-payments-to-general-practices/)
 
 In 2023, 6,669 general practices received £10.2 billion in NHS funding across England, increasing to £11 billion with COVID-related and Primary Care Network (PCN) payments. Almost 10% of this—£870 million—was allocated to prescribing- and dispensing-related payments, supporting 944 dispensing practices serving 9.5 million patients (£625 million) and 5,537 non-dispensing practices covering 53 million patients (£245 million).
+
+
+
+
+
 
 ```{r dispensing_analysis, echo=TRUE, fig.width=12, fig.height=8}
 # Use the most recent year of payments data (2023)
@@ -1415,6 +1495,11 @@ practice_type_earnings %>%
   scale_x_continuous(breaks = unique(practice_type_earnings$Year))
 ```
 
+
+
+
+
+
 ## 5. [General Practice Inequalities Datapacks](https://www.heec.co.uk/resource/general-practice-inequalities-datapacks/)
 
 There are stark inequalities in the supply, demand and need of general practice. ICBs can take action to address these inequalities.
@@ -1438,6 +1523,11 @@ If you'd like a copy of your own ICBs datapack, please email us contact@heec.co.
 ## 6. [How does the age structure of patients affect NHS payments to General Practice?](https://www.heec.co.uk/resource/how-does-the-age-structure-of-patients-affect-nhs-payments-to-general-practice/)
 
 In 2023/24, 6,669 practices received £10.2 billion from the NHS. Capitation payments to individual practices are adjusted using the Carr-Hill formula. On average, practices received £164.64 per patient, with higher payments for practices serving older populations due to higher healthcare needs, prescribing costs and the specific needs of rural areas. This analysis explores how NHS payments to general practices are informed by the age structure, deprivation and rurality of registered patients.
+
+
+
+
+
 
 ```{r age_payments_chart, echo=TRUE, fig.width=12, fig.height=8}
 # Chart showing payments per patient by age quintile
@@ -1517,6 +1607,11 @@ age_analysis %>%
   )
 ```
 
+
+
+
+
+
 ## 7. Sorry we're closed: Exploring general practice closures
 
 In 2019, there were 7,029 General Practice surgeries in England, providing essential healthcare to more than 60 million patients. However, recent data reveals a concerning trend: this number has fallen by over 10%, leaving just 6,256 practices in operation. While many of these closures represented mergers in with other practices, 193 (24%) shut down completely, leaving no direct replacement. This has displaced an estimated 718,000 – equivalent to nearly 1 in every 80 patients in England – forcing them to seek new healthcare providers.
@@ -1529,11 +1624,15 @@ As the number of surgeries dwindled, the strain on existing practices increased.
 
 This project includes several interactive Shiny applications for exploring health equity data:
 
+## Local Applications (Source Code Available)
+
 | Application | Description | URL | Purpose |
 |-------------|-------------|-----|---------|
 | **QOF Shiny** | Quality and Outcomes Framework data explorer | [camappel.shinyapps.io/QOF_shiny](https://camappel.shinyapps.io/QOF_shiny/) | Interactive visualization of QOF disease prevalence and achievement data |
 | **Payments Shiny** | NHS payments analysis tool | [heec.shinyapps.io/Payments_shiny](https://heec.shinyapps.io/Payments_shiny/) | Total payments per weighted patient by practice type, ICB, and year |
 | **Overall Satisfaction** | Patient satisfaction explorer | [heec.shinyapps.io/overall_shiny](https://heec.shinyapps.io/overall_shiny/) | Overall satisfaction with General Practice by ICB and year |
+
+## Additional Deployed Applications
 
 | Application | Description | URL |
 |-------------|-------------|-----|
