@@ -652,7 +652,7 @@ Annual practice-level .csv files are available [here].
 
 Execute the following code to merge the data to create a single time-series dataset:
 
-<!-- ```{r sastifaction_data}
+```{r sastifaction_data}
 practice_information <- c("Practice_Code", "Practice_Name", "CCG_Code", "CCG_Name", "ICS_Code", "ICS_Name")
 
 # Define the variable mappings as a named list
@@ -736,9 +736,9 @@ satisfaction %>%
     max_overall = max(overall_pct, na.rm = TRUE),
     n = n()
   )
-``` -->
+```
 
-<!-- ```{r clean_satisfaction}
+```{r clean_satisfaction}
 # match CCG.Code in df with CCG.Code in CCG_ICB and return ICB.Code
 satisfaction$ICB.NAME <- CCG_ICB[match(satisfaction$CCG_Code, CCG_ICB$CCG.Code), ]$ICB.NAME
 satisfaction[is.na(satisfaction$ICB.NAME), ]$ICB.NAME <- CCG_ICB[match(satisfaction[is.na(satisfaction$ICB.NAME), ]$ICS_Code, CCG_ICB$ICB.Code), ]$ICB.NAME
@@ -758,7 +758,55 @@ satisfaction %>%
   summarise(
     missing_imd = sum(is.na(IMD))
   )
-``` -->
+```
+
+```{r satisfaction_by_imd, echo=TRUE, fig.width=12, fig.height=8}
+# Calculate overall satisfaction by IMD quintile and year
+satisfaction_by_imd <- satisfaction %>%
+  filter(!is.na(IMD_quintile), !is.na(overall_pct)) %>%
+  group_by(Year, IMD_quintile) %>%
+  summarise(
+    mean_satisfaction = mean(overall_pct, na.rm = TRUE),
+    median_satisfaction = median(overall_pct, na.rm = TRUE),
+    n_practices = n(),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    IMD_quintile = factor(IMD_quintile, levels = 1:5)
+  )
+
+# Create the plot
+satisfaction_by_imd %>%
+  ggplot(aes(
+    x = Year, y = mean_satisfaction,
+    color = IMD_quintile, group = IMD_quintile
+  )) +
+  geom_line(size = 1.2, alpha = 0.8) +
+  geom_point(size = 2.5, alpha = 0.9) +
+  scale_color_manual(
+    values = imd_colors,
+    name = "IMD Quintile",
+    labels = c("1 (least deprived)", "2", "3", "4", "5 (most deprived)")
+  ) +
+  labs(
+    x = "Year",
+    y = "Overall satisfaction (%)",
+    title = "Patient Satisfaction with GP Services by Deprivation Level",
+    subtitle = "Percentage of patients reporting good overall experience by IMD quintile"
+  ) +
+  heec_theme +
+  theme(
+    legend.position = "bottom",
+    axis.text.x = element_text(angle = 0)
+  ) +
+  scale_y_continuous(
+    labels = function(x) paste0(x, "%"),
+    limits = c(60, 90),
+    breaks = seq(60, 90, by = 5)
+  ) +
+  scale_x_continuous(breaks = unique(satisfaction_by_imd$Year)) +
+  guides(color = guide_legend(reverse = TRUE, nrow = 1))
+```
 
 ## GP Workforce
 
@@ -888,7 +936,7 @@ workforce_by_imd %>%
     x = "Year",
     y = "GP FTE per 10,000 patients",
     title = "GP Workforce Density by Deprivation Level",
-    subtitle = "Fully qualified GP FTE per 1,000 patients by IMD quintile"
+    subtitle = "Fully qualified GP FTE per 10,000 patients by IMD quintile"
   ) +
   heec_theme +
   theme(
