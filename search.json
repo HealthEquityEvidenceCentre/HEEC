@@ -81,7 +81,7 @@
     "href": "README.html#general-practice-inequalities-datapacks",
     "title": "Health Equity Evidence Centre",
     "section": "5. General Practice Inequalities Datapacks",
-    "text": "5. General Practice Inequalities Datapacks\nThere are stark inequalities in the supply, demand and need of general practice. ICBs can take action to address these inequalities.\nWe’ve developed datapacks for each ICB England to help them understand their inequalities and take action.\nBelow are the datapacks for the East of England ICBs. If you’d like a copy of your own ICBs datapack, please email us contact@heec.co.uk\nWithin the datapacks, we calculate the disparity between practices serving the most and least deprived patients for each ICB, across the following categories:\n\nResources (supply): Payments, Workforce\nPopulation (demand): Disease prevalence, Health-related behaviours\nService quality: QOF achievement\nAccess: Patient experience, Appointments\nImpact on secondary care: Emergency admissions, A&E attendances\nCode: NHS Health Inequalities Notebook"
+    "text": "5. General Practice Inequalities Datapacks\nThere are stark inequalities in the supply, demand and need of general practice. ICBs can take action to address these inequalities.\nWe’ve developed datapacks for each ICB England to help them understand their inequalities and take action.\nWithin the datapacks, we calculate the disparity between practices serving the most and least deprived patients for each ICB, across the following categories:\n\nResources (supply): Payments, Workforce\nPopulation (demand): Disease prevalence, Health-related behaviours\nService quality: QOF achievement\nAccess: Patient experience, Appointments\nImpact on secondary care: Emergency admissions, A&E attendances\n\nIf you’d like a copy of your own ICBs datapack, please email us contact@heec.co.uk\n**datapacks\nNHS Health Inequalities Notebook"
   },
   {
     "objectID": "README.html#how-does-the-age-structure-of-patients-affect-nhs-payments-to-general-practice",
@@ -96,20 +96,6 @@
     "title": "Health Equity Evidence Centre",
     "section": "7. Sorry we’re closed: Exploring general practice closures",
     "text": "7. Sorry we’re closed: Exploring general practice closures\nIn 2019, there were 7,029 General Practice surgeries in England, providing essential healthcare to more than 60 million patients. However, recent data reveals a concerning trend: this number has fallen by over 10%, leaving just 6,256 practices in operation. While many of these closures represented mergers in with other practices, 193 (24%) shut down completely, leaving no direct replacement. This has displaced an estimated 718,000 – equivalent to nearly 1 in every 80 patients in England – forcing them to seek new healthcare providers.\nAs the number of surgeries dwindled, the strain on existing practices increased. Over the same period, the average GP list size grew from 8,737 to 9,613 patients. The practices that closed were, on average, significantly smaller, with around 4,004 per surgery. At the same time, the structure of NHS workforce has shifted dramatically, with the number of salaried GPs surpassing the number of GP partners for the first time in NHS history. This shift signals a move away from traditional, independently managed practices toward a system increasingly dominated by large, consolidate healthcare providers."
-  },
-  {
-    "objectID": "README.html#local-applications-source-code-available",
-    "href": "README.html#local-applications-source-code-available",
-    "title": "Health Equity Evidence Centre",
-    "section": "Local Applications (Source Code Available)",
-    "text": "Local Applications (Source Code Available)\n\n\n\nApplication\nDescription\nURL\nPurpose\n\n\n\n\nQOF Shiny\nQuality and Outcomes Framework data explorer\ncamappel.shinyapps.io/QOF_shiny\nInteractive visualization of QOF disease prevalence and achievement data\n\n\nPayments Shiny\nNHS payments analysis tool\nheec.shinyapps.io/Payments_shiny\nTotal payments per weighted patient by practice type, ICB, and year\n\n\nOverall Satisfaction\nPatient satisfaction explorer\nheec.shinyapps.io/overall_shiny\nOverall satisfaction with General Practice by ICB and year"
-  },
-  {
-    "objectID": "README.html#additional-deployed-applications",
-    "href": "README.html#additional-deployed-applications",
-    "title": "Health Equity Evidence Centre",
-    "section": "Additional Deployed Applications",
-    "text": "Additional Deployed Applications\n\n\n\nApplication\nDescription\nURL\n\n\n\n\nGPPS App\nGP Patient Survey data\nheec.shinyapps.io/GPPS\n\n\nAccess App\nAccess satisfaction metrics\nheec.shinyapps.io/access_shiny\n\n\nContinuity App\nContinuity of care metrics\nheec.shinyapps.io/continuity_shiny\n\n\nTrust App\nTrust in healthcare providers\nheec.shinyapps.io/trust_shiny\n\n\nType App\nPractice type comparisons\nheec.shinyapps.io/Type_shiny\n\n\nSatisfaction App\nGeneral satisfaction metrics\nheec.shinyapps.io/Satisfaction_shiny\n\n\n\nAll applications are designed to explore health inequalities across different deprivation levels, practice types, and geographic regions in England."
   },
   {
     "objectID": "README.html#getting-started",

@@ -31,10 +31,6 @@
   - [7. Sorry we’re closed: Exploring general practice
     closures](#7-sorry-were-closed-exploring-general-practice-closures)
 - [Shiny Applications](#shiny-applications)
-  - [Local Applications (Source Code
-    Available)](#local-applications-source-code-available)
-  - [Additional Deployed
-    Applications](#additional-deployed-applications)
 - [Project Structure](#project-structure)
   - [Getting Started](#getting-started)
 
@@ -1922,25 +1918,23 @@ practice. ICBs can take action to address these inequalities.
 We’ve developed datapacks for each ICB England to help them understand
 their inequalities and take action.
 
-Below are the datapacks for the East of England ICBs. If you’d like a
-copy of your own ICBs datapack, please email us contact@heec.co.uk
-
 Within the datapacks, we calculate the disparity between practices
 serving the most and least deprived patients for each ICB, across the
 following categories:
 
 - Resources (supply): Payments, Workforce
-
 - Population (demand): Disease prevalence, Health-related behaviours
-
 - Service quality: QOF achievement
-
 - Access: Patient experience, Appointments
-
 - Impact on secondary care: Emergency admissions, A&E attendances
 
-- **Code**: [NHS Health Inequalities
-  Notebook](https://health-inequalities.nhsrcommunity.com/england.html)
+If you’d like a copy of your own ICBs datapack, please email us
+contact@heec.co.uk
+
+\*\*[datapacks](https://github.com/HealthEquityEvidenceCentre/HEEC/tree/main/datapacks)
+
+**[NHS Health Inequalities
+Notebook](https://health-inequalities.nhsrcommunity.com/england.html)**
 
 ## 6. [How does the age structure of patients affect NHS payments to General Practice?](https://www.heec.co.uk/resource/how-does-the-age-structure-of-patients-affect-nhs-payments-to-general-practice/)
 
@@ -2063,15 +2057,11 @@ by large, consolidate healthcare providers.
 This project includes several interactive Shiny applications for
 exploring health equity data:
 
-## Local Applications (Source Code Available)
-
 | Application | Description | URL | Purpose |
 |----|----|----|----|
 | **QOF Shiny** | Quality and Outcomes Framework data explorer | [camappel.shinyapps.io/QOF_shiny](https://camappel.shinyapps.io/QOF_shiny/) | Interactive visualization of QOF disease prevalence and achievement data |
 | **Payments Shiny** | NHS payments analysis tool | [heec.shinyapps.io/Payments_shiny](https://heec.shinyapps.io/Payments_shiny/) | Total payments per weighted patient by practice type, ICB, and year |
 | **Overall Satisfaction** | Patient satisfaction explorer | [heec.shinyapps.io/overall_shiny](https://heec.shinyapps.io/overall_shiny/) | Overall satisfaction with General Practice by ICB and year |
-
-## Additional Deployed Applications
 
 | Application | Description | URL |
 |----|----|----|
