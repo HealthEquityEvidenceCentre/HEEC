@@ -11,9 +11,8 @@
 _site/
 /.quarto/
 
-# Generated HTML and markdown files
+# Generated HTML files
 *.html
-README.md
 README_files/
 
 # Temporary and backup files

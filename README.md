@@ -1,19 +1,44 @@
----
-title: "Health Equity Evidence Centre"
-output-file: README
-format:
-  html:
-    toc: true
-    code-fold: true
-    code-summary: "Click to show code"
-  gfm:
-    toc: true
-execute:
-  echo: true
-  warning: false
----
+# Health Equity Evidence Centre
 
-```{r setup}
+
+- [Datasets](#datasets)
+  - [Index of Multiple Deprivation
+    (IMD)](#index-of-multiple-deprivation-imd)
+    - [API](#api)
+    - [FingertipsR Package](#fingertipsr-package)
+    - [Direct download](#direct-download)
+  - [Payments](#payments)
+  - [Age Group Data](#age-group-data)
+  - [Satisfaction](#satisfaction)
+  - [GP Workforce](#gp-workforce)
+  - [GP Earnings](#gp-earnings)
+- [Analysis](#analysis)
+  - [1. Structural inequalities in primary care – the facts and
+    figures](#1-structural-inequalities-in-primary-care--the-facts-and-figures)
+  - [2. NHS payments to practices in the East of
+    England](#2-nhs-payments-to-practices-in-the-east-of-england)
+  - [3. What does the latest GP Patient Survey tell us about
+    socio-economic inequalities in general
+    practice?](#3-what-does-the-latest-gp-patient-survey-tell-us-about-socio-economic-inequalities-in-general-practice)
+  - [4. Exploring the impact of dispensing practices on equity in NHS
+    payments to general
+    practices](#4-exploring-the-impact-of-dispensing-practices-on-equity-in-nhs-payments-to-general-practices)
+  - [5. General Practice Inequalities
+    Datapacks](#5-general-practice-inequalities-datapacks)
+  - [6. How does the age structure of patients affect NHS payments to
+    General
+    Practice?](#6-how-does-the-age-structure-of-patients-affect-nhs-payments-to-general-practice)
+  - [7. Sorry we’re closed: Exploring general practice
+    closures](#7-sorry-were-closed-exploring-general-practice-closures)
+- [Shiny Applications](#shiny-applications)
+  - [Local Applications (Source Code
+    Available)](#local-applications-source-code-available)
+  - [Additional Deployed
+    Applications](#additional-deployed-applications)
+- [Project Structure](#project-structure)
+  - [Getting Started](#getting-started)
+
+``` r
 library(magrittr)
 library(dplyr)
 library(ggplot2)
@@ -39,9 +64,12 @@ imd_colors <- c("5" = "#A80026", "4" = "#D35400", "3" = "#8E44AD", "2" = "#3498D
 my_colors <- colorRampPalette(c("#1B2C57", "#00A865"))(42)
 ```
 
-This repository serves as a hub for data and analysis related to the Health Equity Evidence Centre project.
+This repository serves as a hub for data and analysis related to the
+Health Equity Evidence Centre project.
 
-Raw and processed data is available in the [data](data/) subdirectory. We have complete collated practice-level time-series for the data made available by [NHS Digital](https://digital.nhs.uk/):
+Raw and processed data is available in the [data](data/) subdirectory.
+We have complete collated practice-level time-series for the data made
+available by [NHS Digital](https://digital.nhs.uk/):
 
 - Index of Multiple Deprivation
 - NHS Payments to General Practice  
@@ -49,13 +77,13 @@ Raw and processed data is available in the [data](data/) subdirectory. We have c
 
 RShiny iframes are available in the [shiny](shiny/) subdirectory.
 
-Analyses and the relevant code is available in the [analysis](analysis/) subdirectory.
-
+Analyses and the relevant code is available in the [analysis](analysis/)
+subdirectory.
 
 # Datasets
 
 | Dataset | Description | Source | Time Period | Files | Processing |
-|---------|-------------|--------|-------------|-------|------------|
+|----|----|----|----|----|----|
 | **NHS Payments** | Practice-level NHS payments to general practice | [NHS Digital](https://digital.nhs.uk/data-and-information/publications/statistical/nhs-payments-to-general-practice) | 2015-2023 | `payments/payments.csv` | Annual files merged with standardized columns |
 | **IMD** | Index of Multiple Deprivation at practice level | [DoHSC](https://www.gov.uk/government/collections/english-indices-of-deprivation) | 2010, 2015, 2019 | `IMD/IMD_interpolated.csv` | Interpolated for continuous time series |
 | **GP Patient Survey** | Patient satisfaction and experience metrics | [NHS England](https://www.gp-patient.co.uk/) | 2017-2024 | `satisfaction/satisfaction.csv` | Annual files merged with consistent variables |
@@ -73,13 +101,23 @@ Analyses and the relevant code is available in the [analysis](analysis/) subdire
 | **CCG/ICB Codes** | Mapping between CCG and ICB codes | NHS England | 2023 | `CCG_ICB_code.csv` | Geographic area mappings |
 
 ## Index of Multiple Deprivation (IMD)
-The Ministry of Housing, Communities and Local Government calculates the English Indices of Deprivation, which includes the Index of Multiple Deprivation (IMD) - the official measure of relative deprivation in England - at the practice-level. This data is used to assess the socio-economic status of the population served by each practice.
 
-The latest release is IoD2019; no new release has been announced as of Nov 2024.
+The Ministry of Housing, Communities and Local Government calculates the
+English Indices of Deprivation, which includes the Index of Multiple
+Deprivation (IMD) - the official measure of relative deprivation in
+England - at the practice-level. This data is used to assess the
+socio-economic status of the population served by each practice.
+
+The latest release is IoD2019; no new release has been announced as of
+Nov 2024.
 
 ### API
-This data can be accessed through the [API](https://fingertips.phe.org.uk/api) provided by the Fingertips platform.
-```{r API}
+
+This data can be accessed through the
+[API](https://fingertips.phe.org.uk/api) provided by the Fingertips
+platform.
+
+``` r
 # Load necessary libraries
 library(httr)
 library(readr)
@@ -114,62 +152,98 @@ if (http_status(response)$category == "Success") {
   cat("Failed to retrieve data. Status code:", status_code(response), "\n")
   cat("Response content:", content(response, "text"), "\n")
 }
+```
 
+    # A tibble: 6 × 27
+      `Indicator ID` `Indicator Name`        `Parent Code` `Parent Name` `Area Code`
+               <dbl> <chr>                   <chr>         <chr>         <chr>      
+    1          93553 Deprivation score (IMD… <NA>          <NA>          E92000001  
+    2          93553 Deprivation score (IMD… E92000001     England       E38000217  
+    3          93553 Deprivation score (IMD… E38000247     NHS Tees Val… A81001     
+    4          93553 Deprivation score (IMD… E38000247     NHS Tees Val… A81002     
+    5          93553 Deprivation score (IMD… E38000247     NHS Tees Val… A81004     
+    6          93553 Deprivation score (IMD… E38000247     NHS Tees Val… A81005     
+    # ℹ 22 more variables: `Area Name` <chr>, `Area Type` <chr>, Sex <chr>,
+    #   Age <chr>, `Category Type` <chr>, Category <chr>, `Time period` <dbl>,
+    #   Value <dbl>, `Lower CI 95.0 limit` <lgl>, `Upper CI 95.0 limit` <lgl>,
+    #   `Lower CI 99.8 limit` <lgl>, `Upper CI 99.8 limit` <lgl>, Count <lgl>,
+    #   Denominator <lgl>, `Value note` <chr>, `Recent Trend` <chr>,
+    #   `Compared to England value or percentiles` <chr>,
+    #   `Compared to CCGs (from Apr 2021) value or percentiles` <chr>, …
+
+``` r
 head(IMD)
 ```
 
+    # A tibble: 6 × 27
+      `Indicator ID` `Indicator Name`        `Parent Code` `Parent Name` `Area Code`
+               <dbl> <chr>                   <chr>         <chr>         <chr>      
+    1          93553 Deprivation score (IMD… <NA>          <NA>          E92000001  
+    2          93553 Deprivation score (IMD… E92000001     England       E38000217  
+    3          93553 Deprivation score (IMD… E38000247     NHS Tees Val… A81001     
+    4          93553 Deprivation score (IMD… E38000247     NHS Tees Val… A81002     
+    5          93553 Deprivation score (IMD… E38000247     NHS Tees Val… A81004     
+    6          93553 Deprivation score (IMD… E38000247     NHS Tees Val… A81005     
+    # ℹ 22 more variables: `Area Name` <chr>, `Area Type` <chr>, Sex <chr>,
+    #   Age <chr>, `Category Type` <chr>, Category <chr>, `Time period` <dbl>,
+    #   Value <dbl>, `Lower CI 95.0 limit` <lgl>, `Upper CI 95.0 limit` <lgl>,
+    #   `Lower CI 99.8 limit` <lgl>, `Upper CI 99.8 limit` <lgl>, Count <lgl>,
+    #   Denominator <lgl>, `Value note` <chr>, `Recent Trend` <chr>,
+    #   `Compared to England value or percentiles` <chr>,
+    #   `Compared to CCGs (from Apr 2021) value or percentiles` <chr>, …
+
 ### FingertipsR Package
-The IMD data can also be accessed using the `fingertipsR` [package](https://github.com/ropensci/fingertipsR).
+
+The IMD data can also be accessed using the `fingertipsR`
+[package](https://github.com/ropensci/fingertipsR).
 
 <!-- ```{r fingertipsR}
 # Load necessary library
 library(fingertipsR)
-
-# Get the profile ID for the Public Health Outcomes Framework
+&#10;# Get the profile ID for the Public Health Outcomes Framework
 profiles_data <- profiles()
 phof_profile <- profiles_data[profiles_data$ProfileName == "Public Health Outcomes Framework", ]
 profile_id <- phof_profile$ProfileID[1]
-
-# Print the profile details (optional)
+&#10;# Print the profile details (optional)
 print(phof_profile)
-
-# Get indicators for the Public Health Outcomes Framework profile
+&#10;# Get indicators for the Public Health Outcomes Framework profile
 indicators_data <- indicators(ProfileID = profile_id)
-
-# Find the IndicatorID for "Deprivation score (IMD 2019)"
+&#10;# Find the IndicatorID for "Deprivation score (IMD 2019)"
 indicator_id <- indicators_data$IndicatorID[indicators_data$IndicatorName == "Deprivation score (IMD 2019)"]
-
-# Print the indicator details (optional)
+&#10;# Print the indicator details (optional)
 print(indicators_data[indicators_data$IndicatorName == "Deprivation score (IMD 2019)", ])
-
-# Get the data for the "Deprivation score (IMD 2019)" indicator
+&#10;# Get the data for the "Deprivation score (IMD 2019)" indicator
 IMD <- fingertips_data(IndicatorID = indicator_id, AreaTypeID = 7) # AreaTypeID 7 is for CCGs
-
-# Display the first few rows of the data
+&#10;# Display the first few rows of the data
 head(IMD)
 ``` -->
 
 ### Direct download
-However, this data only provides values for practices that are still active in 2019. To get the data for all practices, we obtained the CSV directly from OHID via email, which is available [here](https://github.com/camappel/HEEC/blob/main/data/IMD/IMD_raw.csv) as `IMD_raw.csv`.
 
-IMD values are only provided for 2010, 2015, and 2019. In order to have a continuous time series, we interpolate the values between these years, and extrapolate the values for 2020-2025. The resultant data is saved [here](https://github.com/camappel/HEEC/blob/main/data/IMD/IMD_interpolated.csv) as `IMD_interpolated.csv`.
+However, this data only provides values for practices that are still
+active in 2019. To get the data for all practices, we obtained the CSV
+directly from OHID via email, which is available
+[here](https://github.com/camappel/HEEC/blob/main/data/IMD/IMD_raw.csv)
+as `IMD_raw.csv`.
+
+IMD values are only provided for 2010, 2015, and 2019. In order to have
+a continuous time series, we interpolate the values between these years,
+and extrapolate the values for 2020-2025. The resultant data is saved
+[here](https://github.com/camappel/HEEC/blob/main/data/IMD/IMD_interpolated.csv)
+as `IMD_interpolated.csv`.
 
 <!-- ```{r interpolate}
 IMD <- read.csv("data/IMD/IMD_raw.csv")
-
-IMD <- IMD[, c("AreaCode", "Value", "Year")]
+&#10;IMD <- IMD[, c("AreaCode", "Value", "Year")]
 IMD %<>% rename(., Practice.Code = AreaCode)
 IMD %<>% rename(., IMD = Value)
-
-### interpolate IMD
+&#10;### interpolate IMD
 result_df <- data.frame()
-
-for (i in unique(IMD$Practice.Code)) {
+&#10;for (i in unique(IMD$Practice.Code)) {
   has_2010 <- any(IMD$Practice.Code == i & IMD$Year == 2010)
   has_2015 <- any(IMD$Practice.Code == i & IMD$Year == 2015)
   has_2019 <- any(IMD$Practice.Code == i & IMD$Year == 2019)
-
-  # if data is only available for 2010, extrapolate to 2011-2025
+&#10;  # if data is only available for 2010, extrapolate to 2011-2025
   if (has_2010 & !has_2015) {
     for (year in 2011:2025) {
       new_row <- data.frame(
@@ -177,13 +251,11 @@ for (i in unique(IMD$Practice.Code)) {
         Practice.Code = i,
         IMD = IMD[IMD$Practice.Code == i & IMD$Year == 2010, ]$IMD
       )
-
-      # Append the new row to the result data frame
+&#10;      # Append the new row to the result data frame
       result_df <- rbind(result_df, new_row)
     }
   }
-
-  # if data is available for 2010 and 2015, interpolate to 2011-2014
+&#10;  # if data is available for 2010 and 2015, interpolate to 2011-2014
   if (has_2010 & has_2015) {
     for (year in 2011:2014) {
       y_new <- approx(
@@ -197,13 +269,11 @@ for (i in unique(IMD$Practice.Code)) {
         Practice.Code = i,
         IMD = y_new$y
       )
-
-      # Append the new row to the result data frame
+&#10;      # Append the new row to the result data frame
       result_df <- rbind(result_df, new_row)
     }
   }
-
-  # if data is available for 2015 but not 2019, extrapolate to 2016-2025
+&#10;  # if data is available for 2015 but not 2019, extrapolate to 2016-2025
   if (has_2015 & !has_2019) {
     for (year in 2016:2025) {
       new_row <- data.frame(
@@ -211,13 +281,11 @@ for (i in unique(IMD$Practice.Code)) {
         Practice.Code = i,
         IMD = IMD[IMD$Practice.Code == i & IMD$Year == 2015, ]$IMD
       )
-
-      # Append the new row to the result data frame
+&#10;      # Append the new row to the result data frame
       result_df <- rbind(result_df, new_row)
     }
   }
-
-  # if data is available for 2015 and 2019, interpolate to 2016-2018
+&#10;  # if data is available for 2015 and 2019, interpolate to 2016-2018
   if (has_2015 & has_2019) {
     for (year in 2016:2018) {
       y_new <- approx(
@@ -231,13 +299,11 @@ for (i in unique(IMD$Practice.Code)) {
         Practice.Code = i,
         IMD = y_new$y
       )
-
-      # Append the new row to the result data frame
+&#10;      # Append the new row to the result data frame
       result_df <- rbind(result_df, new_row)
     }
   }
-
-  # if data is available for 2019, extrapolate to 2020-2025
+&#10;  # if data is available for 2019, extrapolate to 2020-2025
   if (has_2019) {
     for (year in 2020:2025) {
       new_row <- data.frame(
@@ -245,18 +311,14 @@ for (i in unique(IMD$Practice.Code)) {
         Practice.Code = i,
         IMD = IMD[IMD$Practice.Code == i & IMD$Year == 2019, ]$IMD
       )
-
-      # Append the new row to the result data frame
+&#10;      # Append the new row to the result data frame
       result_df <- rbind(result_df, new_row)
     }
   }
 }
-
-IMD <- rbind(IMD, result_df)
-
-IMD <- IMD[order(IMD$Practice.Code, IMD$Year), ]
-
-IMD %>%
+&#10;IMD <- rbind(IMD, result_df)
+&#10;IMD <- IMD[order(IMD$Practice.Code, IMD$Year), ]
+&#10;IMD %>%
   group_by(Year) %>%
   summarise(
     mean_IMD = mean(IMD, na.rm = TRUE),
@@ -268,13 +330,19 @@ IMD %>%
 ``` -->
 
 ## Payments
-NHS Digital provided annual data on payments made to general practices in England from 2014/15 to 22/23.
 
-Annual practice level .csv files are available [here](https://digital.nhs.uk/data-and-information/publications/statistical/nhs-payments-to-general-practice); some preprocessing has been done to clean the data and ensure consistency in variable names across years.
+NHS Digital provided annual data on payments made to general practices
+in England from 2014/15 to 22/23.
 
-Execute the following code to merge the data to create a single time-series dataset:
+Annual practice level .csv files are available
+[here](https://digital.nhs.uk/data-and-information/publications/statistical/nhs-payments-to-general-practice);
+some preprocessing has been done to clean the data and ensure
+consistency in variable names across years.
 
-```{r datasets, echo = TRUE}
+Execute the following code to merge the data to create a single
+time-series dataset:
+
+``` r
 library(magrittr)
 library(dplyr)
 
@@ -338,7 +406,20 @@ nhs_payments %>%
   )
 ```
 
-```{r merge with ICB code}
+    # A tibble: 9 × 4
+       Year total_payments total_patients n_practices
+      <dbl>          <dbl>          <dbl>       <int>
+    1  2015    7990324226       56633982         7959
+    2  2016    8182561838.      57371518         7841
+    3  2017    8883780328.      58688866         7763
+    4  2018    9050596202.      59527981         7543
+    5  2019    9261391490.      59824330.        7279
+    6  2020    9377079859.      60316398.        7001
+    7  2021   10309607071.      60671585.        6808
+    8  2022   11510115126.      61570004.        6758
+    9  2023   11011986630.      62134645.        6669
+
+``` r
 CCG_ICB <- read.csv("data/CCG_ICB_code.csv")
 
 # match CCG.Code in df with CCG.Code in ccg_icb and return ICB.Name
@@ -356,7 +437,50 @@ nhs_payments$ICB.NAME %>%
   sort()
 ```
 
-```{r clean duplicate columns}
+     [1] "Bath and North East Somerset, Swindon and Wiltshire"
+     [2] "Bedfordshire, Luton and Milton Keynes"              
+     [3] "Birmingham and Solihull"                            
+     [4] "Black Country"                                      
+     [5] "Bristol, North Somerset and South Gloucestershire"  
+     [6] "Buckinghamshire, Oxfordshire and Berkshire West"    
+     [7] "Cambridgeshire and Peterborough"                    
+     [8] "Cheshire and Merseyside"                            
+     [9] "Cornwall and the Isles of Scilly"                   
+    [10] "Coventry and Warwickshire"                          
+    [11] "Derby and Derbyshire"                               
+    [12] "Devon"                                              
+    [13] "Dorset"                                             
+    [14] "Frimley"                                            
+    [15] "Gloucestershire"                                    
+    [16] "Greater Manchester"                                 
+    [17] "Hampshire and Isle of Wight"                        
+    [18] "Herefordshire and Worcestershire"                   
+    [19] "Hertfordshire and West Essex"                       
+    [20] "Humber and North Yorkshire"                         
+    [21] "Kent and Medway"                                    
+    [22] "Lancashire and South Cumbria"                       
+    [23] "Leicester, Leicestershire and Rutland"              
+    [24] "Lincolnshire"                                       
+    [25] "Mid and South Essex"                                
+    [26] "Norfolk and Waveney"                                
+    [27] "North Central London"                               
+    [28] "North East and North Cumbria"                       
+    [29] "North East London"                                  
+    [30] "North West London"                                  
+    [31] "Northamptonshire"                                   
+    [32] "Nottingham and Nottinghamshire"                     
+    [33] "Shropshire, Telford and Wrekin"                     
+    [34] "Somerset"                                           
+    [35] "South East London"                                  
+    [36] "South West London"                                  
+    [37] "South Yorkshire"                                    
+    [38] "Staffordshire and Stoke-on-Trent"                   
+    [39] "Suffolk and North East Essex"                       
+    [40] "Surrey Heartlands"                                  
+    [41] "Sussex"                                             
+    [42] "West Yorkshire"                                     
+
+``` r
 standardise_columns <- function(nhs_payments) {
   # Helper function to merge columns and keep the first non-NA value
   merge_columns <- function(df, cols, new_col) {
@@ -533,7 +657,22 @@ nhs_payments %>%
   mutate(`Total (£)` = label_comma()(round(`Total (£)`)))
 ```
 
-```{r merge with IMD}
+    # A tibble: 54 × 3
+        Year `Payment Category`  `Total (£)`  
+       <dbl> <chr>               <chr>        
+     1  2015 Global Sum          4,410,434,227
+     2  2015 IT & Premises       672,107,043  
+     3  2015 PCO Payments        611,784,475  
+     4  2015 Contracted Services 802,764,294  
+     5  2015 Prescribing         770,841,139  
+     6  2015 COVID-19            0            
+     7  2016 Global Sum          4,606,796,159
+     8  2016 IT & Premises       739,487,955  
+     9  2016 PCO Payments        462,787,554  
+    10  2016 Contracted Services 901,854,909  
+    # ℹ 44 more rows
+
+``` r
 source("data/data_processing.R")
 
 # Call the function to merge and assign national-level quintiles
@@ -542,7 +681,46 @@ nhs_payments <- merge_and_assign_quintiles(
   start_year = 2015,
   end_year = 2023
 )
+```
 
+    [1] "Year: 2015"
+
+       1    2    3    4    5 
+    1589 1589 1588 1588 1588 
+    [1] "Year: 2016"
+
+       1    2    3    4    5 
+    1565 1565 1565 1565 1564 
+    [1] "Year: 2017"
+
+       1    2    3    4    5 
+    1547 1546 1546 1546 1546 
+    [1] "Year: 2018"
+
+       1    2    3    4    5 
+    1502 1502 1502 1502 1501 
+    [1] "Year: 2019"
+
+       1    2    3    4    5 
+    1453 1453 1453 1452 1452 
+    [1] "Year: 2020"
+
+       1    2    3    4    5 
+    1397 1396 1396 1396 1396 
+    [1] "Year: 2021"
+
+       1    2    3    4    5 
+    1357 1357 1357 1357 1357 
+    [1] "Year: 2022"
+
+       1    2    3    4    5 
+    1347 1347 1347 1347 1346 
+    [1] "Year: 2023"
+
+       1    2    3    4    5 
+    1329 1329 1328 1328 1328 
+
+``` r
 # Count missing IMD values per year
 nhs_payments %>%
   group_by(Year) %>%
@@ -551,7 +729,20 @@ nhs_payments %>%
   )
 ```
 
-```{r payments_weighted, echo=TRUE, fig.width=12, fig.height=8}
+    # A tibble: 9 × 2
+       Year missing_imd
+      <dbl>       <int>
+    1  2015          17
+    2  2016          17
+    3  2017          32
+    4  2018          34
+    5  2019          16
+    6  2020          20
+    7  2021          23
+    8  2022          24
+    9  2023          27
+
+``` r
 # Calculate payments excluding COVID and PCN payments for consistency
 payments_clean <- nhs_payments %>%
   mutate(
@@ -605,15 +796,21 @@ payments_by_imd %>%
   guides(color = guide_legend(reverse = TRUE, nrow = 1))
 ```
 
-## Age Group Data
-The Office for Health Improvement and Disparities (OHID) provides data on the proportion of GP registered populations by age group through the Fingertips platform. This data helps analyze how the age structure of practice populations affects NHS payments.
+![](README_files/figure-commonmark/payments_weighted-1.png)
 
-The data can be accessed through the [Fingertips API](https://fingertips.phe.org.uk/api) using indicator ID 93468.
+## Age Group Data
+
+The Office for Health Improvement and Disparities (OHID) provides data
+on the proportion of GP registered populations by age group through the
+Fingertips platform. This data helps analyze how the age structure of
+practice populations affects NHS payments.
+
+The data can be accessed through the [Fingertips
+API](https://fingertips.phe.org.uk/api) using indicator ID 93468.
 
 Execute the following code to retrieve and process the age group data:
 
-```{r age_group_data}
-```{r age_analysis_setup, echo=TRUE}
+``` r
 # Load age group data and merge with payments data
 age_data <- read.csv("data/age_group/age.csv") %>%
   filter(Year == 2023)
@@ -645,17 +842,32 @@ age_analysis %>%
   )
 ```
 
+    # A tibble: 5 × 5
+      prop65_quintile n_practices mean_prop65 mean_payment mean_imd
+                <int>       <int>       <dbl>        <dbl>    <dbl>
+    1               1        1271        7.97         153.     30.8
+    2               2        1271       13.8          158.     27.6
+    3               3        1270       17.9          168.     23.2
+    4               4        1270       21.7          181.     19.2
+    5               5        1270       28.0          230.     15.9
+
 ## Satisfaction
-The GP Patient Survey is an independent survey run by Ipsos MORI on behalf of NHS England on the GP Patient Survey website. The survey is sent out to over a million people across the UK and covers a range of topics related to the quality of care provided by GP practices. The data from the survey is used to assess patient experience and satisfaction with GP services.
 
-Annual practice-level .csv files are available [here].
+The GP Patient Survey is an independent survey run by Ipsos MORI on
+behalf of NHS England on the GP Patient Survey website. The survey is
+sent out to over a million people across the UK and covers a range of
+topics related to the quality of care provided by GP practices. The data
+from the survey is used to assess patient experience and satisfaction
+with GP services.
 
-Execute the following code to merge the data to create a single time-series dataset:
+Annual practice-level .csv files are available \[here\].
+
+Execute the following code to merge the data to create a single
+time-series dataset:
 
 <!-- ```{r sastifaction_data}
 practice_information <- c("Practice_Code", "Practice_Name", "CCG_Code", "CCG_Name", "ICS_Code", "ICS_Name")
-
-# Define the variable mappings as a named list
+&#10;# Define the variable mappings as a named list
 variable_mappings <- list(
   access_pct = "Q3_12pct",
   continuity_pct = "Q9_12pct",
@@ -663,71 +875,56 @@ variable_mappings <- list(
   trust_pct_default = "Q89_12pct",
   trust_pct_2017 = "Q22_12pct"
 )
-
-# Initialize empty data frames
+&#10;# Initialize empty data frames
 satisfaction <- data.frame()
 trust <- data.frame()
-
-# Function to load and process a single file
+&#10;# Function to load and process a single file
 process_file <- function(file, variables) {
   df <- read.csv(paste0("data/satisfaction/raw/", file))
-
-  # Select CCG or ICB Code
+&#10;  # Select CCG or ICB Code
   dataset_columns <- colnames(df)
   selected_column_names <- intersect(practice_information, dataset_columns)
   df <- df[, c(selected_column_names, variables)]
-
-  # Assign year
+&#10;  # Assign year
   year <- substr(file, 1, nchar(file) - 4)
   df$Year <- as.numeric(year)
-
-  return(df)
+&#10;  return(df)
 }
-
-# Process all files for satisfaction
+&#10;# Process all files for satisfaction
 for (file in list.files("data/satisfaction/raw/")) {
   df <- process_file(file, unlist(variable_mappings[-c(4, 5)])) # Exclude trust variables, as the variable code is not consistent; it will be collated separately
   satisfaction <- bind_rows(satisfaction, df)
 }
-
-# Process a subset of files for trust
+&#10;# Process a subset of files for trust
 for (file in list.files("data/satisfaction/raw/")) {
   year <- as.numeric(substr(file, 1, nchar(file) - 4))
   trust_variable <- ifelse(year == 2017, variable_mappings$trust_pct_2017, variable_mappings$trust_pct_default)
   df <- process_file(file, c("Practice_Code", trust_variable))
-
-  # Rename the trust column to a common name for merging
+&#10;  # Rename the trust column to a common name for merging
   colnames(df)[colnames(df) == trust_variable] <- "trust_pct"
-
-  trust <- bind_rows(trust, df)
+&#10;  trust <- bind_rows(trust, df)
 }
-
-# Keep only the relevant columns in trust
+&#10;# Keep only the relevant columns in trust
 trust <- trust[, c("Practice_Code", "trust_pct", "Year")]
-
-# Merge satisfaction and trust data frames
+&#10;# Merge satisfaction and trust data frames
 satisfaction <- merge(satisfaction, trust, by = c("Practice_Code", "Year"), all.x = TRUE)
-
-# Rename columns based on variable_mappings
+&#10;# Rename columns based on variable_mappings
 for (new_name in names(variable_mappings)[-c(4, 5)]) { # Exclude trust variables
   old_name <- variable_mappings[[new_name]]
   colnames(satisfaction)[colnames(satisfaction) == old_name] <- new_name
 }
-
-# Rename Practice_Code and Practice_Name
+&#10;# Rename Practice_Code and Practice_Name
 satisfaction <- satisfaction %>%
   rename(
     `Practice.Code` = Practice_Code,
     `Practice.Name` = Practice_Name
   )
-
-# drop rows where pct is negative
+&#10;# drop rows where pct is negative
 satisfaction$overall_pct <- ifelse(satisfaction$overall_pct < 0, NA, satisfaction$overall_pct)
 satisfaction$access_pct <- ifelse(satisfaction$access_pct < 0, NA, satisfaction$access_pct)
 satisfaction$continuity_pct <- ifelse(satisfaction$continuity_pct < 0, NA, satisfaction$continuity_pct)
 satisfaction$trust_pct <- ifelse(satisfaction$trust_pct < 0, NA, satisfaction$trust_pct)
-
-satisfaction %>%
+&#10;satisfaction %>%
   group_by(Year) %>%
   summarise(
     mean_overall = mean(overall_pct, na.rm = TRUE),
@@ -742,18 +939,14 @@ satisfaction %>%
 # match CCG.Code in df with CCG.Code in CCG_ICB and return ICB.Code
 satisfaction$ICB.NAME <- CCG_ICB[match(satisfaction$CCG_Code, CCG_ICB$CCG.Code), ]$ICB.NAME
 satisfaction[is.na(satisfaction$ICB.NAME), ]$ICB.NAME <- CCG_ICB[match(satisfaction[is.na(satisfaction$ICB.NAME), ]$ICS_Code, CCG_ICB$ICB.Code), ]$ICB.NAME
-
-satisfaction$ICB.NAME <- gsub("NHS ", "", satisfaction$ICB.NAME)
+&#10;satisfaction$ICB.NAME <- gsub("NHS ", "", satisfaction$ICB.NAME)
 satisfaction$ICB.NAME <- gsub(" Integrated Care Board", "", satisfaction$ICB.NAME)
-
-satisfaction <- satisfaction[, c("Practice.Code", "Practice.Name", "ICB.NAME", "Year", "overall_pct", "continuity_pct", "access_pct", "trust_pct")]
-
-# Call the function to merge and assign national-level quintiles
+&#10;satisfaction <- satisfaction[, c("Practice.Code", "Practice.Name", "ICB.NAME", "Year", "overall_pct", "continuity_pct", "access_pct", "trust_pct")]
+&#10;# Call the function to merge and assign national-level quintiles
 satisfaction <- merge_and_assign_quintiles(
   data = satisfaction
 )
-
-satisfaction %>%
+&#10;satisfaction %>%
   group_by(Year) %>%
   summarise(
     missing_imd = sum(is.na(IMD))
@@ -762,16 +955,29 @@ satisfaction %>%
 
 ## GP Workforce
 
-NHS Digital provides monthly data on the general practice workforce, including fully-qualified GPs, locums, nurses, and administrative staff. The data is reported annually from September 2015-2020, quarterly from December 2020-June 2021, and monthly from July 2021 onwards.
+NHS Digital provides monthly data on the general practice workforce,
+including fully-qualified GPs, locums, nurses, and administrative staff.
+The data is reported annually from September 2015-2020, quarterly from
+December 2020-June 2021, and monthly from July 2021 onwards.
 
-**Rationale for Annual Grouping**: Monthly workforce data exhibits natural fluctuations due to factors such as training cycles, holiday periods, and staff recruitment patterns. Aggregating to annual data provides several advantages:
+**Rationale for Annual Grouping**: Monthly workforce data exhibits
+natural fluctuations due to factors such as training cycles, holiday
+periods, and staff recruitment patterns. Aggregating to annual data
+provides several advantages:
 
-1. **Consistency with financial reporting**: Using financial year grouping (April-March) aligns with NHS budget cycles and other healthcare datasets in this analysis
-2. **Smoothing seasonal variation**: Monthly variations in staffing can obscure underlying trends and make year-over-year comparisons less reliable
-3. **Data completeness**: Not all practices report workforce data every month, so annual aggregation maximizes data coverage
-4. **Improved analytical stability**: Annual averages reduce the impact of temporary staffing changes and provide more stable metrics for comparative analysis
+1.  **Consistency with financial reporting**: Using financial year
+    grouping (April-March) aligns with NHS budget cycles and other
+    healthcare datasets in this analysis
+2.  **Smoothing seasonal variation**: Monthly variations in staffing can
+    obscure underlying trends and make year-over-year comparisons less
+    reliable
+3.  **Data completeness**: Not all practices report workforce data every
+    month, so annual aggregation maximizes data coverage
+4.  **Improved analytical stability**: Annual averages reduce the impact
+    of temporary staffing changes and provide more stable metrics for
+    comparative analysis
 
-```{r workforce_processing}
+``` r
 # Load and process GP workforce data
 workforce_files <- list.files("data/workforce/raw/", full.names = TRUE)
 workforce <- data.frame()
@@ -843,7 +1049,46 @@ workforce_annual <- merge_and_assign_quintiles(
   start_year = 2016,
   end_year = 2024
 )
+```
 
+    [1] "Year: 2016"
+
+       1    2    3    4    5 
+    1524 1524 1524 1524 1523 
+    [1] "Year: 2017"
+
+       1    2    3    4    5 
+    1508 1508 1507 1507 1507 
+    [1] "Year: 2018"
+
+       1    2    3    4    5 
+    1467 1467 1466 1466 1466 
+    [1] "Year: 2019"
+
+       1    2    3    4    5 
+    1427 1426 1426 1426 1426 
+    [1] "Year: 2020"
+
+       1    2    3    4    5 
+    1372 1371 1371 1371 1371 
+    [1] "Year: 2021"
+
+       1    2    3    4    5 
+    1327 1327 1327 1327 1327 
+    [1] "Year: 2022"
+
+       1    2    3    4    5 
+    1313 1313 1313 1313 1312 
+    [1] "Year: 2023"
+
+       1    2    3    4    5 
+    1295 1295 1295 1295 1295 
+    [1] "Year: 2024"
+
+       1    2    3    4    5 
+    1274 1274 1274 1273 1273 
+
+``` r
 workforce_annual$ICB.NAME <- CCG_ICB[match(workforce_annual$Practice.Code, CCG_ICB$Practice.Code), ]$ICB.NAME
 
 # Display summary statistics
@@ -855,7 +1100,23 @@ workforce_annual %>%
     avg_admin_fte = mean(TOTAL_ADMIN_FTE, na.rm = TRUE),
     avg_patients = mean(TOTAL_PATIENTS, na.rm = TRUE)
   )
+```
 
+    # A tibble: 10 × 5
+       Year  practices avg_gp_fte avg_admin_fte avg_patients
+       <chr>     <int>      <dbl>         <dbl>        <dbl>
+     1 2016       7623       3.59          7.53        7465.
+     2 2017       7558       3.70          8.31        7654.
+     3 2018       7354       3.76          8.59        7978.
+     4 2019       7137       3.83          9.16        8315.
+     5 2020       6867       3.95          9.80        8737.
+     6 2021       6652       4.07         10.4         9115.
+     7 2022       6587       4.09         10.8         9320.
+     8 2023       6503       4.12         11.3         9557.
+     9 2024       6395       4.21         11.8         9850.
+    10 2025       6293       4.35         12.2        10099.
+
+``` r
 # Create GP workforce per patient chart by deprivation level
 workforce_by_imd <- workforce_annual %>%
   filter(!is.na(IMD_quintile)) %>%
@@ -899,19 +1160,106 @@ workforce_by_imd %>%
   guides(color = guide_legend(reverse = TRUE, nrow = 1))
 ```
 
+![](README_files/figure-commonmark/workforce_processing-1.png)
+
 ## GP Earnings
 
-NHS Digital publishes annual data on GP earnings based on tax returns submitted by GP practices. This dataset provides insights into GP income levels across different practice types, geographical regions, and practice characteristics from 2016-2023.
+NHS Digital publishes annual data on GP earnings based on tax returns
+submitted by GP practices. This dataset provides insights into GP income
+levels across different practice types, geographical regions, and
+practice characteristics from 2016-2023.
 
-The earnings data includes total earnings, expenses, income before tax for both partners and salaried GPs, income distribution percentiles, and inflation-adjusted figures using GDP deflator and RPI.
+The earnings data includes total earnings, expenses, income before tax
+for both partners and salaried GPs, income distribution percentiles, and
+inflation-adjusted figures using GDP deflator and RPI.
 
-```{r gp_earnings_processing}
+``` r
 # Load GP earnings data
 gp_earnings <- read.csv("data/GP_earnings/raw/GP_earn_exp.csv")
 
 # Display basic structure
 head(gp_earnings)
+```
 
+      Country Region Practice.type Rurality Size Year Mean.Total.Partners.HC
+    1 England    All           All      All  All 2016                   3.13
+    2 England    All           All      All  All 2017                   3.15
+    3 England    All           All      All  All 2018                   3.12
+    4 England    All           All      All  All 2019                   3.14
+    5 England    All           All      All  All 2020                   3.13
+    6 England    All           All      All  All 2021                   3.08
+      Mean.Total.Partners.FTE Mean.Total.GP..fully.qualified..HC
+    1                    2.74                               4.87
+    2                    2.72                               5.22
+    3                    2.68                               5.31
+    4                    2.68                               5.57
+    5                    2.65                               5.78
+    6                    2.58                               5.89
+      Mean.Total.GP..fully.qualified..FTE Mean.Male.Partners.HC
+    1                                3.80                  1.79
+    2                                3.93                  1.79
+    3                                3.96                  1.76
+    4                                4.10                  1.75
+    5                                4.20                  1.73
+    6                                4.23                  1.69
+      Mean.Female.Partners.HC Mean.Total.GP.HC Mean.Total.GP.FTE
+    1                    1.34             5.13              4.03
+    2                    1.36             5.47              4.14
+    3                    1.36             6.04              4.68
+    4                    1.39             6.43              4.93
+    5                    1.40             6.81              5.20
+    6                    1.39             7.09              5.41
+      Mean.Total.Payments Mean.Total.Payments.incl.COVID.PCN
+    1              940025                                 NA
+    2             1047506                                 NA
+    3             1103759                                 NA
+    4             1174592                                 NA
+    5             1238576                                 NA
+    6             1309267                                 NA
+      Payments.per.Partner.HC Total.Earnings Total.Expenses
+    1                300327.5         314900         210000
+    2                332541.6         338300         228700
+    3                353768.9         357300         243900
+    4                374073.9         380900         263600
+    5                395711.2         402600         280800
+    6                425086.7         438700         296700
+      Income.before.tax.D1..salaried. Income.before.tax..salaried.
+    1                           27700                        55900
+    2                           27800                        56600
+    3                           28200                        58400
+    4                           29700                        60600
+    5                           31800                        63600
+    6                           32000                        64900
+      Income.before.tax.D9..salaried. Income.before.tax.D1..contractor.
+    1                           86800                             54700
+    2                           89400                             56800
+    3                           92900                             58200
+    4                           95600                             62300
+    5                           99000                             66400
+    6                          101600                             77200
+      Income.before.tax..contractor. Income.before.tax.D9..contractor.
+    1                         104900                            151900
+    2                         109600                            158300
+    3                         113400                            165500
+    4                         117300                            177400
+    5                         121800                            183900
+    6                         142000                            215600
+      Income.before.tax..GDP.deflator. Income.before.tax..RPI.deflator. GDP.delator
+    1                           127100                           142000        1.21
+    2                           122900                           145300        1.12
+    3                           132300                           144900        1.17
+    4                           134000                           145400        1.14
+    5                           135900                           147200        1.12
+    6                           150300                           169500        1.06
+      RPI.deflator Report.population
+    1         1.35             18300
+    2         1.33             19850
+    3         1.28             20350
+    4         1.24             20300
+    5         1.21             19250
+    6         1.19             18600
+
+``` r
 # Create dispensing vs non-dispensing partner income chart
 practice_type_earnings <- gp_earnings %>%
   filter(
@@ -958,13 +1306,18 @@ practice_size_earnings %>%
   scale_x_continuous(breaks = unique(practice_size_earnings$Year))
 ```
 
+![](README_files/figure-commonmark/gp_earnings_processing-1.png)
+
 # Analysis
 
 ## 1. [Structural inequalities in primary care – the facts and figures](https://www.heec.co.uk/resource/structural-inequalities-primary-care/)
 
-The factors determining the quality and quantity of primary care services vary across England. Here we analyse practice level data relating to the supply, demand, and need for primary care, according to the socioeconomic status of the patients served.
+The factors determining the quality and quantity of primary care
+services vary across England. Here we analyse practice level data
+relating to the supply, demand, and need for primary care, according to
+the socioeconomic status of the patients served.
 
-```{r weighted-patients, echo: true, fig.width=12, fig.height=8}
+``` r
 payments <- read.csv("data/payments/payments.csv")
 
 agg <- payments[payments$Year == 2023, ] %>%
@@ -997,7 +1350,9 @@ agg %>%
   scale_y_continuous(labels = percent_format(accuracy = 1))
 ```
 
-```{r ICB_dist, echo=TRUE, fig.width=12, fig.height=10}
+![](README_files/figure-commonmark/weighted-patients,%20echo-%20true-1.png)
+
+``` r
 # Calculate total count by Year, ICB.NAME
 total_counts <- payments %>%
   filter(Year == 2019) %>%
@@ -1058,33 +1413,51 @@ t %>%
   guides(fill = guide_legend(reverse = TRUE, nrow = 1))
 ```
 
+![](README_files/figure-commonmark/ICB_dist-1.png)
+
 [QOF Shiny App](https://heec.shinyapps.io/QOF_shiny/)
 
 ## 2. [NHS payments to practices in the East of England](https://www.heec.co.uk/resource/nhs-payments-general-practice-east-england/)
 
-In this resource, we explore structural inequalities in primary care at the ICB level in the East of England. We provide data on NHS payments to GP surgeries, payments per weighted patient and patient satisfaction, showing differences across socioeconomic groups.
+In this resource, we explore structural inequalities in primary care at
+the ICB level in the East of England. We provide data on NHS payments to
+GP surgeries, payments per weighted patient and patient satisfaction,
+showing differences across socioeconomic groups.
 
-- **Charts**: 
-  - [Payments per weighted patient](https://heec.shinyapps.io/Payments_shiny/)
+- **Charts**:
+  - [Payments per weighted
+    patient](https://heec.shinyapps.io/Payments_shiny/)
   - [Total payments by type](https://heec.shinyapps.io/Type_shiny/)
-  - [Overall experience by ICB](https://heec.shinyapps.io/Satisfaction_shiny/)
+  - [Overall experience by
+    ICB](https://heec.shinyapps.io/Satisfaction_shiny/)
 
 ## 3. [What does the latest GP Patient Survey tell us about socio-economic inequalities in general practice?](https://www.heec.co.uk/resource/what-does-the-latest-gp-patient-survey-tell-us-about-socio-economic-inequalities-in-general-practice/)
 
-Overall patient satisfaction with general practice has improved slightly according to the GP Patient Survey 2024, but remains substantially lower than pre-pandemic levels. Patient satisfaction is not the same across the country. Read more to understand inequalities in patient satisfaction from the latest data.
+Overall patient satisfaction with general practice has improved slightly
+according to the GP Patient Survey 2024, but remains substantially lower
+than pre-pandemic levels. Patient satisfaction is not the same across
+the country. Read more to understand inequalities in patient
+satisfaction from the latest data.
 
 - **Charts**:
   - [GPPS by ICB](https://heec.shinyapps.io/GPPS/)
   - [Overall satisfaction](https://heec.shinyapps.io/overall_shiny/)
-  - [Experience contacting surgery](https://heec.shinyapps.io/access_shiny/)
+  - [Experience contacting
+    surgery](https://heec.shinyapps.io/access_shiny/)
   - [Continuity](https://heec.shinyapps.io/continuity_shiny/)
   - [Confidence](https://heec.shinyapps.io/trust_shiny/)
 
 ## 4. [Exploring the impact of dispensing practices on equity in NHS payments to general practices](https://www.heec.co.uk/resource/exploring-the-impact-of-dispensing-practicing-on-equity-in-nhs-payments-to-general-practices/)
 
-In 2023, 6,669 general practices received £10.2 billion in NHS funding across England, increasing to £11 billion with COVID-related and Primary Care Network (PCN) payments. Almost 10% of this—£870 million—was allocated to prescribing- and dispensing-related payments, supporting 944 dispensing practices serving 9.5 million patients (£625 million) and 5,537 non-dispensing practices covering 53 million patients (£245 million).
+In 2023, 6,669 general practices received £10.2 billion in NHS funding
+across England, increasing to £11 billion with COVID-related and Primary
+Care Network (PCN) payments. Almost 10% of this—£870 million—was
+allocated to prescribing- and dispensing-related payments, supporting
+944 dispensing practices serving 9.5 million patients (£625 million) and
+5,537 non-dispensing practices covering 53 million patients (£245
+million).
 
-```{r dispensing_analysis, echo=TRUE, fig.width=12, fig.height=8}
+``` r
 # Use the most recent year of payments data (2023)
 dispensing_data <- payments %>%
   filter(Year == 2023, !is.na(IMD_quintile))
@@ -1164,7 +1537,9 @@ plot_data %>%
   guides(color = guide_legend(nrow = 1))
 ```
 
-```{r dispensing_distribution, echo=TRUE, fig.width=12, fig.height=6}
+![](README_files/figure-commonmark/dispensing_analysis-1.png)
+
+``` r
 # Create side-by-side bar charts showing distribution of practices by IMD quintile
 # for dispensing vs non-dispensing practices
 
@@ -1207,7 +1582,9 @@ dispensing_counts %>%
   guides(fill = guide_legend(reverse = TRUE, nrow = 1))
 ```
 
-```{r dispensing_scatter, echo=TRUE, fig.width=15, fig.height=7.5}
+![](README_files/figure-commonmark/dispensing_distribution-1.png)
+
+``` r
 # Create scatter plot showing relationship between IMD and payments per registered patient
 # for dispensing vs non-dispensing practices
 
@@ -1264,7 +1641,9 @@ scatter_data %>%
   )
 ```
 
-```{r dispensing_scatter_weighted, echo=TRUE, fig.width=15, fig.height=7.5}
+![](README_files/figure-commonmark/dispensing_scatter-1.png)
+
+``` r
 # Create scatter plot showing relationship between IMD and payments per weighted patient
 # for dispensing vs non-dispensing practices
 
@@ -1321,7 +1700,9 @@ scatter_data_weighted %>%
   )
 ```
 
-```{r dispensing_scatter_no_prescribing, echo=TRUE, fig.width=15, fig.height=7.5}
+![](README_files/figure-commonmark/dispensing_scatter_weighted-1.png)
+
+``` r
 # Create scatter plot showing relationship between IMD and payments per weighted patient
 # excluding prescribing payments to show the effect of dispensing on inequality
 
@@ -1392,7 +1773,11 @@ scatter_data_no_prescribing %>%
     panel.grid.major = element_line(color = "grey90"),
     panel.grid.minor = element_blank()
   )
+```
 
+![](README_files/figure-commonmark/dispensing_scatter_no_prescribing-1.png)
+
+``` r
 # Create the dispensing comparison chart
 practice_type_earnings %>%
   ggplot(aes(x = Year, y = Income.before.tax..contractor., color = Practice.type)) +
@@ -1415,29 +1800,48 @@ practice_type_earnings %>%
   scale_x_continuous(breaks = unique(practice_type_earnings$Year))
 ```
 
+![](README_files/figure-commonmark/dispensing_scatter_no_prescribing-2.png)
+
 ## 5. [General Practice Inequalities Datapacks](https://www.heec.co.uk/resource/general-practice-inequalities-datapacks/)
 
-There are stark inequalities in the supply, demand and need of general practice. ICBs can take action to address these inequalities.
+There are stark inequalities in the supply, demand and need of general
+practice. ICBs can take action to address these inequalities.
 
-We've developed datapacks for each ICB England to help them understand their inequalities and take action.
+We’ve developed datapacks for each ICB England to help them understand
+their inequalities and take action.
 
-Below are the datapacks for the East of England ICBs. If you'd like a copy of your own ICBs datapack, please email us contact@heec.co.uk
+Below are the datapacks for the East of England ICBs. If you’d like a
+copy of your own ICBs datapack, please email us contact@heec.co.uk
 
-Within the datapacks, we calculate the disparity between practices serving the most and least deprived patients for each ICB, across the following categories:
+Within the datapacks, we calculate the disparity between practices
+serving the most and least deprived patients for each ICB, across the
+following categories:
 
 - Resources (supply): Payments, Workforce
+
 - Population (demand): Disease prevalence, Health-related behaviours
+
 - Service quality: QOF achievement
+
 - Access: Patient experience, Appointments
+
 - Impact on secondary care: Emergency admissions, A&E attendances
 
-- **Code**: [NHS Health Inequalities Notebook](https://health-inequalities.nhsrcommunity.com/england.html)
+- **Code**: [NHS Health Inequalities
+  Notebook](https://health-inequalities.nhsrcommunity.com/england.html)
 
 ## 6. [How does the age structure of patients affect NHS payments to General Practice?](https://www.heec.co.uk/resource/how-does-the-age-structure-of-patients-affect-nhs-payments-to-general-practice/)
 
-In 2023/24, 6,669 practices received £10.2 billion from the NHS. Capitation payments to individual practices are adjusted using the Carr-Hill formula. On average, practices received £164.64 per patient, with higher payments for practices serving older populations due to higher healthcare needs, prescribing costs and the specific needs of rural areas. This analysis explores how NHS payments to general practices are informed by the age structure, deprivation and rurality of registered patients.
+In 2023/24, 6,669 practices received £10.2 billion from the NHS.
+Capitation payments to individual practices are adjusted using the
+Carr-Hill formula. On average, practices received £164.64 per patient,
+with higher payments for practices serving older populations due to
+higher healthcare needs, prescribing costs and the specific needs of
+rural areas. This analysis explores how NHS payments to general
+practices are informed by the age structure, deprivation and rurality of
+registered patients.
 
-```{r age_payments_chart, echo=TRUE, fig.width=12, fig.height=8}
+``` r
 # Chart showing payments per patient by age quintile
 payment_by_age <- age_analysis %>%
   group_by(prop65_quintile) %>%
@@ -1477,7 +1881,9 @@ payment_by_age %>%
   scale_y_continuous(labels = label_comma(prefix = "£"))
 ```
 
-```{r age_imd_scatter, echo=TRUE, fig.width=12, fig.height=8}
+![](README_files/figure-commonmark/age_payments_chart-1.png)
+
+``` r
 # Scatter plot showing relationship between age and deprivation
 age_analysis %>%
   mutate(
@@ -1515,22 +1921,40 @@ age_analysis %>%
   )
 ```
 
-## 7. Sorry we're closed: Exploring general practice closures
+![](README_files/figure-commonmark/age_imd_scatter-1.png)
 
-In 2019, there were 7,029 General Practice surgeries in England, providing essential healthcare to more than 60 million patients. However, recent data reveals a concerning trend: this number has fallen by over 10%, leaving just 6,256 practices in operation. While many of these closures represented mergers in with other practices, 193 (24%) shut down completely, leaving no direct replacement. This has displaced an estimated 718,000 – equivalent to nearly 1 in every 80 patients in England – forcing them to seek new healthcare providers.
+## 7. Sorry we’re closed: Exploring general practice closures
 
-As the number of surgeries dwindled, the strain on existing practices increased. Over the same period, the average GP list size grew from 8,737 to 9,613 patients. The practices that closed were, on average, significantly smaller, with around 4,004 per surgery. At the same time, the structure of NHS workforce has shifted dramatically, with the number of salaried GPs surpassing the number of GP partners for the first time in NHS history. This shift signals a move away from traditional, independently managed practices toward a system increasingly dominated by large, consolidate healthcare providers.
+In 2019, there were 7,029 General Practice surgeries in England,
+providing essential healthcare to more than 60 million patients.
+However, recent data reveals a concerning trend: this number has fallen
+by over 10%, leaving just 6,256 practices in operation. While many of
+these closures represented mergers in with other practices, 193 (24%)
+shut down completely, leaving no direct replacement. This has displaced
+an estimated 718,000 – equivalent to nearly 1 in every 80 patients in
+England – forcing them to seek new healthcare providers.
+
+As the number of surgeries dwindled, the strain on existing practices
+increased. Over the same period, the average GP list size grew from
+8,737 to 9,613 patients. The practices that closed were, on average,
+significantly smaller, with around 4,004 per surgery. At the same time,
+the structure of NHS workforce has shifted dramatically, with the number
+of salaried GPs surpassing the number of GP partners for the first time
+in NHS history. This shift signals a move away from traditional,
+independently managed practices toward a system increasingly dominated
+by large, consolidate healthcare providers.
 
 <!-- - **Code**: [closures](analysis/closures) -->
 
 # Shiny Applications
 
-This project includes several interactive Shiny applications for exploring health equity data:
+This project includes several interactive Shiny applications for
+exploring health equity data:
 
 ## Local Applications (Source Code Available)
 
 | Application | Description | URL | Purpose |
-|-------------|-------------|-----|---------|
+|----|----|----|----|
 | **QOF Shiny** | Quality and Outcomes Framework data explorer | [camappel.shinyapps.io/QOF_shiny](https://camappel.shinyapps.io/QOF_shiny/) | Interactive visualization of QOF disease prevalence and achievement data |
 | **Payments Shiny** | NHS payments analysis tool | [heec.shinyapps.io/Payments_shiny](https://heec.shinyapps.io/Payments_shiny/) | Total payments per weighted patient by practice type, ICB, and year |
 | **Overall Satisfaction** | Patient satisfaction explorer | [heec.shinyapps.io/overall_shiny](https://heec.shinyapps.io/overall_shiny/) | Overall satisfaction with General Practice by ICB and year |
@@ -1538,7 +1962,7 @@ This project includes several interactive Shiny applications for exploring healt
 ## Additional Deployed Applications
 
 | Application | Description | URL |
-|-------------|-------------|-----|
+|----|----|----|
 | **GPPS App** | GP Patient Survey data | [heec.shinyapps.io/GPPS](https://heec.shinyapps.io/GPPS/) |
 | **Access App** | Access satisfaction metrics | [heec.shinyapps.io/access_shiny](https://heec.shinyapps.io/access_shiny/) |
 | **Continuity App** | Continuity of care metrics | [heec.shinyapps.io/continuity_shiny](https://heec.shinyapps.io/continuity_shiny/) |
@@ -1546,53 +1970,55 @@ This project includes several interactive Shiny applications for exploring healt
 | **Type App** | Practice type comparisons | [heec.shinyapps.io/Type_shiny](https://heec.shinyapps.io/Type_shiny/) |
 | **Satisfaction App** | General satisfaction metrics | [heec.shinyapps.io/Satisfaction_shiny](https://heec.shinyapps.io/Satisfaction_shiny/) |
 
-All applications are designed to explore health inequalities across different deprivation levels, practice types, and geographic regions in England.
+All applications are designed to explore health inequalities across
+different deprivation levels, practice types, and geographic regions in
+England.
 
 # Project Structure
 
-```
-├── _quarto.yml          # Project configuration
-├── README.qmd           # This main documentation file
-├── index.qmd            # Project homepage
-├── CLAUDE.md            # Project guidelines and commands
-├── analysis/            # Analysis scripts and results
-│   ├── age_structure/   # Age demographics analysis
-│   ├── closures/        # Practice closure analysis
-│   ├── dispensing/      # Dispensing vs non-dispensing practices
-│   ├── dispensing_2/    # Extended dispensing analysis
-│   ├── healthcare_need/ # Healthcare need assessment
-│   └── rurality/        # Rural vs urban analysis
-├── data/                # Raw and processed datasets
-│   ├── appointments/    # GP appointment data
-│   ├── age_group/       # Patient age group data
-│   ├── behaviours/      # Health behavior data
-│   ├── CQC/            # Care Quality Commission ratings
-│   ├── GP_earnings/     # GP income and earnings data
-│   ├── IMD/            # Index of Multiple Deprivation
-│   ├── life_expectancy/ # Life expectancy data
-│   ├── payments/        # NHS payments to practices
-│   ├── pcn_workforce/   # Primary Care Network workforce
-│   ├── prevalence/      # Disease prevalence data
-│   ├── QOF/            # Quality and Outcomes Framework
-│   ├── satisfaction/    # Patient satisfaction surveys
-│   ├── secondary_care/  # Hospital admissions data
-│   └── workforce/       # GP practice workforce data
-├── datapacks/           # ICB-specific data reports
-│   ├── ICB Reports/     # Individual ICB analysis reports
-│   └── Region reports/  # Regional summary reports
-└── shiny/              # Interactive Shiny applications
-    ├── QOF_shiny/      # Quality metrics explorer
-    ├── payments_app/    # NHS payments analysis
-    └── satisfaction_overall_app/ # Patient satisfaction
-```
+    ├── _quarto.yml          # Project configuration
+    ├── README.qmd           # This main documentation file
+    ├── index.qmd            # Project homepage
+    ├── CLAUDE.md            # Project guidelines and commands
+    ├── analysis/            # Analysis scripts and results
+    │   ├── age_structure/   # Age demographics analysis
+    │   ├── closures/        # Practice closure analysis
+    │   ├── dispensing/      # Dispensing vs non-dispensing practices
+    │   ├── dispensing_2/    # Extended dispensing analysis
+    │   ├── healthcare_need/ # Healthcare need assessment
+    │   └── rurality/        # Rural vs urban analysis
+    ├── data/                # Raw and processed datasets
+    │   ├── appointments/    # GP appointment data
+    │   ├── age_group/       # Patient age group data
+    │   ├── behaviours/      # Health behavior data
+    │   ├── CQC/            # Care Quality Commission ratings
+    │   ├── GP_earnings/     # GP income and earnings data
+    │   ├── IMD/            # Index of Multiple Deprivation
+    │   ├── life_expectancy/ # Life expectancy data
+    │   ├── payments/        # NHS payments to practices
+    │   ├── pcn_workforce/   # Primary Care Network workforce
+    │   ├── prevalence/      # Disease prevalence data
+    │   ├── QOF/            # Quality and Outcomes Framework
+    │   ├── satisfaction/    # Patient satisfaction surveys
+    │   ├── secondary_care/  # Hospital admissions data
+    │   └── workforce/       # GP practice workforce data
+    ├── datapacks/           # ICB-specific data reports
+    │   ├── ICB Reports/     # Individual ICB analysis reports
+    │   └── Region reports/  # Regional summary reports
+    └── shiny/              # Interactive Shiny applications
+        ├── QOF_shiny/      # Quality metrics explorer
+        ├── payments_app/    # NHS payments analysis
+        └── satisfaction_overall_app/ # Patient satisfaction
 
 ## Getting Started
 
 To work with this project:
 
-1. Ensure you have R and Quarto installed
-2. Run analysis scripts with: `Rscript <script_name>.R`
-3. Render Quarto documents with: `quarto render <document_name>.qmd`
-4. Launch Shiny apps with: `R -e "shiny::runApp('<app_directory>/app.R')"`
+1.  Ensure you have R and Quarto installed
+2.  Run analysis scripts with: `Rscript <script_name>.R`
+3.  Render Quarto documents with: `quarto render <document_name>.qmd`
+4.  Launch Shiny apps with:
+    `R -e "shiny::runApp('<app_directory>/app.R')"`
 
-For more information, see the [CLAUDE.md](CLAUDE.md) file for detailed project guidelines and commands.
+For more information, see the [CLAUDE.md](CLAUDE.md) file for detailed
+project guidelines and commands.

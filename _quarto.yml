@@ -9,3 +9,5 @@ format:
     toc: true
     code-fold: true
     code-summary: "Click to show code"
+  gfm:
+    keep-yaml: false
