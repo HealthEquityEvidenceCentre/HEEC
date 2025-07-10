@@ -1,12 +1,36 @@
-# Hide the .Rmd files used to create the .md files
-*.Rmd
-*.Qmd
+# R and RStudio files
 *.Rhistory
+*RData
 *.dcf
-*.pptx
-# README_files
-appointments
-*.js
-*.html
-data/age_group/raw_age.csv
 *.DS_Store
+*.Rmd
+*Qmd
+
+# Quarto generated files
+/_freeze/
+_site/
+/.quarto/
+
+# Generated HTML files
+*.html
+
+# Temporary and backup files
+*~
+*.tmp
+*.bak
+
+# Specific temporary files
+data/age_group/raw_age.csv
+appointments/
+
+# PowerPoint presentations (if not needed for version control)
+*.pptx
+
+# JavaScript files (unless specifically needed)
+*.js
+
+# Keep important Quarto and R files
+!README.qmd
+!index.qmd
+!CLAUDE.md
+!*.R
