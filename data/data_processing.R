@@ -5,7 +5,7 @@ library(magrittr)
 # Define the generic function to merge and assign IMD quintiles
 merge_and_assign_quintiles <- function(data, start_year = 2016, end_year = 2025) {
   # Read the IMD data
-  IMD <- read.csv("../IMD/IMD_interpolated.csv")
+  IMD <- read.csv("data/IMD/IMD_interpolated.csv")
 
   # Merge the provided data with IMD data
   merged_data <- merge(data, IMD, by = c("Practice.Code", "Year"), all.x = TRUE)

@@ -1,0 +1,679 @@
+---
+title: "Big Picture"
+format:
+  html:
+    code-fold: true
+    code-summary: "Click to show code"
+    fig-width: 90
+    fig-height: 25
+execute: 
+  echo: true
+  warning: false
+---
+
+```{r library}
+library(ggplot2)
+library(tidyverse)
+library(magrittr)
+```
+
+```{r load data}
+payments23 <- read.csv("../../data/payments/raw/22-23.csv")
+payments23$Year <- 2023
+
+n <- payments23$Practice.Code %>%
+  unique() %>%
+  length()
+
+p <- payments23$Number.of.Registered.Patients..Last.Known.Figure. %>% sum(na.rm = TRUE)
+```
+
+There were `r n` practices serving `r p` patients in 2023.
+
+Not all practices are the same; they can be:
+
+-   Big or small
+
+-   GMS, APMS or PMS
+
+-   Dispensing or non-dispensing
+
+-   Rural or Urban
+
+-   In deprived or or affluent areas
+
+They have different resources, such as:
+
+-   Payments received for:
+
+    -   Global sum
+
+    -   prescribing (if it's a dispensing practice),
+
+    -   contracted services (direct or local),
+
+    -   participation in the Primary Care Network and Primary Care Organisation,
+
+    -   Quality Aspiration and Achievement,
+
+    -   Premises and IT,
+
+    -   COVID-related services
+
+-   A large network of GPs, nurses, admin, DPC, and PCN staff, or just a few employees and partners
+
+They can serve different populations:
+
+-   Young, old
+
+-   Healthy, sick
+
+-   Rich, poor
+
+-   White, black, asian, arab, mixed, or otherwise
+
+They can offer different quality and quantity of healthcare, based on:
+
+-   Number of appointments
+
+-   CQC rating
+
+-   the General Practice Satisfaction Survey
+
+-   Impact on secondary care
+
+From a patient's perspective, the General Practice you sign up to, and consequently your experience with primary care, and your health outcomes are based on your postcode.
+
+The Index of Multiple Deprivation measures level of socioeconomic deprivation at the postcode-level, based on:
+
+-   **Income** (22.5%)
+
+-   **Employment** (22.5%)
+
+-   **Health Deprivation and Disability** (13.5%)
+
+-   **Education, Skills, and Training** (13.5%)
+
+-   **Crime** (9.3%)
+
+-   **Barriers to Housing and Services** (9.3%)
+
+-   **Living Environment** (9.3%)
+
+If we pull back the layers, adjusting for number of registered patients and 'weighted' healthcare need, can we discover systemic inequalities in General Practices in England, based on the socioeconomic status of its registered patients, that contribute to differences in life expectancy? [If so, what could be causing these differences, and how could they be improved?]{.underline}
+
+### NHS Payments to General Practice
+
+```{r payments}
+total <- payments23$Total.NHS.Payments.to.General.Practice %>% sum()
+
+payments23 %>%
+  filter(Total.NHS.Payments.to.General.Practice != 0) %>%
+  summarise(
+    avg_total = mean(Total.NHS.Payments.to.General.Practice, na.rm = TRUE),
+    sd_total = sd(Total.NHS.Payments.to.General.Practice, na.rm = TRUE),
+    lower_20th = quantile(Total.NHS.Payments.to.General.Practice, 0.2, na.rm = TRUE),
+    upper_80th = quantile(Total.NHS.Payments.to.General.Practice, 0.8, na.rm = TRUE)
+  )
+```
+
+The NHS paid £`r total` to 6,669 practices in 2023, excluding COVID and PCN payments.
+
+Some practices received more than x, while other received less than y, with an average of z.
+
+This could simply be due to the number of registered patients.
+
+```{r patients}
+t <- payments23 %>% summarise(
+  n_common = median(round(Number.of.Registered.Patients..Last.Known.Figure., -2)),
+  lower_20th = quantile(Number.of.Registered.Patients..Last.Known.Figure., 0.2, na.rm = TRUE),
+  upper_80th = quantile(Number.of.Registered.Patients..Last.Known.Figure., 0.8, na.rm = TRUE)
+)
+```
+
+The most common number of patients served was `r t$n_common`, based on the often neglected mode, after rounding to the nearest 100. Some practices had more than `r t$upper_80th`.
+
+```{r per patient}
+payments23 %>%
+  filter(Total.NHS.Payments.to.General.Practice > 0) %>%
+  filter(Average.payments.per.registered.patient < 600) %>%
+  summarise(
+    Average.payment = mean(Average.payments.per.registered.patient, na.rm = TRUE),
+    lower_20th = quantile(Average.payments.per.registered.patient, 0.2, na.rm = TRUE),
+    upper_80th = quantile(Average.payments.per.registered.patient, 0.8, na.rm = TRUE)
+  )
+```
+
+Each practice received an average of £150 per patient, after excluding certain practices. However, some received more than x while others received less than y.
+
+Not all patients are the same, of course. The weighted number of patients aims to adjust for the healthcare need of patients, according to the Carr-Hill formula.
+
+```{r per patient}
+payments23 %>%
+  filter(Total.NHS.Payments.to.General.Practice > 0) %>%
+  filter(Average.payments.per.registered.patient < 600) %>%
+  summarise(
+    Average.payment = mean(Average.payments.per.weighted.patient, na.rm = TRUE),
+    lower_20th = quantile(Average.payments.per.weighted.patient, 0.2, na.rm = TRUE),
+    upper_80th = quantile(Average.payments.per.weighted.patient, 0.8, na.rm = TRUE)
+  )
+```
+
+After adjusting for the estimated healthcare need of the patients, the average payment per weighted patient still ranged from x to y.
+
+We separate payments per weighted patient into quintiles: some practices receive £210 per weighted patient whereas those in the bottom quintile receive £140.
+
+This means that some practices are receiving more payments from the NHS than others, even after adjusting for list size and estimated healthcare need. In other words, these practices have access to more resources, such as staff, to meet the same the level of demand.
+
+### Age Structure of Registered Patients
+
+
+### Index of Multiple Deprivation
+```{r IMD}
+payments23 %<>% filter(Dispensing.Practice != "Unknown")
+
+payments23$Practice.Code %>% unique() %>% length()
+
+IMD <- read.csv("../../data/IMD/IMD_interpolated.csv") %>%
+  filter(Year == 2023)
+
+df <- merge(payments23, IMD, by = c("Practice.Code", "Year"))
+
+df %>%
+  group_by(Dispensing.Practice) %>%
+  summarise(
+    n = n()
+  ) %>% pull(n) %>% sum()
+
+df %<>%
+  filter(Total.NHS.Payments.to.General.Practice > 0) %>%
+  filter(Average.payments.per.registered.patient < 600) %>%
+  filter(Number.of.Registered.Patients..Last.Known.Figure. != 0)
+
+df %>%
+  group_by(Dispensing.Practice) %>%
+  summarise(
+    n = n(),
+    IMDm = mean(IMD),
+    IMDsd = sd(IMD),
+    average.paymentm = mean(Average.payments.per.registered.patient),
+    average.paymentsd = sd(Average.payments.per.registered.patient)
+  )
+
+df %>% nrow()
+```
+
+To see if this disparity in supply is associated with socioeconomic status, we combine the NHS Payments to General Practice dataset for 2023 with the latest IMD data (2019) from Fingertips, extrapolated to 2023. IMD data was not available for 27 practices, because they are new since 2019, leaving 6,642 practices.
+
+### Rurality
+```{r rural}
+df %>%
+  group_by(IMD_quintile, Practice.Rurality) %>%
+  summarise(
+    count = n(),
+  )
+```
+
+1,092 practices are in rural areas. IMD is strongly associated with rurality (By definition: **Living Environment** = 9.3% of Index composite): A third of practices in the most deprived quintile are rural, whereas less than 1.5% of the most affluent quintile are urban.
+
+### Dispensing Practices
+```{r dispensing}
+df %>%
+  group_by(Dispensing.Practice) %>%
+  summarise(
+    count = n(),
+  )
+
+df %>%
+  group_by(Dispensing.Practice, Practice.Rurality) %>%
+  summarise(
+    count = n(),
+  )
+
+692 / 944 * 100
+```
+
+Many rural practices are dispensing (692/944 = 74%), which offers an additional revenue stream through Prescrbing and Dispensing Fee Payments.
+
+It is important to note that "the specific costs of the NHS dispensing GP service, as well as the specific needs of rural populations deserve equal consideration when considering the holistic costs of service provision".
+
+In order to compare like for like, we there remove dispensing practices from the analysis, as they receive offer additional services than non-dispensing practices.
+
+## Association between Payments per Weighted Patient, IMD, and Dispensing Status
+
+We plot the remaining practices on a x-y coordinate space, where x represents Total Payments per Weighted Patient, y represents deprivation, and the colour represents Practice Rurality.
+
+```{r main plot}
+library(ggplot2)
+
+df %<>%
+  filter(Total.NHS.Payments.to.General.Practice > 0) %>%
+  filter(Average.payments.per.registered.patient < 600) %>%
+  filter(Number.of.Registered.Patients..Last.Known.Figure. != 0) %>%
+  filter(Dispensing.Practice != "Unknown")
+
+df[df$Dispensing.Practice == "Yes",]$Dispensing.Practice <- "Dispensing"
+df[df$Dispensing.Practice == "No",]$Dispensing.Practice <- "Non-dispensing"
+
+write.csv(df[,c('Dispensing.Practice', 'IMD', 'Average.payments.per.weighted.patient')], 'nvd3.csv', row.names = FALSE)
+
+df %>%
+  arrange(Dispensing.Practice == "Dispensing") %>%
+  ggplot(aes(x = IMD, y = Average.payments.per.weighted.patient, color = Dispensing.Practice)) +
+  geom_point(alpha = 0.6, size = 2) +
+  labs(
+    title = "Scatter Plot of IMD vs Average Payments",
+    x = "Average Payments per Weighted Patient",
+    y = "Index of Multiple Deprivation (IMD)",
+    color = "Dispensing Practice"
+  ) +
+  scale_y_continuous(
+    limits = c(0, 600), 
+    breaks = seq(floor(min(df$Average.payments.per.weighted.patient)), 
+                                  ceiling(max(df$Average.payments.per.weighted.patient)), 
+                                  by = 50)
+  ) +
+  scale_x_continuous(
+    limits = c(3.40, 68.72), 
+    breaks = seq(5, 70, by = 5)
+  ) +
+  scale_color_manual(values = c("Dispensing" = "#531A5C", "Non-dispensing" = "#EF7A34")) +  # Match nvd3 colors
+  theme_minimal(base_size = 14) +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),  # Center title like nvd3
+    axis.title = element_text(size = 14), 
+    axis.text = element_text(size = 12),
+    panel.grid.major = element_line(color = "gray90"),  # Light grid to match nvd3
+    panel.grid.minor = element_blank(),  # Remove minor grid
+    legend.position = c(1, 1),  # Top-right corner (just like nvd3)
+    legend.justification = c(1, 1),  # Right-align legend
+    legend.title = element_blank(),  # Remove legend title
+    legend.text = element_text(size = 12)
+  )
+
+ggsave('payment_weighted.png', width = 15, height = 7.5, dpi = 300)
+
+df$Average.payments.per.registered.patient %>% max()
+```
+
+This plot reveals 2 distinct clusters of practices:
+
+-   a vertical band of urban practices receiving around £155 per weighted patient, whose patients' socioeconomic status are evenly distributed;
+
+-   and a horizontal band of affluent rural practices with a mean IMD of 15.1 (s.d. 6.19), that receive £60 more on average per weighted patients.
+
+```{r table}
+t <- df %>%
+  group_by(Dispensing.Practice) %>%
+  summarise(
+    # IMDmean = mean(IMD, na.rm = TRUE),
+    # IMDsd = sd(IMD, na.rm = TRUE),
+    Paym = mean(Average.payments.per.weighted.patient, na.rm = TRUE),
+    Paysd = sd(Average.payments.per.weighted.patient, na.rm = TRUE),
+    n = n()
+  )
+
+  quantile(df$Average.payments.per.registered.patient, probs = seq(0, 1, by = 0.2), na.rm = TRUE)
+
+mean(df[df$Dispensing.Practice == "Yes", ]$Average.payments.per.weighted.patient, na.rm = TRUE)
+```
+
+Most practices (83.3%) are in urban areas, and tend to receive between £125-185 per weighted patient across a range of socioeconomic backgrounds. A few practices (16.6%) are in rural areas, which tend to be more affluent, and usually receive around £210 per weighted patient.
+
+### How to adjust for 'the specific costs of the NHS dispensing GP service, as well as the specific needs of rural populations'?
+  
+Despite its shortcomings, the Carr-Hill formula aims to adjust for the specific needs of rural populations.
+
+This leave the specific costs of the NHS dispensing GP service, which include reimbursement for drugs purchased and a dispensing service fee.
+
+To separate the funding tied to prescribing and dispensing activities, prescribing fees should be subtracted from the total payments before dividing by weighted patients.
+  
+  ```{r adjust dispensing service}
+df %>%
+  colnames()
+
+df$Total.NHS.Payments.to.General.Practice
+
+Prescribing <- c(
+  "Prescribing.Fee.Payments", "Dispensing.Fee.Payments",
+  "Reimbursement.of.Drugs"
+)
+
+df[, Prescribing]
+
+df$Total.Prescribing <- rowSums(df[, Prescribing], na.rm = TRUE)
+
+df$Total.NHS.Payments.to.General.Practice.minus.Prescribing <- df$Total.NHS.Payments.to.General.Practice - df$Total.Prescribing
+
+df[df$Total.NHS.Payments.to.General.Practice.minus.Prescribing == 0,]
+#There's 1 practice where all their payments (only £1,076) are prescribing
+
+df$Average.payments.minus.Prescribing.per.weighted.patient <- df$Total.NHS.Payments.to.General.Practice.minus.Prescribing / df$Number.of.Weighted.Patients..Last.Known.Figure.
+
+df[is.na(df$Average.payments.minus.Prescribing.per.weighted.patient),]
+# The same practice therefore has Average.payments.minus.Prescribing.per.weighted.patient = NaN
+
+df %<>% filter(Number.of.Registered.Patients..Last.Known.Figure. != 0)
+
+df %>%
+  group_by(Dispensing.Practice) %>%
+  summarise(
+    n = n(),
+    IMDm = mean(IMD),
+    IMDsd = sd(IMD),
+    average.paymentm = mean(Average.payments.minus.Prescribing.per.weighted.patient, na.rm = TRUE),
+    average.paymentsd = sd(Average.payments.minus.Prescribing.per.weighted.patient, na.rm = TRUE)
+  )
+```
+
+```{r plot adjusted}
+library(ggplot2)
+
+df %<>%
+  filter(Number.of.Registered.Patients..Last.Known.Figure. != 0) %>%
+  filter(Total.NHS.Payments.to.General.Practice > 0)
+
+df %>%
+  filter(Average.payments.per.registered.patient > 600) %>%
+  group_by(Contract.Type) %>%
+  summarise(n = n())
+
+df %<>%
+  filter(Average.payments.per.registered.patient < 600)
+
+library(ggplot2)
+library(dplyr)
+
+df %>%
+  filter(Dispensing.Practice != "Unknown") %>%
+  arrange(Dispensing.Practice == "Dispensing") %>%
+  ggplot(aes(x = Average.payments.minus.Prescribing.per.weighted.patient, 
+             y = IMD, 
+             color = Dispensing.Practice)) +
+  geom_point(alpha = 0.6, size = 2) +
+  # geom_vline(xintercept = 0, linetype = "solid", color = "black") +  # Add solid line on y-axis
+  labs(
+    x = "Average Payment, less prescribing, per Weighted Patient (£)",
+    y = "IMD (Higher = More deprived)"
+  ) +
+  scale_x_continuous(breaks = seq(floor(min(df$Average.payments.minus.Prescribing.per.weighted.patient)), 
+                                  ceiling(max(df$Average.payments.minus.Prescribing.per.weighted.patient)), 
+                                  by = 50)) +
+  scale_y_continuous(limits = c(3.40, 68.72), breaks = seq(5, 70, by = 5)) +
+  scale_color_manual(values = c("Dispensing" = "#531A5C", "Non-dispensing" = "#EF7A34")) +  # Match nvd3 colors
+  theme_minimal(base_size = 14) +  # Match clean nvd3 font
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),  # Center title like nvd3
+    axis.title = element_text(size = 14), 
+    axis.text = element_text(size = 12),
+    panel.grid.major = element_line(color = "gray90"),  # Light grid to match nvd3
+    panel.grid.minor = element_blank(),  # Remove minor grid
+    legend.position = c(1, 1),  # Top-right corner (just like nvd3)
+    legend.justification = c(1, 1),  # Right-align legend
+    legend.title = element_blank(),  # Remove legend title
+    legend.text = element_text(size = 12)
+  )
+
+ggsave('payment_less_pres.png', width = 15, height = 7.5, dpi = 300)
+
+write.csv(df[, c("Average.payments.minus.Prescribing.per.weighted.patient", "IMD", "Dispensing.Practice")], "nvd3.csv", row.names = FALSE)
+
+t <- df %>%
+  group_by(Dispensing.Practice) %>%
+  summarise(
+    IMDmean = mean(IMD, na.rm = TRUE),
+    IMDsd = sd(IMD, na.rm = TRUE),
+    Paym = mean(Average.payments.minus.Prescribing.per.weighted.patient, na.rm = TRUE),
+    Paysd = sd(Average.payments.minus.Prescribing.per.weighted.patient, na.rm = TRUE),
+    n = n()
+  )
+
+```
+
+The same plot of IMD against payments to General Practice, adjusted for list size, healthcare need, and dispensing status, shows that while dispensing practices tend to serve more affluent populations, they **do not receive** more payments from the NHS relative to healthcare activity.
+
+The DDA stated that, 'Due to additional financial controls on NHS GP reimbursement, many drugs are, in fact, loss-making for NHS GPs'; as such, the additional prescribing and dispensing fee payments should be commensurate with additional costs incurred by the practice.
+
+As such, analysts and policy-makers should ensure that prescribing fee payments are excluded from analyses of NHS General Practice, so that Dispensing Practices and Non-dispensing practices can be meaningfully compared.
+
+Nonetheless, while this adjustment reduces the socioeconomic gradient in payments per weighted patient, some practices still recieve more than others, with a mean of x (s.d. y).
+
+Moreover, the GPPS survery revealed that patient satisfaction, access, and trust in the primary care system should a strong association with deprivation. The average % respondents describing their practice as good was x if it was a Dispensing practice and y if it Non-Dispensing.
+
+### Workforce
+```{r workforce}
+workforce <- read.csv("../../data/workforce/workforce_year.csv") %>%
+  select(-IMD) %>%
+  filter(Year == 2023)
+
+workforce %<>%
+  left_join(payments23[, c("Practice.Code", "Dispensing.Practice", "Number.of.Weighted.Patients..Last.Known.Figure.")], by = "Practice.Code")
+
+workforce %<>% select(c("Practice.Code", "Dispensing.Practice", "Number.of.Weighted.Patients..Last.Known.Figure.", "TOTAL_GP_EXTGL_FTE", "TOTAL_LOCUUM_TRN_FTE", "TOTAL_NURSES_FTE", "TOTAL_DPC_FTE", "TOTAL_ADMIN_FTE"))
+
+agg <- workforce %>%
+  group_by(Dispensing.Practice) %>%
+  summarise(
+    GP_per_100k = sum(TOTAL_GP_EXTGL_FTE, na.rm = TRUE) / sum(Number.of.Weighted.Patients..Last.Known.Figure., na.rm = TRUE) * 100000,
+    Locum_per_100k = sum(TOTAL_LOCUUM_TRN_FTE, na.rm = TRUE) / sum(Number.of.Weighted.Patients..Last.Known.Figure., na.rm = TRUE) * 100000,
+    Nurse_per_100k = sum(TOTAL_NURSES_FTE, na.rm = TRUE) / sum(Number.of.Weighted.Patients..Last.Known.Figure., na.rm = TRUE) * 100000,
+    DPC_per_100k = sum(TOTAL_DPC_FTE, na.rm = TRUE) / sum(Number.of.Weighted.Patients..Last.Known.Figure., na.rm = TRUE) * 100000,
+    Admin_per_100k = sum(TOTAL_ADMIN_FTE, na.rm = TRUE) / sum(Number.of.Weighted.Patients..Last.Known.Figure., na.rm = TRUE) * 100000,
+    ) %>%
+  pivot_longer(
+    cols = -Dispensing.Practice, 
+    names_to = "Workforce_Metric", 
+    values_to = "Rate_per_100k"
+  ) %>%
+  mutate(
+    Workforce_Metric = factor(Workforce_Metric, levels = c("GP_per_100k", "Locum_per_100k", 
+                                                           "Nurse_per_100k", "DPC_per_100k", 
+                                                           "Admin_per_100k")),
+    Dispensing.Practice = factor(Dispensing.Practice, levels = c("No", "Yes"), 
+                                 labels = c("Non-dispensing", "Dispensing"))
+  )
+
+agg %>%
+ggplot(., aes(x = Rate_per_100k, y = Workforce_Metric, color = Dispensing.Practice)) +
+  geom_point(size = 4) +
+  theme_minimal() +
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor = element_blank(),
+    axis.title.y = element_blank(),
+    axis.title.x = element_text(size = 12),
+    axis.text.y = element_text(size = 12),
+    plot.title = element_text(size = 14, face = "bold"),
+    plot.subtitle = element_text(size = 10),
+    legend.position = "bottom"
+  ) +
+  scale_color_manual(values = c("Non-dispensing" = "#EF7A34", "Dispensing" = "#531A5C")) +
+  labs(
+    title = "Workforce per 100,000 Weighted Patients by Practice Type",
+    x = "Rate per 100,000 Patients",
+    color = "Practice Type"
+  )
+
+ggsave('workforce.png', width = 15, height = 12.5, dpi = 300)
+```
+
+```{r satisfation}
+satisfaction23 <- read.csv("../../data/satisfaction/satisfaction.csv") %>%
+filter(Year == 2023) %>% 
+select(-Year)%>% 
+merge(., payments23[, c("Practice.Code","Dispensing.Practice","Number.of.Weighted.Patients..Last.Known.Figure.","Total.NHS.Payments.to.General.Practice.Minus.Deductions","Prescribing.Fee.Payments","Dispensing.Fee.Payments", "Reimbursement.of.Drugs","Average.payments.per.weighted.patient")], by = "Practice.Code") %>% 
+mutate(
+  Total.Prescribing = Prescribing.Fee.Payments + Dispensing.Fee.Payments+  Reimbursement.of.Drugs,
+  Payment.per.weight.patient = (Total.NHS.Payments.to.General.Practice.Minus.Deductions - Total.Prescribing) / Number.of.Weighted.Patients..Last.Known.Figure.
+  )
+
+satisfaction23 %>% 
+# group_by(Dispensing.Practice) %>%
+summarise(
+  overall = mean(overall_pct, na.rm=TRUE),
+  continuity = mean(continuity_pct, na.rm=TRUE),
+  access = mean(access_pct, na.rm=TRUE),
+  trust= mean(trust_pct, na.rm=TRUE)
+)
+```
+It appears that dispensing practices offer a higher level of patient satisfaction.
+
+```{r average payment less prescribing against patient satisfaction}
+satisfaction23 %>% filter(
+  Payment.per.weight.patient < 600
+) %>%
+  arrange(Dispensing.Practice == "Yes") %>%
+ggplot(., aes(x = Payment.per.weight.patient , y = overall_pct, color = Dispensing.Practice)) +
+  geom_point(size = 3, alpha = 0.3) + # Points with transparency
+  labs(
+    x = "Payment per Weighted Patient (£)",
+    y = "Overall satisfaction (%)",
+    title = "Scatter Plot of Payment, less prescribing, per Weighted Patient vs Overall satisfaction"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(hjust = 0.5), # Center the title
+    axis.text = element_text(size = 10),
+    axis.title = element_text(size = 12)
+  )
+```
+
+How are some dispensing practices in affluent rural areas able to offer a higher level of patient satistfaction with the same amount of payments per weighted patient, after adjusting for specific costs of GP Dispensing services?
+
+## Workforce
+```{r workforce}
+wf <- read.csv('../../data/workforce/workforce_year.csv')
+
+wf %<>% filter(Year == 2023) %>% mutate(GP_FTE_per_100k_patients = (TOTAL_GP_EXTGL_FTE / TOTAL_PATIENTS) * 100000)
+
+merged_data <- wf %>%
+  left_join(payments23, by = c("Practice.Code", "Year"))
+
+merged_data <- merged_data %>%
+  mutate(GP_FTE_per_100k_patients = ifelse(is.infinite(GP_FTE_per_100k_patients), NA, GP_FTE_per_100k_patients))
+
+merged_data %>%
+group_by(Dispensing.Practice) %>%
+summarise(mean(GP_FTE_per_100k_patients, na.rm=TRUE))
+```
+
+## Extra
+
+### What is driving this difference in supply, given the same level of demand?
+
+```{r dispensing practices}
+df %>%
+  filter(Dispensing.Practice == "Yes") %>%
+  nrow()
+df %>%
+  filter(Practice.Rurality == "Rural" & Dispensing.Practice == "Yes") %>%
+  summarise(count = n())
+```
+
+Consider the average total payments received by practices, grouped into quintiles according to payment per weighted patient.
+
+We separate practices into quintiles, based on the average payment per weighted patient.
+
+```{r payment quintiles}
+df <- payments23
+df %<>%
+  filter(Number.of.Registered.Patients..Last.Known.Figure. != 0) %>%
+  filter(Total.NHS.Payments.to.General.Practice > 0) %>%
+  filter(Average.payments.per.registered.patient < 600) %>%
+  mutate(payment_quintile = ntile(Average.payments.per.weighted.patient, 5))
+
+df %>%
+  filter(payment_quintile == 1) %>%
+  pull(Average.payments.per.weighted.patient) %>%
+  mean(, na.rm = TRUE)
+
+```
+
+Practices in the top quintile received £230 per weighted patient versus £129 in the bottom quintile.
+
+We then look at the total payments, and break it down by category
+
+```{r payment categories}
+totals <- c(
+  "Total.NHS.Payments.to.General.Practice",
+  "Total.NHS.Payments.to.General.Practice.including.Covid.and.PCN.payments",
+  "Total.NHS.Payments.to.General.Practice.including.covid.vaccination..covid.support.and.long.covid.payments",
+  "Total.NHS.Payments.including.PCN.Workforce..Leadership.and.Support",
+  "Deductions.for.Pensions..Levies.and.Prescription.Charge.Income",
+  "Total.NHS.Payments.to.General.Practice.Minus.Deductions",
+  "Total.NHS.Payments.to.General.Practice.including.Covid.and.PCN.payments.minus.deductions"
+)
+
+globalSum <- c(
+  "Global.Sum"
+)
+
+ITPremises <- c(
+  "Premises.Payments", "Information.Management.and.Technology"
+)
+
+# Seniority payments were made to principal GPs in recognition of their years of NHS reckonable service.
+# The scheme closed to new applicants on the 1 April, 2014 and the last payments were made at the end of March 2020.
+PCO <- c(
+  # 2015
+  "Seniority", "Doctors.Retainer.Scheme.Payments", "Total.Locum.Allowances",
+  "Appraisal.Costs",
+  "PCO.Admin.Other", "Other.Payments",
+  "General.Practice.Forward.View",
+  "General.Practice.Transformation", "winter.Access.Fund",
+  "Prolonged.Study.Leave",
+  "Appraisal...Appraiser.Costs.in.Respect.of.Locums",
+  "PCN.Participation", "PCN.Leadership", "PCN.Support",
+  "PCN.Extended.Hours.Access", "PCN.Workforce",
+  "PCN.Investment.and.impact.Fund",
+  "PCN.Care.Home.Premium", "PCN.Enhanced.Access"
+)
+
+QOF <- c("Total.QOF.Payments")
+
+contractedServices <- c(
+  "Alcohol", "Childhood.Vaccination.and.Immunisation.Scheme",
+  "GP.Extended.Hours.Access",
+  "Facilitating.Timely.Diagnosis.and.Support.for.People.with.Dementia",
+  "Improving.Patient.Online.Access",
+  "Influenza.and.Pneumococcal.Immunisations", "Learning.Disabilities",
+  "Minor.Surgery", "Patient.Participation", "Remote.Care.Monitoring",
+  "Risk.Profiling.and.Case.Management", "Rotavirus.and.Shingles.Immunisation",
+  "Services.for.Violent.Patients", "Unplanned.Admissions",
+  "Total.National.Enhanced.Services", "Total.Local.Enhanced.Services",
+  "Non.DES.Item.Pneumococcal.Vaccine..Childhood.Immunisation.Main.Programme",
+  # 2016
+  "Out.Of.Area.in.Hours.Urgent.Care", "Meningitis",
+  # These 2 total to make Total.Local.Enhances.Services in 2016:
+  #    "LocalEnhancedServices_NHAIS_", "LocalEnhancedServices_ISFE_",
+  "Pertussis",
+  "Total.Local.Incentive.Schemes", "Local.Incentive.Schemes",
+  "Weight.Management.Service",
+  "Medical.Assessment.Reviews"
+  # "Covid.Immunisation", "Covid.Support.and.Expansion",
+  # "Long.Covid"
+)
+
+COVID <- c(
+  "Covid.Immunisation", "Covid.Support.and.Expansion",
+  "Long.Covid"
+)
+
+Prescribing <- c(
+  "Prescribing.Fee.Payments", "Dispensing.Fee.Payments",
+  "Reimbursement.of.Drugs"
+)
+```
+
+```{r}
+df$Total.Global.Sum <- rowSums(df[, globalSum], na.rm = TRUE)
+df$Total.IT.Premises <- rowSums(df[, ITPremises], na.rm = TRUE)
+df$Total.PCO <- rowSums(df[, PCO], na.rm = TRUE)
+df$Total.Contracted.Services <- rowSums(df[, contractedServices], na.rm = TRUE)
+df$Total.Prescribing <- rowSums(df[, Prescribing], na.rm = TRUE)
+df$Total.COVID <- rowSums(df[, COVID], na.rm = TRUE)
+```
+
+Across the country, it is clear that practices serving more affluent patients receive more funding, and have better outcomes than those serving poor populations.
+
+The goal of the General Practice in England is to "**provide the first point of contact in the healthcare system, acting as the 'front door' of the NHS";** The goal of the NHS is to provide free healthcare at point of service to all registered patients in England.

@@ -1,0 +1,11 @@
+project:
+  type: website
+  render:
+    - README.qmd
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    code-fold: true
+    code-summary: "Click to show code"
