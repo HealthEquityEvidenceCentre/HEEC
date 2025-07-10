@@ -24,6 +24,7 @@ README_files/
 data/age_group/raw_age.csv
 appointments/
 data/pcn_workforce/pcn_workforce.csv
+/_site/
 
 # JavaScript files (unless specifically needed)
 *.js

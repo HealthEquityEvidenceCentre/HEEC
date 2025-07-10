@@ -121,7 +121,7 @@ head(IMD)
 ### FingertipsR Package
 The IMD data can also be accessed using the `fingertipsR` [package](https://github.com/ropensci/fingertipsR).
 
-<!-- ```{r fingertipsR}
+```{r fingertipsR}
 # Load necessary library
 library(fingertipsR)
 
@@ -147,14 +147,14 @@ IMD <- fingertips_data(IndicatorID = indicator_id, AreaTypeID = 7) # AreaTypeID 
 
 # Display the first few rows of the data
 head(IMD)
-``` -->
+```
 
 ### Direct download
 However, this data only provides values for practices that are still active in 2019. To get the data for all practices, we obtained the CSV directly from OHID via email, which is available [here](https://github.com/camappel/HEEC/blob/main/data/IMD/IMD_raw.csv) as `IMD_raw.csv`.
 
 IMD values are only provided for 2010, 2015, and 2019. In order to have a continuous time series, we interpolate the values between these years, and extrapolate the values for 2020-2025. The resultant data is saved [here](https://github.com/camappel/HEEC/blob/main/data/IMD/IMD_interpolated.csv) as `IMD_interpolated.csv`.
 
-<!-- ```{r interpolate}
+```{r interpolate}
 IMD <- read.csv("data/IMD/IMD_raw.csv")
 
 IMD <- IMD[, c("AreaCode", "Value", "Year")]
@@ -265,7 +265,7 @@ IMD %>%
     max_IMD = max(IMD, na.rm = TRUE),
     n = n()
   )
-``` -->
+```
 
 ## Payments
 NHS Digital provided annual data on payments made to general practices in England from 2014/15 to 22/23.
