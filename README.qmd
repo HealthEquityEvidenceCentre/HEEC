@@ -53,12 +53,26 @@ The Health Equity Evidence Centre has compiled and analyzed practice-level data 
 
 ## Key Findings
 
-Our analysis reveals significant health inequalities in primary care:
+Our analysis reveals significant health inequalities in primary care across England:
 
-- Practices serving more deprived populations receive **higher per-patient payments** due to increased healthcare needs
-- **GP workforce density** varies significantly across deprivation levels and geographic regions
-- **Patient satisfaction** and service access differ by practice characteristics and local deprivation
-- **Rural vs urban areas** show distinct patterns in healthcare delivery and resource allocation
+### 💰 **Payment Disparities**
+- Practices serving the **most deprived 20% of the population received £14 less in NHS payments per weighted patient** in 2022-23 than those serving the least deprived quintile
+- **Dispensing practices** earn substantially more per patient due to additional prescribing revenues, creating geographic inequities
+- Despite higher healthcare needs in deprived areas, **funding mechanisms don't fully compensate** for increased complexity and demand
+
+### 👨‍⚕️ **Workforce Challenges**
+- **GP workforce density varies significantly** across deprivation levels, with fewer fully qualified GPs per patient in more deprived areas
+- **Rural practices face acute staffing shortages** while serving populations with greater healthcare needs
+- The shift from **GP partners to salaried GPs** threatens traditional practice models, particularly affecting smaller practices in disadvantaged areas
+
+### 😟 **Patient Experience Gaps**
+- **Patient satisfaction consistently lower** in practices serving more deprived populations across all measured domains
+- **Access to appointments and continuity of care** shows persistent inequalities, with worse outcomes in deprived communities
+- **Trust and confidence in healthcare providers** varies by practice characteristics and local socioeconomic factors
+
+### 🏥 **System-Wide Pressures**
+- **Practice closures disproportionately impact** smaller communities, with 718,000 patients displaced since 2019
+- **Age structure of populations** significantly influences payment levels, with practices serving older patients receiving higher capitation
 
 ## Data Sources
 
@@ -827,6 +841,7 @@ satisfaction %>%
 
 ```{r satisfaction_by_imd, echo=TRUE, fig.width=12, fig.height=8}
 # Calculate overall satisfaction by IMD quintile and year
+satisfaction <- read.csv('data/satisfaction/satisfaction.csv')
 satisfaction_by_imd <- satisfaction %>%
   filter(!is.na(IMD_quintile), !is.na(overall_pct)) %>%
   group_by(Year, IMD_quintile) %>%
@@ -863,11 +878,6 @@ satisfaction_by_imd %>%
   theme(
     legend.position = "bottom",
     axis.text.x = element_text(angle = 0)
-  ) +
-  scale_y_continuous(
-    labels = function(x) paste0(x, "%"),
-    limits = c(60, 90),
-    breaks = seq(60, 90, by = 5)
   ) +
   scale_x_continuous(breaks = unique(satisfaction_by_imd$Year)) +
   guides(color = guide_legend(reverse = TRUE, nrow = 1))
