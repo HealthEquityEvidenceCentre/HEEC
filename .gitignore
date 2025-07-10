@@ -8,8 +8,8 @@
 
 # Quarto generated files
 /_freeze/
-_site/
 /.quarto/
+# _site/ - commented out to allow GitHub Pages deployment
 
 # Generated HTML files
 *.html
